@@ -1,0 +1,22 @@
+{
+  "mode": "live",
+  "status": "failed",
+  "cost": null,
+  "team_name": "replay_paper",
+  "max_output_tokens": 5000,
+  "error_type": "RuntimeError",
+  "model_calls": 1,
+  "model_usage": [
+    {
+      "input_tokens": 3968,
+      "output_tokens": 2457,
+      "total_tokens": 6425,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260928T150942-789171",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 6425,
+  "duration_seconds": 11.119623897000565
+}

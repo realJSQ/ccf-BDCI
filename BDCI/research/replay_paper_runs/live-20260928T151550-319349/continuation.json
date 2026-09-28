@@ -1,0 +1,33 @@
+{
+  "source": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_paper_runs/live-20260928T151351-885403",
+  "source_summary": {
+    "mode": "live",
+    "status": "failed",
+    "cost": null,
+    "team_name": "replay_paper",
+    "max_output_tokens": 5000,
+    "error_type": "RuntimeError",
+    "model_calls": 2,
+    "model_usage": [
+      {
+        "input_tokens": 6413,
+        "output_tokens": 948,
+        "total_tokens": 7361,
+        "event": "usage",
+        "call": 2,
+        "run_id": "live-20260928T151351-885403",
+        "finish_reason": "stop"
+      }
+    ],
+    "total_tokens": 13786,
+    "duration_seconds": 4.681782558000123
+  },
+  "writer_repeated": false,
+  "saved_raw_sha256": {
+    "writer": "61d18aee8811332c8006983b9e59082ec121fe601d557794bed6a2711dd8a1ef",
+    "reviewer": "c47049d4f9e4190474d418c9d42975ef9e7ec92d326528e54fb9f00b8efc42ed"
+  },
+  "new_model_calls_planned": 1,
+  "draft_review_admission_limit": 1800,
+  "final_word_limit": 1600
+}

@@ -23,7 +23,7 @@ def _keys(value, expected, field):
         raise ValueError(f'invalid_fields:{field}')
 
 
-def validate_paper(paper, sources):
+def validate_paper(paper, sources, *, max_words=MAX_WORDS):
     """Validate a paper without changing it; returns None or raises ValueError.
 
     Sections are a list of ID-bearing objects. Results and numeric truth tables are owned
@@ -68,7 +68,9 @@ def validate_paper(paper, sources):
             cited.add(ref)
     if len(cited) < 2:
         raise ValueError('at_least_two_references_required')
-    if sum(len(text.split()) for text in texts) > MAX_WORDS:
+    if type(max_words) is not int or max_words <= 0:
+        raise ValueError('invalid_paper_word_limit')
+    if sum(len(text.split()) for text in texts) > max_words:
         raise ValueError('paper_word_limit')
 
 

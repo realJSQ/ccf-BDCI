@@ -1,0 +1,21 @@
+{
+  "mode": "live",
+  "status": "completed",
+  "cost": null,
+  "team_name": "replay_paper",
+  "max_output_tokens": 5000,
+  "model_calls": 1,
+  "model_usage": [
+    {
+      "input_tokens": 7306,
+      "output_tokens": 2923,
+      "total_tokens": 10229,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-20260928T151550-319349",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 10229,
+  "duration_seconds": 10.004746015001729
+}

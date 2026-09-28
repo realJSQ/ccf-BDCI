@@ -1,0 +1,8 @@
+{
+  "authorship": "Coding assistant local editorial pass, not a new model response",
+  "original_model_revision_sha256": "26c141340f8b9c2c45bfffad48977aac04f250a8680a630592157e6bea71ba80",
+  "final_paper_sha256": "9d5166aa5a9987b78110219a24b9f8f82aaaa1b9ff30b033bda2d80fb669d2e7",
+  "new_model_calls": 0,
+  "reason": "Model revision remained oversized and its claims of condensation were not supported.",
+  "edits": "Condensed abstract, introduction and conclusion; retained methods/results limitations; removed redundant inline source IDs already rendered as citations."
+}
