@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "files": 239,
+  "archive_bytes": 600308,
+  "archive_sha256": "92b1298c70ac6c925e6dffa7701475c5c1733124a342a6117bc151e6d7949670",
+  "top_level_document_links_checked": 57,
+  "missing_links": [],
+  "manifest_hashes_valid": true,
+  "actual_api_key_found": false,
+  "api_calls": 0,
+  "source_paper_unchanged": true,
+  "submission_ready": false,
+  "scope": "Local repack of saved validation evidence with current documentation and patch; no new paper, experiment, external review or PR."
+}

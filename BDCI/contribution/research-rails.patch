@@ -1,0 +1,591 @@
+diff --git a/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py b/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py
+new file mode 100644
+index 0000000..b29f8cc
+--- /dev/null
++++ b/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py
+@@ -0,0 +1,115 @@
++"""Persistent model admission for bounded research runs.
++
++The caller MUST hold an exclusive lock for the entire run. Token usage is a
++post-response stop threshold, not a prepaid hard cap. Failed/uncertain requests
++consume admissions. A missing usage record prevents reopening that campaign.
++"""
++from __future__ import annotations
++
++import asyncio
++from datetime import datetime, timezone
++import json
++import os
++from pathlib import Path
++
++from openjiuwen.core.single_agent.rail.base import AgentRail
++
++
++def _append(path, record):
++    with Path(path).open("a", encoding="utf-8") as stream:
++        stream.write(json.dumps(record, ensure_ascii=False) + "\n")
++        stream.flush()
++        os.fsync(stream.fileno())
++
++
++class ResearchRunBudget:
++    def __init__(self, root, ledger_path, *, max_calls=3, token_stop=20000,
++                 max_prompt_chars=48000):
++        if any(type(v) is not int or v <= 0 for v in
++               (max_calls, token_stop, max_prompt_chars)):
++            raise ValueError("invalid_research_budget")
++        self.root = Path(root)
++        self.path = Path(ledger_path)
++        self.max_calls = max_calls
++        self.token_stop = token_stop
++        self.max_prompt_chars = max_prompt_chars
++        self.calls = 0
++        self.usage = []
++        self.active = None
++
++    def records(self):
++        if not self.path.exists():
++            return []
++        records = [json.loads(line) for line in self.path.read_text().splitlines()]
++        expected = 1
++        pending = None
++        for row in records:
++            if not isinstance(row, dict):
++                raise asyncio.CancelledError("invalid_budget_ledger")
++            if row.get("event") == "admission" and pending is None and row.get("call") == expected:
++                pending = row
++            elif (row.get("event") == "usage" and pending is not None
++                  and row.get("call") == expected and row.get("run_id") == pending.get("run_id")):
++                values = [row.get(k) for k in ("input_tokens", "output_tokens", "total_tokens")]
++                if any(type(v) is not int or v < 0 for v in values) or values[0] + values[1] != values[2]:
++                    raise asyncio.CancelledError("invalid_budget_ledger")
++                expected += 1
++                pending = None
++            else:
++                raise asyncio.CancelledError("invalid_budget_ledger")
++        return records
++
++    def admit(self, inputs):
++        records = self.records()
++        admitted = [r for r in records if r["event"] == "admission"]
++        answered = [r for r in records if r["event"] == "usage"]
++        if len(admitted) != len(answered):
++            raise asyncio.CancelledError("unresolved_prior_request")
++        if len(admitted) >= self.max_calls:
++            raise asyncio.CancelledError("research_call_limit")
++        if sum(r["total_tokens"] for r in answered) >= self.token_stop:
++            raise asyncio.CancelledError("research_token_stop")
++        if inputs.tools:
++            raise asyncio.CancelledError("unexpected_research_tools")
++        # Rail messages are a preview; this is not an exact tokenizer estimate.
++        chars = sum(len(str(m)) for m in inputs.messages)
++        if chars > self.max_prompt_chars:
++            raise asyncio.CancelledError("research_prompt_limit")
++        self.active = len(admitted) + 1
++        _append(self.path, {"event": "admission", "call": self.active,
++                           "run_id": self.root.name, "preview_chars": chars,
++                           "timestamp": datetime.now(timezone.utc).isoformat()})
++        self.calls += 1
++
++    def record_response(self, response):
++        if self.active is None:
++            raise asyncio.CancelledError("response_without_admission")
++        usage = getattr(response, "usage_metadata", None)
++        row = {k: getattr(usage, k, None)
++               for k in ("input_tokens", "output_tokens", "total_tokens")}
++        if any(type(v) is not int or v < 0 for v in row.values()):
++            raise asyncio.CancelledError("missing_or_invalid_usage")
++        if row["total_tokens"] != row["input_tokens"] + row["output_tokens"]:
++            raise asyncio.CancelledError("inconsistent_usage")
++        row.update(event="usage", call=self.active, run_id=self.root.name,
++                   finish_reason=getattr(response, "finish_reason", None))
++        _append(self.path, row)
++        _append(self.root / "model_usage.jsonl", row)
++        self.usage.append(row)
++        self.active = None
++        if row["finish_reason"] == "length":
++            raise asyncio.CancelledError("research_output_truncated")
++
++
++class ResearchBudgetRail(AgentRail):
++    """Abort admission with BaseException so ordinary retry rails cannot retry."""
++    priority = 1000
++
++    def __init__(self, budget):
++        self.budget = budget
++
++    async def before_model_call(self, ctx):
++        self.budget.admit(ctx.inputs)
++
++    async def after_model_call(self, ctx):
++        self.budget.record_response(ctx.inputs.response)
+diff --git a/jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py b/jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py
+new file mode 100644
+index 0000000..7937833
+--- /dev/null
++++ b/jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py
+@@ -0,0 +1,104 @@
++"""Validate local experiment receipts at the real tool-call boundary.
++
++Receipts establish file integrity and successful execution as reported by the
++trusted experiment tool; they do not establish scientific correctness.
++"""
++from __future__ import annotations
++
++import hashlib
++import json
++import math
++from pathlib import Path
++
++from openjiuwen.core.single_agent.rail.base import AgentCallbackContext, AgentRail, ToolCallInputs
++
++_FIELDS = (
++    "run_id", "exit_code", "metrics_path", "metrics_sha256", "command", "duration_seconds",
++)
++
++
++def validate_receipt(root: Path, receipt: dict) -> dict:
++    """Return verified numeric metrics, or raise ValueError with a fixed reason.
++
++    ``metrics_path`` must be relative to root, including after resolving symlinks.
++    Unknown receipt fields are ignored and never persisted by the rail.
++    """
++    if not isinstance(receipt, dict):
++        raise ValueError("invalid_receipt")
++    if not isinstance(receipt.get("run_id"), str) or not receipt["run_id"].strip():
++        raise ValueError("invalid_run_id")
++    if type(receipt.get("exit_code")) is not int or receipt["exit_code"] != 0:
++        raise ValueError("experiment_failed")
++    command = receipt.get("command")
++    if not isinstance(command, list) or not command or not all(isinstance(v, str) and v for v in command):
++        raise ValueError("invalid_command")
++    duration = receipt.get("duration_seconds")
++    if type(duration) not in (int, float) or duration < 0:
++        raise ValueError("invalid_duration")
++    try:
++        if not math.isfinite(duration):
++            raise ValueError("invalid_duration")
++    except OverflowError:
++        raise ValueError("invalid_duration") from None
++    relative = receipt.get("metrics_path")
++    if not isinstance(relative, str) or not relative or "\x00" in relative or Path(relative).is_absolute():
++        raise ValueError("invalid_metrics_path")
++    try:
++        resolved_root = Path(root).resolve(strict=True)
++        path = (resolved_root / relative).resolve()
++        if not path.is_relative_to(resolved_root):
++            raise ValueError("metrics_path_escape")
++        if not path.is_file():
++            raise ValueError("metrics_missing")
++        content = path.read_bytes()
++    except (OSError, RuntimeError):
++        raise ValueError("metrics_unreadable") from None
++    digest = receipt.get("metrics_sha256")
++    if not isinstance(digest, str) or hashlib.sha256(content).hexdigest() != digest:
++        raise ValueError("metrics_hash_mismatch")
++    try:
++        metrics = json.loads(content)
++    except (ValueError, UnicodeError):
++        raise ValueError("invalid_metrics_json") from None
++    if not isinstance(metrics, dict) or not metrics:
++        raise ValueError("invalid_metrics_shape")
++    for value in metrics.values():
++        if type(value) not in (int, float):
++            raise ValueError("invalid_metric_value")
++        try:
++            finite = math.isfinite(value)
++        except OverflowError:
++            finite = False
++        if not finite:
++            raise ValueError("invalid_metric_value")
++    return metrics
++
++
++class ExperimentEvidenceRail(AgentRail):
++    """Archive validated receipts for the selected experiment tool only."""
++
++    def __init__(self, root: Path, tool_name: str = "run_queue_experiment") -> None:
++        super().__init__()
++        self.root = Path(root).resolve()
++        self.root.mkdir(parents=True, exist_ok=True)
++        self.tool_name = tool_name
++        self.accepted = 0
++        self.rejected = 0
++
++    async def after_tool_call(self, ctx: AgentCallbackContext) -> None:
++        inputs = ctx.inputs
++        if not isinstance(inputs, ToolCallInputs) or inputs.tool_name != self.tool_name:
++            return
++        receipt = inputs.tool_result
++        try:
++            validate_receipt(self.root, receipt)
++        except ValueError as exc:
++            self.rejected += 1
++            self._append("evidence_rejections.jsonl", {"reason": str(exc)})
++            raise
++        self._append("evidence.jsonl", {field: receipt[field] for field in _FIELDS})
++        self.accepted += 1
++
++    def _append(self, filename: str, record: dict) -> None:
++        with (self.root / filename).open("a", encoding="utf-8") as stream:
++            stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
+diff --git a/tests/test_research_budget_rail.py b/tests/test_research_budget_rail.py
+new file mode 100644
+index 0000000..32e617b
+--- /dev/null
++++ b/tests/test_research_budget_rail.py
+@@ -0,0 +1,169 @@
++"""No-network tests for persistent research model admissions."""
++
++import asyncio
++import json
++from pathlib import Path
++from tempfile import TemporaryDirectory
++from types import SimpleNamespace
++import unittest
++
++from jiuwenswarm.agents.harness.common.rails.research_budget_rail import (
++    ResearchBudgetRail, ResearchRunBudget,
++)
++
++
++def inputs(messages=None, tools=None):
++    return SimpleNamespace(messages=messages or ["short prompt"], tools=tools or [])
++
++
++def response(input_tokens=10, output_tokens=4, finish_reason="stop", total_tokens=None):
++    total_tokens = input_tokens + output_tokens if total_tokens is None else total_tokens
++    return SimpleNamespace(
++        usage_metadata=SimpleNamespace(input_tokens=input_tokens,
++                                       output_tokens=output_tokens,
++                                       total_tokens=total_tokens),
++        finish_reason=finish_reason,
++    )
++
++
++class ResearchBudgetTests(unittest.TestCase):
++    def setUp(self):
++        self.tmp = TemporaryDirectory()
++        self.addCleanup(self.tmp.cleanup)
++        self.root = Path(self.tmp.name)
++        self.path = self.root / "ledger.jsonl"
++        self.budget = ResearchRunBudget(self.root, self.path, max_calls=3, token_stop=50,
++                                       max_prompt_chars=100)
++
++    def cancel(self, reason, function, *args):
++        with self.assertRaisesRegex(asyncio.CancelledError, reason):
++            function(*args)
++
++    def test_normal_usage_persists_admission_and_usage(self):
++        self.budget.admit(inputs())
++        self.budget.record_response(response())
++        records = self.budget.records()
++        self.assertEqual([r["event"] for r in records], ["admission", "usage"])
++        self.assertEqual([r["call"] for r in records], [1, 1])
++        self.assertEqual(records[-1]["total_tokens"], 14)
++        self.assertIsNone(self.budget.active)
++        self.assertEqual(json.loads((self.root / "model_usage.jsonl").read_text()), records[-1])
++
++    def test_calls_exhausted_before_next_request(self):
++        for _ in range(3):
++            self.budget.admit(inputs())
++            self.budget.record_response(response())
++        self.cancel("research_call_limit", self.budget.admit, inputs())
++        self.assertEqual(len(self.budget.records()), 6)
++        self.assertEqual(self.budget.calls, 3)
++
++    def test_uncertain_prior_blocks_same_instance_and_reopened_campaign(self):
++        self.budget.admit(inputs())
++        self.cancel("unresolved_prior_request", self.budget.admit, inputs())
++        reopened = ResearchRunBudget(self.root, self.path)
++        self.cancel("unresolved_prior_request", reopened.admit, inputs())
++        self.assertEqual(len(self.budget.records()), 1)
++
++    def test_missing_usage_does_not_release_admission(self):
++        self.budget.admit(inputs())
++        self.cancel("missing_or_invalid_usage", self.budget.record_response,
++                    SimpleNamespace(finish_reason="stop"))
++        self.cancel("unresolved_prior_request", self.budget.admit, inputs())
++        self.assertEqual(len(self.budget.records()), 1)
++
++    def test_invalid_and_inconsistent_usage(self):
++        self.budget.admit(inputs())
++        for bad in (response(-1, 2), response(True, 2)):
++            self.cancel("missing_or_invalid_usage", self.budget.record_response, bad)
++        self.cancel("inconsistent_usage", self.budget.record_response,
++                    response(total_tokens=99))
++        self.assertEqual(len(self.budget.records()), 1)
++
++    def test_prompt_char_limit_rejects_before_admission(self):
++        self.cancel("research_prompt_limit", self.budget.admit, inputs(["x" * 101]))
++        self.assertFalse(self.path.exists())
++        self.budget.admit(inputs(["x" * 100]))
++        self.assertEqual(self.budget.records()[0]["preview_chars"], 100)
++
++    def test_tools_forbidden_before_admission(self):
++        self.cancel("unexpected_research_tools", self.budget.admit,
++                    inputs(tools=[{"name": "unexpected"}]))
++        self.assertFalse(self.path.exists())
++
++    def test_truncation_records_cost_before_stopping(self):
++        self.budget.admit(inputs())
++        self.cancel("research_output_truncated", self.budget.record_response,
++                    response(finish_reason="length"))
++        self.assertEqual(self.budget.records()[-1]["finish_reason"], "length")
++        self.assertEqual(self.budget.usage[0]["total_tokens"], 14)
++        self.assertIsNone(self.budget.active)
++
++    def test_cumulative_token_threshold_blocks_next_call(self):
++        self.budget.admit(inputs())
++        self.budget.record_response(response(20, 10))
++        self.budget.admit(inputs())
++        self.budget.record_response(response(10, 10))
++        self.cancel("research_token_stop", self.budget.admit, inputs())
++        self.assertEqual(self.budget.calls, 2)
++
++    def test_threshold_is_post_response_and_can_overshoot(self):
++        self.budget.admit(inputs())
++        self.budget.record_response(response(50, 5))
++        self.cancel("research_token_stop", self.budget.admit, inputs())
++        self.assertEqual(self.budget.usage[0]["total_tokens"], 55)
++
++    def test_response_without_admission(self):
++        self.cancel("response_without_admission", self.budget.record_response, response())
++
++    def test_rail_routes_context_and_cancel_is_base_exception(self):
++        rail = ResearchBudgetRail(self.budget)
++        asyncio.run(rail.before_model_call(SimpleNamespace(inputs=inputs())))
++        asyncio.run(rail.after_model_call(SimpleNamespace(
++            inputs=SimpleNamespace(response=response()))))
++        self.assertEqual(self.budget.calls, 1)
++        self.assertEqual(len(self.budget.usage), 1)
++        self.assertFalse(issubclass(asyncio.CancelledError, Exception))
++
++    def test_invalid_constructor_limits(self):
++        for name in ("max_calls", "token_stop", "max_prompt_chars"):
++            for value in (0, -1, True, 1.5, float("nan"), None):
++                with self.subTest(name=name, value=value):
++                    with self.assertRaisesRegex(ValueError, "invalid_research_budget"):
++                        ResearchRunBudget(self.root, self.path, **{name: value})
++
++    def test_corrupted_ledger_fails_closed_before_admission(self):
++        admission = {"event": "admission", "call": 1, "run_id": "r1"}
++        usage = {"event": "usage", "call": 1, "run_id": "r1", "input_tokens": 2,
++                 "output_tokens": 3, "total_tokens": 5}
++        cases = {
++            "non_object": [None],
++            "orphan_usage": [usage],
++            "duplicate_admission": [admission, admission],
++            "duplicate_usage": [admission, usage, usage],
++            "mismatched_call": [admission, dict(usage, call=2)],
++            "mismatched_run": [admission, dict(usage, run_id="r2")],
++            "bad_sum": [admission, dict(usage, total_tokens=99)],
++            "negative_usage": [admission, dict(usage, input_tokens=-1, total_tokens=2)],
++            "boolean_usage": [admission, dict(usage, input_tokens=True, total_tokens=4)],
++            "missing_usage_field": [admission, {k: v for k, v in usage.items() if k != "total_tokens"}],
++            "nonsequential": [dict(admission, call=2)],
++        }
++        for name, records in cases.items():
++            with self.subTest(name=name):
++                original = "".join(json.dumps(row) + "\n" for row in records)
++                self.path.write_text(original)
++                self.cancel("invalid_budget_ledger", self.budget.admit, inputs())
++                self.assertEqual(self.path.read_text(), original)
++                self.assertEqual(self.budget.calls, 0)
++
++    def test_incomplete_json_ledger_cannot_admit(self):
++        original = '{"event": "admission"'
++        self.path.write_text(original)
++        with self.assertRaises(json.JSONDecodeError):
++            self.budget.admit(inputs())
++        self.assertEqual(self.path.read_text(), original)
++        self.assertEqual(self.budget.calls, 0)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_research_evidence_rail.py b/tests/test_research_evidence_rail.py
+new file mode 100644
+index 0000000..551ca92
+--- /dev/null
++++ b/tests/test_research_evidence_rail.py
+@@ -0,0 +1,87 @@
++"""Source BDCI/activate.sh, then python -m unittest discover -s BDCI/validation."""
++import hashlib
++import json
++import tempfile
++import unittest
++from pathlib import Path
++from types import SimpleNamespace
++
++from openjiuwen.core.single_agent.rail.base import ToolCallInputs
++from jiuwenswarm.agents.harness.common.rails.research_evidence_rail import (
++    ExperimentEvidenceRail, validate_receipt,
++)
++
++
++class EvidenceTests(unittest.IsolatedAsyncioTestCase):
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.root = Path(self.temp.name)
++        self.metrics = self.root / "metrics.json"
++        self.metrics.write_text('{"score":0.5,"count":3}', encoding="utf-8")
++        self.receipt = {
++            "run_id": "unit-run", "exit_code": 0, "metrics_path": "metrics.json",
++            "metrics_sha256": hashlib.sha256(self.metrics.read_bytes()).hexdigest(),
++            "command": ["python", "experiment.py"], "duration_seconds": 0.2,
++        }
++        self.rail = ExperimentEvidenceRail(self.root)
++
++    async def call(self, receipt=None, tool="run_queue_experiment"):
++        await self.rail.after_tool_call(SimpleNamespace(inputs=ToolCallInputs(
++            tool_name=tool, tool_result=self.receipt if receipt is None else receipt,
++        )))
++
++    async def assert_rejected(self, reason):
++        with self.assertRaisesRegex(ValueError, "^" + reason + "$"):
++            await self.call()
++        self.assertEqual((self.rail.accepted, self.rail.rejected), (0, 1))
++        self.assertFalse((self.root / "evidence.jsonl").exists())
++        self.assertEqual(json.loads((self.root / "evidence_rejections.jsonl").read_text()), {"reason": reason})
++
++    async def test_valid_receipt(self):
++        self.receipt["untrusted_extra"] = "omit this"
++        await self.call()
++        stored = json.loads((self.root / "evidence.jsonl").read_text())
++        self.assertEqual(set(stored), set(self.receipt) - {"untrusted_extra"})
++        self.assertEqual(validate_receipt(self.root, stored), {"score": 0.5, "count": 3})
++        self.assertEqual((self.rail.accepted, self.rail.rejected), (1, 0))
++
++    async def test_failed_exit(self):
++        self.receipt["exit_code"] = 1
++        await self.assert_rejected("experiment_failed")
++
++    async def test_missing_file(self):
++        self.metrics.unlink()
++        await self.assert_rejected("metrics_missing")
++
++    async def test_tampered_file(self):
++        self.metrics.write_text('{"score":1}')
++        await self.assert_rejected("metrics_hash_mismatch")
++
++    async def test_path_escape(self):
++        self.receipt["metrics_path"] = "../outside.json"
++        await self.assert_rejected("metrics_path_escape")
++
++    async def test_symlink_escape(self):
++        (self.root / "outside").symlink_to(self.root.parent, target_is_directory=True)
++        self.receipt["metrics_path"] = "outside/outside.json"
++        await self.assert_rejected("metrics_path_escape")
++
++    async def test_nan(self):
++        self.metrics.write_text('{"score":NaN}')
++        self.receipt["metrics_sha256"] = hashlib.sha256(self.metrics.read_bytes()).hexdigest()
++        await self.assert_rejected("invalid_metric_value")
++
++    async def test_bool_metric(self):
++        self.metrics.write_text('{"score":true}')
++        self.receipt["metrics_sha256"] = hashlib.sha256(self.metrics.read_bytes()).hexdigest()
++        await self.assert_rejected("invalid_metric_value")
++
++    async def test_other_tool_ignored(self):
++        await self.call(receipt={"exit_code": 1}, tool="unrelated")
++        self.assertEqual((self.rail.accepted, self.rail.rejected), (0, 0))
++        self.assertFalse((self.root / "evidence.jsonl").exists())
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/docs/research_rails.md b/docs/research_rails.md
+new file mode 100644
+index 0000000..52a9608
+--- /dev/null
++++ b/docs/research_rails.md
+@@ -0,0 +1,86 @@
++# Research evidence and model-admission rails
++
++These two opt-in rails use existing AgentRail callbacks. They do not replace the
++workflow engine or establish scientific validity. Target source: JiuwenSwarm
++`fc18e5c572a6b3b62bb42ea843cce674140e4266` with agent-core
++`9e3390195a9ea15235b2b5f7412cb2aa440622cc`.
++
++## Evidence receipt validation
++
++`ExperimentEvidenceRail(root, tool_name="run_queue_experiment")` runs only after
++the named tool. Register it through `register_rail_provider`, then add its
++`RailSpec` to the experimental worker's `DeepAgentSpec`. The tool must return:
++
++| Field | Meaning |
++| --- | --- |
++| `run_id` | Nonempty execution identifier; currently not checked against an expected ID |
++| `exit_code` | Integer zero for a successful tool execution |
++| `metrics_path` | Relative path resolving inside the allowed root |
++| `metrics_sha256` | SHA-256 of the exact metrics file bytes |
++| `command` | Nonempty list of command strings, recorded rather than executed by this rail |
++| `duration_seconds` | Finite nonnegative numeric elapsed time |
++
++The file must contain a nonempty JSON object of finite numeric values, excluding
++booleans. Validation rejects missing files, escaping paths (including symlinks),
++hash mismatches and invalid metrics. Accepted receipts go to `evidence.jsonl`;
++rejections record fixed reasons in `evidence_rejections.jsonl` and raise
++`ValueError`. Extra receipt fields are not archived.
++
++Trust boundary: the selected tool and experiment root must be controlled by the
++application. This is file-integrity checking, not authentication, expected-run
++binding, metric-semantic validation or protection against a malicious writer
++that can replace both a file and its receipt. It does not validate novelty,
++statistics or prose. It is not a general claim-evidence graph.
++
++## Persistent model admission
++
++Create `ResearchRunBudget(root, ledger_path, max_calls=..., token_stop=...,
++max_prompt_chars=...)`, wrap it in `ResearchBudgetRail`, and register that rail
++for the relevant `DeepAgentSpec`. Use one shared budget object and persistent
++ledger for the entire sequential campaign, including distinct role workers.
++
++The caller must create parent directories and hold an exclusive process lock on
++the campaign for its entire lifetime (for example, `fcntl.flock` on Linux).
++The budget class does not acquire this lock and is not a concurrent reservation
++service. Do not share one active admission between simultaneous model calls.
++
++`before_model_call` verifies paired admission/usage history, cumulative admitted
++calls, cumulative reported tokens and message-preview length, then durably
++appends an admission. `after_model_call` records valid integer token usage and
++finish reason. Both the campaign ledger and per-run `model_usage.jsonl` are
++flushed and fsynced; they are separate writes, not a transaction across files.
++
++A request without valid usage remains unresolved and blocks future admissions,
++including after process restart. Do not erase that admission to force a retry.
++Token accounting is reported usage, not a tokenizer estimate or invoice. The
++token threshold stops subsequent calls and can be exceeded by the final call.
++Truncated responses are recorded before cancellation. All cancellation reasons
++use `asyncio.CancelledError` so a generic `except Exception` retry handler does
++not silently resend a request. Applications must preserve cancellation and also
++disable retries at the model client and workflow layers if strict admission
++counts are required.
++
++This version deliberately rejects exposed tools. It is intended for tool-free
++planning/writing roles, not a drop-in budget for arbitrary tool-enabled agents.
++Tool-running experiments need their own execution accounting and configuration.
++
++## Verification
++
++With the pinned upstream runtime dependencies installed, run from the patched
++JiuwenSwarm repository root:
++
++```bash
++export JIUWENSWARM_HOME="$PWD/.research-test-runtime"
++export JIUWENSWARM_DATA_DIR="$JIUWENSWARM_HOME/.jiuwenswarm"
++PYTHONPATH="$PWD" python -m unittest discover -s tests -p 'test_research_*_rail.py' -v
++```
++
++The two contributed files contain 24 tests: nine receipt checks and fifteen
++admission/accounting checks. They use temporary files and synthetic callback
++objects, with no API credentials or network. They test the rails' contracts, not
++full scientific experiments or upstream-wide compatibility.
++
++An application must separately test its native workflow and actual tool/model
++callback wiring. The accompanying BDCI prototype has native offline workflow
++and request-blocking traces, but those application files are not dependencies
++of this patch. No upstream acceptance or competition score is implied.

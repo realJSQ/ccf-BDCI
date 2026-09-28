@@ -15,6 +15,11 @@ Research skills, runners, tests, documentation and archived validation artifacts
 are in BDCI/research, BDCI/validation and BDCI/docs. Original upstream tracked files
 were copied without content changes. This is not an upstream contribution PR.
 
+A reviewable [contribution patch](BDCI/contribution/README.md) now packages the
+two Rails, 24 no-network contract tests and usage documentation. It applies to
+the fixed base and passes those tests. No official PR has been published;
+latest-branch compatibility and upstream acceptance remain unverified.
+
 Dependencies pinned in the tested environment:
 
 - agent-core: 9e3390195a9ea15235b2b5f7412cb2aa440622cc

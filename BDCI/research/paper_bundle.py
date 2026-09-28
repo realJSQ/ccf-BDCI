@@ -17,6 +17,9 @@ except ImportError:
 BDCI = Path(__file__).resolve().parents[1]
 BASE_SHA = 'fc18e5c572a6b3b62bb42ea843cce674140e4266'
 STYLE_FILES = ('iclr2026_conference.sty', 'iclr2026_conference.bst', 'natbib.sty', 'fancyhdr.sty')
+SUBMISSION_DOCS = ('architecture.md', 'module_call.md', 'innovation.md', 'framework_contribution.md')
+CONTRIBUTION_FILES = ('README.md', 'PR_DESCRIPTION.md', 'upstream-usage.md',
+                      'research-rails.patch', 'validation.json')
 EVIDENCE_FILES = (
     'paper.json', 'writer.json', 'reviewer.json', 'reviser.json', 'model_summary.json',
     'final_checks.json', 'summary.json', 'decision.json', 'metrics.json', 'pre_registration.json',
@@ -107,11 +110,54 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
         research = BDCI / 'research'
         for source in sorted(research.glob('*.py')):
             _copy(source, stage / 'code/BDCI/research' / source.name, research)
+        for name in ('README.md', 'PAPER.md', 'PILOT.md'):
+            if (research / name).exists():
+                _copy(research / name, stage / 'code/BDCI/research' / name, research)
+        for source in sorted((BDCI / 'validation').glob('*.py')):
+            _copy(source, stage / 'code/BDCI/validation' / source.name, BDCI)
+        for source in sorted((BDCI / 'validation/skills').rglob('*')):
+            if source.is_file() and source.suffix in ('.md', '.py', '.yaml', '.yml'):
+                _copy(source, stage / 'code/BDCI/validation/skills' /
+                      source.relative_to(BDCI / 'validation/skills'), BDCI)
+        for source in sorted((BDCI / 'docs/superpowers/specs').glob('*.md')):
+            _copy(source, stage / 'code/BDCI/docs/superpowers/specs' / source.name, BDCI)
+        for name in CONTRIBUTION_FILES:
+            _copy(BDCI / 'contribution' / name, stage / 'code/BDCI/contribution' / name, BDCI)
+        submission = BDCI / 'docs/submission'
+        for name in SUBMISSION_DOCS:
+            destination = stage / 'code/BDCI/docs/submission' / name
+            _copy(submission / name, destination, BDCI)
+            # Retain canonical relative links in the source copy and adapt only
+            # the copy at the competition-required top-level location.
+            doc = destination.read_text(encoding='utf-8')
+            doc = doc.replace('](../../', '](../code/BDCI/')
+            doc = doc.replace('](../code/BDCI/jiuwenswarm/', '](../code/framework_overlay/')
+            doc = doc.replace('](../superpowers/', '](../code/BDCI/docs/superpowers/')
+            for audit in ('clean-environment-validation.json', 'historical-resource-audit.json'):
+                doc = doc.replace('](' + audit + ')', '](../code/BDCI/docs/submission/' + audit + ')')
+            if name == 'framework_contribution.md':
+                # This required file lives one level above docs/ in the ZIP.
+                doc = doc.replace('](../code/', '](code/')
+                _write(stage / name, doc)
+            else:
+                _write(stage / 'docs' / name, doc)
+        for name in ('clean-environment-validation.json', 'historical-resource-audit.json'):
+            if (submission / name).exists():
+                _copy(submission / name, stage / 'code/BDCI/docs/submission' / name, BDCI)
         for source in sorted((research / 'skills').rglob('*')):
             if source.is_file() and source.suffix in ('.md', '.py', '.yaml', '.yml'):
                 _copy(source, stage / 'code/BDCI/research/skills' / source.relative_to(research / 'skills'), research)
         previous = research / 'runs/live-20260928T081927-158480'
         _evidence(previous, stage / 'code/BDCI/research/runs' / previous.name)
+        # The current documentation cites this historical validation draft.
+        # Include only its evidence/PDF, never its ZIP or nested delivery tree.
+        archived_paper = research / 'paper_runs/live-20260928T104912-411414'
+        if archived_paper.exists():
+            archived_destination = stage / 'code/BDCI/research/paper_runs' / archived_paper.name
+            _evidence(archived_paper, archived_destination)
+            for name in ('paper.pdf', 'paper.tex', 'references.bib', *STYLE_FILES):
+                if (archived_paper / name).exists():
+                    _copy(archived_paper / name, archived_destination / name, research)
         for name in ('fulltext_check.json', 'fulltext_check.md'):
             source = research / 'prior_work' / name
             if source.exists():
@@ -121,7 +167,8 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
             _copy(BDCI / 'jiuwenswarm' / relative, stage / 'code/framework_overlay' / relative, BDCI)
         for name in ('activate.sh', 'setup/requirements.repro.txt', 'setup/requirements.freeze.txt',
                      'setup/pyproject.toml', 'setup/latex-install.sh', 'setup/latex-provenance.json',
-                     'setup/latex-environment.md', 'tools/compile-latex.sh', 'tools/TECTONIC-LICENSE'):
+                     'setup/latex-environment.md', 'setup/latex-gnu-provenance.json',
+                     'tools/compile-latex.sh', 'tools/TECTONIC-LICENSE'):
             if (BDCI / name).exists():
                 _copy(BDCI / name, stage / 'code/BDCI' / name, BDCI)
         _write(stage / 'code/README.md', f'''# Reproduction
@@ -154,33 +201,10 @@ No Stanford Agentic Reviewer submission was performed. No access token or
 external review is included. Internal model review is stored in internal_review
 and must not be presented as an external review. This archive is not ready to submit.
 ''')
-        _write(stage / 'docs/architecture.md', '''# Architecture
-JiuwenSwarm native SwarmFlow and TeamWorkerBackend run research skills.
-Local contracts validate references and plans; deterministic code scores saved
-pilot answers and renders evidence tables. Writing, internal review and revision
-use separate roles. Source Rails enforce model admissions and evidence integrity.
-''')
-        _write(stage / 'docs/module_call.md', '''# Module calls
-Topic search → proposal → critique → revised plan → pilot review → saved paired
-pilot → deterministic scoring → writer → internal reviewer → reviser → ICLR
-LaTeX renderer → PDF → this dry-run bundle. Packaging reuses the saved pilot;
-it neither reruns experiments nor calls a model.
-''')
-        _write(stage / 'docs/innovation.md', '''# Prototype contribution
-Evidence checks, bounded persistent model admissions, paired pilot scoring and
-structured review responses make this workflow auditable. These are implemented
-prototype mechanisms, not established scientific novelty or competition scores.
-The current pilot does not establish a supported research contribution.
-''')
-        _write(stage / 'framework_contribution.md', '''# Framework contribution status
-Two local source modules are supplied in code/framework_overlay:
-research_budget_rail.py and research_evidence_rail.py. They are registered by
-the research runners. No upstream PR has been submitted or accepted; no PR URL
-is supplied. Competition contribution requirements remain incomplete.
-''')
         _write(stage / 'resource_report.md', '# Resource report\n\nSaved paper-workflow accounting (not a new experiment):\n\n```json\n' +
                json.dumps(summary, indent=2, ensure_ascii=False, allow_nan=False) +
                '\n```\n\nPilot accounting is preserved in evidence/pilot/summary.json and model_usage.jsonl when available.\n'
+               'Historical campaign totals and timing caveats are in code/BDCI/docs/submission/historical-resource-audit.json; they are not the cost of a new final submission run.\n'
                'Actual monetary cost is unknown unless independently supplied; token totals are not a currency estimate.\n')
         _write(stage / '提交说明.md', '''# 流程验证包，禁止当作正式参赛提交
 固定目录名 workflow-validation 不是队伍名称。包内英文 PDF 用于验证论文产出流程。

@@ -19,6 +19,8 @@
 | 路径 | 内容 |
 | --- | --- |
 | [BDCI/research](BDCI/research/README.md) | 自动选题 skill、检索、筛选、预算控制及测试 |
+| [当前架构](BDCI/docs/submission/architecture.md) / [模块调用](BDCI/docs/submission/module_call.md) | 真实接入点、模式、预算、恢复边界及证据索引 |
+| [贡献补丁草案](BDCI/contribution/README.md) | 两个源码 Rail、24 项测试、上游使用说明与待发布 PR 文案 |
 | [论文流程](BDCI/research/PAPER.md) | 复用既有实验的三角色写作、PDF与验收包 |
 | [预实验阶段](BDCI/research/PILOT.md) | 修订提案、真实配对测量与负结果分析 |
 | [BDCI/validation](BDCI/validation/README.md) | 固定实验与英文报告闭环验证 |

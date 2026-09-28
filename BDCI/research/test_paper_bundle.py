@@ -43,6 +43,11 @@ class PaperBundleTests(unittest.TestCase):
             self.write(self.project / 'validation/latex/iclr-template/iclr2026' / name, '% template fixture\n')
         for name in ('research_budget_rail.py', 'research_evidence_rail.py'):
             self.write(self.project / 'jiuwenswarm/jiuwenswarm/agents/harness/common/rails' / name, '# Source overlay\n')
+        for name in paper_bundle.SUBMISSION_DOCS:
+            self.write(self.project / 'docs/submission' / name,
+                       '# Fixture documentation\n[Source](../../research/example.py)\n')
+        for name in paper_bundle.CONTRIBUTION_FILES:
+            self.write(self.project / 'contribution' / name, 'Local contribution fixture\n')
         self.summary = {'mode': 'offline_scripted', 'model_calls': 3, 'total_tokens': 6, 'cost': None}
 
     @staticmethod
@@ -73,6 +78,10 @@ class PaperBundleTests(unittest.TestCase):
             self.assertFalse(manifest['external_review_performed'])
             self.assertFalse(manifest['upstream_pr_submitted'])
             self.assertFalse(manifest['scientific_acceptance'])
+            self.assertIn('../code/BDCI/research/example.py',
+                          zipped.read('workflow-validation/docs/architecture.md').decode())
+            self.assertIn('](code/BDCI/research/example.py)',
+                          zipped.read('workflow-validation/framework_contribution.md').decode())
             self.assertGreaterEqual(len(manifest['missing_materials']), 3)
             self.assertTrue(all(not name.endswith('/token.txt') for name in names))
 
