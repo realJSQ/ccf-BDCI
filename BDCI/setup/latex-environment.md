@@ -13,9 +13,9 @@ Tectonic 自身 MIT 许可，衍生组件及宏包采用各自许可证；保留
 
 ```bash
 bash BDCI/setup/latex-install.sh  # 仅重装时需要，下载约9.7 MiB压缩包
-BDCI/tools/compile-latex.sh --keep-logs BDCI/validation/latex/smoke.tex
+bash BDCI/tools/compile-latex.sh --keep-logs BDCI/validation/latex/smoke.tex
 # 所需宏包已缓存后可以离线编译
-BDCI/tools/compile-latex.sh --only-cached --keep-logs BDCI/validation/latex/smoke.tex
+bash BDCI/tools/compile-latex.sh --only-cached --keep-logs BDCI/validation/latex/smoke.tex
 ```
 
 `compile-latex.sh` 明确调用 Tectonic 原生参数；未创建伪装为 `pdflatex` 或
@@ -40,7 +40,7 @@ https://raw.githubusercontent.com/ICLR/Master-Template/master/iclr2026.zip
 
 ```bash
 mkdir -p BDCI/validation/latex/iclr-build
-BDCI/tools/compile-latex.sh --keep-logs --outdir BDCI/validation/latex/iclr-build \
+bash BDCI/tools/compile-latex.sh --keep-logs --outdir BDCI/validation/latex/iclr-build \
   BDCI/validation/latex/iclr-template/iclr2026/iclr-tectonic.tex
 ```
 

@@ -134,14 +134,15 @@ git clone https://atomgit.com/openJiuwen/jiuwenswarm BDCI/jiuwenswarm
 git -C BDCI/jiuwenswarm checkout {BASE_SHA}
 cp -R framework_overlay/jiuwenswarm/. BDCI/jiuwenswarm/jiuwenswarm/
 python3.13 -m venv BDCI/.venv
-BDCI/.venv/bin/python -m pip install -r BDCI/setup/requirements.repro.txt
+BDCI/.venv/bin/python -m pip install --no-deps -r BDCI/setup/requirements.repro.txt
+BDCI/.venv/bin/python -m pip check
 BDCI/.venv/bin/python -m pip install --no-deps -e BDCI/jiuwenswarm
 source BDCI/activate.sh
 ```
 No Git global configuration is required. Dependency installation and lightweight
 TeX setup require network access; no installer was run by this packaging step.
 Use `bash BDCI/setup/latex-install.sh`, then compile the delivered source with
-`BDCI/tools/compile-latex.sh --outdir ../paper ../paper/paper.tex`.
+`bash BDCI/tools/compile-latex.sh --outdir ../paper ../paper/paper.tex`.
 The archive contains saved source, paper, internal review and pilot evidence.
 Offline script modes are simulations; they do not establish a research result.
 Do not run `--live` to reproduce the saved paper: live modes spend new API calls.

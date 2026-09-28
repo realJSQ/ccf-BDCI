@@ -37,7 +37,7 @@
 ```bash
 python3.13 -m venv BDCI/.venv
 source BDCI/activate.sh
-python -m pip install -r BDCI/setup/requirements.repro.txt
+python -m pip install --no-deps -r BDCI/setup/requirements.repro.txt
 python -m pip check
 python -m unittest discover -s BDCI/research -p 'test_*.py' -v
 python BDCI/research/run_topics.py               # 离线，不读取密钥、不调用 API
@@ -45,13 +45,13 @@ python BDCI/research/check_topic_integration.py  # 真实框架额度阻断验�
 python BDCI/validation/run_smoke.py              # 离线实验/写作验证
 ```
 
-`requirements.repro.txt` 将环境快照中的上游 editable 安装替换为本仓库源码，保留 agent-core 与 agent-protocol 的固定提交。尚未在另一台全新机器完整重装；当前验证基于原开发环境。
+`requirements.repro.txt` 是完整依赖快照，将上游 editable 安装替换为本仓库源码，并固定 agent-core 与 agent-protocol 的提交。安装时使用 `--no-deps` 避免上游元数据里的分支 URL 与同一包的固定提交 URL 发生解析冲突；随后必须执行 `pip check` 检查缺失包和版本冲突，不能跳过。干净环境复验结果见后续安装记录，不将本机复验等同于跨平台验证。
 
 编译 PDF：
 
 ```bash
 bash BDCI/setup/latex-install.sh
-BDCI/tools/compile-latex.sh --keep-logs \
+bash BDCI/tools/compile-latex.sh --keep-logs \
   BDCI/validation/runs/live-20260928T080913-827750/report.tex
 ```
 

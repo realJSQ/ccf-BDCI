@@ -1,4 +1,6 @@
 # Run from repository root. Derived from the tested environment snapshot.
+# Install this complete snapshot with --no-deps, then run pip check.
+# Upstream branch-based direct URLs otherwise conflict with our commit pins.
 a2a-sdk==1.1.5
 a2ui-agent-sdk==0.2.1
 agentdescent==0.4.6

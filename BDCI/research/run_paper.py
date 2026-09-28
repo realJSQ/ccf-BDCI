@@ -230,7 +230,13 @@ def main():
         summary=dict(resource,status='workflow_passed',new_experiment_calls=0,pdf=pdf,
                      external_review_completed=False,submission_ready=False,
                      resumed_from_saved_responses=resume,new_model_calls_on_resume=0 if resume else None)
-        summary['end_to_end_duration_seconds']=time.monotonic()-started
+        # This invocation ends before packaging. A resume also excludes earlier
+        # model work; this interval is not end-to-end research elapsed time.
+        summary['invocation_to_pdf_seconds']=time.monotonic()-started
+        summary['invocation_timing_scope']=(
+            'saved-response validation, rendering and PDF checks; excludes original model calls and packaging'
+            if resume else
+            'evidence validation, writing workflow, rendering and PDF checks; excludes earlier research and packaging')
         write_json(root/'summary.json',summary)
         bundle=build_bundle(root,pilot_root=pilot,summary=summary)
         summary['bundle']=str(bundle)

@@ -1,0 +1,34 @@
+{
+  "status": "in_progress",
+  "base_commit": "9f73bca2d2af81d58a466cfb266e2ab483a1cca2",
+  "source_patch_sha256": "d49a880667db41ec74f1ee236a253c2d73df701a6c1b94d99028b9bbdf7b5382",
+  "environment": "Fresh Python 3.13 virtualenv and git archive on the current WSL machine; download cache may be reused, installed packages are not reused",
+  "original_install": {
+    "exit_code": 1,
+    "reason": "pip direct URL conflict: pinned intelli-router commit versus agent-core branch dependency"
+  },
+  "corrected_install": {
+    "status": "running",
+    "command": "python -m pip install --no-deps -r BDCI/setup/requirements.repro.txt",
+    "required_followup": [
+      "pip check",
+      "verify installed VCS commit IDs",
+      "software tests",
+      "native offline workflow"
+    ]
+  },
+  "tectonic": {
+    "official_binary_install": "passed",
+    "empty_cache_compile": "failed",
+    "reason": "HTTPS TLS handshake EOF in Tectonic; curl reaches official index, direct official bundle also failed in Tectonic",
+    "certificate_verification_disabled": false,
+    "old_cache_reused": false
+  },
+  "local_fix_tests": {
+    "environment": "original development environment, not the fresh venv",
+    "tests": 107,
+    "passed": true
+  },
+  "api_calls": 0,
+  "submission_ready": false
+}
