@@ -1,0 +1,12 @@
+{
+  "status": "structural_checks_passed",
+  "known_citations": true,
+  "issue_response_coverage": true,
+  "unchanged_experiment": true,
+  "new_experiment_calls": 0,
+  "external_review_completed": false,
+  "scientific_claims_certified": false,
+  "semantic_revision_certified": false,
+  "final_topic_selected": false,
+  "submission_ready": false
+}

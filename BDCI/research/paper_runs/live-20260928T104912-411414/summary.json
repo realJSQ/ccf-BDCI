@@ -1,0 +1,141 @@
+{
+  "mode": "live",
+  "cost": null,
+  "team_name": "research_paper",
+  "max_output_tokens": 3200,
+  "model_calls": 3,
+  "model_usage": [
+    {
+      "input_tokens": 4538,
+      "output_tokens": 1672,
+      "total_tokens": 6210,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260928T104912-411414",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 6044,
+      "output_tokens": 519,
+      "total_tokens": 6563,
+      "event": "usage",
+      "call": 2,
+      "run_id": "live-20260928T104912-411414",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 6588,
+      "output_tokens": 1923,
+      "total_tokens": 8511,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-20260928T104912-411414",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 21284,
+  "duration_seconds": 18.320782554999823,
+  "original_model_workflow_status": "failed",
+  "original_model_workflow_error": "RuntimeError",
+  "reused_pilot": {
+    "mode": "live",
+    "status": "completed",
+    "cost": null,
+    "model_calls": 6,
+    "model_usage": [
+      {
+        "input_tokens": 3936,
+        "output_tokens": 924,
+        "total_tokens": 4860,
+        "event": "usage",
+        "call": 1,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 3552,
+        "output_tokens": 482,
+        "total_tokens": 4034,
+        "event": "usage",
+        "call": 2,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 1230,
+        "output_tokens": 245,
+        "total_tokens": 1475,
+        "event": "usage",
+        "call": 3,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 1506,
+        "output_tokens": 245,
+        "total_tokens": 1751,
+        "event": "usage",
+        "call": 4,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 1534,
+        "output_tokens": 245,
+        "total_tokens": 1779,
+        "event": "usage",
+        "call": 5,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 1809,
+        "output_tokens": 468,
+        "total_tokens": 2277,
+        "event": "usage",
+        "call": 6,
+        "run_id": "live-20260928T084134-196833",
+        "finish_reason": "stop"
+      }
+    ],
+    "total_tokens": 16176,
+    "duration_seconds": 15.210272203000386,
+    "pilot_status": "hypothesis_not_supported_in_pilot",
+    "pilot_executed": true,
+    "final_topic_selected": false
+  },
+  "pilot_decision": {
+    "status": "hypothesis_not_supported_in_pilot",
+    "scripted_status": null,
+    "primary_metric": "wrong_peer_copy_reduction",
+    "observed_effect": 0.0,
+    "preregistered_threshold": 0.05,
+    "pilot_executed": true,
+    "real_observation": true,
+    "final_topic_selected": false,
+    "novelty_proven": false,
+    "requires": [
+      "Full-text prior-work checking",
+      "Independent runs and task families",
+      "Power and uncertainty analysis before a scientific claim"
+    ],
+    "interpretation": "One bounded exploratory pilot; no causal copying, significance or generalization claim."
+  },
+  "status": "workflow_passed",
+  "new_experiment_calls": 0,
+  "pdf": {
+    "status": "passed",
+    "pages": 3,
+    "bytes": 22204,
+    "sha256": "37bb0647c6d545584efbabf5c0b20b6e48dfb18760d915d8b448cddf20ac9961",
+    "duration_seconds": 1.6521785190006995,
+    "compiler": "Tectonic cached-only",
+    "new_model_calls": 0
+  },
+  "external_review_completed": false,
+  "submission_ready": false,
+  "resumed_from_saved_responses": true,
+  "new_model_calls_on_resume": 0,
+  "end_to_end_duration_seconds": 1.6651238039994496,
+  "bundle": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/paper_runs/live-20260928T104912-411414/workflow-validation.zip"
+}

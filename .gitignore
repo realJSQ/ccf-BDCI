@@ -23,3 +23,12 @@
 /BDCI/research/topic-v1-requests.jsonl
 /BDCI/validation/live_requests.jsonl
 **/*:Zone.Identifier
+/BDCI/research/pilot_runs/
+/BDCI/research/pilot-v1-requests.jsonl
+/BDCI/research/prior_work/raw/
+# The local development environment may be a symlink rather than a directory.
+/BDCI/.venv
+/BDCI/tools/bin
+/BDCI/tools/tectonic-cache
+/BDCI/research/paper_runs/
+/BDCI/research/paper-v1-requests.jsonl

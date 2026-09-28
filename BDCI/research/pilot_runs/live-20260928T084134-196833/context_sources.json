@@ -1,0 +1,44 @@
+{
+  "doi:10.1145/3847307": {
+    "id": "doi:10.1145/3847307",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "When Too Many Cooks Spoil the Broth: Three Failure Modes of Multi-Agent LLM Reliability",
+    "url": "https://doi.org/10.1145/3847307",
+    "abstract": "Multi-agent LLM systems are widely deployed under three implicit assumptions: that self-confidence calibration transfers to peer evaluation, that errors made by distinct instances are statistically independent, and that any sufficiently calibrated model is an equivalent verifier. We test all three across GPT-4o, Claude Sonnet 4.6, and Llama-3.3-70B. Self-confidence and peer-resistance dissociate: Claude shows the strongest self-confidence signal yet accepts every deliberately-wrong peer output, the opposite of what unidimensional calibration predicts. Four independent GPT-4o instances agree on the same wrong answer \\(56\\%\\) of the time on obscure factual queries versus \\(0.4\\%\\) predicted under independence—a \\(140\\times\\) violation. A pre-registered cross-family replication ( \\(N=200\\) , three architecturally distinct families) yields \\(55\\%\\) three-way agreement, statistically indistinguishable from the same-family baseline (one-sided binomial \\(p=0.41\\) ): family diversification does not reduce correlated hallucination. Verifier choice produces a 42-percentage-point spread in error propagation. We propose a three-phase framework treating self-confidence assessment, peer-resistance capability, and error correlation as orthogonal axes requiring distinct training signals, and identify query-inherent rarity, not shared training, as the dominant driver of correlated failure.",
+    "abstract_status": "available",
+    "authors": [
+      "Aradhana Rai",
+      "Vijay K. Madisetti"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "6f5b112cf2b5152db6da7ed9b519734538b8cd466176cb396822a3c5ee6ce3a5"
+  },
+  "doi:10.20944/preprints202512.2748.v1": {
+    "id": "doi:10.20944/preprints202512.2748.v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Contextual Trust Evaluation for Robust Coordination in Large Language Model Multi-Agent Systems",
+    "url": "https://doi.org/10.20944/preprints202512.2748.v1",
+    "abstract": "Large Language Model (LLM)-based multi-agent systems have emerged as a promising paradigm for tackling complex tasks that exceed individual agent capabilities. However, existing approaches often suffer from coordination inefficiencies, a lack of trust mechanisms, and suboptimal role assignment strategies. This paper presents a novel trust-aware coordination framework that enhances multi-agent collaboration through dynamic role assignment and context sharing. Our framework introduces a multi-dimensional trust evaluation mechanism that continuously assesses agent reliability based on performance history, interaction quality, and behavioral consistency. The coordinator leverages these trust scores to dynamically assign roles and orchestrate agent interactions while maintaining a shared context repository for transparent information exchange. We evaluate our framework across eight diverse task scenarios with varying complexity levels, demonstrating significant improvements over baseline approaches. Experimental results show that our trust-aware framework achieves a 87.4% task success rate, reducing execution time by 36.3% compared to non-trust-based methods, while maintaining 43.2% lower communication overhead. The framework's ability to adapt agent roles based on evolving trust scores enables more efficient resource utilization and robust fault tolerance in dynamic multi-agent environments.",
+    "abstract_status": "available",
+    "authors": [
+      "Kangning Gao",
+      "Haotian Zhu",
+      "Rui Liu",
+      "Jinming Li",
+      "Xu Yan",
+      "Yi Hu"
+    ],
+    "year": 2025,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "be5f0184f365308765bfc2cd0af3968c647dee60d90c67b6329a42ec98a342ed"
+  }
+}

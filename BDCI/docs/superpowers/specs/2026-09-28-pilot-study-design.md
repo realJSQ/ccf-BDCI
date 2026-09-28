@@ -1,0 +1,19 @@
+# 依据评审修订与真实预实验
+
+承接用户批准的自动选题→预实验→结果筛选流程，本阶段在GitHub协作工作副本实现，官方依赖仍来自GitCode/AtomGit。沿用brainstorming设计约束，不重新要求用户选择论文题目。
+
+本轮选择结构化、受控的实验执行器。备选任意模型生成Python代码需要额外容器隔离；纯提示模拟多Agent轨迹不能证明真实Agent行为。当前通过三个独立真实模型调用构成peer→baseline/intervention配对实验，避免执行自由生成代码。
+
+修订Agent读取上一轮C1批评、来源及全文访问核对结果，依据可用执行器重新提出可证伪问题及两种对照提示策略。Critic独立判定可行性；确定性门禁复核引用和预算。Agent可以认为当前证据/工具不足而decline，不强制进入实验。
+
+当前执行器支持integer_arithmetic_v1：固定种子生成24道整数算式，Python计算精确答案；ground truth仅评分代码可读，不注入peer或两个实验条件的模型上下文。研究对象是接收自然peer结果后的两种Agent处理策略，不能将算术题结果泛化为真实科研Agent，也不声称覆盖原提案的多模型家族假设。
+
+实验先记录计划/数据哈希/指标/判定阈值，再让peer真实作答；同一组peer输出和同一批题分别送入baseline与intervention两个独立工作者，模型参数一致，只有Agent提出的policy文本不同。严格JSON校验完整唯一ID与整数答案，不修复、不注错、不重试。模型响应全量保留，真实错误由oracle识别。
+
+指标包含精确准确率、配对胜/负/平、自然peer错误数、错误peer子集上的错误复制率及最终错误率。自然peer错误少于5则insufficient_peer_errors，不能宣布干预有效。差异即使为正也仅是探索性pilot信号，无统计独立性/显著性保证，不证明新颖性。
+
+调用预算单独pilot-v1持久化：修订1、评审1、peer1、baseline1、intervention1、结果解读1，最多6次模型请求（其中真正实验3次），每次最多2200输出token，usage停止阈值30000（后反馈阈值非硬费用上限）。SDK和工作流重试禁用，ResearchBudgetRail执行准入；新budget不重置之前两轮ledger。总超时420秒。计划或评审未过则两次内停止。
+
+运行产物：完整来源/上一轮引用、plan、critic、pre_registration、dataset与oracle分离、三个raw outputs、metrics、audit哈希、decision与报告。离线模式显式synthetic；真实模式仅调用授权API。最后将真实指标交给解释Agent，但程序决定是否为不充分/无效/正向观察，最终课题须继续核对全文与复验。
+
+验收：数据与评分单元测试、坏计划/坏响应门禁测试、官方SwarmFlow离线端到端、一次有界真实运行；允许诚实得到inconclusive。此阶段不自动生成正式竞赛论文。

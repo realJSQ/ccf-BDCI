@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "pilot_status": "hypothesis_not_supported_in_pilot",
+  "run_directory": "research/pilot_runs/live-20260928T084134-196833",
+  "model_calls": 6,
+  "total_tokens": 16176,
+  "scoring_replay": "passed",
+  "final_topic_selected": false
+}

@@ -1,0 +1,12 @@
+{
+  "pilot_directory": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/pilot_runs/live-20260928T084134-196833",
+  "reused_not_rerun": true,
+  "artifact_hashes": {
+    "pre_registration.json": "ba910cc0d2bcd64f87b006ef106eb88db29e96958fa4f7c9830e6d3155d8fb09",
+    "metrics.json": "ffb69fa78ad0a1d52f45813b4ed00ed0d7dd3f2aec9bcc24bd2efe320380fc59",
+    "designer.json": "2e7ce2f5f9be461023f5311e637c14a8bcfc0466127954e64398698e80f47b47",
+    "context_sources.json": "849d95077cbbbd3409433f2bc52955702e3189260889264755bcd85ce1013225",
+    "run_review.json": "4a43f16cedefa7fc4bc0dad68cba0ecd12b39a6fc6c4f12917b13fab1565a46c",
+    "decision.json": "4bebf688ffd9504fe041a9c6fc373f7a362c49ba42e112b1786e186143e76406"
+  }
+}

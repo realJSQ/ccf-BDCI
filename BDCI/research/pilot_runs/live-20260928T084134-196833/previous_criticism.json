@@ -1,0 +1,41 @@
+{
+  "status": "pending_revision",
+  "items": [
+    {
+      "candidate_id": "C1",
+      "title": "Does peer-resistance predict error propagation better than self-confidence in LLM verifier chains?",
+      "action": "revise",
+      "critic": {
+        "candidate_id": "C1",
+        "novelty_concern": "The closest source (doi:10.1145/3847307) already reports the self-confidence/peer-resistance dissociation, a 42-point verifier-choice spread in error propagation, and identifies verifier choice as the dominant lever; the candidate's only claimed increment is reframing this as a *predictive* comparison (peer-resistance vs self-confidence as predictors of propagation at matched calibration). That is a narrow analytic re-slicing of the same construct, and the abstract does not confirm the predictive comparison is absent — full text is required. The second source (doi:10.20944/preprints202512.2748.v1) is a trust-aware coordination framework with aggregate success/time/overhead metrics, not a verifier-selection predictor study, so it does not establish the gap either.",
+        "verdict": "revise",
+        "reason": "Feasible within budget (2 batched calls, no GPU, 20 min) and has an operational baseline (self-confidence-selected verifier) and metric (propagated-error rate). But the design cannot test the hypothesis: with N=20 held-out items and scripted wrong peers, the propagated-error rate is a coarse proportion with no power to distinguish two selection rules, and the candidate itself concedes a null would not falsify. Worse, scripted wrong peers remove the very correlated-error structure the source identifies as the dominant driver, so peer-resistance measured on scripted errors may not transfer to natural errors — a construct-validity confound, not just a risk. The self-confidence elicitation prompt also plausibly shifts acceptance behavior, confounding the two selection signals. Revise to: (a) use naturally generated wrong peers from a second model family to preserve correlated-error structure, (b) increase held-out N or use a paired within-item design so the comparison is not two unstable proportions, and (c) pre-specify a falsification condition. As written it is a pilot that can run but cannot yield a useful uncertainty."
+      },
+      "gate_reasons": [
+        "critic_did_not_advance"
+      ]
+    },
+    {
+      "candidate_id": "C2",
+      "title": "Does a trust-score-weighted role reassignment reduce cascade propagation versus static roles in a 3-agent chain?",
+      "action": "replace",
+      "critic": {
+        "candidate_id": "C2",
+        "novelty_concern": "The drift source (doi:10.2139/ssrn.6420858) already documents cascade propagation and compensatory expansion under a trait-mutation perturbation, and the trust source (doi:10.20944/preprints202512.2748.v1) already reports a trust-score-driven dynamic role-assignment framework with success/time/overhead gains. The candidate's claimed gap — cascade-onset turns as the outcome — is a metric substitution on top of an existing countermeasure, not a new mechanism; the abstract of the trust paper does not confirm cascade-onset turns are unmeasured, so full text is needed. The overlap is substantial: trust-weighted reassignment vs static roles is essentially the trust paper's core comparison.",
+        "verdict": "reject",
+        "reason": "The plan cannot be evaluated as specified. The primary metric — 'turns until a second agent's output degrades' scored by a locally authored rubric — is subjective, has no inter-rater reliability check, and the candidate concedes it may not be reproducible; a non-reproducible metric cannot support a falsifiable claim. With three scenarios per condition and a scripted perturbation, the perturbation likely dominates behavior, masking any orchestration effect, and trust scores over 5-8 turns are too noisy to drive reassignment — so the manipulation may not even be active. The design also lacks a matched-budget control beyond 'same perturbation,' and no operational definition of 'degradation' is given. This is not fixable within 20 minutes and 6 API calls; it needs a validated degradation rubric, more scenarios, and a manipulation check. Reject rather than revise because the core outcome measure is not operational."
+      },
+      "gate_reasons": [
+        "critic_did_not_advance"
+      ]
+    }
+  ],
+  "automatic_retry": false,
+  "next_model_calls": 0,
+  "requires": [
+    "A separately bounded revision round",
+    "Full-text check of closest prior work",
+    "Operational controls and outcome metrics",
+    "Pilot execution before final topic selection"
+  ]
+}

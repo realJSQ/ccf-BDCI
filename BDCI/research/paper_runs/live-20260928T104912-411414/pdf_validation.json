@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "pages": 3,
+  "bytes": 22204,
+  "sha256": "37bb0647c6d545584efbabf5c0b20b6e48dfb18760d915d8b448cddf20ac9961",
+  "duration_seconds": 1.6521785190006995,
+  "compiler": "Tectonic cached-only",
+  "new_model_calls": 0
+}

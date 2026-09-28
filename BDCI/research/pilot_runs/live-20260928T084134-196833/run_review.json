@@ -1,0 +1,10 @@
+{
+  "posthoc": true,
+  "not_preregistered": true,
+  "findings": [
+    "All three conditions achieved only 1/24 exact accuracy; floor effects limit interpretation.",
+    "Agent-generated policies included a line-format instruction conflicting with the runner JSON contract; all observed responses were valid JSON, but next protocol should prohibit policy format instructions.",
+    "Closest ACM full text remains unavailable, so no novelty conclusion is permitted."
+  ],
+  "action": "Preserve results, do not select final topic; next design needs task difficulty calibration and a no-peer control."
+}

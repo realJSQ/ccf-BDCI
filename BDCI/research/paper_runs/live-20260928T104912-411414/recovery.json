@@ -1,0 +1,12 @@
+{
+  "status": "saved_responses_revalidated",
+  "original_workflow_status": "failed",
+  "new_model_calls": 0,
+  "note": "Local validation/rendering resumed; original raw responses and model journal retained.",
+  "raw_response_sha256": {
+    "writer": "2392b5d34550be6670b94ab48ff75dcd6d4d7773ccc0b4b09bcc31912eddbe80",
+    "reviewer": "b65f637fc8f30c617888d352c2009fa5321180d86eccf7c91224156744087a91",
+    "reviser": "903f7ae1339725c7f2a1d7530caf09b48f2336963a599008775d4e6e5fb40ea8"
+  },
+  "artifact_word_limit": 1600
+}

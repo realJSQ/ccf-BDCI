@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "replayed_items": 24,
+  "model_calls": 0,
+  "metrics_sha256": "ffb69fa78ad0a1d52f45813b4ed00ed0d7dd3f2aec9bcc24bd2efe320380fc59",
+  "scope": "Recomputed scoring from archived responses, not an independent rerun of the model."
+}

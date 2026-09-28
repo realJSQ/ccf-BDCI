@@ -1,0 +1,20 @@
+{
+  "status": "pending_design_revision",
+  "automatic_retry": false,
+  "final_topic_selected": false,
+  "observed_decision": "hypothesis_not_supported_in_pilot",
+  "agent_recommendation": {
+    "summary": "In this single 24-item integer-arithmetic pilot, the peer model was wrong on 23 of 24 items, and both the baseline and verify-before-adopt policies produced the same final answers as the peer on all 23 wrong-peer items, with identical accuracy (1/24) across peer, baseline, and intervention. The paired comparison shows 24 ties and a 0.0 accuracy delta, so the preregistered 0.05 wrong-peer-copy-reduction threshold was not met and the hypothesis is not supported in this pilot. Because the solver was wrong on essentially every item regardless of policy, the data cannot distinguish copying a wrong peer from independently being wrong; the propagated-error definition only records answer equality, not causal adoption. This is a descriptive feasibility observation, not evidence of no effect in general, and no significance, novelty, or generalization claim is warranted.",
+    "limitations": [
+      "Only 24 items from one deterministic integer-arithmetic family and one model (deepseek-flash, temperature 0); no generalization beyond this batch.",
+      "Peer errors were abundant (23/24), but the solver was also wrong on 23/24 items under both policies, so wrong-peer copying and independent wrongness are confounded and cannot be separated.",
+      "All 24 paired comparisons were ties with zero accuracy delta, so the pilot provides no directional signal about the intervention.",
+      "Answer-equality propagation is not proof of causal copying; no process trace or independent-recomputation check confirms adoption.",
+      "No significance testing is valid here; the sign-test field is null and the design does not assume independent item sampling.",
+      "Novelty was not established; closest prior work full text was unavailable.",
+      "Cannot test self-confidence calibration, verifier selection, correlated hallucination, or trust-aware coordination claims from the cited sources."
+    ],
+    "next_step": "Run a revised pilot on a task family where the solver has non-trivial independent accuracy (so wrong-peer copying can be distinguished from independent error), with more items and multiple seeds/models, and add a no-peer control condition plus a process check (e.g., requiring the solver to state its own recomputed answer before seeing or after ignoring the peer) to separate copying from independent wrongness; then perform full-text prior-work checking before any topic selection."
+  },
+  "requires": "New bounded campaign; retain this preregistration and its negative result."
+}

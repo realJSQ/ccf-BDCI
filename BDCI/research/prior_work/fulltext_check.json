@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-28T08:38:03.396335+00:00",
+  "scope": "Two explicitly identified closest works only; no claim of exhaustive search or established novelty.",
+  "records": [
+    {
+      "DOI": "10.1145/3847307",
+      "url": "https://dl.acm.org/doi/10.1145/3847307",
+      "access_status": "abstract_only",
+      "checked_at": "2026-09-28T08:38:03.396335+00:00",
+      "title": "When Too Many Cooks Spoil the Broth: Three Failure Modes of Multi-Agent LLM Reliability",
+      "publication_status": {
+        "type": "journal-article",
+        "venue": "ACM AI Letters",
+        "published_online": "2026-09-17",
+        "basis": "Fresh Crossref publisher-deposited metadata; publisher full text unavailable to this check."
+      },
+      "observed_evidence": [
+        {
+          "location": "Crossref title/type/published-online/container-title",
+          "url": "https://api.crossref.org/works/10.1145/3847307",
+          "finding": "Title, author list, DOI, venue and date match the saved source. Author ORCID also lists this work."
+        },
+        {
+          "location": "Saved Crossref abstract",
+          "finding": "The abstract already reports self-confidence/peer-resistance dissociation, verifier-dependent propagation differences, and correlated failure across model families. These broad observations cannot be claimed as new in C1."
+        },
+        {
+          "location": "Official publisher access attempts",
+          "finding": "ACM landing page could not be read by web tool; official PDF request returned HTTP 403. No paywall or access control was bypassed."
+        },
+        {
+          "location": "Bounded public search",
+          "finding": "DOI/title/author searches did not locate a matching legal author manuscript or arXiv full text in this check. This is not evidence that none exists."
+        }
+      ],
+      "unresolved_questions": [
+        "Does the full paper already compare out-of-sample predictive validity of peer-resistance and self-confidence at matched calibration?",
+        "What are the exact confidence elicitation prompts, wrong-peer generation protocol, datasets, per-item paired results, and uncertainty estimates?",
+        "Can an authorized publisher or author-hosted copy and supplementary materials be obtained?"
+      ],
+      "candidate_difference_assessment": {
+        "candidate_id": "C1",
+        "status": "unverified",
+        "decision": "Keep novelty gate closed. Feasibility-only pilot may proceed if explicitly separated from novelty approval; do not promote the proposed predictive comparison as a new contribution."
+      },
+      "local_artifact": {
+        "path": "raw/acm_crossref.json",
+        "kind": "metadata_not_fulltext",
+        "bytes": 10564,
+        "sha256": "aae7e9c6c3994cb8a3a6db4005d8570753c320648b3e696a106e4f433bea566a"
+      },
+      "fulltext_local_artifact": null,
+      "untrusted_data": true
+    },
+    {
+      "DOI": "10.20944/preprints202512.2748.v1",
+      "url": "https://www.preprints.org/manuscript/202512.2748/v1",
+      "access_status": "fulltext_read_web",
+      "checked_at": "2026-09-28T08:38:03.396335+00:00",
+      "title": "Contextual Trust Evaluation for Robust Coordination in Large Language Model Multi-Agent Systems",
+      "publication_status": {
+        "type": "preprint",
+        "version": "v1",
+        "posted": "2025-12-31",
+        "peer_reviewed": false,
+        "license": "CC BY 4.0",
+        "basis": "Official Preprints.org landing page and PDF cover; this check does not establish a later journal publication."
+      },
+      "observed_evidence": [
+        {
+          "location": "Official landing page and PDF cover",
+          "url": "https://www.preprints.org/manuscript/202512.2748/v1",
+          "finding": "Title and DOI match. The platform explicitly identifies this version as not peer reviewed."
+        },
+        {
+          "location": "Section III.B–C, printed pages 4–5",
+          "url": "https://www.preprints.org/manuscript/202512.2748/v1/download",
+          "finding": "Trust combines historical performance, interaction quality and consistency; trust informs dynamic role assignment. This is already the central mechanism proposed in C2."
+        },
+        {
+          "location": "Section IV.B and V, printed pages 7–8",
+          "finding": "Evaluation describes success, runtime, communication and trust trajectories; static assignment is an explicit comparator. No dedicated peer-resistance versus self-confidence prediction experiment was found in the inspected full text."
+        },
+        {
+          "location": "Sections IV–VI",
+          "finding": "No explicit operational cascade-onset comparison was found in these sections. This limited observation does not establish a meaningful or novel contribution for C2."
+        },
+        {
+          "location": "Access evidence",
+          "finding": "Official HTML and 11-page PDF text were readable through web. Direct PDF download returned HTTP 403; web screenshots also failed. No PDF was stored or claimed downloaded."
+        }
+      ],
+      "unresolved_questions": [
+        "Where are the actual scenario inputs, prompts, code, per-trial results, and uncertainty estimates needed for independent reproduction?",
+        "Are there later versions or broader prior works that already test the proposed predictor or cascade measure?",
+        "For C2, what operational metric and distinct mechanism would remain after accounting for this existing dynamic assignment baseline?"
+      ],
+      "candidate_difference_assessment": {
+        "C1": "This paper addresses a different trust-coordination setting and does not resolve the missing closest-work full-text comparison.",
+        "C2": "Core mechanism overlaps directly; changing the outcome to cascade-onset is insufficient evidence of novelty. Keep replacement recommendation."
+      },
+      "local_artifact": null,
+      "untrusted_data": true
+    }
+  ],
+  "budget": {
+    "model_api_calls": 0,
+    "max_bytes_per_download": 4000000,
+    "successful_pdf_downloads": 0,
+    "metadata_files_saved": 1
+  },
+  "access_status_definitions": {
+    "abstract_only": "Metadata/abstract verified, full text not obtained.",
+    "fulltext_read_web": "Official full text inspected via web text extraction, no local PDF saved."
+  }
+}

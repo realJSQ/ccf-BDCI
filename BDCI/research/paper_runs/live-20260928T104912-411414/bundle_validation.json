@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "files": 181,
+  "bytes": 408368,
+  "sha256": "32077309287abf7b4df2abfab2e027df67f901ab07fb9522b1676cb4d1853cec",
+  "actual_api_key_found": false,
+  "manifest_hashes_valid": true,
+  "software_tests_passed": 107,
+  "extracted_offline_flow_passed": true,
+  "reproduction_scope": "Existing installed dependencies and Tectonic cache; compiler permission fix verified by local resume",
+  "submission_ready": false
+}

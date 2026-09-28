@@ -1,0 +1,17 @@
+{
+  "status": "hypothesis_not_supported_in_pilot",
+  "scripted_status": null,
+  "primary_metric": "wrong_peer_copy_reduction",
+  "observed_effect": 0.0,
+  "preregistered_threshold": 0.05,
+  "pilot_executed": true,
+  "real_observation": true,
+  "final_topic_selected": false,
+  "novelty_proven": false,
+  "requires": [
+    "Full-text prior-work checking",
+    "Independent runs and task families",
+    "Power and uncertainty analysis before a scientific claim"
+  ],
+  "interpretation": "One bounded exploratory pilot; no causal copying, significance or generalization claim."
+}

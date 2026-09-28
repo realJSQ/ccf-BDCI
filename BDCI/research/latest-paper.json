@@ -1,0 +1,8 @@
+{
+  "status": "workflow_passed",
+  "mode": "live",
+  "run_directory": "paper_runs/live-20260928T104912-411414",
+  "pdf": "paper_runs/live-20260928T104912-411414/paper.pdf",
+  "bundle": "paper_runs/live-20260928T104912-411414/workflow-validation.zip",
+  "submission_ready": false
+}

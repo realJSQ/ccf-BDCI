@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{iclr2026_conference,times}
+
+\usepackage{url}
+
+\iclrfinalcopy
+
+\title{Workflow-Validation Draft: A Paired Pilot of Two Peer-Advice-Handling Policies on Integer Arithmetic\\[0.4em]{\small Workflow validation draft---not a competition submission}}
+
+\author{Workflow validation}
+
+\begin{document}
+
+\maketitle
+
+\lhead{Workflow validation draft}
+
+\begin{abstract}
+
+This draft documents a bounded workflow-validation pilot, not a research contribution. On 24 held-out exact-answer integer arithmetic tasks, a solver received a naturally generated peer answer and operated under one of two advice-handling policies: a baseline that merely presented the peer answer for consideration, and an intervention that instructed independent recomputation before adoption. The same model, temperature, and output format were used. The peer condition is the source of the naturally generated peer answers, not a third solver policy, and it has no propagation rate. Both solver policies achieved identical accuracy of 1/24, and the paired comparison yielded 24 ties, zero wins, and zero losses. On the 23-item wrong-peer subset, 23 of 23 items propagated in both policies, a subset rate of 1.0. The pre-registered minimum improvement of 0.05 was not met. These results are consistent with a floor effect and cannot establish the absence of an effect in general, nor can they demonstrate causal copying. No no-peer control was run, so the contribution of peer advice to errors is unidentified. The closest ACM full text remained unavailable, and the other source is an unreviewed preprint. A post-hoc review recorded a policy-format conflict between an agent-generated line-format instruction and the runner JSON contract; all observed responses were valid JSON, but the procedural ambiguity remains. The originally proposed topic was substantially reformulated and remains unselected. No novelty, significance, or publication claim is made.
+
+\end{abstract}
+
+\section{Introduction}
+
+This document reports a workflow-validation pilot conducted as part of an internal feasibility check. It is not a competition submission and makes no claim of scientific novelty. The pilot asked whether, on 24 held-out exact-answer integer arithmetic tasks, an explicit verify-before-adopt policy would reduce copying of wrong peer answers relative to a plain consider-the-peer policy, using the same model, temperature, and output format. The hypothesis was that requiring independent recomputation and explicit agreement or disagreement before adoption would lower wrong-peer copying without reducing accuracy when the peer is correct. The proposed original topic was substantially reformulated before this pilot and remains unselected. The reformulation dropped a predictive-comparison claim and a verifier-selection framing, replaced scripted wrong peers with naturally generated peer answers, replaced obscure factual items with a seeded integer-arithmetic generator, and replaced two unstable independent proportions with a paired within-item comparison. A pre-specified feasibility gate required at least five natural peer errors; 23 occurred, so the pilot proceeded. The pilot is descriptive only. It cannot support statistical significance, causal copying, or generalization, and the recorded results show no observed difference between policies.
+
+\section{Related Work}
+
+Two explicitly identified closest works were checked, and no exhaustive search or novelty conclusion is claimed. The first is an ACM AI Letters article on three failure modes of multi-agent LLM reliability (doi:10.1145/3847307). Its abstract reports a dissociation between self-confidence and peer resistance, verifier-dependent differences in error propagation, and correlated failure across model families. Only the abstract and Crossref metadata were available; the publisher full text could not be read, and no legal author manuscript was located in a bounded search. Because the full text was unavailable, no comparison against its exact prompts, datasets, per-item results, or uncertainty estimates is possible, and novelty remains unverified. The second source is an unreviewed preprint on contextual trust evaluation for robust coordination in LLM multi-agent systems (doi:10.20944/preprints202512.2748.v1). Its full text was inspected via web extraction. It describes a trust-aware coordination framework combining historical performance, interaction quality, and behavioral consistency to inform dynamic role assignment, with static assignment as a comparator. That mechanism overlaps with earlier candidate framings, and the preprint is not peer reviewed. Neither source resolves the missing full-text comparison, and neither is used here to support a novelty claim.
+
+\citep{ref0001,ref0002}.
+
+\section{Methods}
+
+The pilot used a fixed seeded integer-arithmetic generator with exact answers, 24 held-out tasks, and a single model family at temperature 0. Each task was presented with a naturally generated peer answer produced by a real peer call, so that error structure was not scripted. Two advice-handling policies were compared within item. The baseline policy instructed the solver to consider the peer answer as one input and then give its own final answer. The intervention policy instructed the solver to independently recompute before adopting the peer answer, treating it as a claim to check rather than as evidence. Both policies requested exactly one line per task in the format TASK\_ID: <integer>, with no explanations, confidence scores, or extra text. The primary metric was wrong-peer copy reduction, with a pre-registered minimum improvement of 0.05. A feasibility gate required at least five naturally occurring peer errors; otherwise the executor would return insufficient\_peer\_errors and no propagation claim would be made. The pilot was limited to three API calls and no GPU: peer generation, the baseline solver, and the intervention solver. Both policies received the same 24 items and the same shared peer answers, so the comparison was paired within item. A post-hoc protocol review, not pre-registered, recorded that the agent-generated policies included a line-format instruction that conflicted with the runner JSON contract. All observed responses were valid JSON, but this procedural ambiguity is disclosed and should be prohibited in future protocols. No no-peer control condition was included.
+
+\section{Results}
+Evidence mode: live. Rendering mode: live.
+\begin{center}\begin{tabular}{lr}\hline
+Measure & Observed value \\\hline
+Evaluated items & 24 \\
+Natural peer errors & 23 \\
+Peer accuracy & 0.041667 (4.17\%) \\
+Baseline accuracy & 0.041667 (4.17\%) \\
+Intervention accuracy & 0.041667 (4.17\%) \\
+Intervention wins & 0 \\
+Intervention losses & 0 \\
+Ties & 24 \\
+\hline\end{tabular}\end{center}
+The hypothesis is not supported by this pilot. These descriptive results do not establish statistical significance, equivalence, generalization, or novelty. Agreement with an incorrect peer answer does not by itself establish causal copying. This draft validates the paper workflow.
+\paragraph{Recorded resources.}Paper stage: model calls: 3; total tokens: 21284; duration seconds: 18.320782554999823; cost: unknown. Reused pilot (no new experiment): model calls: 6; total tokens: 16176; duration seconds: 15.210272203000386.
+
+\section{Discussion}
+
+The pilot produced no observed difference between the baseline and intervention policies. Both solver policies reached only 1/24 exact accuracy, and the paired comparison yielded 24 ties, zero wins, and zero losses. On the 23-item wrong-peer subset, 23 of 23 wrong-peer items propagated in both policies; this is a subset rate of 1.0, not a rate over all 24 items. The pre-registered threshold of 0.05 was not met. These results are consistent with a floor effect: when nearly every response is incorrect, the policies have little room to differ, and the comparison is uninformative about their relative merit. The absence of a no-peer control means the pilot cannot separate peer influence from the solver's own error rate, so the observed propagation counts do not establish causal copying. Agreement with a peer answer is not proof that the peer answer caused the final response. The single model family, single task family, and paired batch further limit generalization. The closest ACM full text remained unavailable, so no novelty conclusion is permitted, and the other source is an unreviewed preprint. The recorded policy-format conflict adds procedural ambiguity: valid JSON responses do not erase the mismatch between the requested line format and the runner contract. The pilot therefore supports only a workflow observation: the pipeline ran, the feasibility gate passed, and the measured effect was zero under conditions that cannot discriminate between the policies.
+
+\section{Conclusion}
+
+This workflow-validation draft reports a bounded exploratory pilot with no observed difference between two peer-advice-handling policies on 24 integer-arithmetic tasks. Both solver policies showed the same low accuracy, the paired comparison was entirely ties, and the pre-registered improvement threshold was not met. The result does not establish that no effect exists generally, does not demonstrate causal copying, and does not support generalization beyond this single model and task family. A floor effect and the absence of a no-peer control limit interpretation. The closest ACM full text remained unavailable, and the other source is an unreviewed preprint, so novelty remains unverified. The recorded policy-format conflict is disclosed as procedural ambiguity. The originally proposed topic was substantially reformulated and remains unselected. Any next step would require full-text prior-work checking, independent runs and task families, task difficulty calibration, a no-peer control, and power and uncertainty analysis before any scientific claim could be considered. No novelty, significance, or publication claim is made.
+
+\bibliographystyle{iclr2026_conference}
+
+\bibliography{references}
+
+\end{document}

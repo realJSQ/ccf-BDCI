@@ -1,5 +1,7 @@
 # 自动选题与预实验交接
 
+后续已加入真实预实验，见 [PILOT.md](PILOT.md)，并接通 [论文生成流程](PAPER.md)。以下是第一轮自动选题的历史结果与实现说明。
+
 用户提供研究范围和资源约束，Agent 自行提出课题。本模块基于 JiuwenSwarm/OpenJiuwen 的原生 SwarmFlow、TeamWorkerBackend、TeamHarness/DeepAgent；不是由开发者手工指定论文题目。用户已经确认的设计见 `../docs/superpowers/specs/2026-09-28-topic-discovery-design.md`。
 
 ```mermaid

@@ -1,0 +1,64 @@
+{
+  "mode": "live",
+  "status": "completed",
+  "cost": null,
+  "model_calls": 6,
+  "model_usage": [
+    {
+      "input_tokens": 3936,
+      "output_tokens": 924,
+      "total_tokens": 4860,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 3552,
+      "output_tokens": 482,
+      "total_tokens": 4034,
+      "event": "usage",
+      "call": 2,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 1230,
+      "output_tokens": 245,
+      "total_tokens": 1475,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 1506,
+      "output_tokens": 245,
+      "total_tokens": 1751,
+      "event": "usage",
+      "call": 4,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 1534,
+      "output_tokens": 245,
+      "total_tokens": 1779,
+      "event": "usage",
+      "call": 5,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 1809,
+      "output_tokens": 468,
+      "total_tokens": 2277,
+      "event": "usage",
+      "call": 6,
+      "run_id": "live-20260928T084134-196833",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 16176,
+  "duration_seconds": 15.210272203000386
+}
