@@ -1,18 +1,22 @@
 # 轻量 LaTeX 环境
 
-使用官方 Tectonic 0.17.0 Linux x86_64 musl 二进制，在 `BDCI/tools/bin/tectonic`。
-不安装全局 TeX Live，不修改 Git 或 `activate.sh`。编译器约25.2 MiB。
+使用官方 Tectonic 0.17.0 Linux x86_64 二进制，在 `BDCI/tools/bin/tectonic`。
+新安装默认 GNU 构建，适用于当前 glibc Linux/WSL；不安装全局 TeX Live，不修改 Git 或 `activate.sh`。编译器约57.3 MiB，仍按需下载宏包。
+GNU 构建依赖系统的 glibc、libstdc++、libgcc 和 libgraphite2；当前主机已有这些库，未额外安装系统包。其他平台需按官方支持范围选择发行物。
 Tectonic 自身 MIT 许可，衍生组件及宏包采用各自许可证；保留 `BDCI/tools/TECTONIC-LICENSE`。
 
 官方说明：https://tectonic-typesetting.github.io/book/latest/installation/
 发布版本：https://github.com/tectonic-typesetting/tectonic/releases/tag/tectonic%400.17.0
-下载包 SHA-256（与 GitHub release asset digest 核对一致）：
+GNU 下载包 SHA-256（与 GitHub release asset digest 核对一致）：
+`1a715688baf591e650c8aeb160ae934e181685eecbb38b317de30b269ac5d606`
+
+原环境使用 musl 构建，约25.2 MiB，下载包 SHA-256：
 `8533d07f9ccbd7a65824b9e0459041bca34af1eb33daba48f59215593753a3b7`
 
 从项目根目录运行：
 
 ```bash
-bash BDCI/setup/latex-install.sh  # 仅重装时需要，下载约9.7 MiB压缩包
+bash BDCI/setup/latex-install.sh  # 仅重装时需要，GNU 压缩包约21.7 MiB
 bash BDCI/tools/compile-latex.sh --keep-logs BDCI/validation/latex/smoke.tex
 # 所需宏包已缓存后可以离线编译
 bash BDCI/tools/compile-latex.sh --only-cached --keep-logs BDCI/validation/latex/smoke.tex
@@ -26,6 +30,10 @@ bash BDCI/tools/compile-latex.sh --only-cached --keep-logs BDCI/validation/latex
 缓存默认在 `BDCI/tools/tectonic-cache`，可以用 `TECTONIC_CACHE_DIR` 覆盖。
 首次编译会联网按需下载包，后续同文档可 `--only-cached` 离线复现；新宏包仍需联网。
 不打包完整 bundle，以控制磁盘占用。缓存和二进制无需纳入源码贡献。
+
+本机干净环境复验发现 musl 构建访问官方 bundle 时出现 TLS handshake EOF；同版本 GNU 构建可以下载。新安装因此默认 GNU，而不是关闭证书校验。需要静态 musl 版本时可显式运行 `TECTONIC_LINUX_VARIANT=musl bash BDCI/setup/latex-install.sh`，但本机该构建目前只验证过已有缓存的离线编译。下方原始验证结果和 `latex-provenance.json` 描述此前的 musl 环境，不是新 GNU 安装记录。
+
+GNU 复验已完成：空缓存联网编译三页存档论文成功，随后新环境离线写作流程生成两页 PDF 与 ZIP。重编译三页稿的文本及72 dpi逐页渲染像素与原稿一致，二进制PDF哈希不同，不声称字节级可复现。新二进制60,077,496字节、缓存42,659,936字节，总计约98 MiB；来源与哈希见 `latex-gnu-provenance.json`，完整范围见 `../docs/submission/clean-environment-validation.json`。
 
 ## 官方 ICLR 模板
 

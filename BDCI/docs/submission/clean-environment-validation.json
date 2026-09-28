@@ -1,5 +1,5 @@
 {
-  "status": "in_progress",
+  "status": "passed_for_current_linux_wsl_host",
   "base_commit": "9f73bca2d2af81d58a466cfb266e2ab483a1cca2",
   "source_patch_sha256": "d49a880667db41ec74f1ee236a253c2d73df701a6c1b94d99028b9bbdf7b5382",
   "environment": "Fresh Python 3.13 virtualenv and git archive on the current WSL machine; download cache may be reused, installed packages are not reused",
@@ -8,21 +8,56 @@
     "reason": "pip direct URL conflict: pinned intelli-router commit versus agent-core branch dependency"
   },
   "corrected_install": {
-    "status": "running",
+    "status": "passed",
     "command": "python -m pip install --no-deps -r BDCI/setup/requirements.repro.txt",
-    "required_followup": [
-      "pip check",
-      "verify installed VCS commit IDs",
-      "software tests",
-      "native offline workflow"
-    ]
+    "pip_check": "No broken requirements found",
+    "pinned_registry_packages_verified": 228,
+    "system_site_packages": false,
+    "installed_source_provenance": {
+      "openjiuwen": {
+        "version": "0.1.18",
+        "provenance": {
+          "url": "https://gitcode.com/openJiuwen/agent-core.git",
+          "vcs_info": {
+            "commit_id": "9e3390195a9ea15235b2b5f7412cb2aa440622cc",
+            "requested_revision": "9e3390195a9ea15235b2b5f7412cb2aa440622cc",
+            "vcs": "git"
+          }
+        }
+      },
+      "intelli-router": {
+        "version": "0.1.0",
+        "provenance": {
+          "subdirectory": "intelli_router",
+          "url": "https://gitcode.com/openJiuwen/agent-protocol.git",
+          "vcs_info": {
+            "commit_id": "f70ae827ba059deddef87406f90b77bcde403dc1",
+            "requested_revision": "f70ae827ba059deddef87406f90b77bcde403dc1",
+            "vcs": "git"
+          }
+        }
+      },
+      "workswarm": {
+        "version": "0.2.5b1",
+        "provenance": {
+          "dir_info": {
+            "editable": true
+          },
+          "url": "file:///tmp/bdci-clean-j87j81kq/source/BDCI/jiuwenswarm"
+        }
+      }
+    }
   },
   "tectonic": {
     "official_binary_install": "passed",
-    "empty_cache_compile": "failed",
+    "empty_cache_compile": "musl failed; GNU passed",
     "reason": "HTTPS TLS handshake EOF in Tectonic; curl reaches official index, direct official bundle also failed in Tectonic",
     "certificate_verification_disabled": false,
-    "old_cache_reused": false
+    "old_cache_reused": false,
+    "gnu_official_binary_install": "passed",
+    "gnu_empty_cache_online_compile": "passed",
+    "gnu_cached_offline_paper_compile": "passed",
+    "resolution": "Use same-version official GNU binary on this glibc host; retain musl as explicit option"
   },
   "local_fix_tests": {
     "environment": "original development environment, not the fresh venv",
@@ -30,5 +65,59 @@
     "passed": true
   },
   "api_calls": 0,
-  "submission_ready": false
+  "submission_ready": false,
+  "fresh_environment_tests": {
+    "passed": true,
+    "count": 107,
+    "requires": "source BDCI/activate.sh to set project-local runtime paths",
+    "earlier_unactivated_attempt": "Failed because framework logging defaults to user home, which is read-only in sandbox"
+  },
+  "native_offline_pilot": {
+    "status": "completed",
+    "mode": "offline_only",
+    "role_calls": 6,
+    "real_api_calls": 0
+  },
+  "native_offline_paper": {
+    "status": "workflow_passed",
+    "pdf_pages": 2,
+    "role_calls": 3,
+    "real_api_calls": 0,
+    "manifest_hashes_valid": true,
+    "credential_pattern_scan": "passed",
+    "timing_field": "invocation_to_pdf_seconds",
+    "timing_scope": "evidence validation, writing workflow, rendering and PDF checks; excludes earlier research and packaging"
+  },
+  "pdf_rebuild": {
+    "pages": [
+      3,
+      3
+    ],
+    "text_equal": true,
+    "rendered_pixels_equal_at_72dpi": true,
+    "pdf_bytes_equal": false,
+    "original_sha256": "37bb0647c6d545584efbabf5c0b20b6e48dfb18760d915d8b448cddf20ac9961",
+    "fresh_sha256": "26c22bec732b06f9a1edb7d406f2b58471cb993c06a357760248f92eaa0b9124"
+  },
+  "validation_limitations": [
+    "Same host with isolated Python environment; package download cache reused, installed packages not reused.",
+    "GNU needs glibc/libstdc++/libgcc/libgraphite2; no portability claim for other systems.",
+    "Native offline models were scripted, not new scientific results.",
+    "Recompiled PDF text and 72dpi rendered pixels match; binary PDF hashes differ."
+  ],
+  "evidence_log_sha256": {
+    "install.log": "2f4a4f5381754becd2a785e44da46f5793165f471f51613111f7e684caeb839d",
+    "install-fixed.log": "ef1dbb98bdd16c3828d9b40fa9da43dbdbebb8f65fcf7cb4894b60a0ceb69e4a",
+    "clean-tests-activated.log": "02ee891e9ddd717b2af470b83f2b226b32b143fca1e3bf05afa7d1ca99290044",
+    "clean-pilot-offline.log": "cef661a0afbf5c92fb15ba3045a3f6b5bb65f98393d739479f6f837d96a183ec",
+    "clean-paper-offline.log": "f96c656488b583e8c656d4c1bd0e5cc43a0e803624ddc5a4b07b9b09859b6854",
+    "latex-gnu-compile.log": "36ba9ed956ad772a856dc71a032368fd197562533f20608c2ca3a281bf697298",
+    "latex-fixed-install.log": "88946f7c38976124435a0151b3049cc907bba53cf4da09be0173dca95c8f8f29"
+  },
+  "validated_source_sha256": {
+    "BDCI/research/run_paper.py": "efaca326fdf48d5cc1420cd70517ad911dad88b484d0073f322bb1f4e4e22148",
+    "BDCI/research/paper_bundle.py": "c7f5e51b3b17f4a1261e2cf6839365a8eb780330cdd2b57933d5409e98c2ab20",
+    "BDCI/setup/latex-install.sh": "0d7815febf844105f8e1081b11b533ce38437c4f25d2501354152aa4c8eea7bf",
+    "BDCI/setup/requirements.repro.txt": "07286e88e6b89620db4eb5a220c5d534cafd4989ef817d9ece7ba08b79687e11"
+  }
 }

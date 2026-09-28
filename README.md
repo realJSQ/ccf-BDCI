@@ -12,7 +12,7 @@
 - 自动选题：3 次模型请求、13,480 token，4 次检索、19 条去重论文元数据、2 个 Agent 提出的候选。评审结果分别为修改和否决，未执行候选预实验。
 - 新增修订—评审—真实配对预实验—结果解读闭环：6次请求、16,176 token，24题测量结果不支持本轮假设；保留负结果与后续修改依据。
 - 选题、预算、预实验数据隔离和评分模块有完整单元测试，真实框架离线流程及额度阻断验证通过；前阶段证据 Rail 9 项单元测试通过。
-- 轻量 LaTeX 使用 Tectonic，安装二进制及按需缓存约70 MiB；下载内容不纳入仓库。
+- 轻量 LaTeX 使用 Tectonic，新 GNU 二进制及本次按需缓存约98 MiB；下载内容不纳入仓库。
 
 ## 目录与结果
 
@@ -46,6 +46,8 @@ python BDCI/validation/run_smoke.py              # 离线实验/写作验证
 ```
 
 `requirements.repro.txt` 是完整依赖快照，将上游 editable 安装替换为本仓库源码，并固定 agent-core 与 agent-protocol 的提交。安装时使用 `--no-deps` 避免上游元数据里的分支 URL 与同一包的固定提交 URL 发生解析冲突；随后必须执行 `pip check` 检查缺失包和版本冲突，不能跳过。干净环境复验结果见后续安装记录，不将本机复验等同于跨平台验证。
+
+已在同一 Linux/WSL 主机的独立源码副本与新虚拟环境中完成复验：228 个包版本及两个官方 GitCode 提交核对一致、`pip check` 和107项软件测试通过，原生离线预实验及写作—PDF—ZIP通过；新装 GNU Tectonic 从空缓存编译成功。详见[复验记录](BDCI/docs/submission/clean-environment-validation.json)。未复用旧安装包或旧 TeX 缓存；Python 下载缓存可复用。离线模型响应是脚本数据，不构成新增科学实验。
 
 编译 PDF：
 

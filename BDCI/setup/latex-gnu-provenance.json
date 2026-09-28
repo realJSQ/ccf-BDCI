@@ -1,0 +1,18 @@
+{
+  "version": "0.17.0",
+  "platform": "x86_64-unknown-linux-gnu",
+  "download_url": "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz",
+  "archive_sha256": "1a715688baf591e650c8aeb160ae934e181685eecbb38b317de30b269ac5d606",
+  "binary_sha256": "2b3a86250906c92ed0a3ae8aaa454ec55bd6cede8593b3e549640177f6aecaa3",
+  "binary_bytes": 60077496,
+  "archive_bytes": 22749118,
+  "compile_status": "passed_online_from_empty_cache_and_offline",
+  "scope": "Fresh project cache; no old TeX cache copied; same WSL host",
+  "host": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "logical_cpus": 32
+  },
+  "cache_bytes": 42659936
+}
