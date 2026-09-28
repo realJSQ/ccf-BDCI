@@ -1,0 +1,32 @@
+{
+  "status": "development_workflow_validated",
+  "new_scientific_claims_certified": false,
+  "research_suite_tests": 149,
+  "research_suite_log": "BDCI/setup/replay-final-tests.log (local ignored log)",
+  "final_native_offline_run": "replay_runs/offline-20260928T144726-035808",
+  "live_run": "replay_runs/live-20260928T144804-532140",
+  "live_requests": 18,
+  "live_usage_tokens": 14878,
+  "saved_policy_replays_verified": 72,
+  "campaign_requests": 24,
+  "campaign_usage_tokens": 47410,
+  "campaign_request_cap_reached": true,
+  "posthoc_requests": 0,
+  "posthoc_rule_changed_plan_count": 8,
+  "bundle_validation": {
+    "artifact": "/tmp/bdci-replay-package-j830t2_t/paper/workflow-validation.zip",
+    "sha256": "f904fba11b4b60b43da415ad783c392928632661a7b7502371f8334c06e74b53",
+    "manifest_file_count": 403,
+    "all_manifest_hashes_match": true,
+    "unpacked_saved_replay_verification": "18 episodes / 72 policy replays / 0 model calls; executed by subagent",
+    "scope": "Temporary repackaging of the historical paper; includes new research evidence. This does not produce a new scientific paper. Final architecture/module documentation edits followed this temporary artifact."
+  },
+  "missing": [
+    "general paper writer integration for new study",
+    "separate validation of posthoc contract change",
+    "formal scientific acceptance",
+    "external review token",
+    "upstream PR URL",
+    "team naming/current competition verification"
+  ]
+}

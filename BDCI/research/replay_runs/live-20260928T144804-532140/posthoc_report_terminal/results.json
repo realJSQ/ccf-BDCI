@@ -1,0 +1,2906 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 64,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "26efea20a0c16527618962fed2702228c217b35104411594bc38d43aa6b1f472",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00013175999993109144,
+    "episode_id": "episode_00",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 64,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "26efea20a0c16527618962fed2702228c217b35104411594bc38d43aa6b1f472",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00010831500185304321,
+    "episode_id": "episode_00",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 64,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "26efea20a0c16527618962fed2702228c217b35104411594bc38d43aa6b1f472",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00010031000056187622,
+    "episode_id": "episode_00",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 64,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "26efea20a0c16527618962fed2702228c217b35104411594bc38d43aa6b1f472",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00016575500194448978,
+    "episode_id": "episode_00",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "595c8192740816fc880805c0b0efc2f182586a124fdb996f789644ce9564b47a",
+    "plan_sha256": "40e7fefcbcb491f21314b5cf049a1469ab58e16f3880cce778d6a122ffdf7ee5",
+    "duration_seconds": 0.00022150999939185567,
+    "episode_id": "episode_01",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "595c8192740816fc880805c0b0efc2f182586a124fdb996f789644ce9564b47a",
+    "plan_sha256": "40e7fefcbcb491f21314b5cf049a1469ab58e16f3880cce778d6a122ffdf7ee5",
+    "duration_seconds": 0.0001961920024768915,
+    "episode_id": "episode_01",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "e2a9676c9363c1a130909eb79112ca479f31bdaef05f0ebd93e4a629d144ad2a"
+        },
+        "receipt_sha256": "f82e5cf689107c9732f6decc6ede7d73268a50a515170ad0aef9e6a00bb672b6"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "f82e5cf689107c9732f6decc6ede7d73268a50a515170ad0aef9e6a00bb672b6"
+        },
+        "receipt_sha256": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "595c8192740816fc880805c0b0efc2f182586a124fdb996f789644ce9564b47a",
+    "plan_sha256": "40e7fefcbcb491f21314b5cf049a1469ab58e16f3880cce778d6a122ffdf7ee5",
+    "duration_seconds": 0.00022981599977356382,
+    "episode_id": "episode_01",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "595c8192740816fc880805c0b0efc2f182586a124fdb996f789644ce9564b47a",
+    "plan_sha256": "40e7fefcbcb491f21314b5cf049a1469ab58e16f3880cce778d6a122ffdf7ee5",
+    "duration_seconds": 0.00021866500173928216,
+    "episode_id": "episode_01",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "6641757567b112133caa9cf55a136d73bfa057bab9a3dbc4b0c6b1692f00949f",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.0003303970006527379,
+    "episode_id": "episode_02",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "6641757567b112133caa9cf55a136d73bfa057bab9a3dbc4b0c6b1692f00949f",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.00021528800061787479,
+    "episode_id": "episode_02",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "e2a9676c9363c1a130909eb79112ca479f31bdaef05f0ebd93e4a629d144ad2a"
+        },
+        "receipt_sha256": "f82e5cf689107c9732f6decc6ede7d73268a50a515170ad0aef9e6a00bb672b6"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "f82e5cf689107c9732f6decc6ede7d73268a50a515170ad0aef9e6a00bb672b6"
+        },
+        "receipt_sha256": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "6641757567b112133caa9cf55a136d73bfa057bab9a3dbc4b0c6b1692f00949f",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.0003174619996570982,
+    "episode_id": "episode_02",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 81,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "f8e12962679e5eec0607fdf88eab3009dc1f171db1766231e7e4c95130649e18",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+        },
+        "receipt_sha256": "a1769cd628d441e2b32d9a5eb9f94b45a556a9047a823891a97774b4b2ccfdcd"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "6641757567b112133caa9cf55a136d73bfa057bab9a3dbc4b0c6b1692f00949f",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.00021808399833389558,
+    "episode_id": "episode_02",
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.0001197969977511093,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00011094100045738742,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00010462799764354713,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00010629199823597446,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "10e4074a2c6998cbcf1f4d9aca374d143db6373a10d37e36f77e633f7945b774",
+    "plan_sha256": "6a176942e685e850c38db99ccd266427998bd2e48e2c5d3de0575d7896c8b384",
+    "duration_seconds": 0.00021150099928490818,
+    "episode_id": "episode_04",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "10e4074a2c6998cbcf1f4d9aca374d143db6373a10d37e36f77e633f7945b774",
+    "plan_sha256": "6a176942e685e850c38db99ccd266427998bd2e48e2c5d3de0575d7896c8b384",
+    "duration_seconds": 0.00020090200268896297,
+    "episode_id": "episode_04",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "40173fa9f1c2e600e84ac2c35610ed0884edc498f4a03285e0c5ef88a276af45"
+        },
+        "receipt_sha256": "a21a765ab580df91a9b2e0e4d22e4b14e54cccf2ca2f91ede261819749952828"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "a21a765ab580df91a9b2e0e4d22e4b14e54cccf2ca2f91ede261819749952828"
+        },
+        "receipt_sha256": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "10e4074a2c6998cbcf1f4d9aca374d143db6373a10d37e36f77e633f7945b774",
+    "plan_sha256": "6a176942e685e850c38db99ccd266427998bd2e48e2c5d3de0575d7896c8b384",
+    "duration_seconds": 0.00024208900140365586,
+    "episode_id": "episode_04",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "10e4074a2c6998cbcf1f4d9aca374d143db6373a10d37e36f77e633f7945b774",
+    "plan_sha256": "6a176942e685e850c38db99ccd266427998bd2e48e2c5d3de0575d7896c8b384",
+    "duration_seconds": 0.00031135999961406924,
+    "episode_id": "episode_04",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a3dfeaba1fdec7b900b4d3c28fed5c77f1486e5051cba791ed3d71c4b20ef55e",
+    "plan_sha256": "12f4a6c54baa37d97764c1a3f3624afd6c795e1b2c37203815baefa4688001d1",
+    "duration_seconds": 0.0002113209993694909,
+    "episode_id": "episode_05",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a3dfeaba1fdec7b900b4d3c28fed5c77f1486e5051cba791ed3d71c4b20ef55e",
+    "plan_sha256": "12f4a6c54baa37d97764c1a3f3624afd6c795e1b2c37203815baefa4688001d1",
+    "duration_seconds": 0.0001953310020326171,
+    "episode_id": "episode_05",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "40173fa9f1c2e600e84ac2c35610ed0884edc498f4a03285e0c5ef88a276af45"
+        },
+        "receipt_sha256": "a21a765ab580df91a9b2e0e4d22e4b14e54cccf2ca2f91ede261819749952828"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "a21a765ab580df91a9b2e0e4d22e4b14e54cccf2ca2f91ede261819749952828"
+        },
+        "receipt_sha256": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "a3dfeaba1fdec7b900b4d3c28fed5c77f1486e5051cba791ed3d71c4b20ef55e",
+    "plan_sha256": "12f4a6c54baa37d97764c1a3f3624afd6c795e1b2c37203815baefa4688001d1",
+    "duration_seconds": 0.0003219700010959059,
+    "episode_id": "episode_05",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 12,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "386ff0e5ab2a76add8cedc09b012d39e23f42d074e218febcbea49c931cf1865",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+        },
+        "receipt_sha256": "a0417320386ceefcb5dd49200c2f91cb3dd2ff06690545b339face77289ecc5c"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a3dfeaba1fdec7b900b4d3c28fed5c77f1486e5051cba791ed3d71c4b20ef55e",
+    "plan_sha256": "12f4a6c54baa37d97764c1a3f3624afd6c795e1b2c37203815baefa4688001d1",
+    "duration_seconds": 0.00023897299979580566,
+    "episode_id": "episode_05",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.00012920500012114644,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.000113054000394186,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.00017550299889990129,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.00018152399934479035,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "eca684dbdb1773e737763ad6fd99d78346f8b690fec833879e12cbee865ee3c4",
+    "plan_sha256": "e096f1a5070788a6695333a8e3f6fc0b11a3ca97e936de53a24ea03b029d71a5",
+    "duration_seconds": 0.00022813300165580586,
+    "episode_id": "episode_07",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "eca684dbdb1773e737763ad6fd99d78346f8b690fec833879e12cbee865ee3c4",
+    "plan_sha256": "e096f1a5070788a6695333a8e3f6fc0b11a3ca97e936de53a24ea03b029d71a5",
+    "duration_seconds": 0.00020349600163172,
+    "episode_id": "episode_07",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "6cf10d148c9816771b690cd40cc1a779fdd5571caa970e5df89120cd25762d1d"
+        },
+        "receipt_sha256": "ea7262d4c18c74cebadacf28e24adeefe7910652110f7fdb3deae8e4c58f1ff1"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "ea7262d4c18c74cebadacf28e24adeefe7910652110f7fdb3deae8e4c58f1ff1"
+        },
+        "receipt_sha256": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "eca684dbdb1773e737763ad6fd99d78346f8b690fec833879e12cbee865ee3c4",
+    "plan_sha256": "e096f1a5070788a6695333a8e3f6fc0b11a3ca97e936de53a24ea03b029d71a5",
+    "duration_seconds": 0.0002321009997103829,
+    "episode_id": "episode_07",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "eca684dbdb1773e737763ad6fd99d78346f8b690fec833879e12cbee865ee3c4",
+    "plan_sha256": "e096f1a5070788a6695333a8e3f6fc0b11a3ca97e936de53a24ea03b029d71a5",
+    "duration_seconds": 0.0002054799988400191,
+    "episode_id": "episode_07",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a76afe75263bd8ccf87e9703184b2785ad28adf4a7f0d9c76a1338733b671d33",
+    "plan_sha256": "b25065e4cad816c9ef86be8f458ce389ccccb3258bd8352a3114be392a65d312",
+    "duration_seconds": 0.0002024140012508724,
+    "episode_id": "episode_08",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a76afe75263bd8ccf87e9703184b2785ad28adf4a7f0d9c76a1338733b671d33",
+    "plan_sha256": "b25065e4cad816c9ef86be8f458ce389ccccb3258bd8352a3114be392a65d312",
+    "duration_seconds": 0.0001878969997051172,
+    "episode_id": "episode_08",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "6cf10d148c9816771b690cd40cc1a779fdd5571caa970e5df89120cd25762d1d"
+        },
+        "receipt_sha256": "ea7262d4c18c74cebadacf28e24adeefe7910652110f7fdb3deae8e4c58f1ff1"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "ea7262d4c18c74cebadacf28e24adeefe7910652110f7fdb3deae8e4c58f1ff1"
+        },
+        "receipt_sha256": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "a76afe75263bd8ccf87e9703184b2785ad28adf4a7f0d9c76a1338733b671d33",
+    "plan_sha256": "b25065e4cad816c9ef86be8f458ce389ccccb3258bd8352a3114be392a65d312",
+    "duration_seconds": 0.00033180999889736995,
+    "episode_id": "episode_08",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 3
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "210a56a8f591e3c4fd3ab670006d337624ef74ccaf434c5cc847d1b4edf891f3"
+        },
+        "receipt_sha256": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "36a22466d161e1eaf17494cf0739205903b9306d90d61e98d6e1015fb0244f98"
+        },
+        "receipt_sha256": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "00f88e911736822b1fd33f0d18ce42cf84332c4d24299d4c6d8cdc4b092e96d8",
+          "summarize_aux": "3194d3eda0fbf2be3205caf9d7c9305ae50b38dfbef3bfbc26e91cab8e1f5511"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+        },
+        "receipt_sha256": "e68247510837dc28e575d9cba441dc50dcd9ad7dfa302c812b59421cba1b056f"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "a76afe75263bd8ccf87e9703184b2785ad28adf4a7f0d9c76a1338733b671d33",
+    "plan_sha256": "b25065e4cad816c9ef86be8f458ce389ccccb3258bd8352a3114be392a65d312",
+    "duration_seconds": 0.00022340400028042495,
+    "episode_id": "episode_08",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 0.00010618200030876324,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 9.448900163988583e-05,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 9.120300092035905e-05,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 9.288699948228896e-05,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "93e43f9871f9c6f79af76e09aa440daaee678f2aec48421b671d7b94c3cc8005",
+    "plan_sha256": "016381fa06131974f3ac3507a985a66e9ec76ad938ff3c5fd4faab7c0fd8a0d0",
+    "duration_seconds": 0.00019334600074216723,
+    "episode_id": "episode_10",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "93e43f9871f9c6f79af76e09aa440daaee678f2aec48421b671d7b94c3cc8005",
+    "plan_sha256": "016381fa06131974f3ac3507a985a66e9ec76ad938ff3c5fd4faab7c0fd8a0d0",
+    "duration_seconds": 0.00031809299980523065,
+    "episode_id": "episode_10",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "616047f2f6a7605a130eafa887198c79a918165822b25d1f4315378ec046563f"
+        },
+        "receipt_sha256": "38db7962c9e7d73a6c94670e051cae664b4bb0a9c9f436e45468341fc80e3615"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "38db7962c9e7d73a6c94670e051cae664b4bb0a9c9f436e45468341fc80e3615"
+        },
+        "receipt_sha256": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "93e43f9871f9c6f79af76e09aa440daaee678f2aec48421b671d7b94c3cc8005",
+    "plan_sha256": "016381fa06131974f3ac3507a985a66e9ec76ad938ff3c5fd4faab7c0fd8a0d0",
+    "duration_seconds": 0.00031412600219482556,
+    "episode_id": "episode_10",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "93e43f9871f9c6f79af76e09aa440daaee678f2aec48421b671d7b94c3cc8005",
+    "plan_sha256": "016381fa06131974f3ac3507a985a66e9ec76ad938ff3c5fd4faab7c0fd8a0d0",
+    "duration_seconds": 0.0002331120012968313,
+    "episode_id": "episode_10",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "9ecfc35a03a3dcc8896b4f6473e1de5e8af02806acbe4a9ded3f71cd6ce76229",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.00020690300152637064,
+    "episode_id": "episode_11",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "9ecfc35a03a3dcc8896b4f6473e1de5e8af02806acbe4a9ded3f71cd6ce76229",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.0001862030003394466,
+    "episode_id": "episode_11",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "616047f2f6a7605a130eafa887198c79a918165822b25d1f4315378ec046563f"
+        },
+        "receipt_sha256": "38db7962c9e7d73a6c94670e051cae664b4bb0a9c9f436e45468341fc80e3615"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "38db7962c9e7d73a6c94670e051cae664b4bb0a9c9f436e45468341fc80e3615"
+        },
+        "receipt_sha256": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "9ecfc35a03a3dcc8896b4f6473e1de5e8af02806acbe4a9ded3f71cd6ce76229",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.00023254199913935736,
+    "episode_id": "episode_11",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 69,
+      "unit": "weighted_amount"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "dbe407a5c4a83b10c62180a338d41224c47fa81b42d791de171b9556132e6a93"
+        },
+        "receipt_sha256": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "3e0cdd3cf5674ddf01eb9d215bc2b640052475fb6490bd76e584ba0e940c2732"
+        },
+        "receipt_sha256": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "4c2b34840dee0c0bf626e65f0246c554975068c6223a1c3f9e5f2ab4b821428c",
+          "summarize_aux": "8cdd43c5dd8d12f017ae5f9ad489d950c0dd5ca79a729635899fa7c57ff7a043"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+        },
+        "receipt_sha256": "55dd9693661d4698c191a2d950e436b7fe9b95af8cd458e97dff00cb3be0d848"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "9ecfc35a03a3dcc8896b4f6473e1de5e8af02806acbe4a9ded3f71cd6ce76229",
+    "plan_sha256": "0dd464910a787fbef055b3ee10d1c4a15fe6da7a3ab349a38f6fc51e5c9f8e43",
+    "duration_seconds": 0.0002837780011759605,
+    "episode_id": "episode_11",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.00011969699698965997,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.00010702299914555624,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.00011177199849043973,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.00018971000099554658,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.0002302369975950569,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.00020569000116665848,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "d04eaf1f094a0c8d855e52c750236ad1c3c3e05de842c09173c986c36dfe770f"
+        },
+        "receipt_sha256": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+        },
+        "receipt_sha256": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.00024314199981745332,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.0002064220025204122,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "0c885a54a1d69250278bbdfcc077babeb1287c8071cfa9b6dacaeabf1c61ba67",
+    "plan_sha256": "eecc7fa039209d256f696e02032379e8ee1923f9ce7027520d4534b318dfdee3",
+    "duration_seconds": 0.0003469180010142736,
+    "episode_id": "episode_14",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "0c885a54a1d69250278bbdfcc077babeb1287c8071cfa9b6dacaeabf1c61ba67",
+    "plan_sha256": "eecc7fa039209d256f696e02032379e8ee1923f9ce7027520d4534b318dfdee3",
+    "duration_seconds": 0.00021002899666200392,
+    "episode_id": "episode_14",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "d04eaf1f094a0c8d855e52c750236ad1c3c3e05de842c09173c986c36dfe770f"
+        },
+        "receipt_sha256": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+        },
+        "receipt_sha256": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "0c885a54a1d69250278bbdfcc077babeb1287c8071cfa9b6dacaeabf1c61ba67",
+    "plan_sha256": "eecc7fa039209d256f696e02032379e8ee1923f9ce7027520d4534b318dfdee3",
+    "duration_seconds": 0.0003170609998051077,
+    "episode_id": "episode_14",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "0c885a54a1d69250278bbdfcc077babeb1287c8071cfa9b6dacaeabf1c61ba67",
+    "plan_sha256": "eecc7fa039209d256f696e02032379e8ee1923f9ce7027520d4534b318dfdee3",
+    "duration_seconds": 0.00022035800066078082,
+    "episode_id": "episode_14",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 4
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "e1070a16db68beb3d416c0d7f4f36aa25182c91586dc28d6eb355db128e34165",
+    "plan_sha256": "84c64bb10283f54b369372efe34f68d7f5d833880201ff280c4aa3141f3aa44b",
+    "duration_seconds": 0.00012511800014181063,
+    "episode_id": "episode_15",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 4
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "e1070a16db68beb3d416c0d7f4f36aa25182c91586dc28d6eb355db128e34165",
+    "plan_sha256": "84c64bb10283f54b369372efe34f68d7f5d833880201ff280c4aa3141f3aa44b",
+    "duration_seconds": 0.00011400599760236219,
+    "episode_id": "episode_15",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 4
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "e1070a16db68beb3d416c0d7f4f36aa25182c91586dc28d6eb355db128e34165",
+    "plan_sha256": "84c64bb10283f54b369372efe34f68d7f5d833880201ff280c4aa3141f3aa44b",
+    "duration_seconds": 0.00011142199946334586,
+    "episode_id": "episode_15",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 4
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "e1070a16db68beb3d416c0d7f4f36aa25182c91586dc28d6eb355db128e34165",
+    "plan_sha256": "84c64bb10283f54b369372efe34f68d7f5d833880201ff280c4aa3141f3aa44b",
+    "duration_seconds": 0.0001118930013035424,
+    "episode_id": "episode_15",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.00022497600002679974,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.00021029900017310865,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "6f0955c8ffeb387f790747c9cedb34ca9b764100f4883d981353bbef0c07ba1b"
+        },
+        "receipt_sha256": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+        },
+        "receipt_sha256": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.000333451996993972,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.00029186299798311666,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "bb33df4cfcaf605aed1a3d3ee172081863cb28bd3271c9486da9fcf250881674",
+    "plan_sha256": "aad7fd9dc8dbd9fe6b207ee47aaa4ee0c4de4700a3b959de1497fe4d846a2cf9",
+    "duration_seconds": 0.00023483499899157323,
+    "episode_id": "episode_17",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "bb33df4cfcaf605aed1a3d3ee172081863cb28bd3271c9486da9fcf250881674",
+    "plan_sha256": "aad7fd9dc8dbd9fe6b207ee47aaa4ee0c4de4700a3b959de1497fe4d846a2cf9",
+    "duration_seconds": 0.0002133449997927528,
+    "episode_id": "episode_17",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "6f0955c8ffeb387f790747c9cedb34ca9b764100f4883d981353bbef0c07ba1b"
+        },
+        "receipt_sha256": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+        },
+        "receipt_sha256": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "bb33df4cfcaf605aed1a3d3ee172081863cb28bd3271c9486da9fcf250881674",
+    "plan_sha256": "aad7fd9dc8dbd9fe6b207ee47aaa4ee0c4de4700a3b959de1497fe4d846a2cf9",
+    "duration_seconds": 0.0002458160015521571,
+    "episode_id": "episode_17",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "bb33df4cfcaf605aed1a3d3ee172081863cb28bd3271c9486da9fcf250881674",
+    "plan_sha256": "aad7fd9dc8dbd9fe6b207ee47aaa4ee0c4de4700a3b959de1497fe4d846a2cf9",
+    "duration_seconds": 0.0003000590004376136,
+    "episode_id": "episode_17",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "outcome": "correct_completion"
+  }
+]

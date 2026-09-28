@@ -1,0 +1,65 @@
+{
+  "status": "inconclusive_primary_comparison_due_to_plan_contract_failures",
+  "authorship": "Coding assistant analysis of saved measurements; not an additional model response.",
+  "strict": {
+    "A": {
+      "episodes": 18,
+      "correct_completion": 10,
+      "tool_calls": 16
+    },
+    "B": {
+      "episodes": 18,
+      "correct_completion": 10,
+      "tool_calls": 16
+    },
+    "C": {
+      "episodes": 18,
+      "correct_completion": 10,
+      "tool_calls": 24
+    },
+    "D": {
+      "episodes": 18,
+      "correct_completion": 10,
+      "tool_calls": 16
+    }
+  },
+  "posthoc": {
+    "A": {
+      "episodes": 18,
+      "correct_completion": 18,
+      "tool_calls": 48
+    },
+    "B": {
+      "episodes": 18,
+      "correct_completion": 18,
+      "tool_calls": 48
+    },
+    "C": {
+      "episodes": 18,
+      "correct_completion": 18,
+      "tool_calls": 72
+    },
+    "D": {
+      "episodes": 18,
+      "correct_completion": 18,
+      "tool_calls": 48
+    }
+  },
+  "posthoc_interpretation": "No incremental correct-completion or tool-work benefit of D over A on these plans. Full replay used more tool work. The terminal normalization is post hoc.",
+  "final_topic_selected": false,
+  "novelty_established": false,
+  "formal_study_ready": false,
+  "new_model_calls": 0,
+  "next_actions": [
+    "Replace brittle mandatory emit suffix with an explicit, conservative typed completion contract for future workflows; preserve original strict results.",
+    "Connect frozen structured evidence to the general paper-writing pipeline, ensuring review targets current artifacts.",
+    "Freeze a genuinely separate validation design before any new scientific claims; do not increase or reset the exhausted campaign.",
+    "Retain negative/inconclusive outcomes; do not claim selective replay itself is novel."
+  ],
+  "source_sha256": {
+    "results.json": "63f5e3f67e29dd077e682231702c9d2dbc41f105bf917eb8a37c4dae8359dc05",
+    "report.json": "4651d571297e8a8248c4b07508c11693765ff9ff58c43fb8a0fc36f196ff4fed",
+    "posthoc_report_terminal/results.json": "f4553f1dbba55a6a010a9cdfbc6e517f7cae9c620b6200d5760d183093a3fc89",
+    "posthoc_report_terminal/summary.json": "d25cd07fc50bdbca49b5cfbe8c53f258697c41bf208d666c29e1d26aa67b7b85"
+  }
+}

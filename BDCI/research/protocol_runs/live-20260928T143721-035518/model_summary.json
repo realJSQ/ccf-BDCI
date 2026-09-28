@@ -1,0 +1,21 @@
+{
+  "mode": "live",
+  "status": "completed",
+  "cost": null,
+  "team_name": "protocol_design",
+  "max_output_tokens": 3200,
+  "model_calls": 1,
+  "model_usage": [
+    {
+      "input_tokens": 3930,
+      "output_tokens": 687,
+      "total_tokens": 4617,
+      "event": "usage",
+      "call": 6,
+      "run_id": "live-20260928T143721-035518",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 4617,
+  "duration_seconds": 3.6768816980002157
+}

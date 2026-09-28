@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 0.00023273199985851534,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 0.00016684699949109927,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 0.00015676700058975257,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 54,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "4d485dd8a13cff89abec79406bd03a6995c7bc936f7381c4170ab50415599654",
+    "plan_sha256": "8171aafb59e1d31228dd4b7e5921c22876d4a0ab2fcca783ea225e1c598a79d2",
+    "duration_seconds": 0.00028522100183181465,
+    "episode_id": "episode_09",
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

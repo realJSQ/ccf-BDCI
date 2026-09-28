@@ -1,0 +1,30 @@
+{
+  "status": "development_protocol",
+  "origin": "Research-agent C1, then protocol designer live-20260928T143347-906294. Engineering amendments below are by the coding assistant, not attributed to autonomous research discovery.",
+  "review": "Bound review live-20260928T143721-035518 advised implementation but incorrectly called the hypothesis and graph example consistent. Its approval is not a semantic certificate. The historical outputs remain unchanged.",
+  "research_question": "For the same model recovery plan and visible tool receipts, how do full versus declared-dependency replay change correct completion and tool work on source updates, with and without a missing dependency?",
+  "hypothesis": "With complete declared lineage, selective and full replay should produce the same current artifact with less work when an unaffected branch exists. With missing lineage, selective replay can leave stale output unless the model plan explicitly repairs the missing path. Full replay may improve correctness at extra work. These mechanisms are prior art; the study tests their interaction with model-proposed recovery plans, not a new attribution algorithm.",
+  "stage": "development_only",
+  "family_ids": ["tabular", "retrieval", "classification"],
+  "base_instances_per_family": 2,
+  "scenario_ids": ["clean", "update", "incomplete_lineage"],
+  "api_calls": 18,
+  "policy_replays": 72,
+  "analysis_units": 6,
+  "tool_budget_per_policy": 12,
+  "novelty_established": false,
+  "formal_study_ready": false,
+  "engineering_amendments": [
+    "Correct the hypothesis: a missing critical edge can make selective replay WRONG while full replay is correct, unless the model requests sufficient extra work. Equality is not a failure when the model repairs the omitted path.",
+    "Use an actual fork/join graph: read_main -> summarize_main -> combine -> report; read_aux -> summarize_aux -> combine. Remove summarize_aux -> combine in the incomplete-lineage scenario. The original example removed an edge that was not in its stated chain and claimed an impossible closure.",
+    "Generate the healthy cached receipts at source v1; apply the source update and declared-edge omission before presenting the observation to the recovery-plan model. Both updated scenarios have exactly the same current source values. No mid-request source changes occur.",
+    "Execute tool nodes against explicit cached receipts. A rerun is always a tool call; there is no automatic content-keyed cache refresh or implicit traversal of actual dependencies. Without this rule, the proposed cache key would silently repair the intervention and conflate policies.",
+    "A executes model reruns in listed order; B is A plus one transient retry; C unions requested nodes with all nodes after any source change; D unions requested nodes with the changed source and declared transitive dependents. C/D deduplicate and topologically order. All honor model refusal. Work caps include attempts; emit does not consume a tool call and emits the cached report.",
+    "There are no transient errors in these three scenarios. B is therefore an explicit error-only negative control and is expected to match A. Its retry behavior is checked in software tests, not represented as an observed scientific advantage.",
+    "The source update is legitimate, and the missing edge is a lineage defect. This is an operational refinement of C1, not a benchmark of multiple independently injected tool failures; no broad compound-fault robustness claim is allowed.",
+    "The correctness evaluator independently computes the artifact from current source rows. Its implementation and answers are never inputs to the model or policy. The source's classification labels are ordinary task data read through tools, distinct from private final correctness labels.",
+    "Replace invalid falsifiers with observable paired outcomes: relative correctness of C/D per scenario, extra work, whether model-requested nodes cover the missing path, and false refusal in clean cases. Do not infer equivalence from a small zero difference or define any number of successes as exceeding an evaluator count.",
+    "These are six self-authored base instances with three paired scenarios, not 72 independent samples. Publish all instance results and descriptive paired differences, without significance, power, deployment-rate or external-validity claims. No hidden holdout is claimed.",
+    "Freeze source, protocol, prompts, datasets, declared graphs and current inputs before the run. Use 18 single model calls and 72 CPU replays; the shared model cost is counted once per episode, not once per policy. Six prior campaign calls plus 18 exhaust the 24-request research-v2 cap. No automatic retry or new campaign is permitted."
+  ]
+}

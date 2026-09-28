@@ -1,0 +1,208 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.000515247000294039,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.00039037099850247614,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "6f0955c8ffeb387f790747c9cedb34ca9b764100f4883d981353bbef0c07ba1b"
+        },
+        "receipt_sha256": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "b3d2f77901841dd263ef05ac22d4b0066b37d0c6c2b972f6f7cb4b9346c5634f"
+        },
+        "receipt_sha256": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.0003871339977195021,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 1,
+      "total": 4
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "241c0c93e58158a1d3f74ef7344ae25d71012b71513c19620970e794183bdc85"
+        },
+        "receipt_sha256": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "5bfcd9b5ee07bca1ee067168443782d069fd3d15c14784577b73a8b95afdf45c"
+        },
+        "receipt_sha256": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "8d9e2017983c9251d7b6546fdd416c564c089397bef2c1de6cebfa1ec7885578",
+          "summarize_aux": "2645329ba526aa326ff14d8f612924e632174d2c2ae3c4aae4d51e88dc822d3e"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+        },
+        "receipt_sha256": "084a6f677939ebddfad81d5aca74be986779240f7f9fdf456281f07b31428ec5"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "91228be09545e395152d66d81b5f5a4ac4b146b05094c93b24cd70034c58eb12",
+    "plan_sha256": "af01ebd9daace8c0295cdb069e973d94319f623fb4ca4fe1590495c74bb651f0",
+    "duration_seconds": 0.00034503400092944503,
+    "episode_id": "episode_16",
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  }
+]

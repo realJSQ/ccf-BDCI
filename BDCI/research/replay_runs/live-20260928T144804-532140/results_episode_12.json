@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.0002685899999050889,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.0001889889972517267,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.00024151800243998878,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 24,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "ce80ce7ab4d8533852b7da94014d0cd3d3d2661240435671826b2b53a00fbc22",
+    "plan_sha256": "690adc8652ab2d589c8cc516fc0a5b08ce13e94737851f418c7af50c76e3ee9b",
+    "duration_seconds": 0.0002521379974496085,
+    "episode_id": "episode_12",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

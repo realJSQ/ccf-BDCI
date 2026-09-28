@@ -1,0 +1,9 @@
+{
+  "run_directory": "protocol_runs/live-20260928T143347-906294",
+  "mode": "live",
+  "status": "reject",
+  "experiment_executed": false,
+  "semantic_review_required": true,
+  "novelty_established": false,
+  "formal_study_ready": false
+}

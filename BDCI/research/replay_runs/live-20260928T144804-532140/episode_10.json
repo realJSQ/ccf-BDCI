@@ -1,0 +1,24 @@
+{
+  "actions": [
+    {
+      "op": "rerun",
+      "node": "read_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "combine"
+    },
+    {
+      "op": "rerun",
+      "node": "report"
+    },
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "Only read_aux changed (aux revision 2), so rerun read_aux, then its dependent summarize_aux, then combine and report to refresh the cached metric. main-side nodes are unchanged and cached."
+}

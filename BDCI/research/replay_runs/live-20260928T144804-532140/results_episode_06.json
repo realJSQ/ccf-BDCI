@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.0003102280024904758,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.00018011100110015832,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.0001719860010780394,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 2,
+      "total": 3
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a71ca475418a1a8404b3e1dfd5e924b0910a9a39f1f8d9e64ef6c92ef649dfc3",
+    "plan_sha256": "181587f7155ba83dbed8b9a826f83f5cf3cc2c382d991174158799f60d2874e2",
+    "duration_seconds": 0.00016697699902579188,
+    "episode_id": "episode_06",
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

@@ -20,6 +20,42 @@ STYLE_FILES = ('iclr2026_conference.sty', 'iclr2026_conference.bst', 'natbib.sty
 SUBMISSION_DOCS = ('architecture.md', 'module_call.md', 'innovation.md', 'framework_contribution.md')
 CONTRIBUTION_FILES = ('README.md', 'PR_DESCRIPTION.md', 'upstream-usage.md',
                       'research-rails.patch', 'validation.json')
+REVISION_RUN = 'revision_runs/live-20260928T141945-771317'
+REVISION_PILOT = 'pilot_runs/live-20260928T084134-196833'
+PROTOCOL_RUNS = ('protocol_runs/live-20260928T143347-906294',
+                 'protocol_runs/live-20260928T143721-035518')
+PROTOCOL_EVIDENCE_FILES = (
+    'designer.json', 'auditor.json', 'context.json', 'handoff.json',
+    'input_provenance.json', 'model_summary.json', 'model_usage.jsonl', 'resumption.json',
+    'prompt_designer.txt', 'raw_designer.txt', 'prompt_auditor.txt', 'raw_auditor.txt',
+)
+REPLAY_RUN = 'replay_runs/live-20260928T144804-532140'
+REPLAY_EVIDENCE_FILES = (
+    'base_cases.json', 'episodes.json', 'frozen_workflow.py', 'pre_registration.json',
+    'report.json', 'results.json', 'decision.json', 'model_summary.json', 'model_usage.jsonl',
+) + tuple(name for i in range(18) for name in (
+    f'episode_{i:02d}.json', f'results_episode_{i:02d}.json',
+    f'prompt_episode_{i:02d}.txt', f'raw_episode_{i:02d}.txt'))
+POSTHOC_FILES = ('summary.json', 'results.json', 'transformations.json', 'analysis_implementation.py')
+PRIOR_WORK_FILES = ('fulltext_check.json', 'fulltext_check.md',
+                    'revision_seed_sources.json', 'revision_followup.json')
+REVISION_EVIDENCE_FILES = (
+    'context.json', 'proposer.json', 'critic.json', 'refiner.json', 'handoff.json',
+    'input_provenance.json', 'input_scoring_verification.json', 'summary.json',
+    'model_summary.json', 'model_usage.jsonl', 'workflow_events.jsonl',
+) + tuple(f'{prefix}_{role}.txt' for prefix in ('prompt', 'raw')
+          for role in ('proposer', 'critic', 'refiner'))
+# These are inputs hard-coded by the runners, not whichever pilot was used to
+# generate the PDF being packaged. Fail rather than ship a broken entry point.
+RUNNER_INPUTS = {
+    'run_method_revision.py': ('prior_work/revision_seed_sources.json',) + tuple(
+        f'{REVISION_PILOT}/{name}.json' for name in (
+            'pre_registration', 'designer', 'dataset_inputs', 'oracle_private',
+            'peer', 'baseline', 'intervention', 'metrics', 'decision', 'run_review')),
+    'run_protocol_design.py': ('prior_work/revision_followup.json',
+                               f'{REVISION_RUN}/refiner.json'),
+    'run_replay_study.py': ('replay_protocol.json',),
+}
 EVIDENCE_FILES = (
     'paper.json', 'writer.json', 'reviewer.json', 'reviser.json', 'model_summary.json',
     'final_checks.json', 'summary.json', 'decision.json', 'metrics.json', 'pre_registration.json',
@@ -41,6 +77,10 @@ SECRET_PATTERN = re.compile(rb'\bsk-[A-Za-z0-9_-]{16,}\b')
 def _copy(source, destination, base):
     source, base = Path(source), Path(base)
     if source.is_symlink() or not source.is_file() or not source.resolve().is_relative_to(base.resolve()):
+        raise ValueError('unsafe_bundle_source')
+    relative = source.absolute().relative_to(base.absolute())
+    if any((base / Path(*relative.parts[:i])).is_symlink()
+           for i in range(1, len(relative.parts))):
         raise ValueError('unsafe_bundle_source')
     if source.stat().st_size > 8_000_000:
         raise ValueError('bundle_file_too_large')
@@ -67,6 +107,39 @@ def _evidence(source_root, destination):
         source = source_root / name
         if source.exists() or source.is_symlink():
             _copy(source, destination / name, source_root)
+
+
+def _saved_replay_evidence(research, destination):
+    """Selected immutable runs only; no runtime, journals, logs or ledgers."""
+    for relative in PROTOCOL_RUNS:
+        for name in PROTOCOL_EVIDENCE_FILES:
+            source = research / relative / name
+            if source.exists() or source.is_symlink():
+                _copy(source, destination / relative / name, research)
+    saved = research / REPLAY_RUN
+    if not saved.exists() and not saved.is_symlink():
+        return
+    if saved.is_symlink():
+        raise ValueError('unsafe_bundle_source')
+    # A selected replay must remain verifiable rather than silently dropping
+    # missing evidence required by analyze_replay.py --verify-only.
+    for name in REPLAY_EVIDENCE_FILES:
+        _copy(saved / name, destination / REPLAY_RUN / name, saved)
+    frozen = saved / 'frozen_source'
+    if not frozen.is_dir() or frozen.is_symlink():
+        raise ValueError('unsafe_bundle_frozen_source')
+    for source in sorted(frozen.rglob('*')):
+        if source.is_symlink():
+            raise ValueError('unsafe_bundle_source')
+        relative = source.relative_to(frozen)
+        if (source.is_file() and source.suffix in ('.py', '.json', '.md')
+                and not source.name.startswith(('workflow_journal', 'requests.', 'ledger.'))
+                and not any(part.startswith('.') or part in ('logs', 'runtime', '__pycache__')
+                            for part in relative.parts)):
+            _copy(source, destination / REPLAY_RUN / 'frozen_source' / relative, frozen)
+    posthoc = saved / 'posthoc_report_terminal'
+    for name in POSTHOC_FILES:
+        _copy(posthoc / name, destination / REPLAY_RUN / 'posthoc_report_terminal' / name, saved)
 
 
 def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
@@ -110,7 +183,9 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
         research = BDCI / 'research'
         for source in sorted(research.glob('*.py')):
             _copy(source, stage / 'code/BDCI/research' / source.name, research)
-        for name in ('README.md', 'PAPER.md', 'PILOT.md'):
+        if (research / 'replay_protocol.json').exists():
+            _copy(research / 'replay_protocol.json', stage / 'code/BDCI/research/replay_protocol.json', research)
+        for name in ('README.md', 'PAPER.md', 'PILOT.md', 'REVISION.md'):
             if (research / name).exists():
                 _copy(research / name, stage / 'code/BDCI/research' / name, research)
         for source in sorted((BDCI / 'validation').glob('*.py')):
@@ -149,6 +224,12 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
                 _copy(source, stage / 'code/BDCI/research/skills' / source.relative_to(research / 'skills'), research)
         previous = research / 'runs/live-20260928T081927-158480'
         _evidence(previous, stage / 'code/BDCI/research/runs' / previous.name)
+        _evidence(research / REVISION_PILOT, stage / 'code/BDCI/research' / REVISION_PILOT)
+        for name in REVISION_EVIDENCE_FILES:
+            source = research / REVISION_RUN / name
+            if source.exists() or source.is_symlink():
+                _copy(source, stage / 'code/BDCI/research' / REVISION_RUN / name, research)
+        _saved_replay_evidence(research, stage / 'code/BDCI/research')
         # The current documentation cites this historical validation draft.
         # Include only its evidence/PDF, never its ZIP or nested delivery tree.
         archived_paper = research / 'paper_runs/live-20260928T104912-411414'
@@ -158,10 +239,14 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
             for name in ('paper.pdf', 'paper.tex', 'references.bib', *STYLE_FILES):
                 if (archived_paper / name).exists():
                     _copy(archived_paper / name, archived_destination / name, research)
-        for name in ('fulltext_check.json', 'fulltext_check.md'):
+        for name in PRIOR_WORK_FILES:
             source = research / 'prior_work' / name
-            if source.exists():
+            if source.exists() or source.is_symlink():
                 _copy(source, stage / 'code/BDCI/research/prior_work' / name, research)
+        for runner, inputs in RUNNER_INPUTS.items():
+            if (research / runner).exists():
+                for relative in inputs:
+                    _copy(research / relative, stage / 'code/BDCI/research' / relative, research)
         for name in ('research_budget_rail.py', 'research_evidence_rail.py'):
             relative = Path('jiuwenswarm/agents/harness/common/rails') / name
             _copy(BDCI / 'jiuwenswarm' / relative, stage / 'code/framework_overlay' / relative, BDCI)

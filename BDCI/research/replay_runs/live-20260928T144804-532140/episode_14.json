@@ -1,0 +1,21 @@
+{
+  "actions": [
+    {
+      "op": "rerun",
+      "node": "read_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "combine"
+    },
+    {
+      "op": "rerun",
+      "node": "report"
+    }
+  ],
+  "reason": "read_aux is the changed source node, so its cached rows and all downstream summaries/composition/report may be stale. Rerun read_aux, then summarize_aux, combine, and report to propagate current aux data. read_main/summarize_main are unchanged and cached."
+}

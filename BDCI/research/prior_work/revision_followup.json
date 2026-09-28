@@ -1,0 +1,44 @@
+{
+  "checked_on": "2026-09-28",
+  "scope": "Assistant-conducted follow-up of the research agent's queries and primary-source sections. Not exhaustive; no independent replication or novelty certification.",
+  "queries": [
+    "compound cascading tool fault injection LLM agent mitigation baseline",
+    "claim evidence binding mutation re-verification agent provenance baseline"
+  ],
+  "sources": [
+    {
+      "id": "arxiv:2607.11098v1",
+      "url": "https://arxiv.org/html/2607.11098v1",
+      "sections_read": ["4.1", "5.3", "6"],
+      "finding": "Algorithm 1 changes one cached tool response. Section 6 explicitly excludes evaluation of compound and cascading failures. Retry/schema/filter wrappers are examined; this is not a published dependency-invalidation baseline.",
+      "consequence": "Compound-fault study remains a possible empirical extension. Do not claim to reproduce a pinned AgentCheck configuration: no exact implementation/configuration has been obtained for this project."
+    },
+    {
+      "id": "arxiv:2608.12761v1",
+      "url": "https://arxiv.org/html/2608.12761v1",
+      "sections_read": ["3.4", "3.5", "3.6", "7", "8", "9"],
+      "finding": "Selective recovery already follows transitive declared dependencies after version changes. Full rerun is a strong safe alternative when lineage is unavailable. Contracts and declared dependencies can themselves be incomplete.",
+      "consequence": "The proposed cascade-aware adapter must differ operationally from selective invalidation or be described as a replication/empirical extension. Compare to full replay with matched information and budgets."
+    },
+    {
+      "id": "arxiv:2604.16706v1",
+      "url": "https://arxiv.org/html/2604.16706v1",
+      "sections_read": ["4.1-4.7", "5.1-5.5"],
+      "finding": "AgentProp-Bench studies parameter injection and propagation with simulated tools. Its interceptor combines schema/error checks, uncertainty keywords and numerical consistency; the paper separates judge validation from task outcomes.",
+      "code_url": "https://github.com/bhaskargurram-ai/agenthallu-bench",
+      "code_access": "Repository landing page opened; source not yet pinned or reproduced.",
+      "consequence": "Propagation plus a schema interceptor is already prior work. Our development study must state which mechanisms it implements, avoiding claims of reproducing an unimplemented three-layer interceptor."
+    }
+  ],
+  "methodological_corrections": [
+    "A constant-label evaluator necessarily removes any accuracy difference. Its collapse is not evidence of oracle leakage; delete that proposed control.",
+    "A deterministic reference is valid for fully specified CPU tasks. Independence requires different implementation from the policy and no reference labels in its inputs, not a claim that all deterministic scoring is tautological.",
+    "A static import check or separate Python process does not establish a security sandbox. Describe the actual data-flow boundary and test it by changing private labels while holding public inputs fixed.",
+    "Do not infer workflow floor effects from the unrelated earlier huge-integer pilot. Preserve the negative pilot without further model capability calibration.",
+    "The ACM full-text limitation copied into the refiner output belongs to an earlier candidate and is not evidence about this arXiv-based proposal.",
+    "Specify a concrete difference between local repair, transitive invalidation and the proposed adapter before spending experiment calls. If identical, collapse the conditions and report the lack of a new mechanism.",
+    "Define failure persistence, clean and legitimate-update controls, all policies' observation access, tool-work allowance, and exact API call arithmetic. A prose maximum of six calls is not a cost decomposition.",
+    "Fixture/fault variants sharing one initial plan are paired repeated measures, not independent model samples. Reject-all is not successful completion."
+  ],
+  "novelty_established": false
+}

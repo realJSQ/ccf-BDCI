@@ -1,0 +1,250 @@
+[
+  {
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "north",
+            "amount": 14
+          },
+          {
+            "region": "south",
+            "amount": 10
+          },
+          {
+            "region": "north",
+            "amount": 3
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "north",
+            "rate": 2
+          },
+          {
+            "region": "south",
+            "rate": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "alpha",
+            "revision": 2,
+            "value": 16
+          },
+          {
+            "entity": "beta",
+            "revision": 1,
+            "value": 5
+          },
+          {
+            "entity": "alpha",
+            "revision": 1,
+            "value": 4
+          },
+          {
+            "entity": "beta",
+            "revision": 3,
+            "value": 12
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "alpha",
+            "enabled": true
+          },
+          {
+            "entity": "beta",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "classification-17",
+    "family": "classification",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "a",
+            "predicted": 0
+          },
+          {
+            "id": "b",
+            "predicted": 1
+          },
+          {
+            "id": "c",
+            "predicted": 1
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "a",
+            "label": 0
+          },
+          {
+            "id": "b",
+            "label": 0
+          },
+          {
+            "id": "c",
+            "label": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "north",
+            "amount": 12
+          },
+          {
+            "region": "south",
+            "amount": 8
+          },
+          {
+            "region": "north",
+            "amount": 3
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "north",
+            "rate": 2
+          },
+          {
+            "region": "south",
+            "rate": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "alpha",
+            "revision": 2,
+            "value": 14
+          },
+          {
+            "entity": "beta",
+            "revision": 1,
+            "value": 5
+          },
+          {
+            "entity": "alpha",
+            "revision": 1,
+            "value": 4
+          },
+          {
+            "entity": "beta",
+            "revision": 3,
+            "value": 10
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "alpha",
+            "enabled": true
+          },
+          {
+            "entity": "beta",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "classification-29",
+    "family": "classification",
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "a",
+            "predicted": 0
+          },
+          {
+            "id": "b",
+            "predicted": 1
+          },
+          {
+            "id": "c",
+            "predicted": 1
+          },
+          {
+            "id": "d",
+            "predicted": 0
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "a",
+            "label": 0
+          },
+          {
+            "id": "b",
+            "label": 0
+          },
+          {
+            "id": "c",
+            "label": 1
+          },
+          {
+            "id": "d",
+            "label": 1
+          }
+        ]
+      }
+    }
+  }
+]

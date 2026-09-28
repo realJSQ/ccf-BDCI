@@ -1,10 +1,10 @@
 # CCF BDCI：基于 JiuwenSwarm 的自动科研原型
 
-当前项目实现了真实框架的实验—写作验证，以及由 Agent 提出候选课题、检索文献并独立评审的自动选题流程。**尚未完成正式竞赛论文。首个修订提案已完成受控预实验，但没有观察到策略改进，最终选题仍未确定。**
+当前项目实现了真实框架的实验—写作验证、Agent 自动选题，以及版本绑定的协议审查与 CPU 工作流恢复实验。**尚未完成正式竞赛论文；最新开发实验没有显示依赖恢复策略超过模型自身恢复计划的收益。**
 
 ## 当前进展
 
-最新阶段已在不增加实验的情况下跑通写作、内部审稿、修订、ICLR PDF和材料打包，见 [论文流程说明](BDCI/research/PAPER.md)。产生3页验证稿，仍非正式投稿。
+最新阶段完成18次真实恢复计划、72次配对 CPU 重放，并保留格式失败与事后兼容分析，见[修订与实验记录](BDCI/research/REVISION.md)。当前研究测试149项通过。此前已跑通写作、内部审稿、修订、ICLR PDF和材料打包，见 [论文流程说明](BDCI/research/PAPER.md)；3页历史验证稿仍非正式投稿。
 
 - 基于官方 SwarmFlow → TeamWorkerBackend → TeamHarness / DeepAgent。
 - 新增 JiuwenSwarm 源码 `ExperimentEvidenceRail` 与 `ResearchBudgetRail`，用于实验凭据核验和持久化调用额度控制。
@@ -23,6 +23,7 @@
 | [贡献补丁草案](BDCI/contribution/README.md) | 两个源码 Rail、24 项测试、上游使用说明与待发布 PR 文案 |
 | [论文流程](BDCI/research/PAPER.md) | 复用既有实验的三角色写作、PDF与验收包 |
 | [预实验阶段](BDCI/research/PILOT.md) | 修订提案、真实配对测量与负结果分析 |
+| [新方法开发实验](BDCI/research/REVISION.md) | 版本绑定审查、冻结源码、恢复策略比较与零 API 重放 |
 | [BDCI/validation](BDCI/validation/README.md) | 固定实验与英文报告闭环验证 |
 | [BDCI/jiuwenswarm](BDCI/jiuwenswarm) | 官方源码快照及本项目 Rail 扩展 |
 | [题目与评分要求](BDCI/任务要求.md) | 本地竞赛网页整理的要求与评分 |
@@ -65,10 +66,10 @@ bash BDCI/tools/compile-latex.sh --keep-logs \
 
 `BDCI/apis.txt`、虚拟环境、运行时配置、下载缓存和生成日志未上传。需要真实模型调用时，在本地参考 `BDCI/apis.example.txt` 配置凭据；不要提交密钥。
 
-本仓库保留已用完的 admission 记录，防止直接运行 `--live` 继续消耗额度。下一轮先明确新预算，再实现独立计量；不要清空已有记录伪装为未消费。离线模式可直接运行。费用未核账单，报告只陈述实际返回的 token usage。
+本机保留已用完的 admission 账本，仓库保存对应运行证据。新 research-v2 campaign 已用满24次；不要清空账本或把新克隆缺少本地账本当作未消费。下一轮先冻结具体范围与预算，再独立计量。离线模式可直接运行。费用未核账单，报告只陈述实际返回的 token usage。
 
 ## 来源与项目边界
 
 JiuwenSwarm 基于官方 `develop` 提交 `fc18e5c572a6b3b62bb42ea843cce674140e4266`，本仓库采用源码快照，不携带上游 Git 历史或作为嵌套 submodule。来源和变更见 [UPSTREAM.md](UPSTREAM.md)，上游 LICENSE 及第三方许可说明保留在源码中。
 
-下一阶段是根据首轮真实预实验的负结果校准难度、改进对照并复验，继续核对全文，再接入完整实验与 ICLR 论文写作。目前没有正式竞赛评分、Reviewer Token 或已提交的框架贡献 PR。
+下一阶段将新研究证据接入完整实验报告与 ICLR 写作流程，修正格式契约并验证其适用范围；不再做基础模型能力或算术难度校准。目前没有正式竞赛评分、Reviewer Token 或已提交的框架贡献 PR。

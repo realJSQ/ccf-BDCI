@@ -104,6 +104,97 @@ class PaperBundleTests(unittest.TestCase):
             self.build()
         self.assertFalse((self.root / 'workflow-validation.zip').exists())
 
+    def test_revision_runner_inputs_and_selected_evidence_survive_packaging(self):
+        research = self.project / 'research'
+        for runner, inputs in paper_bundle.RUNNER_INPUTS.items():
+            self.write(research / runner, '# Runner fixture\n')
+            for relative in inputs:
+                self.write(research / relative, json.dumps({'saved_input': relative}))
+        self.write(research / 'REVISION.md', '# Revision workflow\n')
+        self.write(research / paper_bundle.REVISION_RUN / 'raw_refiner.txt', 'Saved revision response')
+        secret = 'sk-' + 'FAKESECRET' * 4
+        for relative in ('prior_work/unlisted.json',
+                         paper_bundle.REVISION_RUN + '/logs/request.json',
+                         paper_bundle.REVISION_RUN + '/workflow_journal.json',
+                         'revision_runs/unselected/refiner.json'):
+            self.write(research / relative, secret)
+        with zipfile.ZipFile(self.build()) as zipped:
+            prefix = 'workflow-validation/code/BDCI/research/'
+            for inputs in paper_bundle.RUNNER_INPUTS.values():
+                for relative in inputs:
+                    self.assertEqual(json.loads(zipped.read(prefix + relative)),
+                                     {'saved_input': relative})
+            self.assertIn(prefix + 'REVISION.md', zipped.namelist())
+            self.assertEqual(zipped.read(prefix + paper_bundle.REVISION_RUN + '/raw_refiner.txt'),
+                             b'Saved revision response')
+            self.assertTrue(all(secret.encode() not in zipped.read(name) for name in zipped.namelist()))
+            self.assertEqual(json.loads(zipped.read('workflow-validation/manifest.json'))['status'],
+                             'not_submission_ready')
+
+    def test_runner_with_missing_fixed_input_is_not_packaged_as_working(self):
+        self.write(self.project / 'research/run_protocol_design.py', '# Runner fixture\n')
+        self.write(self.project / 'research/prior_work/revision_followup.json', '{}')
+        with self.assertRaisesRegex(ValueError, 'unsafe_bundle_source'):
+            self.build()
+        self.assertFalse((self.root / 'workflow-validation.zip').exists())
+
+    def replay_fixture(self):
+        research = self.project / 'research'
+        saved = research / paper_bundle.REPLAY_RUN
+        for name in paper_bundle.REPLAY_EVIDENCE_FILES:
+            self.write(saved / name, '{}')
+        for name in paper_bundle.POSTHOC_FILES:
+            self.write(saved / 'posthoc_report_terminal' / name, '{}')
+        self.write(saved / 'frozen_source/research/replay_engine.py', '# Frozen implementation\n')
+        self.write(saved / 'frozen_source/research/replay_protocol.json', '{}')
+        self.write(saved / 'frozen_source/research/skills/recovery-replay/roles/planner.md', '# Frozen prompt\n')
+        return saved
+
+    def test_selected_replay_is_complete_and_private_run_material_is_excluded(self):
+        saved = self.replay_fixture()
+        research = self.project / 'research'
+        for relative in paper_bundle.PROTOCOL_RUNS:
+            self.write(research / relative / 'auditor.json', '{}')
+        secret = 'sk-' + 'FAKESECRET' * 4
+        for relative in ('logs/private.json', 'runtime/private.json', 'requests.jsonl',
+                         'workflow_journal.json', 'unlisted.json', 'apis.txt',
+                         'frozen_source/runtime/private.json', 'frozen_source/.env',
+                         'frozen_source/research/__pycache__/private.pyc'):
+            self.write(saved / relative, secret)
+        with zipfile.ZipFile(self.build()) as zipped:
+            prefix = 'workflow-validation/code/BDCI/research/'
+            for name in paper_bundle.REPLAY_EVIDENCE_FILES:
+                self.assertIn(prefix + paper_bundle.REPLAY_RUN + '/' + name, zipped.namelist())
+            for name in paper_bundle.POSTHOC_FILES:
+                self.assertIn(prefix + paper_bundle.REPLAY_RUN + '/posthoc_report_terminal/' + name,
+                              zipped.namelist())
+            self.assertIn(prefix + paper_bundle.REPLAY_RUN + '/frozen_source/research/replay_engine.py',
+                          zipped.namelist())
+            for relative in paper_bundle.PROTOCOL_RUNS:
+                self.assertIn(prefix + relative + '/auditor.json', zipped.namelist())
+            self.assertTrue(all(secret.encode() not in zipped.read(name) for name in zipped.namelist()))
+
+    def test_missing_selected_replay_evidence_is_rejected(self):
+        saved = self.replay_fixture()
+        (saved / 'raw_episode_17.txt').unlink()
+        with self.assertRaisesRegex(ValueError, 'unsafe_bundle_source'):
+            self.build()
+
+    def test_frozen_source_directory_symlink_is_rejected(self):
+        saved = self.replay_fixture()
+        (saved / 'frozen_source/aliased').symlink_to(saved / 'frozen_source/research', target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, 'unsafe_bundle_source'):
+            self.build()
+
+    def test_revision_input_symlink_is_rejected(self):
+        research = self.project / 'research'
+        self.write(research / 'prior_work/revision_seed_sources.json', '{}')
+        path = research / 'prior_work/revision_seed_sources.json'
+        path.unlink()
+        path.symlink_to(self.root / 'paper.json')
+        with self.assertRaisesRegex(ValueError, 'unsafe_bundle_source'):
+            self.build()
+
     def test_fake_external_review_rejected(self):
         path = self.root / 'reviewer.json'
         review = json.loads(path.read_text())

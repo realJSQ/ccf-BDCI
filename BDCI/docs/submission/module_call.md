@@ -25,7 +25,22 @@ live 检索由 [literature.py](../../research/literature.py)访问 Crossref 并�
 
 主要输出为 `pre_registration.json`、`dataset_inputs.json`、`oracle_private.json`、各角色 JSON、`metrics.json`、`decision.json`。`verify_saved_pilot` 以保存的参数重建数据、核对生成器与计划哈希、从存档响应重算指标；这是评分重放，不是再次运行模型或独立重复实验。
 
-## 论文入口与恢复
+## 新方法修订、审查与恢复实验入口
+
+```bash
+python BDCI/research/run_method_revision.py
+python BDCI/research/run_protocol_design.py
+python BDCI/research/run_replay_study.py
+python BDCI/research/analyze_replay.py BDCI/research/replay_runs/live-20260928T144804-532140 --verify-only
+```
+
+前三条默认脚本模型，不消耗 API；最后一条从冻结源码验证保存的18个实际模型计划及72次策略重放。
+方法修订调用 proposer/critic/refiner；协议设计调用 designer/auditor，支持 `--resume-audit` 在新运行目录只重审旧 designer 输出。
+审稿输入不含旧版候选，要求目标哈希和逐项原文锚点；它只约束引用对象，不能认证批评逻辑。
+恢复实验为18个顺序角色，一例一份计划，四种 CPU 策略共用计划和公开输入；执行后才调用独立评分器。
+`research-v2` 24次请求已用满，不要以 `--live` 重复已保存实验。事后追加终止动作的分析独立存档，不覆盖原始结果。
+
+## 历史论文入口与恢复
 
 ```bash
 python BDCI/research/run_paper.py

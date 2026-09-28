@@ -1,0 +1,2678 @@
+{
+  "episode_00": {
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "clean",
+    "current": {
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 17,
+            "south": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_01": {
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "update",
+    "current": {
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 3
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 17,
+            "south": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_02": {
+    "case_id": "tabular-17",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 3
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 14
+            },
+            {
+              "region": "south",
+              "amount": 10
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 17,
+            "south": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 64,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_03": {
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "current": {
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 16,
+            "beta": 12
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_04": {
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "update",
+    "current": {
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": false
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 16,
+            "beta": 12
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_05": {
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": false
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 16
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 12
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 16,
+            "beta": 12
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 28,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_06": {
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "clean",
+    "current": {
+      "case_id": "classification-17",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_07": {
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "update",
+    "current": {
+      "case_id": "classification-17",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "id": "a",
+              "label": 1
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_08": {
+    "case_id": "classification-17",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "classification-17",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "id": "a",
+              "label": 1
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 3
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_09": {
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "clean",
+    "current": {
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 15,
+            "south": 8
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_10": {
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "update",
+    "current": {
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 3
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 15,
+            "south": 8
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_11": {
+    "case_id": "tabular-29",
+    "family": "tabular",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "region": "north",
+              "rate": 3
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of each transaction amount times its region rate, using current sources.",
+      "family": "tabular",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "amount": 12
+            },
+            {
+              "region": "south",
+              "amount": 8
+            },
+            {
+              "region": "north",
+              "amount": 3
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "north": 15,
+            "south": 8
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "region": "north",
+              "rate": 2
+            },
+            {
+              "region": "south",
+              "rate": 3
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "north": 2,
+            "south": 3
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 54,
+            "unit": "weighted_amount"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_12": {
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "clean",
+    "current": {
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 14,
+            "beta": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_13": {
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "current": {
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": false
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 14,
+            "beta": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_14": {
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "entity": "alpha",
+              "enabled": false
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report the sum of latest record values for currently enabled entities.",
+      "family": "retrieval",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "revision": 2,
+              "value": 14
+            },
+            {
+              "entity": "beta",
+              "revision": 1,
+              "value": 5
+            },
+            {
+              "entity": "alpha",
+              "revision": 1,
+              "value": 4
+            },
+            {
+              "entity": "beta",
+              "revision": 3,
+              "value": 10
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "alpha": 14,
+            "beta": 10
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "entity": "alpha",
+              "enabled": true
+            },
+            {
+              "entity": "beta",
+              "enabled": true
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "alpha": true,
+            "beta": true
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "value": 24,
+            "unit": "selected_value"
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_15": {
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "clean",
+    "current": {
+      "case_id": "classification-29",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "aux": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 1
+      },
+      "changed_source_nodes": [],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1,
+            "d": 0
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1,
+            "d": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_16": {
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "update",
+    "current": {
+      "case_id": "classification-29",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "id": "a",
+              "label": 1
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main",
+          "summarize_aux"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1,
+            "d": 0
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1,
+            "d": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  },
+  "episode_17": {
+    "case_id": "classification-29",
+    "family": "classification",
+    "scenario": "incomplete_lineage",
+    "current": {
+      "case_id": "classification-29",
+      "family": "classification",
+      "sources": {
+        "main": {
+          "revision": 1,
+          "rows": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "aux": {
+          "revision": 2,
+          "rows": [
+            {
+              "id": "a",
+              "label": 1
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        }
+      }
+    },
+    "public": {
+      "task": "Report correct predictions and total predictions against the current label source.",
+      "family": "classification",
+      "nodes_in_execution_order": [
+        "read_main",
+        "summarize_main",
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "declared_dependencies": {
+        "read_main": [],
+        "summarize_main": [
+          "read_main"
+        ],
+        "read_aux": [],
+        "summarize_aux": [
+          "read_aux"
+        ],
+        "combine": [
+          "summarize_main"
+        ],
+        "report": [
+          "combine"
+        ]
+      },
+      "source_revisions": {
+        "main": 1,
+        "aux": 2
+      },
+      "changed_source_nodes": [
+        "read_aux"
+      ],
+      "cached_receipts": {
+        "read_main": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "predicted": 0
+            },
+            {
+              "id": "b",
+              "predicted": 1
+            },
+            {
+              "id": "c",
+              "predicted": 1
+            },
+            {
+              "id": "d",
+              "predicted": 0
+            }
+          ]
+        },
+        "summarize_main": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 1,
+            "c": 1,
+            "d": 0
+          }
+        },
+        "read_aux": {
+          "ok": true,
+          "value": [
+            {
+              "id": "a",
+              "label": 0
+            },
+            {
+              "id": "b",
+              "label": 0
+            },
+            {
+              "id": "c",
+              "label": 1
+            },
+            {
+              "id": "d",
+              "label": 1
+            }
+          ]
+        },
+        "summarize_aux": {
+          "ok": true,
+          "value": {
+            "a": 0,
+            "b": 0,
+            "c": 1,
+            "d": 1
+          }
+        },
+        "combine": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        },
+        "report": {
+          "ok": true,
+          "value": {
+            "correct": 2,
+            "total": 4
+          }
+        }
+      },
+      "tool_call_budget": 12
+    }
+  }
+}

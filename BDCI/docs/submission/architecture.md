@@ -22,6 +22,8 @@ flowchart TD
 
 ## 层次与职责
 
+新增开发路径为 [方法修订](../../research/run_method_revision.py) → [协议设计与版本绑定审查](../../research/run_protocol_design.py) → [冻结数据的恢复实验](../../research/run_replay_study.py) → [零 API 复核与事后分析](../../research/analyze_replay.py)。前三者仍使用共用原生运行适配器；CPU 工具在控制代码中重放模型动作，不是开放任意代码执行。各入口仍需显式调用，最新恢复实验尚未接入旧 `run_paper.py` 的特定 pilot 格式。实际记录和无收益结果见 [REVISION.md](../../research/REVISION.md)。
+
 | 层次 | 已实现行为 | 源码 |
 | --- | --- | --- |
 | 阶段入口与持久化 | 各入口创建运行目录，保存输入、响应、事件、资源与决策；调用方持有预算文件排他锁 | [选题](../../research/run_topics.py)、[pilot](../../research/run_pilot.py)、[论文](../../research/run_paper.py) |

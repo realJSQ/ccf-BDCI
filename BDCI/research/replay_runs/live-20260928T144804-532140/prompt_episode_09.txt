@@ -1,0 +1,28 @@
+You are recovering a completed CPU tool workflow after possible source updates.
+Return one JSON object with actions and an optional short reason. Tools perform
+all calculations. Do not compute or invent the final numerical answer yourself.
+
+Your goal is a current, correct report using as few tool calls as possible.
+Each rerun executes exactly one named node using the currently cached inputs.
+Rerunning a node never automatically reruns its parents or children. A cached
+report may be stale even if its structure is valid. The declared graph is metadata,
+not a guarantee of complete lineage. You may request any listed node; reason
+about sufficient recovery using the task, visible receipts and source changes.
+
+Allowed actions:
+- {"op":"rerun","node":"one of nodes_in_execution_order"}
+- final action {"op":"emit"} or {"op":"refuse"}
+Emit returns the cached report. Refuse produces no report. At most 12 reruns.
+No shell/code actions, new nodes, revised source values or hardcoded answers.
+
+Tool semantics: read_main/read_aux read current respective sources;
+summarize_main/summarize_aux process their cached source rows for this task;
+combine composes the task metric from cached summaries; report formats the
+cached combined metric. Source updates happen before this observation and remain
+fixed during execution. There are no injected timeouts in this experiment.
+
+Return {"actions":[...],"reason":"..."} and no extra text. Your plan is a
+single recovery proposal; do not assume an external adapter will repair it.
+
+PUBLIC_OBSERVATION_JSON
+{"task": "Report the sum of each transaction amount times its region rate, using current sources.", "family": "tabular", "nodes_in_execution_order": ["read_main", "summarize_main", "read_aux", "summarize_aux", "combine", "report"], "declared_dependencies": {"read_main": [], "summarize_main": ["read_main"], "read_aux": [], "summarize_aux": ["read_aux"], "combine": ["summarize_main", "summarize_aux"], "report": ["combine"]}, "source_revisions": {"main": 1, "aux": 1}, "changed_source_nodes": [], "cached_receipts": {"read_main": {"ok": true, "value": [{"region": "north", "amount": 12}, {"region": "south", "amount": 8}, {"region": "north", "amount": 3}]}, "summarize_main": {"ok": true, "value": {"north": 15, "south": 8}}, "read_aux": {"ok": true, "value": [{"region": "north", "rate": 2}, {"region": "south", "rate": 3}]}, "summarize_aux": {"ok": true, "value": {"north": 2, "south": 3}}, "combine": {"ok": true, "value": {"value": 54, "unit": "weighted_amount"}}, "report": {"ok": true, "value": {"value": 54, "unit": "weighted_amount"}}}, "tool_call_budget": 12}

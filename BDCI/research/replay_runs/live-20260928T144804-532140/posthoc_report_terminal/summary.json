@@ -1,0 +1,261 @@
+{
+  "status": "verified_posthoc_analysis",
+  "model_calls": 0,
+  "original_evidence_modified": false,
+  "strict_policy_replays_verified": 72,
+  "normalization": "Append emit iff the final existing action is exactly rerun(report). No reruns added.",
+  "normalization_implementation_sha256": "e6700278bc47e1eb6d1fb1ca0a71bde1347ca09696410d03364360bd70d36ba1",
+  "transformed_plan_count": 8,
+  "strict_noncompletion_reasons_per_episode": {
+    "missing_terminal_action": 8
+  },
+  "comparison": [
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "preregistered_strict",
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 36
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 36
+    },
+    {
+      "analysis": "posthoc_report_terminal",
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 24
+    }
+  ],
+  "limitations": [
+    "Normalization was selected after inspecting these results; it is post hoc, not held-out evidence.",
+    "All variants share 18 cached plans from 6 self-authored base instances.",
+    "Equal observed correctness does not establish statistical equivalence or general safety.",
+    "Selective replay, dependency graphs and terminal-action normalization are not claimed as novel algorithms."
+  ],
+  "formal_study_ready": false
+}

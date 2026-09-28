@@ -1,0 +1,9 @@
+{
+  "run_directory": "protocol_runs/live-20260928T143721-035518",
+  "mode": "live",
+  "status": "implement_development",
+  "experiment_executed": false,
+  "semantic_review_required": true,
+  "novelty_established": false,
+  "formal_study_ready": false
+}

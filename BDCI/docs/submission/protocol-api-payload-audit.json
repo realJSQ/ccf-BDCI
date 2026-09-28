@@ -1,0 +1,29 @@
+{
+  "target_service": "https://api.deepseek.com",
+  "model": "deepseek-flash",
+  "requests": 2,
+  "experiment_calls": 0,
+  "campaign": "research-v2",
+  "max_campaign_requests": 24,
+  "source_inputs": [
+    {
+      "kind": "already_public_project_proposal",
+      "url": "https://github.com/realJSQ/ccf-BDCI/blob/044adf5782277f992275d90d54c2906256fcdf53/BDCI/research/revision_runs/live-20260928T141945-771317/refiner.json",
+      "exact_remote_blob_match": true
+    },
+    {
+      "kind": "public_arxiv_reading_notes_and_generic_methodological_corrections",
+      "path": "BDCI/research/prior_work/revision_followup.json"
+    },
+    {
+      "kind": "generic_experiment_protocol_instructions",
+      "path": "BDCI/research/skills/protocol-design"
+    }
+  ],
+  "designer_prompt_sha256": "820ea25fc49235e24b74e4ae2fd90f05b7b715c1c1958cd8a3d923e4921ed314",
+  "designer_prompt_bytes": 17400,
+  "local_credentials_in_prompt": false,
+  "auditor_extra_input": "Only the designer response from the same service; no further local files.",
+  "credential_use": "Existing locally authorized provider key is used only for provider authentication, not prompt data.",
+  "assessment": "No private workspace document, personal data, local API key or evaluator label is included in the prompt. Reads bounded to the listed proposal, notes and role instructions."
+}

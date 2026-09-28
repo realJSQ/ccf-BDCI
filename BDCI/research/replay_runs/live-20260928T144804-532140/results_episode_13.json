@@ -1,0 +1,208 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.00037647399949491955,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.0003012509987456724,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "d04eaf1f094a0c8d855e52c750236ad1c3c3e05de842c09173c986c36dfe770f"
+        },
+        "receipt_sha256": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "read_main": "27b3dbaae083bf79ae9e8b32a37b18f034a320ee4232d70915556394f78b2530"
+        },
+        "receipt_sha256": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 6,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.00043086699952255003,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 10,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "42b96c0f132b4e81ce846e68370441456fcf3d7cbe4169382b7f7cd69d335d8a"
+        },
+        "receipt_sha256": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "read_aux": "da9605feb978e65104c9258ff2573c6b900ece9d55b31902fb9a8213247fbf72"
+        },
+        "receipt_sha256": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "858feef07a8fe2425814493232985e8054127b704b4af3b7935fe0b9936ab7d2",
+          "summarize_aux": "2c892a18b84176f89c7fb52ea1d4785cf07bc84a29fbe73b62e2e03a5d46af42"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+        },
+        "receipt_sha256": "9ed34e2bd7e95f9d5aa4f2f2febe1a28e27242ab6f4581283f8597d269efd0b4"
+      }
+    ],
+    "tool_calls": 4,
+    "public_input_sha256": "4bf61bfcb8aed6810e6b11e4f3b6e41be3a52574455c95f34ee9ce3180d67905",
+    "plan_sha256": "4e14ac4672d8bccf129acbe54ee5ebb7403e1ac503b9858feb90ecad032b43b7",
+    "duration_seconds": 0.0003032749991689343,
+    "episode_id": "episode_13",
+    "case_id": "retrieval-29",
+    "family": "retrieval",
+    "scenario": "update",
+    "outcome": "correct_completion"
+  }
+]

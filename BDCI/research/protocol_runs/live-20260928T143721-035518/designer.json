@@ -1,0 +1,115 @@
+{
+  "status": "propose",
+  "title": "Selective Transitive Replay vs. Full Replay vs. Local Retry under Legitimate Source Updates and Omitted Declared Dependencies: A Development-Stage Paired Comparison on Synthetic CPU Workflows",
+  "research_question": "Under a fixed visible tool transcript and a single cached recovery plan per case, does selective transitive replay over declared dependencies (D) differ from full recomputation (C), local schema/error retry (B), and no-gate execution (A) in correct completion, wrong completion, and refusal on three paired scenarios (clean, legitimate source update, update with an omitted declared dependency), and does any difference survive when the omitted edge is not visible to any policy?",
+  "hypothesis": "On clean and legitimate-update scenarios, D and C will match A on correct completion while B will match A only when the failure is local; on incomplete-lineage scenarios, D will match A more often than C only if the omitted edge is not on the critical path, and will otherwise match C; no policy will recover the omitted-edge case by attribution alone, so the honest result is a boundary condition on selective replay rather than a new cascade-attribution mechanism.",
+  "candidate_id": "C1",
+  "novelty_status": "unestablished",
+  "study_stage": "development",
+  "family_ids": [
+    "tabular",
+    "retrieval",
+    "classification"
+  ],
+  "scenario_ids": [
+    "clean",
+    "update",
+    "incomplete_lineage"
+  ],
+  "base_instances_per_family": 2,
+  "calls_per_scenario": 1,
+  "planned_api_calls": 18,
+  "policies": [
+    {
+      "id": "A",
+      "name": "No-gate execution",
+      "algorithm": "Execute the cached model plan verbatim against the current source revision. No retry, no invalidation, no recomputation. Record the final artifact and any tool error.",
+      "visible_inputs": "case input, declared dependency DAG, source revision ids, tool transcript, cached plan",
+      "tool_budget": 12
+    },
+    {
+      "id": "B",
+      "name": "Local schema/error retry",
+      "algorithm": "On a tool error or schema violation at node n, re-issue only node n with the same inputs up to a fixed retry cap; do not invalidate downstream nodes and do not re-read sources.",
+      "visible_inputs": "same as A plus per-node error/schema status",
+      "tool_budget": 12
+    },
+    {
+      "id": "C",
+      "name": "Full recomputation",
+      "algorithm": "On any source revision change or any tool error, discard all cached node receipts and re-execute every node in topological order from the current sources.",
+      "visible_inputs": "same as A plus source revision ids",
+      "tool_budget": 12
+    },
+    {
+      "id": "D",
+      "name": "Selective transitive replay over declared dependencies",
+      "algorithm": "On a source revision change at node s, compute the transitive closure of declared dependents of s, discard only those cached receipts, and re-execute them in topological order; on a tool error at n, treat n as changed and apply the same closure. Nodes outside the closure keep cached receipts. This is prior art (selective invalidation), not a new attribution algorithm.",
+      "visible_inputs": "same as A plus source revision ids and declared dependency DAG",
+      "tool_budget": 12
+    }
+  ],
+  "adapter_distinguishing_example": "Tabular instance T1: nodes r=read_table(src_v1), f=filter(r), g=group_sum(f), w=write(g). Declared DAG: r->f->g->w. Scenario update: src_v1 becomes src_v2 with one row changed. A re-executes nothing and writes the stale g. B sees no error and does nothing. C re-executes r,f,g,w. D computes dependents(r)={f,g,w} and re-executes r,f,g,w. Scenario incomplete_lineage: the same update, but the declared DAG omits edge r->g because g reads a column that r also supplies through an undeclared side channel. D computes dependents(r)={f,w}, re-executes r,f,w, and reuses the stale g receipt, producing a wrong aggregate; C re-executes g and is correct. This is the operational difference: D and C diverge exactly when the omitted edge is on the critical path, and B never diverges from A on silent source updates.",
+  "tool_protocol": "Plan actions are typed JSON: read_source{source_id,revision}, filter{table,expr}, group_sum{table,key,agg}, join{left,right,key}, latest_record{doc_id,as_of}, aggregate{records,op}, classify{features,model_id}, write{artifact}. Each action returns either {ok:true,value,receipt_id,source_revision} or {ok:false,error_class in {schema,missing_source,transient,timeout},node_id}. A receipt is cached keyed by (node_id, input_receipt_ids, source_revision); a cache hit returns the stored value without a tool call. Transient failures are injected on a fixed schedule shared by all policies and are retried up to the per-policy tool budget; schema and missing_source failures are not retried by A. Every policy sees the same visible transcript and the same cached recovery plan; no policy sees fault locations, private labels, or the evaluator. Tool-work allowance is 12 tool calls per policy per case, counted as cache misses only.",
+  "scenarios": "Clean: sources at revision v1, no injected failure; all policies should complete. Legitimate source update: a source revision changes between plan creation and execution; the change is public (new revision id visible) and the declared DAG is complete; A may write stale output, B does nothing, C and D re-execute the affected subgraph. Incomplete lineage: the same public revision change, but one declared edge is omitted so the actual read set of a downstream node is a strict superset of its declared inputs. Timing: the revision change is applied before the first tool call of the episode; the omitted edge is never surfaced in any visible metadata. Actual reads are logged by the tool layer and compared post hoc against the declared DAG; this comparison is used only for analysis, never fed back to a policy.",
+  "oracle_boundary": "The reference evaluator is a separate implementation from every policy: it recomputes the correct final artifact from the case input and tool specifications using independent code paths, and its inputs contain no policy outputs, no fault locations, and no private labels. Public data flow: case input, source revisions, declared DAG, tool transcript, cached plan. Private data flow: injected fault schedule, omitted-edge ground truth, evaluator labels. The boundary is tested by holding public inputs fixed and changing only the private labels; if policy behavior changes, the boundary is violated. This is a data-flow boundary, not a security sandbox; no claim of sandboxing or adversarial isolation is made.",
+  "scoring": "Correct completion: final artifact equals the evaluator's recomputed artifact. Wrong result: episode terminates with an artifact that differs from the evaluator's artifact. Refusal: policy declines to produce an artifact or exhausts its tool budget without writing. Gate acceptance is not equated with truth: a policy that accepts a stale receipt and writes a stale artifact is scored wrong even if no error was raised. Reject-all is scored as refusal, not as correct completion. Per-scenario and per-family counts are reported separately; no pooling.",
+  "resource_arithmetic": "3 families * 2 base instances * 3 scenarios = 18 cases; 1 recovery-plan API call per case = 18 API calls, within the 18-call cap. Each case is replayed under 4 policies = 72 CPU runs. Shared cost: the cached initial plan and the visible transcript are produced once per case and reused across all four policies. Marginal cost: policy-specific tool calls beyond cache hits, bounded by 12 per policy per case. No online model recovery loop; the single recovery-plan call is made before policy execution and is identical across policies.",
+  "analysis_unit": "The 6 base instances (3 families * 2 seeds) are the clustering unit; scenarios and policies are within-instance repeated measures. Report per-instance paired differences and per-family summaries. Do not treat the 72 runs as 72 independent samples and do not run n=72 significance tests.",
+  "freeze_and_holdout": "Before any run, freeze and record SHA-256 hashes of: source files, tool specifications, declared DAGs, fault schedule, scenario definitions, policy adapters, evaluator, and this protocol. This is a development experiment only; no held-out split is claimed. A separate future held-out set of independently authored instances is required before any generalization claim.",
+  "limitations": [
+    "Synthetic self-authored tasks, not independently authored; results are development-stage only.",
+    "Selective transitive replay is prior art; this study does not claim a new cascade-attribution algorithm.",
+    "The omitted-edge scenario is a boundary condition, not a realistic fault model.",
+    "No security sandbox is claimed; the oracle boundary is a data-flow discipline tested by label perturbation.",
+    "The earlier huge-integer pilot is preserved as a negative result and is not used as task-selection or calibration evidence for this study.",
+    "No basic model capability or arithmetic calibration is performed; tools compute all values.",
+    "CPU-only workflows may not transfer to tool-rich or GPU-dependent settings."
+  ],
+  "falsification_conditions": [
+    "D does not differ from C on incomplete-lineage cases where the omitted edge is on the critical path (expected: D is wrong, C is correct).",
+    "D does not match A on clean and legitimate-update cases (expected: D matches A).",
+    "B matches A on legitimate-update cases (expected: B does nothing and writes stale output).",
+    "Changing only private labels while holding public inputs fixed changes any policy's behavior, indicating a boundary violation.",
+    "Any policy's correct-completion count exceeds the evaluator's recomputed count, indicating scoring leakage."
+  ],
+  "source_ids": [
+    "arxiv:2607.11098v1",
+    "arxiv:2608.12761v1",
+    "arxiv:2604.16706v1"
+  ],
+  "corrections": [
+    {
+      "issue_index": 0,
+      "resolution": "Deleted the constant-label evaluator control. A constant-label evaluator necessarily removes any accuracy difference and is not evidence of oracle leakage."
+    },
+    {
+      "issue_index": 1,
+      "resolution": "Retained a deterministic reference for fully specified CPU tasks and defined independence as a different implementation with no reference labels in its inputs, not as a claim that deterministic scoring is tautological."
+    },
+    {
+      "issue_index": 2,
+      "resolution": "Replaced the static import check and separate-process claim with an explicit public/private data-flow boundary, tested by changing private labels while holding public inputs fixed. No security sandbox is claimed."
+    },
+    {
+      "issue_index": 3,
+      "resolution": "Removed any inference of workflow floor effects from the earlier huge-integer pilot. The negative pilot is preserved without further model capability calibration."
+    },
+    {
+      "issue_index": 4,
+      "resolution": "Removed the ACM full-text limitation; it belonged to an earlier candidate and is not evidence about this arXiv-based proposal."
+    },
+    {
+      "issue_index": 5,
+      "resolution": "Specified concrete differences: B re-issues only the failing node and never invalidates downstream; C re-executes all nodes on any change; D re-executes only the transitive closure of declared dependents. D and C diverge exactly when an omitted edge is on the critical path."
+    },
+    {
+      "issue_index": 6,
+      "resolution": "Defined failure persistence, clean and legitimate-update controls, all policies' observation access, the 12-call tool-work allowance, and exact arithmetic: 3*2*3=18 API calls, 18*4=72 CPU runs, with shared cached-plan cost and marginal policy-specific tool calls."
+    },
+    {
+      "issue_index": 7,
+      "resolution": "Treated fixture/fault variants sharing one initial plan as paired repeated measures clustered by base instance, not as independent model samples. Reject-all is scored as refusal, not successful completion."
+    }
+  ]
+}

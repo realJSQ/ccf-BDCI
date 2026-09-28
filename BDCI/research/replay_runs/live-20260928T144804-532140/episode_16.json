@@ -1,0 +1,24 @@
+{
+  "actions": [
+    {
+      "op": "rerun",
+      "node": "read_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "combine"
+    },
+    {
+      "op": "rerun",
+      "node": "report"
+    },
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "read_aux is the changed source node, so rerun it and its downstream dependents (summarize_aux, combine, report) to refresh the cached report against the current aux labels."
+}

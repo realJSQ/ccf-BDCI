@@ -1,0 +1,8 @@
+{
+  "actions": [
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "All cached receipts are present and consistent with the declared dependencies; no source changes were reported, so the cached report is current."
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.0002470680010446813,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "B",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.000189278998732334,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "C",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00026590400011627935,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 28,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "a4732c973592bb3e8f8e4b3f042236f752772b2f9cea736e1cd106a2f6120bbc",
+    "plan_sha256": "b5cf3f5a696ac3868881c1ac07cbae2f38ab690f07323adca46440ed051dada3",
+    "duration_seconds": 0.00019092299771727994,
+    "episode_id": "episode_03",
+    "case_id": "retrieval-17",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

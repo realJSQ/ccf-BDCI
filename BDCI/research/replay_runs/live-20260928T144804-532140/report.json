@@ -1,0 +1,643 @@
+{
+  "status": "completed",
+  "mode": "live",
+  "stage": "development_only",
+  "base_instance_count": 6,
+  "completed_model_plans": 18,
+  "completed_policy_replays": 72,
+  "summary_by_scenario_policy": [
+    {
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0015664210040995385
+    },
+    {
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0011007089997292496
+    },
+    {
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0011792959994636476
+    },
+    {
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 6,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0013164979973225854
+    },
+    {
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16,
+      "cpu_replay_seconds": 0.0022176659949764144
+    },
+    {
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16,
+      "cpu_replay_seconds": 0.0017481159993621986
+    },
+    {
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 24,
+      "cpu_replay_seconds": 0.0018964159935421776
+    },
+    {
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 4,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 16,
+      "cpu_replay_seconds": 0.0015838639992580283
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0015460839968000073
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.001336985998932505
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0011525059999257792
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 6,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 6,
+      "tool_calls": 0,
+      "cpu_replay_seconds": 0.0010139750083908439
+    }
+  ],
+  "initial_cache_tool_calls_shared": 36,
+  "descriptive_development_results_only": true,
+  "claim_scope": "Descriptive results on these self-authored development instances only.",
+  "novelty_established": false,
+  "formal_study_ready": false,
+  "summary_by_family_scenario_policy": [
+    {
+      "family": "classification",
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 8
+    },
+    {
+      "family": "classification",
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 8
+    },
+    {
+      "family": "classification",
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 12
+    },
+    {
+      "family": "classification",
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 8
+    },
+    {
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "retrieval",
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "retrieval",
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 6
+    },
+    {
+      "family": "retrieval",
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "clean",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "clean",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 2,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "update",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "tabular",
+      "scenario": "update",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "tabular",
+      "scenario": "update",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 6
+    },
+    {
+      "family": "tabular",
+      "scenario": "update",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 1,
+      "wrong_completion": 0,
+      "refusal": 1,
+      "tool_calls": 4
+    },
+    {
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "policy": "B",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "policy": "C",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    },
+    {
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 2,
+      "correct_completion": 0,
+      "wrong_completion": 0,
+      "refusal": 2,
+      "tool_calls": 0
+    }
+  ],
+  "paired_full_minus_selective": [
+    {
+      "episode_id": "episode_00",
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_01",
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_02",
+      "case_id": "tabular-17",
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_03",
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_04",
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_05",
+      "case_id": "retrieval-17",
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_06",
+      "case_id": "classification-17",
+      "family": "classification",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_07",
+      "case_id": "classification-17",
+      "family": "classification",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 2
+    },
+    {
+      "episode_id": "episode_08",
+      "case_id": "classification-17",
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_09",
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_10",
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 2
+    },
+    {
+      "episode_id": "episode_11",
+      "case_id": "tabular-29",
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_12",
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_13",
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 2
+    },
+    {
+      "episode_id": "episode_14",
+      "case_id": "retrieval-29",
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_15",
+      "case_id": "classification-29",
+      "family": "classification",
+      "scenario": "clean",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    },
+    {
+      "episode_id": "episode_16",
+      "case_id": "classification-29",
+      "family": "classification",
+      "scenario": "update",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 2
+    },
+    {
+      "episode_id": "episode_17",
+      "case_id": "classification-29",
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "correct_completion_difference": 0,
+      "tool_call_difference": 0
+    }
+  ]
+}
