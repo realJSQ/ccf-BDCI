@@ -1,0 +1,365 @@
+{
+  "doi:10.1145/3847307": {
+    "id": "doi:10.1145/3847307",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "When Too Many Cooks Spoil the Broth: Three Failure Modes of Multi-Agent LLM Reliability",
+    "url": "https://doi.org/10.1145/3847307",
+    "abstract": "Multi-agent LLM systems are widely deployed under three implicit assumptions: that self-confidence calibration transfers to peer evaluation, that errors made by distinct instances are statistically independent, and that any sufficiently calibrated model is an equivalent verifier. We test all three across GPT-4o, Claude Sonnet 4.6, and Llama-3.3-70B. Self-confidence and peer-resistance dissociate: Claude shows the strongest self-confidence signal yet accepts every deliberately-wrong peer output, the opposite of what unidimensional calibration predicts. Four independent GPT-4o instances agree on the same wrong answer \\(56\\%\\) of the time on obscure factual queries versus \\(0.4\\%\\) predicted under independence—a \\(140\\times\\) violation. A pre-registered cross-family replication ( \\(N=200\\) , three architecturally distinct families) yields \\(55\\%\\) three-way agreement, statistically indistinguishable from the same-family baseline (one-sided binomial \\(p=0.41\\) ): family diversification does not reduce correlated hallucination. Verifier choice produces a 42-percentage-point spread in error propagation. We propose a three-phase framework treating self-confidence assessment, peer-resistance capability, and error correlation as orthogonal axes requiring distinct training signals, and identify query-inherent rarity, not shared training, as the dominant driver of correlated failure.",
+    "abstract_status": "available",
+    "authors": [
+      "Aradhana Rai",
+      "Vijay K. Madisetti"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "6f5b112cf2b5152db6da7ed9b519734538b8cd466176cb396822a3c5ee6ce3a5"
+  },
+  "doi:10.2139/ssrn.7041478": {
+    "id": "doi:10.2139/ssrn.7041478",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Failure Modes in Production Multi-Agent LLM Systems: Lessons from Real Deployments",
+    "url": "https://doi.org/10.2139/ssrn.7041478",
+    "abstract": "Multi-agent systems built on large language models (LLMs) are increasingly deployed in production environments where reliability, consistency, and safety are non-negotiable. However, the failure modes of such systems remain poorly understood outside of controlled research settings. This paper draws on direct engineering experience with a production multi-agent auditing platform to identify, categorize, and analyze recurring failure patterns across supervisor routing, inter-agent memory, retrieval-augmented generation (RAG) pipelines, and inference infrastructure. We describe five concrete failure classes-intent misclassification, context amnesia, cache poisoning in retrieval, inference bottlenecks under concurrent load, and cross-session state contamination-and discuss mitigation strategies applied in practice. Observed failures include a supervisor misclassification rate exceeding 80% on boundary-domain queries prior to remediation, response latencies of 20-30 seconds under concurrent load reduced to 3-10 seconds following inference migration, and a retrieval cache defect that went undetected across the entirety of the system's first development phase. Our findings suggest that production multi-agent systems require safety mechanisms at the orchestration layer that go beyond what individual model-level guardrails can provide, with direct implications for AI safety research and deployment governance.",
+    "abstract_status": "available",
+    "authors": [
+      "Alyyan Ahmed",
+      "Munim Akbar"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "d1d65c8d4594fb7b85c5fee8e92ba14c7e2641287cdd2716cc8a6f946f6dc847"
+  },
+  "doi:10.2139/ssrn.6420858": {
+    "id": "doi:10.2139/ssrn.6420858",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Behavioral Drift in Multi-Agent LLM Systems: Emergent Failure Modes, Cascade Dynamics, and Measurement Challenges",
+    "url": "https://doi.org/10.2139/ssrn.6420858",
+    "abstract": "We present the first empirical study of longitudinal behavioral drift in multi-agent large language model (LLM) systems over extended interactions (200-500 turns), using calibrated baselines, controlled experimental conditions, and statistical replication (n=12 baselines), measured entirely through external observation without access to model internals. Using a novel black-box measurement framework, we subject groups of three LLM agents to sustained multi-party conversation scenarios and observe their behavioral trajectories across multiple dimensions: output volume, vocabulary diversity, sentiment, and identity adherence. We report several previously undocumented failure modes, including agent collapse (sudden cessation of meaningful output), cascade propagation (one agent's failure triggering degradation in others), compensatory expansion (surviving agents increasing output to fill the void left by a collapsed peer), and hollow verbosity (repetitive, contentless output that maintains volume while losing substance). Critically, we demonstrate that collapse is a triggered failure requiring a perturbation (trait mutation), not spontaneous degradation: zero of twelve baseline runs exhibit collapse, while five of six mutation-fork runs collapse at a deterministic turn. We further show that collapse and hollow verbosity are two expressions of the same underlying failure-loss of generative diversity-where the model either goes silent or enters a repetitive loop. We demonstrate that behavioral drift is path-dependent and that the degree of stochasticity is itself model-dependent. Perhaps most significantly, we find that standard identity probing techniques fail to detect these failures: collapsed agents continue to pass identity checks with high fidelity, revealing a structural dissociation between an agent's capacity for identity recall and its actual conversational behavior. We also document model-dependent observer effects in which the probing mechanism itself alters the system under study in qualitatively different ways depending on the model family. These findings have immediate implications for the governance and monitoring of production multi-agent LLM systems.",
+    "abstract_status": "available",
+    "authors": [
+      "Jason Gagne"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "d51c5c1e496571560792f5e0519c00de086e121629ade4cd0b1a81aa907bfaa7"
+  },
+  "doi:10.2139/ssrn.6368071": {
+    "id": "doi:10.2139/ssrn.6368071",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Long-Horizon Reliability in Human–LLM Interaction: Observations, Failure Modes, and Limits of Procedural Control",
+    "url": "https://doi.org/10.2139/ssrn.6368071",
+    "abstract": "Current evaluation of large language models (LLMs) predominantly relies on short-horizon, reset-based interactions designed to assess task performance under controlled conditions. While effective for measuring capability, such regimes structurally limit observation of behaviors that emerge only through sustained interaction—and leave behavioral reliability over extended interaction largely uncharacterized.This paper introduces a qualitative, non-scalable observational method for examining LLM behavior under extended, non-reset conversational conditions, and documents failure modes observed when epistemic pressure weakened or interactional dynamics accumulated unchecked. The observed phenomena range from mild conversational tendencies to substantive failures that produced incorrect outputs, masked errors, or misleading confidence. Two failure modes – Narrative Arc Confabulation and Instance Identity Confusion – are not explicitly named or taxonomized in the literature reviewed as of early 2026 and may represent under-documented phenomena.The paper further examines why awareness of these failure modes does not suffice to prevent them, arguing that long-horizon stability depends on practiced, situational human judgment that resists procedural transfer. The contribution is descriptive and clarificatory: defining an observational space that prevailing evaluation practices structurally exclude, documenting phenomena that emerge within that space, and explaining why reliability under extended interaction is conditional, costly, and human-dependent.",
+    "abstract_status": "available",
+    "authors": [
+      "Henric Larsson"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "19594c59ab3dd5ef5c0f674d7232790a8c1541ad6e644b3aa5ee20f0abb6006c"
+  },
+  "doi:10.2139/ssrn.6641752": {
+    "id": "doi:10.2139/ssrn.6641752",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Structural Simulation Benchmark for Reasoning Large Language Models: Accuracy, Reliability, and Failure Modes",
+    "url": "https://doi.org/10.2139/ssrn.6641752",
+    "abstract": "Large language models (LLMs), particularly reasoning-oriented models optimized for long-horizon and multi-step inference, are increasingly used to assist programming and scientific research. However, their reliability in structural engineering computations—where validity is highly sensitive to implementation details—remains insufficiently quantified. This study evaluates four recent reasoning-oriented LLMs (Claude Sonnet 4.5, DeepSeekV3.2, GPT5, and Grok 4 Fastreasoning) under a unified API-based setup with default parameters and proposes a novel evaluation framework tailored for structural simulation. Five problems are designed to cover linear elasticity problems, forced vibration of a Timoshenko beam, and frame analysis. Solution strategies are constrained for comparability, and all generated codes are executed in a fixed Python environment with results verified against ABAQUS simulations or analytical solutions. The framework explicitly probes the importance of boundary conditions, selection of modeling assumptions, and implementation robustness. Common failure modes include incorrect treatment of traction-free boundaries, local-to-global transformation errors due to inconsistent local-axis definitions, and numerical instability induced by the choices of ways to impose boundary conditions. Overall reliability shows GPT‐5 is best model among those models tested. These findings suggest that verification-oriented workflows and automated consistency checks are essential for the safe use of LLM-assisted structural computation.",
+    "abstract_status": "available",
+    "authors": [
+      "Mingyu Wang",
+      "Jiaji Wang"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:37.107114+00:00",
+    "query": "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "7bc40a5019c8561dc79190e2e724dc68a35b43d1c928badd451b98650b20f46c"
+  },
+  "doi:10.2139/ssrn.4918035": {
+    "id": "doi:10.2139/ssrn.4918035",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Large Language Model-Based Planning Agent with Generative Memory Strengthens Performance in Textualized World",
+    "url": "https://doi.org/10.2139/ssrn.4918035",
+    "abstract": "Artificial Intelligence is increasingly being integrated into instruction-driven task planning within various external environments, such as games, compilers, and Application Programming Interfaces. Obtaining planning scenarios from Large Language Model(LLM) greatly mitigates the time and computational costs associated with rule-based and network-based approaches, but still suffers from limited contextual horizons and a lack of real-time cognitive and interactive capabilities with real environments. The engineering application point of this paper is: To address the challenges, we introduce a large language model-based task planning agent to facilitate human-computer interaction and application of LLMs in real-world task planning activities, which has a generative memory (GM-Agent) that responds to the textualized reality of planning events. The contribution in GM-Agent leverages the inherent rules and worldviews extracted from textual data, employing generative memory modules to assimilate planning knowledge from expert experiences. This framework has demonstrated state-of-the-art performance in four out of five tasks set by LandWar, matching the performance of the Reinforcement Learning with Human Feedback(RLHF) model in knowledge quiz tasks, despite having an equivalent number of parameters. Additionally, we have performed comprehensive comparison and ablation studies involving LLMs and various configurations, providing a detailed analysis of performance influencers and highlighting areas requiring further exploration.",
+    "abstract_status": "available",
+    "authors": [
+      "JY L",
+      "Wenning Hao",
+      "kai Cheng",
+      "Dawei Jin"
+    ],
+    "year": 2024,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "c6340856c7f380928d0e791f7bda8b60644698eb2dc2319783229c0f46654688"
+  },
+  "doi:10.1007/s10994-019-05864-5": {
+    "id": "doi:10.1007/s10994-019-05864-5",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Improving coordination in small-scale multi-agent deep reinforcement learning through memory-driven communication",
+    "url": "https://doi.org/10.1007/s10994-019-05864-5",
+    "abstract": "Abstract Deep reinforcement learning algorithms have recently been used to train multiple interacting agents in a centralised manner whilst keeping their execution decentralised. When the agents can only acquire partial observations and are faced with tasks requiring coordination and synchronisation skills, inter-agent communication plays an essential role. In this work, we propose a framework for multi-agent training using deep deterministic policy gradients that enables concurrent, end-to-end learning of an explicit communication protocol through a memory device. During training, the agents learn to perform read and write operations enabling them to infer a shared representation of the world. We empirically demonstrate that concurrent learning of the communication device and individual policies can improve inter-agent coordination and performance in small-scale systems. Our experimental results show that the proposed method achieves superior performance in scenarios with up to six agents. We illustrate how different communication patterns can emerge on six different tasks of increasing complexity. Furthermore, we study the effects of corrupting the communication channel, provide a visualisation of the time-varying memory content as the underlying task is being solved and validate the building blocks of the proposed memory device through ablation studies.",
+    "abstract_status": "available",
+    "authors": [
+      "Emanuele Pesce",
+      "Giovanni Montana"
+    ],
+    "year": 2020,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "28c51cbf02742dfeb1bf494c2fc92506e522cd1d117d38db3faaf8339f47c86c"
+  },
+  "doi:10.20944/preprints202512.2748.v1": {
+    "id": "doi:10.20944/preprints202512.2748.v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Contextual Trust Evaluation for Robust Coordination in Large Language Model Multi-Agent Systems",
+    "url": "https://doi.org/10.20944/preprints202512.2748.v1",
+    "abstract": "Large Language Model (LLM)-based multi-agent systems have emerged as a promising paradigm for tackling complex tasks that exceed individual agent capabilities. However, existing approaches often suffer from coordination inefficiencies, a lack of trust mechanisms, and suboptimal role assignment strategies. This paper presents a novel trust-aware coordination framework that enhances multi-agent collaboration through dynamic role assignment and context sharing. Our framework introduces a multi-dimensional trust evaluation mechanism that continuously assesses agent reliability based on performance history, interaction quality, and behavioral consistency. The coordinator leverages these trust scores to dynamically assign roles and orchestrate agent interactions while maintaining a shared context repository for transparent information exchange. We evaluate our framework across eight diverse task scenarios with varying complexity levels, demonstrating significant improvements over baseline approaches. Experimental results show that our trust-aware framework achieves a 87.4% task success rate, reducing execution time by 36.3% compared to non-trust-based methods, while maintaining 43.2% lower communication overhead. The framework's ability to adapt agent roles based on evolving trust scores enables more efficient resource utilization and robust fault tolerance in dynamic multi-agent environments.",
+    "abstract_status": "available",
+    "authors": [
+      "Kangning Gao",
+      "Haotian Zhu",
+      "Rui Liu",
+      "Jinming Li",
+      "Xu Yan",
+      "Yi Hu"
+    ],
+    "year": 2025,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "be5f0184f365308765bfc2cd0af3968c647dee60d90c67b6329a42ec98a342ed"
+  },
+  "doi:10.21203/rs.3.rs-10732437/v1": {
+    "id": "doi:10.21203/rs.3.rs-10732437/v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "A Simple and Reproducible Rat Model of Urethral Spongiofibrosis: Evaluation of Colchicine as a Potential Antifibrotic Agent",
+    "url": "https://doi.org/10.21203/rs.3.rs-10732437/v1",
+    "abstract": "Abstract Objective Urethral stricture is an abnormal narrowing of the anterior urethra caused by fibrosis of the surrounding corpus spongiosum. Since fibrosis is the main factor responsible for disease progression, this study investigated the effect of colchicine, a drug with known antifibrotic properties, on fibrosis development in a rat model of urethral injury. Materials and Methods Twenty male Wistar-Albino rats (250–300 g) were included. One rat was used to standardize the trauma model. The remaining 19 rats were divided into control (n = 2), sham (n = 5), and treatment (n = 12) groups. No intervention was performed in the control group. Urethral trauma was induced at the 12 o’clock position in the sham and treatment groups. The treatment group additionally received oral colchicine (1 mg/kg/day). All animals were sacrificed on day 28. Histopathological evaluation of proximal (location A) and distal (location B) urethral segments included fibrosis, mononuclear cell infiltration, and vascular proliferation. Results Significant differences among groups were observed at location A for fibrosis (p = 0.013) and vascular proliferation (p = 0.020). No significant differences were detected at location B or in the combined analysis. Comparison of the sham and treatment groups showed significant differences at location A for fibrosis (p = 0.037) and vascular proliferation (p = 0.048), mainly reflecting lower scores in the sham group. No significant differences were found at location B. Conclusion The proposed rat model successfully induced urethral fibrosis, particularly in the proximal urethra. Colchicine did not demonstrate a protective antifibrotic effect under the study conditions. Larger experimental studies are required to clarify its potential role in urethral stricture treatmentKeywords: urethral stricture, fibrosis, colchicine, urethra, antifibrotic therapy",
+    "abstract_status": "available",
+    "authors": [
+      "RAMAZAN SAMET CETINKAYA",
+      "MUMTAZ DADALI"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "3587509a696d2d828966d10a8a7f81394ccfaac0a11dd0e1f1cd8926ef2a294c"
+  },
+  "doi:10.64898/2026.09.11.751004": {
+    "id": "doi:10.64898/2026.09.11.751004",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "From Prompt to Pipeline: A Comparative Evaluation of Large Language Model Coding Agents for Reproducible Bioinformatics Pipeline Construction",
+    "url": "https://doi.org/10.64898/2026.09.11.751004",
+    "abstract": "Abstract Agentic coding systems are increasingly presented as a way to reduce the engineering burden of scientific software development. Bioinformatics is a strong test case for this claim because useful pipelines must combine domain-specific analysis choices, command-line software, sample metadata, workflow orchestration, container or HPC execution, and interpretable quality-control reporting. We evaluated three agentic systems - Biomni, Claude Code, and Codex - on the same task: constructing a Nextflow DSL2 pipeline for paired-end CUT&Tag data that included read QC, trimming, alignment, filtering, duplicate removal, signal track generation, per-sample and group-level peak calling, control-aware group merging, annotation, FRiP calculation, deepTools visualizations, and final MultiQC reporting. Each system received the same detailed CRAFT-style prompt and was assessed against a hand-coded reference pipeline developed by the authors. All three systems produced pipeline implementations that appeared plausible at the level of documentation and file structure, but none fully satisfied the requested analysis. The most consequential failure was shared: the agent-generated pipelines performed some form of group-level merging but did not produce the requested merged-group reporting outputs. Sample-level MultiQC reports also disagreed with the reference report. Codex was closest to the reference for primary mapped-read counts, although its total-read accounting and report structure still differed. Claude Code produced the broadest final report, but its mapping summary mixed stages and therefore could not be treated as numerically correct. Biomni produced the strongest subjective documentation, but its read-count agreement with the reference report was poor and several failures required substantial Nextflow expertise to diagnose. These results suggest that current coding agents can accelerate scaffolding, documentation, and routine implementation, but they do not eliminate the need for expert review in bioinformatics workflow construction. For complex sequencing workflows, prompts must specify not only the biological intent, but also the exact stage semantics, acceptance tests, metadata contracts, expected report sections, resource propagation rules, and failure criteria needed to distinguish a plausible pipeline from a correct one. Author summary Modern AI coding agents can write large amounts of software from natural language instructions. This study asks whether that ability is enough to build a real bioinformatics pipeline for CUT&Tag sequencing data. The answer from this evaluation is mixed. The agents produced impressive-looking pipelines and documentation, but the outputs did not fully match a hand-coded reference workflow. Most importantly, the pipelines did not generate the requested merged-group reports, which were central to the biological use case. Some errors were simple programming issues, but others required a working knowledge of Nextflow, sequencing QC, and chromatin profiling workflows. The practical conclusion is not that these tools are useless. Rather, they are best viewed as accelerators for experienced users. A biology student with little programming or workflow-management background would still have difficulty detecting and fixing the most important errors.",
+    "abstract_status": "available",
+    "authors": [
+      "Paul R. Munn",
+      "Jennifer K. Grenier"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:38.813440+00:00",
+    "query": "language model agent planning memory coordination evaluation small-scale reproducible",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "5e3e54b0a2eac4516b0f212819a7f207d5eee3d5aca18bd1ece69bc472ca9289"
+  },
+  "doi:10.1093/med/9780197509326.003.0006": {
+    "id": "doi:10.1093/med/9780197509326.003.0006",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Confidence Versus Error",
+    "url": "https://doi.org/10.1093/med/9780197509326.003.0006",
+    "abstract": "In this chapter, the extent to which clinician confidence corresponds to objective uncertainty and clinician error is demonstrated. The lack of accuracy in mental health assessments is contrasted with the inflated confidence that clinicians have in their assessments. Two key issues are addressed. One is that clinician overconfidence is discordant with the level of objective uncertainty inherent to diagnostic and risk assessments. The second is that the degree of confidence clinicians have in their diagnostic impressions is a remarkably poor indicator of accuracy. The chapter illustrates that clinician confidence and accuracy are predictable and consistently misaligned regardless of discipline and experience levels.",
+    "abstract_status": "available",
+    "authors": [
+      "José Silveira",
+      "Patricia Rockman"
+    ],
+    "year": 2021,
+    "retrieved_at": "2026-09-28T08:19:46.807468+00:00",
+    "query": "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "9663aa8327d52f94b8cae1502199f697219b47f63b79e29cde8456e01b036a64"
+  },
+  "doi:10.3389/frai.2026.1857934": {
+    "id": "doi:10.3389/frai.2026.1857934",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Confidence-aware pseudo-label selection and verifier training for semi-supervised LLM reasoning with minimal labels",
+    "url": "https://doi.org/10.3389/frai.2026.1857934",
+    "abstract": "This paper studies how to improve the reasoning ability of large language models (LLMs) with minimal supervision. Recent gains in LLM reasoning largely come from learning intermediate reasoning traces, and many methods reduce supervision cost by using traces whose final answers are correct. In realistic settings, however, obtaining even those answer labels can be costly, motivating methods that extend reasoning from a very small labeled set with abundant unlabeled questions. Verifier-based semi-supervised learning is a promising approach: a verifier trained on a small labeled set can score reasoning traces on unlabeled questions and identify candidates for pseudo-labeling. However, even with a verifier, it remains unclear how pseudo-labeled samples should be selected to support downstream training. In particular, pseudo-label selection must balance quality and quantity. To address this, we introduce an adaptive threshold selection policy that chooses thresholds on validation data using pseudo-label precision and sample count. We further combine this policy with confidence-aware verifier training to support confidence-based selection. Experiments on verifiable math reasoning benchmarks show that, under our training setup, this combination improves downstream reasoning accuracy over the tested baselines and selects pseudo-labeled subsets with a more favorable reliability–coverage trade-off. These results suggest a practical design direction for verifier-guided pseudo-label selection in answer-verifiable, minimal-label reasoning settings.",
+    "abstract_status": "available",
+    "authors": [
+      "Keizo Kato",
+      "Chenhui Chu",
+      "Yugo Murawaki",
+      "Sadao Kurohashi"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:46.807468+00:00",
+    "query": "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "c007f4e0b5fa3c33a3f74f5d539f4a524e0d8552b71d91b361f1af2c2c0ac9d0"
+  },
+  "doi:10.31224/7995": {
+    "id": "doi:10.31224/7995",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Executable but Wrong: Verifier-Grounded Contracts and Counterexamples for LLM-Generated Music Programs",
+    "url": "https://doi.org/10.31224/7995",
+    "abstract": "A generated program can compile, execute, and still be wrong in the only way its user cares about. This is common in creative domain-specific languages: the artifact is partly subjective, yet requests often contain objective promises such as a tempo, onset grid, pitch range, or event count. Ordinary compilers establish executability, while self-critique leaves the model to invent its own oracle. We present StruSpec, a verifier-grounded workflow for LLM-generated Strudel music programs. It turns explicit promises into bounded executable contracts, evaluates a deterministic Strudel subset with exact rational time and source provenance, and returns typed counterexamples to a preservation-aware repair loop. The model proposes patches; only re-execution and verification can end the loop. We validate the semantic boundary against the official runtime, an independently implemented semantics, generated oracles, metamorphic relations, controlled faults, and reviewed natural programs. The evaluation separates four questions that are often conflated. Across 4,000 generations, 81.03% compiled but only 15.98% satisfied every hard constraint. On 600 paired failures, localized counterexamples improved strict repair success by 10.83 percentage points with GLM-5.2 (95% CI 8.17–13.67) and by 14.83 points in a protocol-matched DeepSeek V4 Pro replication (11.83–17.84). On a new 192-request, author-confirmed expert population, localized repair also beats generic feedback with both GLM (17 vs. 0 repairs) and DeepSeek (12 vs. 1), although only 67 requests reach a complete-trace semantic violation. A symbolic-first variant used 78.7% fewer model calls and 67.2% fewer output tokens, although its typical successful patch was no smaller. Conversely, supplying the same structured contract before any failure reduced first-attempt satisfaction: 23.17% for direct generation, 18.67% with a gold contract, and 17.54% with a parsed contract. The combined evidence reveals a phase asymmetry: structure is valuable when independent execution turns it into new diagnostic evidence, not when a redundant schema is merely placed in front of a generator.",
+    "abstract_status": "available",
+    "authors": [
+      "Zhengyang Ding"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:46.807468+00:00",
+    "query": "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "dfa56bad5372d4048fbeedf00de6368698e7561c60ffd12127de06e005d984d1"
+  },
+  "doi:10.31227/osf.io/zfe9y": {
+    "id": "doi:10.31227/osf.io/zfe9y",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Student’s Self-Confidence Restoration with Peer Mentoring Strategy",
+    "url": "https://doi.org/10.31227/osf.io/zfe9y",
+    "abstract": "The research objective is to restore students’ self-confidence in learning process using peer mentoring strategies. The research design used is classroom action research by involving students who experience self-confidence problems determined purposively (five participants). Data were collected using participant observation, in-depth interviews, and field notes. Data were analyzed quantitatively (frequence and percentage) and qualitatively using Creswell’s model with seven segments of analysis, ranging from the process of collecting data to interpreting themes. The results prove that the efforts to restore students’ self-confidence succeed in five strategies, including three initial strategies (cycle 1), forming limited and intimate group discussion, placing peers who inherit caring, supportive, and inspiring, attitude and providing clear or detailed assignments. While the next two strategies (cycle 2) are to give full trust to students to execute their duties in form of performance and to conduct evaluations based on improvement using students advantages. Consequently, the increase from the first cycle to the second cycle for each participant are P1 = 18.75%, P2 = 17.1875%, P3 = 23.4375%, P4 = 17.1875%, and P5 = 20.3125%. Peer mentoring is very helpful for educators to share roles in an effort to improve student learning performance, for instance improving self-confidence. In addition, peer mentoring can be used by educators to improve the quality of learning in other aspects such as learning outcomes, social intelligence, transformational leadership, and so forth.",
+    "abstract_status": "available",
+    "authors": [
+      "Jusuf Blegur"
+    ],
+    "year": 2019,
+    "retrieved_at": "2026-09-28T08:19:46.807468+00:00",
+    "query": "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "1ce730b1a0c713e64e4ec84333551725eb3379d8468f6b111460cc29e959786d"
+  },
+  "doi:10.2139/ssrn.6947162": {
+    "id": "doi:10.2139/ssrn.6947162",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "A Verifier-Grounded Knowledge-Based LLM Framework with Reinforcement Learning for Reliable NL-to-CTL Specification Generation",
+    "url": "https://doi.org/10.2139/ssrn.6947162",
+    "abstract": "Generating formal temporal-logic specifications from natural-language (NL) requirements is a key challenge for trustworthy knowledge-based systems, because the generated specifications must be both syntactically executable and semantically faithful. Small syntactic errors or temporal-operator misinterpretations can make a formula unusable for model checking or semantically incorrect. This paper presents a reinforcement-learning (RL)-enhanced knowledge-based LLM framework for reliable NL$\\rightarrow$CTL specification generation under formal constraints. The framework combines neural structured generation with symbolic verifier feedback to produce NuSMV-ready Computation Tree Logic (CTL) formulas that are syntactically executable and semantically aligned with reference specifications. Unlike prior work that mainly evaluates generated formulas using string-level metrics, we refine the specification generator itself by incorporating NuSMV into training and evaluation through large language model (LLM) fine-tuning and reinforcement learning.The framework is instantiated with two model families, T5 and Qwen3, and evaluated through supervised baselines, verifier-guided syntax refinement, and verifier-grounded semantic refinement. Starting from supervised fine-tuning on a cleaned corpus of 30{,}446 NL--CTL pairs, we apply model-specific refinement strategies: RL-based NuSMV feedback for T5 syntax refinement, supervised NuSMV-guided syntax refinement for Qwen3, and RL-based semantic refinement using truth-set agreement rewards for both model families. Evaluation combines normalized match, NuSMV parse success, and verifier-grounded semantic agreement over shared SMV models, enabling controlled within-model and cross-model comparisons.We also implement interactive NL$\\rightarrow$CTL$\\rightarrow$NuSMV tools and validate them on a cybersecurity case study. The results show that combining LLM training, RL-based verifier-guided refinement, and symbolic semantic evaluation provides a trustworthy path to reliable temporal-logic specification generation in knowledge-based verification workflows.",
+    "abstract_status": "available",
+    "authors": [
+      "Ghalya Alwhishi",
+      "Jamal Bentahar"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:46.807468+00:00",
+    "query": "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "94ee9ae3c6342c2eb69965967930582562f61177e7fcabe9a0e572c8c154189e"
+  },
+  "doi:10.22541/au.177499233.37732392/v1": {
+    "id": "doi:10.22541/au.177499233.37732392/v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Emergent Misinformation Genesis in Multi-Agent LLM Clinical Pipelines",
+    "url": "https://doi.org/10.22541/au.177499233.37732392/v1",
+    "abstract": "Multi-agent large language model (LLM) pipelines are deployed for clinical decision support under the assumption that collaboration improves safety. We show this assumption is wrong: multi-agent clinical pipelines spontaneously generate dangerous clinical assertions (diagnoses, medications, and procedures) that no individual agent produces alone, with zero adversarial input. We term this Emergent Misinformation Genesis (EMG), distinct from hallucination, contamination, and error cascade. We introduce the Emergent Misinformation Rate (EMR) with a three-way decomposition and the Clinical Escalation Index (CEI), and evaluate them across 4,800 trials with four model families (∼97,000 API calls). Our four central findings: (1) emergence is universal, with 30-56% of network assertions absent from any individual agent and 85-100% of clinical vignettes affected; (2) two independent judges rate 70-87% of emergent assertions as clinically dangerous (n≥499 each), with a third judge (n=37) providing directional confirmation at 68%, and severity confirmed against published AHA/ASA/ADA guidelines (42/45, 93%); (3) the network exhibits collective delusion, where individual agents reject 70-90% of the assertions the network produces; (4) a 5-line confidence-calibration prompt reduces emergence by 25-28% (p<0.001), but FC cross-checking fails for 3 of 4 models, and depth ablation reveals two distinct emergence regimes. We release a benchmark of 400 vignettes across 10 clinical domains, the EMR metric suite, and all code and data. Validation on 50 MIMIC-IV discharge summaries confirms comparable EMR (0.39-0.49) on real clinical notes.",
+    "abstract_status": "available",
+    "authors": [
+      "Aman Sharma"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:48.633086+00:00",
+    "query": "trust-score-based dynamic role reassignment versus static roles for cascade containment in multi-agent LLM pipelines",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "ad47773db8648bc50500d985d2cfeeeb59505aa05b14cf8b0c9ff730bd5e86c8"
+  },
+  "doi:10.21203/rs.3.rs-9350097/v1": {
+    "id": "doi:10.21203/rs.3.rs-9350097/v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Who Broke the Pipeline? Traceability andAccountability in Multi-Agent LLM SoftwareEngineering Pipelines",
+    "url": "https://doi.org/10.21203/rs.3.rs-9350097/v1",
+    "abstract": "Abstract Large language models are increasingly embedded across the DevOps pipeline, from planning and code generation to testing and deployment, yet multi-agent LLM pipelines remain opaque: errors propagate silently across stages with no systematic method to attribute failures to specific agents. We present a two-part study of traceable, accountable multi-agent pipelines with structured handoffs and role-level blame attribution. Part I evaluates a Planner, Executor, and Critic pipeline on three multiple-choice benchmarks using eight configurations of three frontier LLMs. Structured accountability recovers accuracy dramatically over unstructured pipelines (e.g., from 61.42% to 97.64%), and blame attribution reveals complementary role-specific aptitudes that enable data-driven model to role casting. Part II extends the pipeline to execution-grounded code generation on HumanEval, MBPP, and BigCodeBench, introducing a fourth Verifier agent. We find that LLM-based test evaluation is not a reliable substitute for actual test execution: false-fail rates reach 93%, triggering unnecessary re-generation that overwrites correct solutions. Replacing the LLM Critic with an execution-based verification harness eliminates verification harm entirely, achieves the highest accuracy on complex tasks, and reduces token cost by up to 57%. Test execution remains an irreplaceable component of the DevOps pipeline that cannot be delegated to LLM judgment alone. We further find that the Planner adds 1.8 to 3.0 times more tokens to the pipeline without meaningful accuracy gains in code generation, as the Executor produces comparable output with or without the Planner's formal specification.",
+    "abstract_status": "available",
+    "authors": [
+      "Jackson Beem",
+      "Amine Barrak",
+      "Emna Ksontini"
+    ],
+    "year": 2026,
+    "retrieved_at": "2026-09-28T08:19:48.633086+00:00",
+    "query": "trust-score-based dynamic role reassignment versus static roles for cascade containment in multi-agent LLM pipelines",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "9d96b7d04c9574cddb144f68b77983790cd3e547e896e137832423cd0a4c87f6"
+  },
+  "doi:10.36227/techrxiv.175693284.49252769/v1": {
+    "id": "doi:10.36227/techrxiv.175693284.49252769/v1",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Adaptive Multi-Agent Role Reassignment over Model Context Protocol for Resilient AI Orchestration",
+    "url": "https://doi.org/10.36227/techrxiv.175693284.49252769/v1",
+    "abstract": "Multi-agent systems powered by large language models (LLMs) can automate complex workflows by dividing tasks among specialised roles such as research, critique and summarisation. Existing orchestration frameworks typically assign these roles statically throughout execution, making them brittle when agents fail or workloads fluctuate. This paper introduces Adaptive Role Reassignment (ARR), the first Model Context Protocol (MCP)-native protocol for real-time, context-preserving role switching in multi-agent LLM environments. ARR extends MCP with two primitives: RoleState, a serialised snapshot of an agent's conversational state, tool usage and pending actions, and RoleSwap, a message type enabling secure hand-off of that state to a new agent. We describe the ARR architecture, present a decision policy for triggering role swaps based on performance and confidence metrics, and evaluate our approach on synthetic stress tests and real-world data-analysis and news-summarisation pipelines. Experiments show that ARR improves task completion rates by up to 28% and reduces recovery latency by over 35% compared to fixed-role baselines, while incurring negligible runtime overhead. A case study of a live news intelligence system illustrates how ARR mitigates bottlenecks and preserves context during agent failures. Our contributions demonstrate that adaptive, MCP-native role reassignment is a critical capability for resilient agentic AI orchestration.",
+    "abstract_status": "available",
+    "authors": [
+      "Manish A Shukla"
+    ],
+    "year": 2025,
+    "retrieved_at": "2026-09-28T08:19:48.633086+00:00",
+    "query": "trust-score-based dynamic role reassignment versus static roles for cascade containment in multi-agent LLM pipelines",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "f2d2b2425e3f0e770847b926556f0b2b07230266fd577e679d4e25fb0221dbb4"
+  },
+  "doi:10.2139/ssrn.5402052": {
+    "id": "doi:10.2139/ssrn.5402052",
+    "source": "crossref",
+    "evidence_kind": "retrieved",
+    "title": "Adaptive Multi-Agent Role Reassignment over Model Context Protocol for Resilient AI Orchestration",
+    "url": "https://doi.org/10.2139/ssrn.5402052",
+    "abstract": "Multi-agent systems powered by large language models (LLMs) can automate complex workflows by dividing tasks among specialised roles such as research, critique and summarisation. Existing orchestration frameworks typically assign these roles statically throughout execution, making them brittle when agents fail or workloads fluctuate. This paper introduces Adaptive Role Reassignment (ARR), the first Model Context Protocol (MCP)-native protocol for real-time, context-preserving role switching in multi-agent LLM environments. ARR extends MCP with two primitives: RoleState, a serialised snapshot of an agent's conversational state, tool usage and pending actions, and RoleSwap, a message type enabling secure hand-off of that state to a new agent. We describe the ARR architecture, present a decision policy for triggering role swaps based on performance and confidence metrics, and evaluate our approach on synthetic stress tests and real-world data-analysis and news-summarisation pipelines. Experiments show that ARR improves task completion rates by up to 28% and reduces recovery latency by over 35% compared to fixed-role baselines, while incurring negligible runtime overhead. A case study of a live news intelligence system illustrates how ARR mitigates bottlenecks and preserves context during agent failures. Our contributions demonstrate that adaptive, MCP-native role reassignment is a critical capability for resilient agentic AI orchestration.",
+    "abstract_status": "available",
+    "authors": [
+      "Manish Shukla"
+    ],
+    "year": 2025,
+    "retrieved_at": "2026-09-28T08:19:48.633086+00:00",
+    "query": "trust-score-based dynamic role reassignment versus static roles for cascade containment in multi-agent LLM pipelines",
+    "untrusted_data": true,
+    "coverage_limit": "Crossref metadata with abstracts only; relevance and novelty are unverified.",
+    "content_sha256": "20c501aa8648fc80ef90335acfec527486eca6c88be44eb70bc33b88e5b818a5"
+  }
+}

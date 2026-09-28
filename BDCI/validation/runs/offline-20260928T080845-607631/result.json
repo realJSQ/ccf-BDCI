@@ -1,0 +1,4 @@
+{
+  "experimenter": "The fixed simulation was executed and its metrics were saved.",
+  "report": "This framework smoke test executed a fixed scheduling simulation and retained its results. Shortest-job-first reduced mean completion time for this particular input.\n\nThis is not a novel research finding. Simulated job time is not measured wall-clock speed. The fixed workload cannot establish performance on real agent workloads."
+}

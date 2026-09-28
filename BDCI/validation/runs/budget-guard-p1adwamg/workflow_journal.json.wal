@@ -1,0 +1,2 @@
+{"key": "[[\"__run__\", 9223372036854775807, \"args\", \"budget-guard-p1adwamg\"]]", "type": "args", "run_id": "budget-guard-p1adwamg", "args": {}}
+{"key": "[[\"call\", 0]]", "sig": "b0d233cb9e871191bf8a4157be6d4b5d67393e1660e60ab87c5dd08d9d4133a4", "run_id": "budget-guard-p1adwamg", "tokens": 4, "label": "experimenter", "phase": null, "kind": "str", "result": "The fixed simulation was executed and its metrics were saved.", "raw_text": "The fixed simulation was executed and its metrics were saved."}

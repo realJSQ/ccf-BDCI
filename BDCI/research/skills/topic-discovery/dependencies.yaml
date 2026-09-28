@@ -1,0 +1,5 @@
+python: '>=3.11'
+framework: existing-pinned-openjiuwen-agent-core
+model: configured-openai-compatible
+literature: public-crossref-api
+runtime: BDCI/.venv

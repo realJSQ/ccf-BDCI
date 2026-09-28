@@ -1,0 +1,2 @@
+{"event": "before_model_call", "call": 1, "tools": ["run_queue_experiment"]}
+{"event": "before_model_call", "call": 2, "tools": ["run_queue_experiment"]}

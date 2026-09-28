@@ -1,0 +1,68 @@
+{
+  "candidates": [
+    {
+      "id": "C1",
+      "title": "Does peer-resistance predict error propagation better than self-confidence in LLM verifier chains?",
+      "research_question": "When a calibrated LLM verifier is paired with a deliberately-wrong peer output, does its measured peer-resistance (acceptance rate of wrong peers) predict downstream error propagation better than its self-confidence calibration?",
+      "hypothesis": "Peer-resistance and self-confidence dissociate; peer-resistance is the stronger predictor of whether a wrong answer survives a two-agent verify step, so a verifier selected on peer-resistance yields lower propagated error than one selected on self-confidence at matched calibration.",
+      "source_ids": [
+        "doi:10.1145/3847307",
+        "doi:10.20944/preprints202512.2748.v1"
+      ],
+      "closest_work_id": "doi:10.1145/3847307",
+      "difference": "The source reports the dissociation and a 42-point verifier-choice spread but, per the abstract, does not report whether peer-resistance is a better *predictor* of propagation than self-confidence at matched calibration; that predictive comparison and the trust-score framing in the second source require full-text checking.",
+      "baseline": "Verifier selected by highest self-confidence calibration (matched control: same model, same prompts, selection rule swapped).",
+      "metric": "Propagated-error rate on held-out items (fraction of wrong peer answers accepted and passed downstream), plus rank correlation between each selection signal and propagation.",
+      "experiment": {
+        "kind": "api_eval",
+        "dataset": "Construct 40 obscure factual questions with known short answers; split 20 calibration / 20 held-out by fixed seed. Wrong peer outputs are scripted (not model-generated) to control error content.",
+        "steps": [
+          "One batched API request per model family returns self-confidence (0-100) and accept/reject for 20 calibration items paired with scripted wrong peers; compute peer-resistance and calibration.",
+          "Select two verifiers by the two rules, run both on the 20 held-out items in one batched request each, and compare propagated-error rates; report the difference and note that N=20 cannot establish significance."
+        ],
+        "max_minutes": 20,
+        "max_api_calls": 6,
+        "needs_gpu": false
+      },
+      "risks": [
+        "Scripted wrong peers may not match naturally occurring correlated errors, inflating peer-resistance.",
+        "Small held-out N gives unstable rate estimates; a null result would not falsify the hypothesis.",
+        "Self-confidence elicitation format may itself shift acceptance behavior (prompt confound)."
+      ]
+    },
+    {
+      "id": "C2",
+      "title": "Does a trust-score-weighted role reassignment reduce cascade propagation versus static roles in a 3-agent chain?",
+      "research_question": "In a three-agent LLM pipeline with one injected failing agent, does dynamically reassigning roles using a running trust score reduce cascade propagation to the other agents compared with static role assignment?",
+      "hypothesis": "Trust-weighted reassignment contains cascades: the number of turns until a second agent degrades is larger under dynamic reassignment than under static roles, at equal total API budget.",
+      "source_ids": [
+        "doi:10.20944/preprints202512.2748.v1",
+        "doi:10.2139/ssrn.6420858"
+      ],
+      "closest_work_id": "doi:10.2139/ssrn.6420858",
+      "difference": "The drift study documents cascade propagation and compensatory expansion under a trait-mutation perturbation but, per the abstract, does not test a trust-based orchestration countermeasure; the trust framework reports aggregate success/time gains but not cascade-onset turns, which requires full-text checking.",
+      "baseline": "Static role assignment with identical agents and the same injected perturbation (matched control).",
+      "metric": "Turns until a second agent's output degrades (cascade onset), scored by a fixed rubric on output substance.",
+      "experiment": {
+        "kind": "api_eval",
+        "dataset": "Six short multi-turn planning scenarios (5-8 turns) authored locally; one agent is perturbed at a fixed turn by a scripted trait mutation. Two conditions, three scenarios each, fixed seed.",
+        "steps": [
+          "Run the static-role condition: one batched request per scenario returns all agent turns; score cascade onset with the rubric.",
+          "Run the trust-reassignment condition on the same scenarios with the same perturbation; compare onset turns and note that three scenarios per condition cannot support significance."
+        ],
+        "max_minutes": 20,
+        "max_api_calls": 6,
+        "needs_gpu": false
+      },
+      "risks": [
+        "Rubric scoring of 'degradation' is subjective and may not be reproducible.",
+        "Perturbation script may dominate behavior, masking any orchestration effect.",
+        "Trust scores computed from few turns may be too noisy to drive reassignment meaningfully."
+      ]
+    }
+  ],
+  "novelty_queries": [
+    "peer-resistance versus self-confidence as predictors of error propagation in LLM verifier chains",
+    "trust-score-based dynamic role reassignment versus static roles for cascade containment in multi-agent LLM pipelines"
+  ]
+}

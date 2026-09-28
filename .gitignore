@@ -1,0 +1,25 @@
+# Local secrets and application state
+/BDCI/apis.txt
+/BDCI/runtime/
+**/.env
+**/.env.local
+**/.env.*.local
+# Reproducible dependencies/build outputs
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.cache/
+**/logs/
+**/*.log
+**/*.lock
+/BDCI/tools/bin/
+/BDCI/tools/tectonic-cache/
+/BDCI/tools/*.zip
+# Archived evidence already committed remains tracked; new runs are local by default.
+/BDCI/research/runs/
+/BDCI/validation/runs/
+/BDCI/research/topic-v1-requests.jsonl
+/BDCI/validation/live_requests.jsonl
+**/*:Zone.Identifier

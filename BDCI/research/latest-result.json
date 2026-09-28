@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "topic_status": "needs_revision",
+  "run_directory": "BDCI/research/runs/live-20260928T081927-158480",
+  "model_calls": 3,
+  "total_tokens": 13480,
+  "pilot_executed": false,
+  "unit_tests": 44,
+  "offline_framework": "passed",
+  "budget_guard": "passed"
+}

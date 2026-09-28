@@ -1,0 +1,43 @@
+{
+  "mode": "live",
+  "model": "deepseek-flash",
+  "pilot_executed": false,
+  "cost": null,
+  "status": "completed",
+  "topic_status": "needs_revision",
+  "source_count": 19,
+  "candidate_count": 2,
+  "selected_candidate_id": null,
+  "model_calls": 3,
+  "model_usage": [
+    {
+      "input_tokens": 253,
+      "output_tokens": 74,
+      "total_tokens": 327,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260928T081927-158480",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 3792,
+      "output_tokens": 1029,
+      "total_tokens": 4821,
+      "event": "usage",
+      "call": 2,
+      "run_id": "live-20260928T081927-158480",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 7548,
+      "output_tokens": 784,
+      "total_tokens": 8332,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-20260928T081927-158480",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 13480,
+  "duration_seconds": 20.035257723000086
+}

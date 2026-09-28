@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\title{Research Agent Framework Smoke Test}\author{Validation artifact}\date{}\maketitle
+\textbf{OFFLINE SCRIPTED MODEL. Not a competition submission.}
+
+\section*{Observed execution}
+This framework smoke test executed a fixed scheduling simulation and retained its results. Shortest-job-first reduced mean completion time for this particular input.
+
+This is not a novel research finding. Simulated job time is not measured wall-clock speed. The fixed workload cannot establish performance on real agent workloads.
+
+\section*{Deterministically verified metrics}
+\begin{tabular}{lr}
+Metric & Value \\
+\hline
+job\_count & 5 \\
+fifo\_mean\_completion\_units & 16.2 \\
+sjf\_mean\_completion\_units & 11.0 \\
+total\_service\_units & 25 \\
+\end{tabular}
+
+Input job durations were [9, 1, 7, 3, 5] abstract service units. All jobs arrived together on one non-preemptive server. Means are computed from exact completion times, not LLM estimates.
+\end{document}

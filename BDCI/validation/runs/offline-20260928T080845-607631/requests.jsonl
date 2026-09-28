@@ -1,0 +1,3 @@
+{"run_id": "offline-20260928T080845-607631", "admission": 1, "max_output_tokens": 512, "timestamp": "2026-09-28T08:08:51.722073+00:00", "mode": "offline"}
+{"run_id": "offline-20260928T080845-607631", "admission": 2, "max_output_tokens": 512, "timestamp": "2026-09-28T08:08:51.789306+00:00", "mode": "offline"}
+{"run_id": "offline-20260928T080845-607631", "admission": 3, "max_output_tokens": 512, "timestamp": "2026-09-28T08:08:51.809127+00:00", "mode": "offline"}

@@ -1,0 +1,12 @@
+{
+  "run_id": "live-20260928T080913-827750",
+  "exit_code": 0,
+  "metrics_path": "metrics.json",
+  "metrics_sha256": "086177ec2a3cbb71f01198988cce2e4c91dc44ed84e8007807acad7995535bc7",
+  "command": [
+    "/home/jsqke/lpyproject/BDCI/.venv/bin/python",
+    "/home/jsqke/lpyproject/BDCI/validation/queue_experiment.py",
+    "/home/jsqke/lpyproject/BDCI/validation/runs/live-20260928T080913-827750/metrics.json"
+  ],
+  "duration_seconds": 0.04349624299993593
+}

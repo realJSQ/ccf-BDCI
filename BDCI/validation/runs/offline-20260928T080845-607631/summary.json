@@ -1,0 +1,41 @@
+{
+  "status": "framework_passed",
+  "mode": "offline_scripted",
+  "model_calls": 3,
+  "source_rail_accepted": 1,
+  "source_rail_rejected": 0,
+  "model_usage": [
+    {
+      "call": 1,
+      "input_tokens": 1,
+      "output_tokens": 1,
+      "total_tokens": 2,
+      "finish_reason": "tool_calls",
+      "mode": "offline_scripted"
+    },
+    {
+      "call": 2,
+      "input_tokens": 1,
+      "output_tokens": 1,
+      "total_tokens": 2,
+      "finish_reason": "stop",
+      "mode": "offline_scripted"
+    },
+    {
+      "call": 3,
+      "input_tokens": 1,
+      "output_tokens": 1,
+      "total_tokens": 2,
+      "finish_reason": "stop",
+      "mode": "offline_scripted"
+    }
+  ],
+  "duration_seconds": 0.20367121799972665,
+  "metrics": {
+    "job_count": 5,
+    "fifo_mean_completion_units": 16.2,
+    "sjf_mean_completion_units": 11.0,
+    "total_service_units": 25
+  },
+  "cost": null
+}

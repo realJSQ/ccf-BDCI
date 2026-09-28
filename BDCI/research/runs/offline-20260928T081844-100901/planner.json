@@ -1,0 +1,7 @@
+{
+  "queries": [
+    "synthetic agent evaluation",
+    "synthetic agent reliability"
+  ],
+  "rationale": "Offline contract test"
+}

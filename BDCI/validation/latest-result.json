@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "run_directory": "BDCI/validation/runs/live-20260928T080913-827750",
+  "model_calls": 3,
+  "total_tokens": 1498,
+  "pdf": "BDCI/validation/runs/live-20260928T080913-827750/report.pdf",
+  "pdf_pages": 1,
+  "pdf_sha256": "b02f1bd98dfa4939ac919f90956a22f9b5207ab6d2d61f4a793593469ef52205",
+  "budget_guard": "passed",
+  "evidence_unit_tests": 9
+}

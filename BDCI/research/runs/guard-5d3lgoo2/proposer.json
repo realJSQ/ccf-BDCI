@@ -1,0 +1,34 @@
+{
+  "candidates": [
+    {
+      "id": "TEST-C1",
+      "title": "SYNTHETIC pipeline test, not a research topic",
+      "research_question": "Can the pipeline retain and gate a hypothetical comparison?",
+      "hypothesis": "A synthetic placeholder, not a scientific hypothesis.",
+      "source_ids": [
+        "synthetic:fixture-1",
+        "synthetic:fixture-2"
+      ],
+      "closest_work_id": "synthetic:fixture-1",
+      "difference": "No real novelty claim.",
+      "baseline": "Synthetic control",
+      "metric": "Synthetic count",
+      "experiment": {
+        "kind": "local_python",
+        "dataset": "Synthetic contract fixture",
+        "steps": [
+          "Validate schema only; do not execute a pilot"
+        ],
+        "max_minutes": 1,
+        "max_api_calls": 0,
+        "needs_gpu": false
+      },
+      "risks": [
+        "This fixture is not real literature or a research proposal."
+      ]
+    }
+  ],
+  "novelty_queries": [
+    "synthetic competing work"
+  ]
+}

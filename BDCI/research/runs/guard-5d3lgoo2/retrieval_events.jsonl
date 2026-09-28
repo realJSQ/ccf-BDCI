@@ -1,0 +1,3 @@
+{"query": "synthetic agent evaluation", "ids": ["synthetic:fixture-1", "synthetic:fixture-2"], "mode": "synthetic", "cache_hit": null}
+{"query": "synthetic agent reliability", "ids": ["synthetic:fixture-1", "synthetic:fixture-2"], "mode": "synthetic", "cache_hit": null}
+{"query": "synthetic competing work", "ids": ["synthetic:fixture-1", "synthetic:fixture-2"], "mode": "synthetic", "cache_hit": null}

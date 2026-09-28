@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "mode": "offline_scripted",
+  "error_type": "TimeoutError",
+  "model_calls": 0,
+  "model_usage": [],
+  "duration_seconds": 240.05099515499978
+}

@@ -1,0 +1,22 @@
+{
+  "status": "eligible_for_pilot",
+  "eligible_candidate_ids": [
+    "TEST-C1"
+  ],
+  "decisions": [
+    {
+      "candidate_id": "TEST-C1",
+      "status": "eligible_for_pilot",
+      "reasons": []
+    }
+  ],
+  "evidence_mode": "synthetic",
+  "live_pilot_allowed": false,
+  "novelty_proven": false,
+  "competition_score": null,
+  "limitations": [
+    "Abstract-based screening cannot establish novelty.",
+    "Eligibility does not validate scientific merit or results.",
+    "Pilot budgets are per candidate; execution requires aggregate accounting."
+  ]
+}

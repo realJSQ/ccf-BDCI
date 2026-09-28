@@ -1,0 +1,9 @@
+skills: []
+tools:
+  - name: run_queue_experiment
+    required: true
+runtime:
+  - openjiuwen.agent_teams.workflow
+  - jiuwenswarm.agents.harness.common.rails.research_evidence_rail
+  - python3
+  - tectonic

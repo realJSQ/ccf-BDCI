@@ -1,0 +1,40 @@
+{
+  "compiler": "Tectonic 0.17.0",
+  "checks": [
+    {
+      "path": "BDCI/validation/latex/smoke.pdf",
+      "bytes": 25163,
+      "sha256": "1183fd0194218421b98759bd1aac85fcee22fe717239a60450dea36cd73f4f8d",
+      "pdf_header": "%PDF-1.5",
+      "has_eof": true,
+      "online_compile_exit": 0,
+      "offline_compile_exit": 0,
+      "pages_reported_by_tex": 1
+    },
+    {
+      "path": "BDCI/validation/latex/iclr-build/iclr2026_conference.pdf",
+      "bytes": 72072,
+      "sha256": "44313317355383c55a1953d7ab1cbbf327059f977ed081450bade88f8e7dc9bf",
+      "pdf_header": "%PDF-1.5",
+      "has_eof": true,
+      "online_compile_exit": 0,
+      "offline_compile_exit": 0,
+      "limitations": "Default TU encoding substitutes Times font shapes. Use iclr-tectonic.tex T1 entry point."
+    },
+    {
+      "path": "BDCI/validation/latex/iclr-build/iclr-tectonic.pdf",
+      "bytes": 67048,
+      "sha256": "ab8c358ef6c0a54bb8b20a5bcdb73f7e36459adae4e63bb6d783179af142f16f",
+      "pdf_header": "%PDF-1.5",
+      "has_eof": true,
+      "online_compile_exit": 0,
+      "offline_compile_exit": 0,
+      "pages_reported_by_tex": 7,
+      "font_shape_warnings": false
+    }
+  ],
+  "binary_bytes": 26401904,
+  "cache_bytes": 45094819,
+  "iclr_warnings": "T1 entry point: Underfull vbox only, no font-shape substitution warnings.",
+  "scope": "Compilation smoke tests only; not scientific validity, final submission formatting, or upstream provider integration."
+}

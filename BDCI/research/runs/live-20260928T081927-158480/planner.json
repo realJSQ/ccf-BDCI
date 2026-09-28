@@ -1,0 +1,7 @@
+{
+  "queries": [
+    "LLM agent tool-use reliability evaluation benchmark failure modes",
+    "language model agent planning memory coordination evaluation small-scale reproducible"
+  ],
+  "rationale": "Two complementary searches: one on tool-use reliability and failure-mode benchmarks, one on planning/memory/coordination evaluation methods, both suited to CPU-only, low-API-budget falsifiable studies."
+}

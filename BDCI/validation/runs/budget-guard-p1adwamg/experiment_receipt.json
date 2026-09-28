@@ -1,0 +1,12 @@
+{
+  "run_id": "budget-guard-p1adwamg",
+  "exit_code": 0,
+  "metrics_path": "metrics.json",
+  "metrics_sha256": "086177ec2a3cbb71f01198988cce2e4c91dc44ed84e8007807acad7995535bc7",
+  "command": [
+    "/home/jsqke/lpyproject/BDCI/.venv/bin/python",
+    "/home/jsqke/lpyproject/BDCI/validation/queue_experiment.py",
+    "/home/jsqke/lpyproject/BDCI/validation/runs/budget-guard-p1adwamg/metrics.json"
+  ],
+  "duration_seconds": 0.05586695000010877
+}

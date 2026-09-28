@@ -1,0 +1,34 @@
+{
+  "synthetic:fixture-1": {
+    "id": "synthetic:fixture-1",
+    "source": "synthetic",
+    "evidence_kind": "synthetic",
+    "title": "SYNTHETIC TEST FIXTURE — not a published paper",
+    "url": null,
+    "abstract": "Synthetic schema test only; no literature or novelty evidence.",
+    "abstract_status": "synthetic",
+    "authors": [],
+    "year": null,
+    "retrieved_at": "2026-09-28T08:18:50.269880+00:00",
+    "query": "synthetic agent evaluation",
+    "untrusted_data": true,
+    "coverage_limit": "No real source; forbidden as research evidence.",
+    "content_sha256": "9951b19a5591c2b7d22752338680bba500d228b3a6dd57d28e51d84753155071"
+  },
+  "synthetic:fixture-2": {
+    "id": "synthetic:fixture-2",
+    "source": "synthetic",
+    "evidence_kind": "synthetic",
+    "title": "SYNTHETIC TEST FIXTURE — not a published paper",
+    "url": null,
+    "abstract": "Synthetic schema test only; no literature or novelty evidence.",
+    "abstract_status": "synthetic",
+    "authors": [],
+    "year": null,
+    "retrieved_at": "2026-09-28T08:18:50.269962+00:00",
+    "query": "synthetic agent evaluation",
+    "untrusted_data": true,
+    "coverage_limit": "No real source; forbidden as research evidence.",
+    "content_sha256": "a0371ae49b9b818ca667a0da61b6db96e198f0aa4b387b8972c695a3c42ca25e"
+  }
+}

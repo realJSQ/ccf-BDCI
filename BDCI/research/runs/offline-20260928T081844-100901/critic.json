@@ -1,0 +1,10 @@
+{
+  "critiques": [
+    {
+      "candidate_id": "TEST-C1",
+      "novelty_concern": "Synthetic only",
+      "verdict": "advance",
+      "reason": "Exercise gate; no live pilot allowed"
+    }
+  ]
+}

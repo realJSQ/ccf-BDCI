@@ -1,0 +1,17 @@
+{
+  "scope": "BDCI project snapshot",
+  "upstream_repository": "https://atomgit.com/openJiuwen/jiuwenswarm",
+  "upstream_commit": "fc18e5c572a6b3b62bb42ea843cce674140e4266",
+  "copied_files": 5037,
+  "excluded": [
+    "API credentials",
+    "virtual environments",
+    "runtime configuration",
+    "node_modules",
+    "generated logs",
+    "compiler binary and cache",
+    "browser webpage snapshot",
+    "nested Git metadata"
+  ],
+  "upstream_history_included": false
+}

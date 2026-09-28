@@ -1,0 +1,6 @@
+# Copy to apis.txt locally and replace the placeholder. Never commit apis.txt.
+provider: DeepSeek
+api_base: https://api.deepseek.com
+model: deepseek-flash
+api_key: REPLACE_WITH_YOUR_KEY
+# Existing live campaigns are already spent. Offline mode needs no key.

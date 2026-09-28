@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "mode": "offline_scripted",
+  "model_call_limit": 2,
+  "admissions": 2,
+  "responses": 2,
+  "expected_cancellation": "smoke_model_call_limit",
+  "writer_result_created": false,
+  "description": "The real model-call Rail rejected writer before the third scripted model request."
+}
