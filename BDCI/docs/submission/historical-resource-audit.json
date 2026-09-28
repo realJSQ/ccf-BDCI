@@ -1,0 +1,78 @@
+{
+  "scope": "Historical real development campaigns, not a new final submission run",
+  "stages": [
+    {
+      "stage": "framework_smoke",
+      "directory": "BDCI/validation/runs/live-20260928T080913-827750",
+      "usage_source": "BDCI/validation/runs/live-20260928T080913-827750/model_usage.jsonl",
+      "calls": 3,
+      "input_tokens": 1188,
+      "output_tokens": 310,
+      "total_tokens": 1498,
+      "recorded_durations": {
+        "summary.json": {
+          "duration_seconds": 4.78895615600004
+        }
+      }
+    },
+    {
+      "stage": "topic_discovery",
+      "directory": "BDCI/research/runs/live-20260928T081927-158480",
+      "usage_source": "BDCI/research/runs/live-20260928T081927-158480/model_usage.jsonl",
+      "calls": 3,
+      "input_tokens": 11593,
+      "output_tokens": 1887,
+      "total_tokens": 13480,
+      "recorded_durations": {
+        "summary.json": {
+          "duration_seconds": 20.035257723000086
+        }
+      }
+    },
+    {
+      "stage": "pilot",
+      "directory": "BDCI/research/pilot_runs/live-20260928T084134-196833",
+      "usage_source": "BDCI/research/pilot_runs/live-20260928T084134-196833/model_usage.jsonl",
+      "calls": 6,
+      "input_tokens": 13567,
+      "output_tokens": 2609,
+      "total_tokens": 16176,
+      "recorded_durations": {
+        "model_summary.json": {
+          "duration_seconds": 15.210272203000386
+        },
+        "summary.json": {
+          "duration_seconds": 15.210272203000386
+        }
+      }
+    },
+    {
+      "stage": "paper",
+      "directory": "BDCI/research/paper_runs/live-20260928T104912-411414",
+      "usage_source": "BDCI/research/paper_runs/live-20260928T104912-411414/model_usage.jsonl",
+      "calls": 3,
+      "input_tokens": 17170,
+      "output_tokens": 4114,
+      "total_tokens": 21284,
+      "recorded_durations": {
+        "model_summary.json": {
+          "duration_seconds": 18.320782554999823
+        },
+        "summary.json": {
+          "duration_seconds": 18.320782554999823,
+          "end_to_end_duration_seconds": 1.6651238039994496
+        }
+      }
+    }
+  ],
+  "total_calls": 15,
+  "total_tokens": 52438,
+  "actual_monetary_cost": null,
+  "wall_clock_end_to_end_seconds": null,
+  "limitations": [
+    "Recorded stage durations have different boundaries; do not sum them into end-to-end elapsed time.",
+    "Offline scripted runs are excluded.",
+    "This is API-reported usage, not a provider invoice.",
+    "Paper resume duration is local recovery, not total research duration."
+  ]
+}
