@@ -1,0 +1,41 @@
+{
+  "mode": "live",
+  "status": "completed",
+  "cost": null,
+  "team_name": "research_revision",
+  "max_output_tokens": 3200,
+  "model_calls": 3,
+  "model_usage": [
+    {
+      "input_tokens": 1941,
+      "output_tokens": 1845,
+      "total_tokens": 3786,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260928T141945-771317",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 3347,
+      "output_tokens": 1275,
+      "total_tokens": 4622,
+      "event": "usage",
+      "call": 2,
+      "run_id": "live-20260928T141945-771317",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 4750,
+      "output_tokens": 1930,
+      "total_tokens": 6680,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-20260928T141945-771317",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 15088,
+  "duration_seconds": 25.14016860600168,
+  "handoff": "development_handoff",
+  "new_experiment_calls": 0
+}

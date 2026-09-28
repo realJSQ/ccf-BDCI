@@ -1,0 +1,52 @@
+{
+  "reviews": [
+    {
+      "candidate_id": "C1",
+      "verdict": "revise",
+      "source_ids": [
+        "arxiv:2607.11098v1",
+        "arxiv:2608.12761v1"
+      ],
+      "reasons": [
+        "Central claimed difference is largely pre-empted: AgentCheck (arxiv:2607.11098v1) already runs paired clean/injected-fault/mitigation episodes with cached tool results and deterministic or model-based judgments, and its notes explicitly name compound and cascading failures as a possible extension rather than an unoccupied gap.",
+        "The proposed 'cascade-aware attribution gate' overlaps with Matrix's existing selective invalidation and bounded recovery over versioned dependencies (arxiv:2608.12761v1); a dependency-propagation rule is not a new mechanism relative to that source.",
+        "Tautological-evaluation risk: the primary metric (correct completion on compound-fault episodes) is scored by a deterministic reference evaluator that also defines the ground-truth labels; the candidate itself flags 'evaluator-side leakage' as a falsification condition, which is a design smell rather than a resolved issue.",
+        "Weak-baseline risk: the 'per-fault injection + mitigation' baseline is described as AgentCheck-style but the candidate does not specify whether it is the published configuration or a re-implementation; without that, any margin is uninterpretable.",
+        "Sample-independence risk: the pilot reports 6 API calls and the previous pilot had floor effects at 1/24 exact accuracy; no power analysis, no task-family independence argument, and no accounting of API calls per condition beyond a single number.",
+        "Uncounted API calls: 'pilot_api_calls: 6' is not decomposed by condition, episode, or baseline, so cost comparisons against Matrix's operational-cost requirement (arxiv:2608.12761v1) cannot be made.",
+        "Privileged oracle access: the gate is tuned on a development split and evaluated on held-out episodes, but the reference evaluator is available to the analysis pipeline; the candidate does not state whether the gate can query it at inference time."
+      ],
+      "required_changes": [
+        "Reframe the contribution as an empirical comparison answering a specific unresolved operational question: does a per-fault mitigation baseline already catch cascades, or does cascade-aware attribution add measurable value? Drop any algorithmic-novelty framing.",
+        "Pre-register the exact baseline configuration (published AgentCheck settings vs. re-implementation) and report both if they differ.",
+        "Separate the label-generating oracle from the gate at inference time and document that separation; add a trivial-evaluator control as a pre-registered condition, not just a post-hoc check.",
+        "Report API calls per episode, per condition, and per baseline, with uncertainty intervals; include a power analysis before any margin claim.",
+        "Use at least two independent task families with independently authored episodes and report per-family results, not pooled.",
+        "Add a no-gate control and a provenance-contract-only control to isolate the attribution rule from the evaluator."
+      ],
+      "acceptable_claim": "If a sound held-out experiment supports it: 'On two CPU workflow families with independently authored compound-fault episodes, a cascade-aware attribution gate changed correct-completion rate by X (CI) relative to a per-fault injection-and-mitigation baseline, with false-block rate Y on clean episodes.' No novelty, significance, or generalization claim."
+    },
+    {
+      "candidate_id": "C2",
+      "verdict": "reject",
+      "source_ids": [
+        "arxiv:2608.18312v1",
+        "arxiv:2605.26340v1"
+      ],
+      "reasons": [
+        "Central claimed difference is already in the supplied sources: artifact-centered observability (arxiv:2608.18312v1) explicitly represents artifacts, claims, evidence bindings, lineage and verification records, and tracks invalid evidence; a mutation-triggered re-verification rule is a relabeling of that mechanism.",
+        "ScientistOne (arxiv:2605.26340v1) already audits evidence chains, score reproduction, specification compliance, reference existence and method-code agreement, including numerical discrepancies and metric-direction mismatches; the proposed 're-verification gate' overlaps directly with these audits.",
+        "Tautological evaluation: the primary metric (correct claim rate on mutation episodes) is defined by a deterministic reference evaluator that recomputes the claim from the mutated evidence; the gate is then compared against a baseline on the same labels, so the gate can only win by matching the evaluator, which is the evaluator's job.",
+        "Weak baselines: 'provenance-record with invalidation' and 'evidence-chain audit' are described as style-matched but not pinned to specific published configurations; without that, the comparison is against a strawman.",
+        "Sample independence: 6 pilot API calls, no power analysis, and the previous pilot's floor effects (1/24) suggest the mutation episodes will not yield interpretable variance.",
+        "Uncounted API calls: cost is listed as a secondary metric but no per-condition accounting is specified, despite Matrix's explicit call for operational cost measurements (arxiv:2608.12761v1).",
+        "Privileged oracle access: the gate is tuned on development episodes and the reference evaluator is available to the pipeline; the candidate does not rule out the gate reading the evaluator's recomputation."
+      ],
+      "required_changes": [],
+      "acceptable_claim": "None as framed. A defensible reformulation would need to answer a specific unresolved operational question not already covered by arxiv:2608.18312v1 or arxiv:2605.26340v1, with independently authored claims, a pinned baseline configuration, and a gate that cannot access the reference evaluator."
+    }
+  ],
+  "preferred_candidate_id": "C1",
+  "novelty_status": "unestablished",
+  "research_readiness": "development_only"
+}

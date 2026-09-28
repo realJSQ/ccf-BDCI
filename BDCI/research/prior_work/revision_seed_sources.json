@@ -1,0 +1,41 @@
+{
+  "curation": "Assistant-supplied seed bibliography from official arXiv sections read with the web tool on 2026-09-28. These paraphrased reading notes are not independent replications or an exhaustive novelty search. The research agent must propose its own candidates and targeted follow-up queries.",
+  "sources": [
+    {
+      "id": "arxiv:2607.11098v1",
+      "title": "AgentCheck: A Reproduce–Intervene–Mitigate Workbench for LLM Agents over MCP",
+      "url": "https://arxiv.org/html/2607.11098v1",
+      "year": 2026,
+      "evidence_scope": "Official HTML sections on experimental setup, limitations and responsible use, read via web; not independently reproduced.",
+      "reading_note": "The work uses paired clean, injected-fault and mitigation runs, including cached tool results and deterministic or model-based judgments. It already covers tool-fault injection and basic mitigation comparisons. Its stated scope is individual injected faults; compound and cascading failures are a possible extension, not proof of an unoccupied research gap. A successful mitigation verdict concerns the tested scenario rather than general robustness.",
+      "publication_status": "arXiv preprint; no peer-review status inferred"
+    },
+    {
+      "id": "arxiv:2608.12761v1",
+      "title": "Correct Is Not Governed: Provenance Integrity in Agentic Workflows",
+      "url": "https://arxiv.org/html/2608.12761v1",
+      "year": 2026,
+      "evidence_scope": "Official HTML abstract, mechanism, transfer failure and sections 8–9, read via web; not independently reproduced.",
+      "reading_note": "Matrix already joins versioned dependencies, evidence contracts, completion checks, selective invalidation and bounded recovery. Correct task outcomes and valid provenance are evaluated separately. A transfer test exposed excessive rejection, showing that mechanically enforcing a contract does not validate that contract. The paper calls for independent task authorship, matched strong baselines, held-out complete and incomplete cases, and operational cost measurements. Neither selective replay nor a provenance graph alone is a new contribution.",
+      "publication_status": "arXiv preprint; no peer-review status inferred"
+    },
+    {
+      "id": "arxiv:2608.18312v1",
+      "title": "Artifact-centered Claim-aware Observability for Autonomous Scientific Agents",
+      "url": "https://arxiv.org/html/2608.18312v1",
+      "year": 2026,
+      "evidence_scope": "Official HTML sections 5–8 and examples, read via web; not independently reproduced.",
+      "reading_note": "The proposed observability profile explicitly represents research artifacts, claims, evidence bindings, lineage and verification records. Examples bind numerical claims to particular metric values and track invalid evidence. It discusses audit benchmarks, reviewer utility and overhead. It does not claim that recording provenance establishes scientific truth. Any proposed claim-evidence binding or hash mechanism must acknowledge this direct overlap and compare against strong existing records.",
+      "publication_status": "arXiv preprint; no peer-review status inferred"
+    },
+    {
+      "id": "arxiv:2605.26340v1",
+      "title": "ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence",
+      "url": "https://arxiv.org/html/2605.26340v1",
+      "year": 2026,
+      "evidence_scope": "Official HTML verification, limitations and Appendix D/E, read via web; reported outcomes not independently reproduced.",
+      "reading_note": "The system and audit already address research evidence chains, score reproduction, specification compliance, reference existence and method-code agreement. Reported failures include numerical discrepancies, cross-stage selection and metric-direction mismatches. Evaluation uses domains with checkable outcomes; citation existence does not establish passage-level support. Structural integrity audits do not themselves establish novelty or significance. A new study must distinguish itself from these mechanisms rather than relabel them.",
+      "publication_status": "arXiv preprint; no peer-review status inferred"
+    }
+  ]
+}
