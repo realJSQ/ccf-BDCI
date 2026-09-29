@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 
 from native_runner import native_run
+from protocol_graph import analyze_graph_example
 from replay_paper_evidence import build_evidence, sources, digest
 from run_method_revision import text, strings, references
 from run_topics import write_json
@@ -180,6 +181,18 @@ def validate_design(value, source_ids):
         policy_ids.append(policy['id'])
     if len(set(policy_ids)) != len(policy_ids) or not {'model_only', 'full_replay'} <= set(policy_ids):
         raise ValueError('missing_strong_controls')
+    example = value.get('graph_example')
+    if not isinstance(example, dict) or set(example) != {'input', 'expected'}:
+        raise ValueError('missing_executable_graph_example')
+    expected = example['expected']
+    if (not isinstance(expected, dict) or set(expected) != {'provenance_current', 'tool_attempts', 'termination'}
+            or type(expected['provenance_current']) is not bool
+            or type(expected['tool_attempts']) is not int or expected['tool_attempts'] < 0
+            or expected['termination'] not in ('emitted', 'refused', 'tool_budget_exhausted')):
+        raise ValueError('invalid_graph_prediction')
+    result = analyze_graph_example(example['input'])
+    if not result['closure_claim_valid'] or any(result[key] != expected[key] for key in expected):
+        raise ValueError('graph_example_prediction_mismatch')
 
 
 class FollowupState:

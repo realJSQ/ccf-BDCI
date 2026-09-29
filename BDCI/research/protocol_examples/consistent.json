@@ -1,0 +1,58 @@
+{
+  "case_id": "tabular-17",
+  "scenario": "incomplete_lineage",
+  "plan": {
+    "actions": [
+      {
+        "op": "rerun",
+        "node": "read_aux"
+      },
+      {
+        "op": "rerun",
+        "node": "summarize_aux"
+      },
+      {
+        "op": "rerun",
+        "node": "combine"
+      },
+      {
+        "op": "rerun",
+        "node": "report"
+      },
+      {
+        "op": "emit"
+      }
+    ]
+  },
+  "claimed_changed_sources": [
+    "read_aux"
+  ],
+  "claimed_closure": [
+    "read_aux",
+    "summarize_aux"
+  ],
+  "predictions": {
+    "A": {
+      "outcome": "correct_completion",
+      "tool_calls": 4
+    },
+    "B": {
+      "outcome": "correct_completion",
+      "tool_calls": 4
+    },
+    "C": {
+      "outcome": "correct_completion",
+      "tool_calls": 6
+    },
+    "D": {
+      "outcome": "correct_completion",
+      "tool_calls": 4
+    }
+  },
+  "resources": {
+    "base_instances": 6,
+    "scenarios": 3,
+    "prompt_conditions": 2,
+    "planned_api_calls": 36
+  }
+}

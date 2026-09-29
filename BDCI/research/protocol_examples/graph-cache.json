@@ -1,0 +1,61 @@
+{
+  "input": {
+    "nodes": [
+      "source",
+      "combine",
+      "report"
+    ],
+    "actual_dependencies": {
+      "source": [],
+      "combine": [
+        "source"
+      ],
+      "report": [
+        "combine"
+      ]
+    },
+    "declared_dependencies": {
+      "source": [],
+      "combine": [
+        "source"
+      ],
+      "report": [
+        "combine"
+      ]
+    },
+    "changed_sources": [
+      "source"
+    ],
+    "cached_source_versions": {
+      "source": 1
+    },
+    "current_source_versions": {
+      "source": 2
+    },
+    "actions": [
+      {
+        "op": "rerun",
+        "node": "source"
+      },
+      {
+        "op": "rerun",
+        "node": "combine"
+      },
+      {
+        "op": "emit",
+        "node": "report"
+      }
+    ],
+    "claimed_closure": [
+      "source",
+      "combine",
+      "report"
+    ],
+    "tool_budget": 3
+  },
+  "expected": {
+    "provenance_current": false,
+    "tool_attempts": 2,
+    "termination": "emitted"
+  }
+}

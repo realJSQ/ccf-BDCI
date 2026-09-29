@@ -1,0 +1,214 @@
+{
+  "date": "2026-09-29",
+  "full_tests_passed": 193,
+  "new_model_calls": 0,
+  "illustrative_examples_not_experiments": true,
+  "unpacked_bundle_verification": {
+    "status": "verified_saved_candidate",
+    "files": 501,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 24015
+    }
+  },
+  "checks": {
+    "inconsistent": {
+      "claims_consistent": false,
+      "issues": [
+        {
+          "code": "experiment_request_budget",
+          "computed_calls": 54,
+          "claimed_calls": 54,
+          "maximum": 36
+        },
+        {
+          "code": "claimed_changed_sources_mismatch",
+          "expected": [
+            "read_aux"
+          ],
+          "claimed": [
+            "read_main"
+          ]
+        },
+        {
+          "code": "claimed_closure_mismatch",
+          "expected": [
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ],
+          "claimed": [
+            "read_aux",
+            "summarize_aux",
+            "combine"
+          ]
+        },
+        {
+          "code": "policy_prediction_mismatch",
+          "policy": "A",
+          "expected": {
+            "outcome": "wrong_completion",
+            "tool_calls": 3
+          },
+          "claimed": {
+            "outcome": "correct_completion",
+            "tool_calls": 3
+          }
+        },
+        {
+          "code": "policy_prediction_mismatch",
+          "policy": "B",
+          "expected": {
+            "outcome": "wrong_completion",
+            "tool_calls": 3
+          },
+          "claimed": {
+            "outcome": "correct_completion",
+            "tool_calls": 3
+          }
+        }
+      ],
+      "policy_checks": {
+        "A": {
+          "outcome": "wrong_completion",
+          "tool_calls": 3,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine"
+          ]
+        },
+        "B": {
+          "outcome": "wrong_completion",
+          "tool_calls": 3,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine"
+          ]
+        },
+        "C": {
+          "outcome": "correct_completion",
+          "tool_calls": 6,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_main",
+            "summarize_main",
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        },
+        "D": {
+          "outcome": "correct_completion",
+          "tool_calls": 4,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        }
+      },
+      "declared_closure": [
+        "read_aux",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "changed_sources": [
+        "read_aux"
+      ],
+      "new_model_calls": 0,
+      "scientific_certification": false,
+      "experiment_execution_enabled": false,
+      "scope": "Illustrative check on the existing six-node CPU adapter; no new model observation or independent validation."
+    },
+    "consistent": {
+      "claims_consistent": true,
+      "issues": [],
+      "policy_checks": {
+        "A": {
+          "outcome": "correct_completion",
+          "tool_calls": 4,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        },
+        "B": {
+          "outcome": "correct_completion",
+          "tool_calls": 4,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        },
+        "C": {
+          "outcome": "correct_completion",
+          "tool_calls": 6,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_main",
+            "summarize_main",
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        },
+        "D": {
+          "outcome": "correct_completion",
+          "tool_calls": 4,
+          "status": "completed",
+          "reason": null,
+          "executed_nodes": [
+            "read_aux",
+            "summarize_aux",
+            "combine",
+            "report"
+          ]
+        }
+      },
+      "declared_closure": [
+        "read_aux",
+        "summarize_aux"
+      ],
+      "changed_sources": [
+        "read_aux"
+      ],
+      "new_model_calls": 0,
+      "scientific_certification": false,
+      "experiment_execution_enabled": false,
+      "scope": "Illustrative check on the existing six-node CPU adapter; no new model observation or independent validation."
+    }
+  },
+  "zip_sha256": "79af9bafe766c2f53a007198f278c36343ff5ec735d2b2c7df1a38c15bccf994",
+  "temporary_archive": "/tmp/bdci-graph-candidate-s5zgtzdj/build/replay-candidate.zip",
+  "source_sha256": {
+    "protocol_graph.py": "3fa6f08b1305b8a626b4a275689df7d94715332b686a5ef9b4f915ef21b55e3f",
+    "run_followup_design.py": "060adda4c4f091239f4bd11800c103049530972e299fe81c51f6b07ebf6a1cc2",
+    "check_recovery_example.py": "250175e782c507bb2dffd81ce67b53c0fb7fb87a053710f224c92422eb7f5fe2",
+    "paper_bundle.py": "bf03087e3bb3a92b6848f6e45b68f0ce650fe28019a7f9b50da266efe72ca7ed"
+  }
+}

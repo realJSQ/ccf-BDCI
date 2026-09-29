@@ -58,3 +58,19 @@ worked_example must specify a concrete graph, current data, fault, model plan,
 and the distinct predicted behavior of at least two policies. Check all edges
 and closure calculations explicitly. This is a hypothetical implementation
 example, not an experimental observation; no new data are generated here.
+
+Future proposed designs also require graph_example={input, expected}. This is a
+mechanically checked illustrative dependency/cache contract, not numerical truth.
+input must contain exactly: nodes (topological node-id list, <=64),
+actual_dependencies and declared_dependencies (node->parent-id lists),
+changed_sources (root ids exactly matching version differences),
+cached_source_versions and current_source_versions (root->nonnegative integer),
+actions (rerun/emit with node, or refuse without node; exactly one final emit/refuse),
+claimed_closure (changed roots plus all declared descendants), tool_budget (0..128).
+Rerun reads existing parent caches; emit reads the existing output cache without
+recomputation. All nodes initially contain source versions from the cached graph.
+expected must contain exactly provenance_current (bool), tool_attempts (int),
+termination (emitted/refused/tool_budget_exhausted). A correctly predicted stale
+output is a valid diagnostic example; do not claim freshness merely after emit.
+This checker does not prove numeric correctness or novelty. Keep other prose fields
+brief (about 60 words each, worked_example about 150); avoid repeating evidence.

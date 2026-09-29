@@ -186,9 +186,13 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
             _copy(source, stage / 'code/BDCI/research' / source.name, research)
         if (research / 'replay_protocol.json').exists():
             _copy(research / 'replay_protocol.json', stage / 'code/BDCI/research/replay_protocol.json', research)
-        for name in ('README.md', 'PAPER.md', 'PILOT.md', 'REVISION.md'):
+        for name in ('README.md', 'PAPER.md', 'PILOT.md', 'REVISION.md', 'REPLAY_PAPER.md', 'FOLLOWUP.md'):
             if (research / name).exists():
                 _copy(research / name, stage / 'code/BDCI/research' / name, research)
+        for name in ('README.md', 'consistent.json', 'inconsistent.json', 'graph-cache.json'):
+            source = research / 'protocol_examples' / name
+            if source.exists() or source.is_symlink():
+                _copy(source, stage / 'code/BDCI/research/protocol_examples' / name, research)
         for source in sorted((BDCI / 'validation').glob('*.py')):
             _copy(source, stage / 'code/BDCI/validation' / source.name, BDCI)
         for source in sorted((BDCI / 'validation/skills').rglob('*')):

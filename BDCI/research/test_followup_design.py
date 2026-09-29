@@ -25,6 +25,7 @@ def proposal(state):
                   'primary_endpoint', 'novelty_boundary', 'split_before_data',
                   'holdout', 'control', 'evaluation', 'unit_of_analysis', 'freeze_rule', 'worked_example'):
         value[field] = 'Fixture text; not a scientific proposal.'
+    value['graph_example'] = json.loads((Path(__file__).parent / 'protocol_examples/graph-cache.json').read_text())
     return value
 
 
@@ -96,6 +97,20 @@ class FollowupTests(unittest.TestCase):
         review.update(verdict='implement', resource_arithmetic_checked=True)
         with self.assertRaisesRegex(ValueError, 'decline_cannot_promote'):
             self.state.accept('auditor', review)
+
+    def test_graph_claims_checked_even_when_the_prose_is_plausible(self):
+        value = proposal(self.state)
+        validate_design(value, self.state.source_ids)
+        value['graph_example']['expected']['provenance_current'] = True
+        with self.assertRaisesRegex(ValueError, 'graph_example_prediction_mismatch'):
+            validate_design(value, self.state.source_ids)
+        value['graph_example']['expected']['provenance_current'] = False
+        value['graph_example']['input']['claimed_closure'].remove('report')
+        with self.assertRaisesRegex(ValueError, 'graph_example_prediction_mismatch'):
+            validate_design(value, self.state.source_ids)
+        del value['graph_example']
+        with self.assertRaisesRegex(ValueError, 'missing_executable_graph_example'):
+            validate_design(value, self.state.source_ids)
 
     def test_call_product_cap_and_real_int(self):
         for changes in ({'planned_api_calls': 35}, {'base_instances': 7, 'planned_api_calls': 42},
