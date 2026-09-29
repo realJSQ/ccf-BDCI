@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "op": "rerun",
+      "node": "read_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "partition_aux_0"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux_0"
+    },
+    {
+      "op": "rerun",
+      "node": "partition_aux_1"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux_1"
+    },
+    {
+      "op": "rerun",
+      "node": "summarize_aux"
+    },
+    {
+      "op": "rerun",
+      "node": "combine"
+    },
+    {
+      "op": "rerun",
+      "node": "report"
+    },
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "Only read_aux changed (aux revision 2 vs cached 1); main is unchanged at revision 1, so cached main summaries can be reused. Rerun the aux branch, then combine and report to produce a current report."
+}

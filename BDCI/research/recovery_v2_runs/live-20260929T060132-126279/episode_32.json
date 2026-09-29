@@ -1,0 +1,8 @@
+{
+  "actions": [
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "No source nodes changed; cached receipts for main and aux are at current revisions (main=1, aux=1), and the cached report already reflects the correct combine result (correct=8, total=8). Emitting reuses valid cached work with zero reruns."
+}

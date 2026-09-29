@@ -1,0 +1,563 @@
+{
+  "status": "completed",
+  "mode": "live",
+  "split": "heldout",
+  "completed_plans": 36,
+  "planned_plans": 36,
+  "summary_by_scenario_policy": [
+    {
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    }
+  ],
+  "paired_base_instances": [
+    {
+      "case_id": "recovery-v2-heldout-tabular-m2-a2-11009",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-tabular-m2-a3-11043",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m2-a3-11144",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m2-a2-11211",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m3-a2-11228",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    }
+  ],
+  "novel_algorithm_claim": false,
+  "submission_ready": false,
+  "initial_cache_tool_calls": 138,
+  "scope": "Self-authored structural holdout"
+}

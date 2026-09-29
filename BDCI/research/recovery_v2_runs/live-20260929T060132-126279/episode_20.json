@@ -1,0 +1,8 @@
+{
+  "actions": [
+    {
+      "op": "emit"
+    }
+  ],
+  "reason": "No source nodes changed (changed_source_nodes is empty; source revisions main=1, aux=1 match all cached receipts). Cached combine/report value 147 is current, so emitting reuses valid cached work with zero reruns."
+}

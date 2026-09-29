@@ -1,0 +1,102 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 82,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+    "plan_sha256": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0014844259999335918,
+    "episode_id": "episode_16",
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 82,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+    "plan_sha256": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.001146223999967333,
+    "episode_id": "episode_16",
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "E",
+    "status": "completed",
+    "artifact": {
+      "value": 82,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+    "plan_sha256": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0011333200000080978,
+    "episode_id": "episode_16",
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "F",
+    "status": "completed",
+    "artifact": {
+      "value": 82,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+    "plan_sha256": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0010065390001727792,
+    "episode_id": "episode_16",
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "G",
+    "status": "completed",
+    "artifact": {
+      "value": 82,
+      "unit": "selected_value"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+    "plan_sha256": null,
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0009687269998721604,
+    "episode_id": "episode_16",
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

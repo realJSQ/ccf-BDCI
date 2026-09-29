@@ -1,0 +1,969 @@
+{
+  "schema": "recovery_v2_evidence/1",
+  "study_kind": "recovery_v2",
+  "study_stage": "self_authored_structural_holdout",
+  "writing_does_not_run_experiments": true,
+  "base_instance_count": 9,
+  "completed_model_plans": 36,
+  "completed_policy_replays": 180,
+  "paired_model_policy_replays": 144,
+  "deterministic_g_replays": 36,
+  "policies": {
+    "A": "Model-requested reruns in their original order, including duplicates.",
+    "D": "Model requests union declared-graph closure of changed sources; actual topological order.",
+    "E": "Model requests union actual-graph closure of changed sources; actual topological order.",
+    "F": "Full replay when sources change; deduplicated model requests on clean inputs.",
+    "G": "Deterministic actual-graph closure of changed sources; no model plan required."
+  },
+  "scenarios": {
+    "clean": "Unchanged source data and complete declared dependencies.",
+    "aux_update": "Auxiliary source changes; declared dependencies remain complete.",
+    "joint_update": "Both sources change; declared dependencies remain complete.",
+    "incomplete_lineage": "Auxiliary source changes; only the declared summarize_aux-to-combine edge is removed."
+  },
+  "summary_by_scenario_policy": [
+    {
+      "scenario": "clean",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "clean",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 0,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "aux_update",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "joint_update",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "A",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "D",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "E",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "F",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 138,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    },
+    {
+      "scenario": "incomplete_lineage",
+      "policy": "G",
+      "episodes": 9,
+      "correct_completion": 9,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 78,
+      "termination_reasons": {
+        "emitted": 9
+      },
+      "stale_completed": 0
+    }
+  ],
+  "summary_by_policy": [
+    {
+      "policy": "A",
+      "episodes": 36,
+      "correct_completion": 36,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 294,
+      "termination_reasons": {
+        "emitted": 36
+      }
+    },
+    {
+      "policy": "D",
+      "episodes": 36,
+      "correct_completion": 36,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 294,
+      "termination_reasons": {
+        "emitted": 36
+      }
+    },
+    {
+      "policy": "E",
+      "episodes": 36,
+      "correct_completion": 36,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 294,
+      "termination_reasons": {
+        "emitted": 36
+      }
+    },
+    {
+      "policy": "F",
+      "episodes": 36,
+      "correct_completion": 36,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 414,
+      "termination_reasons": {
+        "emitted": 36
+      }
+    },
+    {
+      "policy": "G",
+      "episodes": 36,
+      "correct_completion": 36,
+      "wrong_completion": 0,
+      "refusal": 0,
+      "tool_calls": 294,
+      "termination_reasons": {
+        "emitted": 36
+      }
+    }
+  ],
+  "paired_base_instances": [
+    {
+      "case_id": "recovery-v2-heldout-tabular-m2-a2-11009",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-tabular-m2-a3-11043",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-retrieval-m2-a3-11144",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m2-a2-11211",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 42
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 30
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m3-a2-11228",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 32
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    },
+    {
+      "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+      "policies": {
+        "A": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "D": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "E": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        },
+        "F": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 48
+        },
+        "G": {
+          "episodes": 4,
+          "correct": 4,
+          "tool_calls": 36
+        }
+      },
+      "E_minus_A_correct": 0,
+      "E_minus_A_tool_calls": 0
+    }
+  ],
+  "freshness_by_policy": [
+    {
+      "policy": "A",
+      "current": 36,
+      "stale": 0,
+      "not_completed": 0
+    },
+    {
+      "policy": "D",
+      "current": 36,
+      "stale": 0,
+      "not_completed": 0
+    },
+    {
+      "policy": "E",
+      "current": 36,
+      "stale": 0,
+      "not_completed": 0
+    },
+    {
+      "policy": "F",
+      "current": 36,
+      "stale": 0,
+      "not_completed": 0
+    },
+    {
+      "policy": "G",
+      "current": 36,
+      "stale": 0,
+      "not_completed": 0
+    }
+  ],
+  "protocol": {
+    "mode": "live",
+    "split": "heldout",
+    "local_freeze_not_public_preregistration": true,
+    "external_benchmark": false,
+    "developer_assisted_protocol": true,
+    "base_instances": 9,
+    "planned_model_calls": 36,
+    "scripted_calls": 0,
+    "paired_model_policy_replays": 144,
+    "deterministic_g_replays": 36,
+    "independent_unit": "base instance, not scenario or policy",
+    "primary_comparison": "E minus A: correct completion and total tool calls; no gain is valid",
+    "strong_baseline": "G: actual graph closure without model, not novel algorithm",
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "reasoning": "disabled",
+    "project_token_stop": null,
+    "project_prompt_character_limit": null,
+    "max_output_tokens": 393216,
+    "frozen_snapshot_sha256": {
+      "frozen_source/research/run_recovery_v2.py": "125a45b91e24c4cadb91652c653f42a8d26d40603e6a28ec59c546f22377be84",
+      "frozen_source/research/recovery_v2_cases.py": "97e09be616fbfd54aa24e2cbc9f78baa7bf8b729caebe7c5367075ee6fd7903f",
+      "frozen_source/research/recovery_v2_engine.py": "971b4649d19c0a59a699ffc34a79d5b3f15d1f981a3c3598486cdfe540fd85a1",
+      "frozen_source/research/recovery_v2_planner.md": "4119aeaa44042faf30b8c888b56edef2f0704429413ce4a65c6605919b7ce85a",
+      "frozen_source/research/replay_engine.py": "909855f69cd7af89a27affe144863ddef01c290af9ca2a96541a476ed1a110ad",
+      "frozen_source/research/replay_reference.py": "1e8caaa32be9636f426ed9e248cc0eb44181a483904ae0ca01a688548d8efb68",
+      "frozen_source/research/native_runner.py": "0cb4e95beda56df0b910e9fb00684c646ac2b2df59e3c3083e69eabf834b1108",
+      "frozen_source/research/run_topics.py": "a11643b167af853e6bccb01069234d002e8176c3be4d34bb3d0ac7bed0e38e35",
+      "frozen_source/research/model_capabilities.json": "9bd9c74312cbeace3bc26227b62af323024465867d8aa544d92f42455a8a3053",
+      "frozen_source/research/contracts.py": "61e50cef7bfe1a145d48254e165f65d00aaccb6de1b50dbe17f2a484961a4e9d",
+      "frozen_source/research/literature.py": "70bf20af80f3d98cd1ba2bd26145793f465423563483d007d117d9b37e9372cf",
+      "frozen_source/docs/superpowers/specs/2026-09-29-recovery-v2-execution.md": "69e2f44590cc350ee640a7615e0a26ecf0d42b2fa78aba209593a06db58475ac",
+      "frozen_source/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
+      "frozen_source/inputs/base_cases.json": "57fb42c14e4f33c44301202398106eac4d6656c96f1b99e6d3bc146a0c5e2180",
+      "frozen_source/inputs/episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+      "frozen_source/inputs/frozen_workflow.py": "7daefd3e4dbfe641ffe9d8dcbee1d08297d992bc8dd02bb5b568c6aa6df2ace0"
+    },
+    "source_sha256": {
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/run_recovery_v2.py": "125a45b91e24c4cadb91652c653f42a8d26d40603e6a28ec59c546f22377be84",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_cases.py": "97e09be616fbfd54aa24e2cbc9f78baa7bf8b729caebe7c5367075ee6fd7903f",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_engine.py": "971b4649d19c0a59a699ffc34a79d5b3f15d1f981a3c3598486cdfe540fd85a1",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_planner.md": "4119aeaa44042faf30b8c888b56edef2f0704429413ce4a65c6605919b7ce85a",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_engine.py": "909855f69cd7af89a27affe144863ddef01c290af9ca2a96541a476ed1a110ad",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_reference.py": "1e8caaa32be9636f426ed9e248cc0eb44181a483904ae0ca01a688548d8efb68",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/native_runner.py": "0cb4e95beda56df0b910e9fb00684c646ac2b2df59e3c3083e69eabf834b1108",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/run_topics.py": "a11643b167af853e6bccb01069234d002e8176c3be4d34bb3d0ac7bed0e38e35",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/model_capabilities.json": "9bd9c74312cbeace3bc26227b62af323024465867d8aa544d92f42455a8a3053",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/contracts.py": "61e50cef7bfe1a145d48254e165f65d00aaccb6de1b50dbe17f2a484961a4e9d",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/literature.py": "70bf20af80f3d98cd1ba2bd26145793f465423563483d007d117d9b37e9372cf",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/docs/superpowers/specs/2026-09-29-recovery-v2-execution.md": "69e2f44590cc350ee640a7615e0a26ecf0d42b2fa78aba209593a06db58475ac",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_runs/live-20260929T060132-126279/base_cases.json": "57fb42c14e4f33c44301202398106eac4d6656c96f1b99e6d3bc146a0c5e2180",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_runs/live-20260929T060132-126279/episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+      "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_runs/live-20260929T060132-126279/frozen_workflow.py": "7daefd3e4dbfe641ffe9d8dcbee1d08297d992bc8dd02bb5b568c6aa6df2ace0"
+    },
+    "public_input_sha256": {
+      "episode_00": "695995256530b19b96978d9ffe381eeff0e74775765a3c2a47fb79fdecf5e96e",
+      "episode_01": "69a20da140bb7f908eacc5117e72caa1f69dde3042b2b8d1505a0e7b9bb507b8",
+      "episode_02": "627ef51ead8f908c3bf653c12d838b5937cc253e4ed300b28353fc2b463152ed",
+      "episode_03": "40ef6998602fb794a5b7e2c1d1b2255620e165118f01361686db79545d31d3bb",
+      "episode_04": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+      "episode_05": "2345eb4e142d07d45a96d71395460f4ecdbc1e2686d3bbc06fe9ad7ed099faa2",
+      "episode_06": "eb502f5c4f0d01c4e7f5204fadc286fadeead2598d4f6baf5f91443395c4373b",
+      "episode_07": "e07da857377f804643985544056a0f55cc8f1444c6b252c66662235c141c6b32",
+      "episode_08": "2cc943f89e98384aca641436cc04cde0f6416319ab5248af4f77200f043b141d",
+      "episode_09": "248d978a0bcec8d437a3ff259a6e05d939461f9acd4008eb694b9ce5858fe8b5",
+      "episode_10": "70280d1644609acee8f12ae92a19a8b08517c3dfbef3d790d98dcf10d531a0c3",
+      "episode_11": "36a01fe5acdd0659b6ac73408558132461d528c3aaba84c7133e583342734d75",
+      "episode_12": "587920fc7b254d54396992bfcb475a233f2e79a03e67c8091d71457fed54ae26",
+      "episode_13": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+      "episode_14": "9e5e4a5c583ff7a659e392c0aa117e79c978b6b88f3dbc39942d4bace842ede2",
+      "episode_15": "606de17ea004e18ab3fea3f156325661635a856e0be18f06a48f14870c37af41",
+      "episode_16": "dddb3081f545b4802875edf0b34f968e9ac426b60c5595526b100c34ce936b6c",
+      "episode_17": "f4593b714d67151e503dcde811a9dee6104e8cf3b630a296ed4e2fb654fbc9fa",
+      "episode_18": "c2b5a7841c358b1d7fe64d3b5a131190ff0c7417bd683c65898d5c4066cd8378",
+      "episode_19": "7a57601445db06bec4e00d4eced3e4915351a5a69ca03338103a11367350f0f2",
+      "episode_20": "780779f104d2b72c35df8f8faf48f36918903efddfae12c56eb174b436447363",
+      "episode_21": "ae047fae01b8f547a1f3bff17b880c0d5df7baac99630c0e1a469c7fbab6d320",
+      "episode_22": "2e014ffd80806ba5cd79f4fbb65d2ade5128c9e9a20bf9a9d842b5472d30c8f8",
+      "episode_23": "5ed4530bbc62fc499a7b39af6d2ead3d53d489ff1833620d10644b2138285895",
+      "episode_24": "cd1b6d58a8efbd29205e91fbcf32fc975d4b1381f91f421eabccf2aafc91ef84",
+      "episode_25": "9577e3c747674ac9ee495a6b9be1085907f0682ac1407b1d62ba0ad7ab7df677",
+      "episode_26": "3bc8bfd9be8c7f110acdc21e7d78ce6e1ff89f43479988430498a7de535237e2",
+      "episode_27": "165b38cf86021b256825bf6d4aa026cbdb184ee63c904526712e023ad6659f46",
+      "episode_28": "20132bbd559ddc53908bdbd349b27d5acb741ce020953f78609eb764d104cabe",
+      "episode_29": "86bd234c93613d1fa7887dfb6776b237e986dcb3289558e48e690860b14e7d6d",
+      "episode_30": "40a72eda6899a4fe6e273a697cbb1a869a423327661467a5e3bf85fbbaa8150f",
+      "episode_31": "710d92b4bc52568e28cf96fe75184f2aeeb36f9796a221e03820acaec1f6e04e",
+      "episode_32": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+      "episode_33": "bced2b1aeeb016636024a909a6fc2579176f535004d4b7e75d9cd32f489fa4f9",
+      "episode_34": "730c2cab712c7f704069e0c026f76f9562f9d2178b11c7766b1ee2618dc6c432",
+      "episode_35": "8449000f3ab632d94d650c6f7d4138f18b68de815e77309b9d711c9b9509ea12"
+    }
+  },
+  "information_condition": "Actual tool dependencies and declared dependencies are visible to the planner and every policy. Actual dependencies are supplied tool contracts, not discovered dependencies.",
+  "resource": {
+    "model_calls": 36,
+    "total_tokens": 113384,
+    "duration_seconds": 47.75829073800014,
+    "initial_cache_tool_calls": 138,
+    "cost": null,
+    "duration_scope": "Native study invocation only; excludes development, literature, and writing."
+  },
+  "development_assistance": {
+    "developer_assisted_protocol": true,
+    "specification": "docs/superpowers/specs/2026-09-29-recovery-v2-execution.md",
+    "description": "The research question follows Agent proposals; the developer corrected dependency propagation, oracle definition, matched information, and structural split before this frozen experiment. Development fixtures are CPU checks, not model observations."
+  },
+  "prior_study": {
+    "run": "replay_runs/live-20260928T144804-532140",
+    "role": "Historical development study, separate from primary v2 evidence.",
+    "claim": "Prior strict execution and post-hoc terminal normalization motivated the revised protocol.",
+    "verified_by_this_adapter": false
+  },
+  "limitations": [
+    "Nine self-authored base instances are the paired analysis units; scenarios and policy replays are repeated measures.",
+    "One saved model plan per episode is reused for A/D/E/F; G is deterministic and does not consume that plan.",
+    "This is a small self-authored structural holdout, not independent external validation or a public benchmark.",
+    "The local pre-run freeze is not public preregistration; the protocol was developer assisted.",
+    "The reference scorer is a separate implementation by the same authors, not external independent reproduction.",
+    "Numerical correctness and source freshness are separate outcomes; malformed plans are not voluntary refusal.",
+    "Static actual-graph closure is an existing mechanism; no novel dependency-discovery algorithm is established.",
+    "Report E versus A and G as well as F; equality does not establish statistical equivalence or generalization.",
+    "Tool-call counts exclude shared initial-cache construction and are not measured monetary or computational cost.",
+    "No transient failures were injected; no retry-effectiveness claim is supported."
+  ],
+  "verification": {
+    "status": "verified",
+    "mode": "live",
+    "plans": 36,
+    "policy_replays": 180,
+    "total_tokens": 113384,
+    "new_api_calls": 0
+  },
+  "artifact_sha256": {
+    "analysis.json": "30dd7cc900481ffcaf2620f9089b858fbf2bc7ad56d3020cd3b9fa6aa35a7418",
+    "base_cases.json": "57fb42c14e4f33c44301202398106eac4d6656c96f1b99e6d3bc146a0c5e2180",
+    "episode_00.json": "deddffea2ce5a676676048880942c78de62e11e0fa719658ecf265445a45afd2",
+    "episode_01.json": "3e9423063d66ab12ec8fec3c09a3c26dc0fd99ff0c8139f7946062d016960d6b",
+    "episode_02.json": "9290a7ebe1f698f6ea133834713212bc76067398eb57f7b2ae8a4791f8cfc3f6",
+    "episode_03.json": "66a8b7e33b4306b9e57c4bf8c70ccee5e24827737e87b1df71313233301de5d6",
+    "episode_04.json": "9e146a1ec7a2d9864b5ad98208f175981d1b5dd4af42db7660e728e4e40ec7af",
+    "episode_05.json": "08720c180d92470178f4e17c5037dacc51e994895efd9e34eedd7d5f5e5ba497",
+    "episode_06.json": "275874fcf24c89a8b61d727fa483607ba5827dc2f44a44c1b31c0bb180ecbd80",
+    "episode_07.json": "41787edef9df0ab0ff52e7039d4fbe2a103cfbb8cd6fc92c98e4d2553854ff6b",
+    "episode_08.json": "8ed037a4d91d7babe20fdfc8c2d36ff5af9d7f32cc85da40962d0af476b7c3ae",
+    "episode_09.json": "ffa011b95e0df3a24a17af02c87454932b0d3ee3394ec303e6c02e087beeb09a",
+    "episode_10.json": "9af3c2ba70bd0c91b7066cc7e86ff5689091b42a12d5ed9254370aeedd246b29",
+    "episode_11.json": "ffa011b95e0df3a24a17af02c87454932b0d3ee3394ec303e6c02e087beeb09a",
+    "episode_12.json": "43f29533439f5a0c38a2445e2fe83a466e6da33eef630e2aa2994a6aa8b70ccd",
+    "episode_13.json": "9718e7c6992f0806480e9663ed7afd5a5c2006e5c44a75de6fc31171d9f47d8b",
+    "episode_14.json": "472b89fe3f6cf729d415dc5f67885aea8899e8f2d2047bd523d1a65926a5f7d3",
+    "episode_15.json": "7bbc2b48c4aac86ab4ed4217f523f9be90f22b9afda6dd9059ba6a997561a5bb",
+    "episode_16.json": "04c7f37ad1190909346944901251819122c221c1ddfade653602c35811357b6d",
+    "episode_17.json": "82fbac680a93c8f79088fa19a7c35c8f956c67e18a03fb74992d838250d3df36",
+    "episode_18.json": "fc9097c5cadeefb1a9c5c11d326c137675e5f2312752e59a5f2cb3127b70e475",
+    "episode_19.json": "dc064c3d76960eaddcb790fae9826b294da302b29f4dab9cae216dcf4c2bf28e",
+    "episode_20.json": "4f5f3e80d87e1c701beb9a2f7cf33b4592accd8c8b87a8f050cc0c600c945642",
+    "episode_21.json": "fb2034ecb11c594e74b7ff7a59c8525fa4a653aa84ffa22840a23198526a41b6",
+    "episode_22.json": "44815b7062b33bcd17a24f22e54c5011b9ee70d750b52c356ba3ae75397537a7",
+    "episode_23.json": "57ccf341a2615ca2e0a896c76bcd7cc0aff6bded7552d6e7949761d7d293f918",
+    "episode_24.json": "bf9b4123b9ece9a0ef424eaceb4c59656502323069a0e42b0e7481de52202f87",
+    "episode_25.json": "236b3c5df00036ab218fa2c86ca1a3728b21db4ebf8a23b8454db8a148711d84",
+    "episode_26.json": "9b2ebc015f2c096b7477dee6c06df89d010956df3efd125ceb198a4feabd54ad",
+    "episode_27.json": "027620ff83b8c7fc1b8472905f42131cab7e863e4ee71eef536cda69cbf1e484",
+    "episode_28.json": "6a9e7e53a1949612f0e5e263dcba41f593918c618c39bbc06ad0a166f00c5af2",
+    "episode_29.json": "818febc9adda9cff737e8f5f989f21923e61370d699dc8f7a7f43f2ea777ee2b",
+    "episode_30.json": "bbaf8969fcea198043c4aa57613af94aefd6c58e118a968b7b1e0f060dc9fa69",
+    "episode_31.json": "fefb3e00b3ded183aa5917029d74b4af902563408e7e25c97dc6acd8db0d1662",
+    "episode_32.json": "7ffb5d2a9dccf0de88b741c9d9f9f34399ffb985e4d367641b1bc4fbb269223f",
+    "episode_33.json": "30b63a7f4ec27e9092df4cabbaccbd59b13a95684eddcb3c0e2a8fb9e86eb664",
+    "episode_34.json": "9af3c2ba70bd0c91b7066cc7e86ff5689091b42a12d5ed9254370aeedd246b29",
+    "episode_35.json": "65db4235ddbbd462fd933d72648b4c0067f65e2ba36d90f5f6ac75e7ad77ddfc",
+    "episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+    "frozen_source/docs/superpowers/specs/2026-09-29-recovery-v2-execution.md": "69e2f44590cc350ee640a7615e0a26ecf0d42b2fa78aba209593a06db58475ac",
+    "frozen_source/inputs/base_cases.json": "57fb42c14e4f33c44301202398106eac4d6656c96f1b99e6d3bc146a0c5e2180",
+    "frozen_source/inputs/episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+    "frozen_source/inputs/frozen_workflow.py": "7daefd3e4dbfe641ffe9d8dcbee1d08297d992bc8dd02bb5b568c6aa6df2ace0",
+    "frozen_source/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
+    "frozen_source/research/contracts.py": "61e50cef7bfe1a145d48254e165f65d00aaccb6de1b50dbe17f2a484961a4e9d",
+    "frozen_source/research/literature.py": "70bf20af80f3d98cd1ba2bd26145793f465423563483d007d117d9b37e9372cf",
+    "frozen_source/research/model_capabilities.json": "9bd9c74312cbeace3bc26227b62af323024465867d8aa544d92f42455a8a3053",
+    "frozen_source/research/native_runner.py": "0cb4e95beda56df0b910e9fb00684c646ac2b2df59e3c3083e69eabf834b1108",
+    "frozen_source/research/recovery_v2_cases.py": "97e09be616fbfd54aa24e2cbc9f78baa7bf8b729caebe7c5367075ee6fd7903f",
+    "frozen_source/research/recovery_v2_engine.py": "971b4649d19c0a59a699ffc34a79d5b3f15d1f981a3c3598486cdfe540fd85a1",
+    "frozen_source/research/recovery_v2_planner.md": "4119aeaa44042faf30b8c888b56edef2f0704429413ce4a65c6605919b7ce85a",
+    "frozen_source/research/replay_engine.py": "909855f69cd7af89a27affe144863ddef01c290af9ca2a96541a476ed1a110ad",
+    "frozen_source/research/replay_reference.py": "1e8caaa32be9636f426ed9e248cc0eb44181a483904ae0ca01a688548d8efb68",
+    "frozen_source/research/run_recovery_v2.py": "125a45b91e24c4cadb91652c653f42a8d26d40603e6a28ec59c546f22377be84",
+    "frozen_source/research/run_topics.py": "a11643b167af853e6bccb01069234d002e8176c3be4d34bb3d0ac7bed0e38e35",
+    "frozen_workflow.py": "7daefd3e4dbfe641ffe9d8dcbee1d08297d992bc8dd02bb5b568c6aa6df2ace0",
+    "model_summary.json": "a1c35720800459bd1f53601d82172fa8adb40ea3c5bce47929787dccd0297fa9",
+    "model_usage.jsonl": "0bf96c3084efd7083f7d4e4db3ca790182feda55f661f63a6f634db13326f80a",
+    "pre_registration.json": "01577139446969a561ff090b52a2acd512423537a636345d3f0c43afdf631864",
+    "prompt_episode_00.txt": "7c593f788f9e7a80ca457a1be5c4a82fe90de9e1587973803123010d13c57a46",
+    "prompt_episode_01.txt": "d6f87642ac831ab3067d768d912cda7c773938ec7e8c62acb4dfc7093fa6dcdf",
+    "prompt_episode_02.txt": "b1a1893c6cd8eb146792c248bbac1805e28cb2aaa3a39697365151adb53a60e2",
+    "prompt_episode_03.txt": "e0e0d19b6521dd4a10cce95d39aca85cd5e8dd86766ae78f2026c50f93e6869e",
+    "prompt_episode_04.txt": "52432b76e25e7e163110cfa05e618b73de5a3a5a06a7e3049be4fe4b31337ec8",
+    "prompt_episode_05.txt": "d72d9990bdd3bff1d36009f0dacb43781d2df584782a0d9561a485d824b0b616",
+    "prompt_episode_06.txt": "f1edf00dfe7d793b953518720f7839b0d8e72be14137aed4cd717bc7aa3a61d7",
+    "prompt_episode_07.txt": "bda512f361faad47a2676865cd17e1e2536d8427be5a7462044c65b2a0cf4fd8",
+    "prompt_episode_08.txt": "4af603fa50388a028d4b3d5c3f5921ee40eacd3ef5e09ea80a56e275eab25670",
+    "prompt_episode_09.txt": "faac46579d4eabb6c2fef1daffaa3ec5854a515f9ed57a87a9e4428088b6d797",
+    "prompt_episode_10.txt": "c6383bfa94337ba8f14f57692c835f370dd56ff727076c3139b248576621e595",
+    "prompt_episode_11.txt": "1a18b753cbce791943667cdbcb5e919990b9c3688c6e0f8d617e80a6f4585b5b",
+    "prompt_episode_12.txt": "92ddd6fcdef489679f418c511c4fd395e2751b0e0a14c36be424abcc3881789f",
+    "prompt_episode_13.txt": "4de805f460a85dc1536213da61d57b5cf21d83429f38490e63ee04c5033b34d1",
+    "prompt_episode_14.txt": "b9dde346466806130bf07bc9b09a89a18eb61bfbb87e7371b2087cb575087d08",
+    "prompt_episode_15.txt": "3985bd01beb4da108e9f1edaa46c10ab123c7cfc2ba27acb2bb0b51d731a6ea3",
+    "prompt_episode_16.txt": "c7cd54c780a881580ff46b58eff471c3e97e55a9d9826030069ea4e8ae558694",
+    "prompt_episode_17.txt": "8a291cfdab0342199fa7aee386d30c3c41814f7f03f3c8191c4c111a7ae41af6",
+    "prompt_episode_18.txt": "45268c46221061aee310a416781e225282f9b2c56e8ba38781de59b4e7ba81c6",
+    "prompt_episode_19.txt": "4fe33094f7c95dd2cfafa9eb80ec4ad5464d7b50223d8694545744b10ff85957",
+    "prompt_episode_20.txt": "752f7ed60aec279c57daf8aae02bf92d3f102ee482c838f77c5fa548946ce527",
+    "prompt_episode_21.txt": "cd1ad60dc307d849b7957956ebd3bf8c1632500aa012c4a237951b86fea2ca42",
+    "prompt_episode_22.txt": "cb940c8090710220e144afa489cc6a1ffa5d892e6e2bd84f4a8fdd11d88cd0e1",
+    "prompt_episode_23.txt": "112e653f6d13fcfff51f8e4c25f099ccaa13ea81cc42af21f951386162c245ed",
+    "prompt_episode_24.txt": "f051742ba5f20deb1636fd495eefa94204cfc01cf459792c371d6ec94a992994",
+    "prompt_episode_25.txt": "e74de9aa7511857a99f0386cf116767e38b61a3199e893931e7e146fc3f38e20",
+    "prompt_episode_26.txt": "f69fc4a3c098d700bf34fe060364aa5efaf8b915410c4575a312ed16f2798d03",
+    "prompt_episode_27.txt": "c927855723fc45069fb3da1a6ee8bde9579df08a65c077c3c4e5f403028c6aee",
+    "prompt_episode_28.txt": "32c77daeac078ecbcc18bfbfd1d7d19f9b9fb314abe02863c70baf6e14d43f01",
+    "prompt_episode_29.txt": "1d78d5ca41282977589ba3869afe3f4484f31b8e7b14b21b45a3596d59ebbd59",
+    "prompt_episode_30.txt": "2b5c9e3112a6dae160596c5a67356e7751126ebee06255b099ebd19586cca00f",
+    "prompt_episode_31.txt": "23bcdca3626fb3845a8efb322bac4e30568e3232b754558e4557092aa54d0ec1",
+    "prompt_episode_32.txt": "f478a9eee3ee8e637844f9e6fd9a8d90a443ab5329b53f3df53386e256b387bf",
+    "prompt_episode_33.txt": "94da003fc183a810e7aff6a6d21f4dc1084d2f9f299daf4dbc296462a7c8de4c",
+    "prompt_episode_34.txt": "cfb3c7f40d20905c8906cf0299beba84dcc2d21e0989c6252b00e4a63358263f",
+    "prompt_episode_35.txt": "4ded7b787127ff973d10f1e752ba4dde5762936d4afac536041af01ea38d12a6",
+    "raw_episode_00.txt": "7984401e1341afb7c7dca6062f5df100546ce260161f8d7035a614a0c5ebe607",
+    "raw_episode_01.txt": "191629d70a25770edb586d059e75e9d27fc569f376a29fef54f189415666c91f",
+    "raw_episode_02.txt": "800ff2646abe1ac52330c867f32af72366ea39faf9447753763bdf671907458a",
+    "raw_episode_03.txt": "733d44098ff86090dc9d5788f48d7fe1e6417a196754d2259b3c84d60fc50872",
+    "raw_episode_04.txt": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "raw_episode_05.txt": "ef4bf7c3d44adc2c58219c68dacf14d7f3f3046d51a12b1e6e4b902099623ab2",
+    "raw_episode_06.txt": "694ecd5715c28a89cc09b2e55b8b181c7b63064f6febabb3c857b9f84c32e364",
+    "raw_episode_07.txt": "6d91638879982cdc0732d32bf271962475ec6ba4e21ac1688115873e1952fb96",
+    "raw_episode_08.txt": "fe327d1a9dec9a656e4b947397b78cd4c2151369d4ec9e121559d25b83a1afa4",
+    "raw_episode_09.txt": "9226e49f125ad4c40f0a98079aafa6985b33b09da5cbecc1a753d810f501e240",
+    "raw_episode_10.txt": "5fe646cc83c5cda4e696f0a9747185224f244b53e8505123647cd62d5dd1d47e",
+    "raw_episode_11.txt": "9226e49f125ad4c40f0a98079aafa6985b33b09da5cbecc1a753d810f501e240",
+    "raw_episode_12.txt": "670d7f2d77cddf94d08b4d8a88cf3c679214bfce2b195cc0189eef0640005246",
+    "raw_episode_13.txt": "4e3d14ce9fb84526594e5e4d66c5c6675a9b57fb2251b4ce1046d265182a85e4",
+    "raw_episode_14.txt": "ba5e5d6af009ef31c96ca38e5921bacbebdf9fb0e8023550f73b3bd91e9a3de1",
+    "raw_episode_15.txt": "def2dcd1a46a80a18333705c934304c7c467250edb2664b946d85e09773d85b4",
+    "raw_episode_16.txt": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "raw_episode_17.txt": "2a232f322069698624ffbd99e0ee0e407452f97bc4b177bba0f99f354c82ecf4",
+    "raw_episode_18.txt": "e4c661a3bb1c7fde6b28481b2ff3b5a8847ad824f8ac6e6e861ebecac0fcb8e1",
+    "raw_episode_19.txt": "e358041b650b041853612a41e4bb085a6496a1317924fe4aa6193e2c9649e742",
+    "raw_episode_20.txt": "b3e16e31d3dc0816047e40250f3c64527eaf53a90684f096cd9aee352ec4b0d0",
+    "raw_episode_21.txt": "abf14e218dc287989c002994136ed1b0a7aa11bd6f0324f1c495eaddb6934d24",
+    "raw_episode_22.txt": "3d69a0babe4801710ddcfc248d943d62641a17ea844d98ac46a6dce652a34ad8",
+    "raw_episode_23.txt": "1b4f188040ef38867f2f66914610e22f3d84c05a1576ee457b730c42cc7401ee",
+    "raw_episode_24.txt": "3fad0e35dbdd4017c7de8a1ed7c481fdc243b935d49f13c86dc8af1c108cd76a",
+    "raw_episode_25.txt": "000dc75e301ddf0f92d0b429b54661ad06a853b42593d2825ed3632d56a35458",
+    "raw_episode_26.txt": "dc9899aadabbb94b5cd3536288007441ff1931bb13623c596635fd1c13bad0f5",
+    "raw_episode_27.txt": "abf674ff7d73d6b09813fa4dc180321384f8647dad0d2c01db900a81660572f4",
+    "raw_episode_28.txt": "2e2b3a74d327962d26557921827751f6a880490c1a9015fb91b9b67c41eac497",
+    "raw_episode_29.txt": "892269ea53ec4f6b2a610b1b5a82217d21d3138a70984b1c72b1663ddcd8e215",
+    "raw_episode_30.txt": "662c526389a4d6feed50bccd5322440208da8059c53857c6d4c3c72009269f09",
+    "raw_episode_31.txt": "85660012f3f90aefc90f1dd12d0106f8b0ba6fb4346323fe9d147c8130cc44cb",
+    "raw_episode_32.txt": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "raw_episode_33.txt": "35c165ece072ec440141bfedbb547db808fb9e862b23599f75d5c835007a45bf",
+    "raw_episode_34.txt": "5fe646cc83c5cda4e696f0a9747185224f244b53e8505123647cd62d5dd1d47e",
+    "raw_episode_35.txt": "f5d657ac5adc2f757009234aa69d126ab7a5e39d5aff56fe290779ebc889aa6d",
+    "results_episode_00.json": "3c946d42a6513d24312ae6745fc9d1fdd306f264d8ca1adc7b6b1f70af25b33b",
+    "results_episode_01.json": "d44825c24b896ec1dea88c0f477ef040ac72f058dc292a5b70715aa6340cf88c",
+    "results_episode_02.json": "c5dbabf77e6464cfe39ddf75fed220f11dafc4405de8becf22b6841e0a0777bd",
+    "results_episode_03.json": "3b4c01e2d27bdb2c6dd9fe9ed34301463361b962b6e0859c127b34586e7648c5",
+    "results_episode_04.json": "18b30ce6ddbc248688c95bcd2de8d9e419d948d9cdb234f6e471912be7c11630",
+    "results_episode_05.json": "0897000336d15b7014b1c2002e692ab594cba0e729b3705a9585aeabdf0ea2c6",
+    "results_episode_06.json": "fc604db72a9ba434f4763731ace90f1e9ffed65aca8ce455a1a1eb41700314c9",
+    "results_episode_07.json": "21867b5642ce37a756025167abac3f0930123d728dc7ea2256d0e56403022936",
+    "results_episode_08.json": "6065738521097e8b663468a901b492e19296a1ed87bf39526dac6edf74c570a3",
+    "results_episode_09.json": "f525e1aac7710bec6b1d44c68fc04fa945d01d5b5281768c26ee8261809d59e5",
+    "results_episode_10.json": "3d65755ea0d5324a22507afede3877e2d0793190e53f673e73bbd8b8e230496e",
+    "results_episode_11.json": "9fbc3275f0c10f016ac7f2f9f1e7e5d4245a85ff569c301d18aa5d5df4adc67c",
+    "results_episode_12.json": "5783e8b967875991e677c22727bcdef4a8625d0da8695692f3318aa21acd4cea",
+    "results_episode_13.json": "00dbb4d999c3aa8615c2d8dd46d58672f2c4564788c898350fbe66a406c38e1c",
+    "results_episode_14.json": "50e88841176c16d8b58387a766c923ad36a9a619c313eab1a204080af9b52226",
+    "results_episode_15.json": "6ad88a2cd0f11de9a7e9a59e5bd066e8e8ab4ffca92fc02789887a5f0bc0c329",
+    "results_episode_16.json": "b9770815ff4191637fec4f7a8c79668145c35d1ac7acd4eb7a228e0196f546b2",
+    "results_episode_17.json": "79f068caeb23070a7756bb3b3a4641c6125012debbcc1b5d84138b71952f96d6",
+    "results_episode_18.json": "218b48a5306be9c69ba641d7caa3fbb83dc2d1d2a4dbf25fa54b4e11069f7a0d",
+    "results_episode_19.json": "84ae4027ba3147dd5e68b8a5da23ec3c8ceb4be0b6ca11a88ddf7fffd4d46745",
+    "results_episode_20.json": "a3e025b607343579c0a2a8224c57791f1fc71f7b9b706d3d2254608522dd9386",
+    "results_episode_21.json": "fdad0bd75a0a079740bf678eac36080ab6eff82fe908cd4b87f51e6437087e7f",
+    "results_episode_22.json": "3324d80b3950f40ef01696c22139758097079cc49e4d653f64f98ba2587ee71c",
+    "results_episode_23.json": "d765ca83aca7720b481f9f405667bdd577be306c09912127f8c6a96ee5f6372b",
+    "results_episode_24.json": "861671ab0fc3bf77daaf41931d1f2636060c8a7d540b4a388795b559b17e699b",
+    "results_episode_25.json": "0b8c3fed8a756fdbabd30add92c5faae15acc1a4984bc193eaa18d9ffbee2f58",
+    "results_episode_26.json": "c08fd17f776b0654a3f4758e49d98e4cb1f4564dad24a0a54afbdfcc9f9244b6",
+    "results_episode_27.json": "5d27ecb52edae59a0e655c4363be3135a1a82dc5be0a78f27921da938d2640ad",
+    "results_episode_28.json": "6edc6245290ac62c09abe31c0069d4f9ec22297b8561e4d1e6e4f30e99a3b9e5",
+    "results_episode_29.json": "202a7afddceb3336e62175d13cc6f4f36b0a1871edbe54437aa1df294f022be1",
+    "results_episode_30.json": "b2c67752315b2dc4250b27fd386ef36660df0cc67501dd8d87b5a4efed51a391",
+    "results_episode_31.json": "4b39d59f41036b49ceac59a0a0e1cdfa85dd446b212424f65efbbf01a044fa79",
+    "results_episode_32.json": "47c02d989ae36831c2022d05d63d5a7f29125bf902d8884d013ec5a335484fbd",
+    "results_episode_33.json": "02ba7bd7a9c623d1d9fe4265948c3539dd6e97ae5c20bad74d2145a9b39f92ec",
+    "results_episode_34.json": "4cef3f072a1b53a25df52ecdce7caa5cf64d315fb6c7144c661a59542d6cf2b4",
+    "results_episode_35.json": "c753c68532c1b5cdf2bcaa43dd53c47633c9faf10ea8ab6b19a253d90037ca37"
+  }
+}

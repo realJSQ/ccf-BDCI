@@ -1,0 +1,33 @@
+{
+  "run_directory": "BDCI/research/recovery_v2_runs/live-20260929T060132-126279",
+  "status": "completed_and_recomputed",
+  "source_commit": "d33ee80",
+  "model_calls": 36,
+  "total_tokens": 113384,
+  "base_instances": 9,
+  "scenario_count": 4,
+  "model_policy_replays": 144,
+  "deterministic_g_replays": 36,
+  "historical_live_calls": 83,
+  "historical_live_tokens": 306189,
+  "all_policy_correct": {
+    "A": 36,
+    "D": 36,
+    "E": 36,
+    "F": 36,
+    "G": 36
+  },
+  "tool_calls": {
+    "A": 294,
+    "D": 294,
+    "E": 294,
+    "F": 414,
+    "G": 294
+  },
+  "incremental_E_over_A_gain_observed": false,
+  "new_algorithm_superiority_established": false,
+  "public_archive_sha256": "fba35372cf8a5d27d43bec6ad6bd3cfe09e9c60778eb227c2418431e2c3abf2a",
+  "public_archive_members": 170,
+  "secret_scan": "local API credential absent from every archive member",
+  "submission_ready": false
+}

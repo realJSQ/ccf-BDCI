@@ -64,6 +64,10 @@
     {
       "usage": "research/followup_design_runs/live-20260929T053007-923857/model_usage.jsonl",
       "summary": "research/followup_design_runs/live-20260929T053007-923857/model_summary.json"
+    },
+    {
+      "usage": "research/recovery_v2_runs/live-20260929T060132-126279/model_usage.jsonl",
+      "summary": "research/recovery_v2_runs/live-20260929T060132-126279/model_summary.json"
     }
   ]
 }

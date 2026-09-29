@@ -1,0 +1,1232 @@
+[
+  {
+    "case_id": "recovery-v2-heldout-tabular-m2-a2-11009",
+    "family": "tabular",
+    "split": "heldout",
+    "seed": 11009,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "amount": 16
+          },
+          {
+            "region": "k00",
+            "amount": 19
+          },
+          {
+            "region": "k00",
+            "amount": 22
+          },
+          {
+            "region": "k01",
+            "amount": 23
+          },
+          {
+            "region": "k01",
+            "amount": 3
+          },
+          {
+            "region": "k01",
+            "amount": 6
+          },
+          {
+            "region": "k02",
+            "amount": 7
+          },
+          {
+            "region": "k02",
+            "amount": 10
+          },
+          {
+            "region": "k02",
+            "amount": 13
+          },
+          {
+            "region": "k03",
+            "amount": 14
+          },
+          {
+            "region": "k03",
+            "amount": 17
+          },
+          {
+            "region": "k03",
+            "amount": 20
+          },
+          {
+            "region": "k04",
+            "amount": 21
+          },
+          {
+            "region": "k04",
+            "amount": 1
+          },
+          {
+            "region": "k04",
+            "amount": 4
+          },
+          {
+            "region": "k05",
+            "amount": 5
+          },
+          {
+            "region": "k05",
+            "amount": 8
+          },
+          {
+            "region": "k05",
+            "amount": 11
+          },
+          {
+            "region": "k06",
+            "amount": 12
+          },
+          {
+            "region": "k06",
+            "amount": 15
+          },
+          {
+            "region": "k06",
+            "amount": 18
+          },
+          {
+            "region": "k07",
+            "amount": 19
+          },
+          {
+            "region": "k07",
+            "amount": 22
+          },
+          {
+            "region": "k07",
+            "amount": 2
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "rate": 5
+          },
+          {
+            "region": "k01",
+            "rate": 1
+          },
+          {
+            "region": "k02",
+            "rate": 2
+          },
+          {
+            "region": "k03",
+            "rate": 3
+          },
+          {
+            "region": "k04",
+            "rate": 4
+          },
+          {
+            "region": "k05",
+            "rate": 5
+          },
+          {
+            "region": "k06",
+            "rate": 1
+          },
+          {
+            "region": "k07",
+            "rate": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "split": "heldout",
+    "seed": 11026,
+    "topology": {
+      "main_shards": 3,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "amount": 10
+          },
+          {
+            "region": "k00",
+            "amount": 13
+          },
+          {
+            "region": "k00",
+            "amount": 16
+          },
+          {
+            "region": "k01",
+            "amount": 17
+          },
+          {
+            "region": "k01",
+            "amount": 20
+          },
+          {
+            "region": "k01",
+            "amount": 23
+          },
+          {
+            "region": "k02",
+            "amount": 1
+          },
+          {
+            "region": "k02",
+            "amount": 4
+          },
+          {
+            "region": "k02",
+            "amount": 7
+          },
+          {
+            "region": "k03",
+            "amount": 8
+          },
+          {
+            "region": "k03",
+            "amount": 11
+          },
+          {
+            "region": "k03",
+            "amount": 14
+          },
+          {
+            "region": "k04",
+            "amount": 15
+          },
+          {
+            "region": "k04",
+            "amount": 18
+          },
+          {
+            "region": "k04",
+            "amount": 21
+          },
+          {
+            "region": "k05",
+            "amount": 22
+          },
+          {
+            "region": "k05",
+            "amount": 2
+          },
+          {
+            "region": "k05",
+            "amount": 5
+          },
+          {
+            "region": "k06",
+            "amount": 6
+          },
+          {
+            "region": "k06",
+            "amount": 9
+          },
+          {
+            "region": "k06",
+            "amount": 12
+          },
+          {
+            "region": "k07",
+            "amount": 13
+          },
+          {
+            "region": "k07",
+            "amount": 16
+          },
+          {
+            "region": "k07",
+            "amount": 19
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "rate": 2
+          },
+          {
+            "region": "k01",
+            "rate": 3
+          },
+          {
+            "region": "k02",
+            "rate": 4
+          },
+          {
+            "region": "k03",
+            "rate": 5
+          },
+          {
+            "region": "k04",
+            "rate": 1
+          },
+          {
+            "region": "k05",
+            "rate": 2
+          },
+          {
+            "region": "k06",
+            "rate": 3
+          },
+          {
+            "region": "k07",
+            "rate": 4
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-tabular-m2-a3-11043",
+    "family": "tabular",
+    "split": "heldout",
+    "seed": 11043,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 3
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "amount": 4
+          },
+          {
+            "region": "k00",
+            "amount": 7
+          },
+          {
+            "region": "k00",
+            "amount": 10
+          },
+          {
+            "region": "k01",
+            "amount": 11
+          },
+          {
+            "region": "k01",
+            "amount": 14
+          },
+          {
+            "region": "k01",
+            "amount": 17
+          },
+          {
+            "region": "k02",
+            "amount": 18
+          },
+          {
+            "region": "k02",
+            "amount": 21
+          },
+          {
+            "region": "k02",
+            "amount": 1
+          },
+          {
+            "region": "k03",
+            "amount": 2
+          },
+          {
+            "region": "k03",
+            "amount": 5
+          },
+          {
+            "region": "k03",
+            "amount": 8
+          },
+          {
+            "region": "k04",
+            "amount": 9
+          },
+          {
+            "region": "k04",
+            "amount": 12
+          },
+          {
+            "region": "k04",
+            "amount": 15
+          },
+          {
+            "region": "k05",
+            "amount": 16
+          },
+          {
+            "region": "k05",
+            "amount": 19
+          },
+          {
+            "region": "k05",
+            "amount": 22
+          },
+          {
+            "region": "k06",
+            "amount": 23
+          },
+          {
+            "region": "k06",
+            "amount": 3
+          },
+          {
+            "region": "k06",
+            "amount": 6
+          },
+          {
+            "region": "k07",
+            "amount": 7
+          },
+          {
+            "region": "k07",
+            "amount": 10
+          },
+          {
+            "region": "k07",
+            "amount": 13
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "region": "k00",
+            "rate": 4
+          },
+          {
+            "region": "k01",
+            "rate": 5
+          },
+          {
+            "region": "k02",
+            "rate": 1
+          },
+          {
+            "region": "k03",
+            "rate": 2
+          },
+          {
+            "region": "k04",
+            "rate": 3
+          },
+          {
+            "region": "k05",
+            "rate": 4
+          },
+          {
+            "region": "k06",
+            "rate": 5
+          },
+          {
+            "region": "k07",
+            "rate": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "split": "heldout",
+    "seed": 11110,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "revision": 2,
+            "value": 21
+          },
+          {
+            "entity": "k00",
+            "revision": 1,
+            "value": 16
+          },
+          {
+            "entity": "k00",
+            "revision": 3,
+            "value": 26
+          },
+          {
+            "entity": "k01",
+            "revision": 2,
+            "value": 32
+          },
+          {
+            "entity": "k01",
+            "revision": 1,
+            "value": 27
+          },
+          {
+            "entity": "k01",
+            "revision": 3,
+            "value": 37
+          },
+          {
+            "entity": "k02",
+            "revision": 2,
+            "value": 6
+          },
+          {
+            "entity": "k02",
+            "revision": 1,
+            "value": 1
+          },
+          {
+            "entity": "k02",
+            "revision": 3,
+            "value": 11
+          },
+          {
+            "entity": "k03",
+            "revision": 2,
+            "value": 17
+          },
+          {
+            "entity": "k03",
+            "revision": 1,
+            "value": 12
+          },
+          {
+            "entity": "k03",
+            "revision": 3,
+            "value": 22
+          },
+          {
+            "entity": "k04",
+            "revision": 2,
+            "value": 28
+          },
+          {
+            "entity": "k04",
+            "revision": 1,
+            "value": 23
+          },
+          {
+            "entity": "k04",
+            "revision": 3,
+            "value": 33
+          },
+          {
+            "entity": "k05",
+            "revision": 2,
+            "value": 2
+          },
+          {
+            "entity": "k05",
+            "revision": 1,
+            "value": 34
+          },
+          {
+            "entity": "k05",
+            "revision": 3,
+            "value": 7
+          },
+          {
+            "entity": "k06",
+            "revision": 2,
+            "value": 13
+          },
+          {
+            "entity": "k06",
+            "revision": 1,
+            "value": 8
+          },
+          {
+            "entity": "k06",
+            "revision": 3,
+            "value": 18
+          },
+          {
+            "entity": "k07",
+            "revision": 2,
+            "value": 24
+          },
+          {
+            "entity": "k07",
+            "revision": 1,
+            "value": 19
+          },
+          {
+            "entity": "k07",
+            "revision": 3,
+            "value": 29
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "enabled": true
+          },
+          {
+            "entity": "k01",
+            "enabled": true
+          },
+          {
+            "entity": "k02",
+            "enabled": false
+          },
+          {
+            "entity": "k03",
+            "enabled": true
+          },
+          {
+            "entity": "k04",
+            "enabled": true
+          },
+          {
+            "entity": "k05",
+            "enabled": false
+          },
+          {
+            "entity": "k06",
+            "enabled": true
+          },
+          {
+            "entity": "k07",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-retrieval-m3-a2-11127",
+    "family": "retrieval",
+    "split": "heldout",
+    "seed": 11127,
+    "topology": {
+      "main_shards": 3,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "revision": 2,
+            "value": 1
+          },
+          {
+            "entity": "k00",
+            "revision": 1,
+            "value": 33
+          },
+          {
+            "entity": "k00",
+            "revision": 3,
+            "value": 6
+          },
+          {
+            "entity": "k01",
+            "revision": 2,
+            "value": 12
+          },
+          {
+            "entity": "k01",
+            "revision": 1,
+            "value": 7
+          },
+          {
+            "entity": "k01",
+            "revision": 3,
+            "value": 17
+          },
+          {
+            "entity": "k02",
+            "revision": 2,
+            "value": 23
+          },
+          {
+            "entity": "k02",
+            "revision": 1,
+            "value": 18
+          },
+          {
+            "entity": "k02",
+            "revision": 3,
+            "value": 28
+          },
+          {
+            "entity": "k03",
+            "revision": 2,
+            "value": 34
+          },
+          {
+            "entity": "k03",
+            "revision": 1,
+            "value": 29
+          },
+          {
+            "entity": "k03",
+            "revision": 3,
+            "value": 2
+          },
+          {
+            "entity": "k04",
+            "revision": 2,
+            "value": 8
+          },
+          {
+            "entity": "k04",
+            "revision": 1,
+            "value": 3
+          },
+          {
+            "entity": "k04",
+            "revision": 3,
+            "value": 13
+          },
+          {
+            "entity": "k05",
+            "revision": 2,
+            "value": 19
+          },
+          {
+            "entity": "k05",
+            "revision": 1,
+            "value": 14
+          },
+          {
+            "entity": "k05",
+            "revision": 3,
+            "value": 24
+          },
+          {
+            "entity": "k06",
+            "revision": 2,
+            "value": 30
+          },
+          {
+            "entity": "k06",
+            "revision": 1,
+            "value": 25
+          },
+          {
+            "entity": "k06",
+            "revision": 3,
+            "value": 35
+          },
+          {
+            "entity": "k07",
+            "revision": 2,
+            "value": 4
+          },
+          {
+            "entity": "k07",
+            "revision": 1,
+            "value": 36
+          },
+          {
+            "entity": "k07",
+            "revision": 3,
+            "value": 9
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "enabled": true
+          },
+          {
+            "entity": "k01",
+            "enabled": true
+          },
+          {
+            "entity": "k02",
+            "enabled": false
+          },
+          {
+            "entity": "k03",
+            "enabled": true
+          },
+          {
+            "entity": "k04",
+            "enabled": true
+          },
+          {
+            "entity": "k05",
+            "enabled": false
+          },
+          {
+            "entity": "k06",
+            "enabled": true
+          },
+          {
+            "entity": "k07",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-retrieval-m2-a3-11144",
+    "family": "retrieval",
+    "split": "heldout",
+    "seed": 11144,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 3
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "revision": 2,
+            "value": 18
+          },
+          {
+            "entity": "k00",
+            "revision": 1,
+            "value": 13
+          },
+          {
+            "entity": "k00",
+            "revision": 3,
+            "value": 23
+          },
+          {
+            "entity": "k01",
+            "revision": 2,
+            "value": 29
+          },
+          {
+            "entity": "k01",
+            "revision": 1,
+            "value": 24
+          },
+          {
+            "entity": "k01",
+            "revision": 3,
+            "value": 34
+          },
+          {
+            "entity": "k02",
+            "revision": 2,
+            "value": 3
+          },
+          {
+            "entity": "k02",
+            "revision": 1,
+            "value": 35
+          },
+          {
+            "entity": "k02",
+            "revision": 3,
+            "value": 8
+          },
+          {
+            "entity": "k03",
+            "revision": 2,
+            "value": 14
+          },
+          {
+            "entity": "k03",
+            "revision": 1,
+            "value": 9
+          },
+          {
+            "entity": "k03",
+            "revision": 3,
+            "value": 19
+          },
+          {
+            "entity": "k04",
+            "revision": 2,
+            "value": 25
+          },
+          {
+            "entity": "k04",
+            "revision": 1,
+            "value": 20
+          },
+          {
+            "entity": "k04",
+            "revision": 3,
+            "value": 30
+          },
+          {
+            "entity": "k05",
+            "revision": 2,
+            "value": 36
+          },
+          {
+            "entity": "k05",
+            "revision": 1,
+            "value": 31
+          },
+          {
+            "entity": "k05",
+            "revision": 3,
+            "value": 4
+          },
+          {
+            "entity": "k06",
+            "revision": 2,
+            "value": 10
+          },
+          {
+            "entity": "k06",
+            "revision": 1,
+            "value": 5
+          },
+          {
+            "entity": "k06",
+            "revision": 3,
+            "value": 15
+          },
+          {
+            "entity": "k07",
+            "revision": 2,
+            "value": 21
+          },
+          {
+            "entity": "k07",
+            "revision": 1,
+            "value": 16
+          },
+          {
+            "entity": "k07",
+            "revision": 3,
+            "value": 26
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "entity": "k00",
+            "enabled": true
+          },
+          {
+            "entity": "k01",
+            "enabled": true
+          },
+          {
+            "entity": "k02",
+            "enabled": false
+          },
+          {
+            "entity": "k03",
+            "enabled": true
+          },
+          {
+            "entity": "k04",
+            "enabled": true
+          },
+          {
+            "entity": "k05",
+            "enabled": false
+          },
+          {
+            "entity": "k06",
+            "enabled": true
+          },
+          {
+            "entity": "k07",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-classification-m2-a2-11211",
+    "family": "classification",
+    "split": "heldout",
+    "seed": 11211,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "predicted": 1
+          },
+          {
+            "id": "k01",
+            "predicted": 1
+          },
+          {
+            "id": "k02",
+            "predicted": 0
+          },
+          {
+            "id": "k03",
+            "predicted": 1
+          },
+          {
+            "id": "k04",
+            "predicted": 0
+          },
+          {
+            "id": "k05",
+            "predicted": 0
+          },
+          {
+            "id": "k06",
+            "predicted": 1
+          },
+          {
+            "id": "k07",
+            "predicted": 1
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "label": 1
+          },
+          {
+            "id": "k01",
+            "label": 1
+          },
+          {
+            "id": "k02",
+            "label": 0
+          },
+          {
+            "id": "k03",
+            "label": 1
+          },
+          {
+            "id": "k04",
+            "label": 0
+          },
+          {
+            "id": "k05",
+            "label": 0
+          },
+          {
+            "id": "k06",
+            "label": 1
+          },
+          {
+            "id": "k07",
+            "label": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-classification-m3-a2-11228",
+    "family": "classification",
+    "split": "heldout",
+    "seed": 11228,
+    "topology": {
+      "main_shards": 3,
+      "aux_shards": 2
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "predicted": 0
+          },
+          {
+            "id": "k01",
+            "predicted": 0
+          },
+          {
+            "id": "k02",
+            "predicted": 1
+          },
+          {
+            "id": "k03",
+            "predicted": 1
+          },
+          {
+            "id": "k04",
+            "predicted": 1
+          },
+          {
+            "id": "k05",
+            "predicted": 0
+          },
+          {
+            "id": "k06",
+            "predicted": 1
+          },
+          {
+            "id": "k07",
+            "predicted": 1
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "label": 0
+          },
+          {
+            "id": "k01",
+            "label": 0
+          },
+          {
+            "id": "k02",
+            "label": 1
+          },
+          {
+            "id": "k03",
+            "label": 1
+          },
+          {
+            "id": "k04",
+            "label": 1
+          },
+          {
+            "id": "k05",
+            "label": 0
+          },
+          {
+            "id": "k06",
+            "label": 1
+          },
+          {
+            "id": "k07",
+            "label": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "split": "heldout",
+    "seed": 11245,
+    "topology": {
+      "main_shards": 2,
+      "aux_shards": 3
+    },
+    "sources": {
+      "main": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "predicted": 1
+          },
+          {
+            "id": "k01",
+            "predicted": 0
+          },
+          {
+            "id": "k02",
+            "predicted": 1
+          },
+          {
+            "id": "k03",
+            "predicted": 1
+          },
+          {
+            "id": "k04",
+            "predicted": 0
+          },
+          {
+            "id": "k05",
+            "predicted": 1
+          },
+          {
+            "id": "k06",
+            "predicted": 1
+          },
+          {
+            "id": "k07",
+            "predicted": 1
+          }
+        ]
+      },
+      "aux": {
+        "revision": 1,
+        "rows": [
+          {
+            "id": "k00",
+            "label": 1
+          },
+          {
+            "id": "k01",
+            "label": 0
+          },
+          {
+            "id": "k02",
+            "label": 1
+          },
+          {
+            "id": "k03",
+            "label": 1
+          },
+          {
+            "id": "k04",
+            "label": 0
+          },
+          {
+            "id": "k05",
+            "label": 1
+          },
+          {
+            "id": "k06",
+            "label": 1
+          },
+          {
+            "id": "k07",
+            "label": 1
+          }
+        ]
+      }
+    }
+  }
+]

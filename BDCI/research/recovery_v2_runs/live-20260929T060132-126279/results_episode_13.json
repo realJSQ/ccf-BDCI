@@ -1,0 +1,440 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 139,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "e005842e9a902e88f12d706bc88967b61b2d4b00eba7b9d416ca23abd5adaa4d"
+        },
+        "receipt_sha256": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+      },
+      {
+        "node": "partition_aux_0",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+      },
+      {
+        "node": "summarize_aux_0",
+        "actual_reads": {
+          "partition_aux_0": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+        },
+        "receipt_sha256": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d"
+      },
+      {
+        "node": "partition_aux_1",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+      },
+      {
+        "node": "summarize_aux_1",
+        "actual_reads": {
+          "partition_aux_1": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+        },
+        "receipt_sha256": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "summarize_aux_0": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d",
+          "summarize_aux_1": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+        },
+        "receipt_sha256": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d",
+          "summarize_aux": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      }
+    ],
+    "tool_calls": 8,
+    "public_input_sha256": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+    "plan_sha256": "6ace77eb62ff4f9a7fdb3ef0e30c75b1d98c9c89133d73185f2432fae6980104",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0015271470001607668,
+    "episode_id": "episode_13",
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "scenario": "aux_update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 139,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "e005842e9a902e88f12d706bc88967b61b2d4b00eba7b9d416ca23abd5adaa4d"
+        },
+        "receipt_sha256": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+      },
+      {
+        "node": "partition_aux_0",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+      },
+      {
+        "node": "summarize_aux_0",
+        "actual_reads": {
+          "partition_aux_0": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+        },
+        "receipt_sha256": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d"
+      },
+      {
+        "node": "partition_aux_1",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+      },
+      {
+        "node": "summarize_aux_1",
+        "actual_reads": {
+          "partition_aux_1": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+        },
+        "receipt_sha256": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "summarize_aux_0": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d",
+          "summarize_aux_1": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+        },
+        "receipt_sha256": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d",
+          "summarize_aux": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      }
+    ],
+    "tool_calls": 8,
+    "public_input_sha256": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+    "plan_sha256": "6ace77eb62ff4f9a7fdb3ef0e30c75b1d98c9c89133d73185f2432fae6980104",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.001451825000003737,
+    "episode_id": "episode_13",
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "scenario": "aux_update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "E",
+    "status": "completed",
+    "artifact": {
+      "value": 139,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "e005842e9a902e88f12d706bc88967b61b2d4b00eba7b9d416ca23abd5adaa4d"
+        },
+        "receipt_sha256": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+      },
+      {
+        "node": "partition_aux_0",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+      },
+      {
+        "node": "summarize_aux_0",
+        "actual_reads": {
+          "partition_aux_0": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+        },
+        "receipt_sha256": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d"
+      },
+      {
+        "node": "partition_aux_1",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+      },
+      {
+        "node": "summarize_aux_1",
+        "actual_reads": {
+          "partition_aux_1": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+        },
+        "receipt_sha256": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "summarize_aux_0": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d",
+          "summarize_aux_1": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+        },
+        "receipt_sha256": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d",
+          "summarize_aux": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      }
+    ],
+    "tool_calls": 8,
+    "public_input_sha256": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+    "plan_sha256": "6ace77eb62ff4f9a7fdb3ef0e30c75b1d98c9c89133d73185f2432fae6980104",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0015504809998674318,
+    "episode_id": "episode_13",
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "scenario": "aux_update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "F",
+    "status": "completed",
+    "artifact": {
+      "value": 139,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_main",
+        "actual_reads": {
+          "source:main": "cac3817c8041dae49027e11d817c81616311dcd23ce079db25ec1d95e68ebe2b"
+        },
+        "receipt_sha256": "f73187580d31ed1f72327d299f16514e719c7f2195fe04c4023a18468115cc37"
+      },
+      {
+        "node": "partition_main_0",
+        "actual_reads": {
+          "read_main": "f73187580d31ed1f72327d299f16514e719c7f2195fe04c4023a18468115cc37"
+        },
+        "receipt_sha256": "8a34f1ff88f7516abebc57dd4357b473af9f1d11ad0fdf9871abf0b12a65f038"
+      },
+      {
+        "node": "summarize_main_0",
+        "actual_reads": {
+          "partition_main_0": "8a34f1ff88f7516abebc57dd4357b473af9f1d11ad0fdf9871abf0b12a65f038"
+        },
+        "receipt_sha256": "1f96c7871b3c61e9875e0d047927c1bedd5bb002d577988bd782b45a5b754b37"
+      },
+      {
+        "node": "partition_main_1",
+        "actual_reads": {
+          "read_main": "f73187580d31ed1f72327d299f16514e719c7f2195fe04c4023a18468115cc37"
+        },
+        "receipt_sha256": "8430182ddee19b6819769b91158dc0212ea32a4818def996fc4dce99dad9d536"
+      },
+      {
+        "node": "summarize_main_1",
+        "actual_reads": {
+          "partition_main_1": "8430182ddee19b6819769b91158dc0212ea32a4818def996fc4dce99dad9d536"
+        },
+        "receipt_sha256": "7ac3395ab3f9728e59d9238cd26a7169c7412f6c185facb17f3ee21c91687543"
+      },
+      {
+        "node": "summarize_main",
+        "actual_reads": {
+          "summarize_main_0": "1f96c7871b3c61e9875e0d047927c1bedd5bb002d577988bd782b45a5b754b37",
+          "summarize_main_1": "7ac3395ab3f9728e59d9238cd26a7169c7412f6c185facb17f3ee21c91687543"
+        },
+        "receipt_sha256": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d"
+      },
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "e005842e9a902e88f12d706bc88967b61b2d4b00eba7b9d416ca23abd5adaa4d"
+        },
+        "receipt_sha256": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+      },
+      {
+        "node": "partition_aux_0",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+      },
+      {
+        "node": "summarize_aux_0",
+        "actual_reads": {
+          "partition_aux_0": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+        },
+        "receipt_sha256": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d"
+      },
+      {
+        "node": "partition_aux_1",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+      },
+      {
+        "node": "summarize_aux_1",
+        "actual_reads": {
+          "partition_aux_1": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+        },
+        "receipt_sha256": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "summarize_aux_0": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d",
+          "summarize_aux_1": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+        },
+        "receipt_sha256": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d",
+          "summarize_aux": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      }
+    ],
+    "tool_calls": 14,
+    "public_input_sha256": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+    "plan_sha256": "6ace77eb62ff4f9a7fdb3ef0e30c75b1d98c9c89133d73185f2432fae6980104",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.002654895999967266,
+    "episode_id": "episode_13",
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "scenario": "aux_update",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "G",
+    "status": "completed",
+    "artifact": {
+      "value": 139,
+      "unit": "selected_value"
+    },
+    "trace": [
+      {
+        "node": "read_aux",
+        "actual_reads": {
+          "source:aux": "e005842e9a902e88f12d706bc88967b61b2d4b00eba7b9d416ca23abd5adaa4d"
+        },
+        "receipt_sha256": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+      },
+      {
+        "node": "partition_aux_0",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+      },
+      {
+        "node": "summarize_aux_0",
+        "actual_reads": {
+          "partition_aux_0": "2296ff734f5da73b8be2ebb1b5c700b0e998e26a0eb4bec006ef4b8d77cb8b1c"
+        },
+        "receipt_sha256": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d"
+      },
+      {
+        "node": "partition_aux_1",
+        "actual_reads": {
+          "read_aux": "30ceafe69d8c954bf301a037a2f0c48961f553b4897e5436880581dcf8d748ca"
+        },
+        "receipt_sha256": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+      },
+      {
+        "node": "summarize_aux_1",
+        "actual_reads": {
+          "partition_aux_1": "3adf13a50e19c0b1590a93d4608ac782704bf06ada9a0805f061ffee35d03c92"
+        },
+        "receipt_sha256": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+      },
+      {
+        "node": "summarize_aux",
+        "actual_reads": {
+          "summarize_aux_0": "55637748c5112596918ca352465b5015b834139259d8d0c08b4f53617dace74d",
+          "summarize_aux_1": "473aaf6e4987dfb8b796c3a7c2e6ca3e5da6d868706d9bb79b64e09194ea56a9"
+        },
+        "receipt_sha256": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+      },
+      {
+        "node": "combine",
+        "actual_reads": {
+          "summarize_main": "fd5a4a39653fb46369acd7f01f7897907f378e6ae93575c5f5336d7a42c78e2d",
+          "summarize_aux": "d897a2e9eaa8dfd3ac23cadc0aee4260b16def6643efb534a893568372509644"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      },
+      {
+        "node": "report",
+        "actual_reads": {
+          "combine": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+        },
+        "receipt_sha256": "5f29d8b616e89c3ffea9c896f199929190a76c1e6659b5f302843eeeb874d059"
+      }
+    ],
+    "tool_calls": 8,
+    "public_input_sha256": "5c0e77abe718deebae4b40c80ceeaa2a267904492da6f832b6036ddf81a0b25e",
+    "plan_sha256": null,
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.001323371000125917,
+    "episode_id": "episode_13",
+    "case_id": "recovery-v2-heldout-retrieval-m2-a2-11110",
+    "family": "retrieval",
+    "scenario": "aux_update",
+    "outcome": "correct_completion"
+  }
+]

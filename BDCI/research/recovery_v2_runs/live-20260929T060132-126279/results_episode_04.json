@@ -1,0 +1,102 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "value": 856,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+    "plan_sha256": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0010352540002713795,
+    "episode_id": "episode_04",
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "value": 856,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+    "plan_sha256": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0008722849997866433,
+    "episode_id": "episode_04",
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "E",
+    "status": "completed",
+    "artifact": {
+      "value": 856,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+    "plan_sha256": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.001209375000144064,
+    "episode_id": "episode_04",
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "F",
+    "status": "completed",
+    "artifact": {
+      "value": 856,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+    "plan_sha256": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0009699809997982811,
+    "episode_id": "episode_04",
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "G",
+    "status": "completed",
+    "artifact": {
+      "value": 856,
+      "unit": "weighted_amount"
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "3a202149e64a93de3c11a3e321e4ecf5164ec2b5e0b877caf387ba05d8b47b59",
+    "plan_sha256": null,
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0009809510002014576,
+    "episode_id": "episode_04",
+    "case_id": "recovery-v2-heldout-tabular-m3-a2-11026",
+    "family": "tabular",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

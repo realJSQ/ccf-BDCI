@@ -1,0 +1,169 @@
+{
+  "status": "authorized_and_completed",
+  "api_requests_sent": 36,
+  "destination": "https://api.deepseek.com",
+  "model": "deepseek-flash",
+  "purpose": "Frozen prospective recovery-plan study; 9 self-authored structural held-out tasks times 4 scenarios",
+  "requests": 36,
+  "retries": 0,
+  "project_token_limit": null,
+  "provider_max_output_tokens": 393216,
+  "payload": "Task tool definitions, declared and actual dependency graphs, old synthetic cached values, source version numbers, changed source nodes and action instructions",
+  "data_origin": "recovery_v2_cases.py committed d33ee80; all source rows generated arithmetically from fixed seeds; no private documents or user datasets",
+  "excluded": "API key is used for authentication only; apis.txt contents, oracle answers, hidden current rows, evaluation outcomes and private files are not prompt contents",
+  "prompts_archive": "public-prompts.zip",
+  "prompts_archive_sha256": "7367dc9215af90b16f41d654ddd23e8a8125565b9b1e90d544268390e964d7cd",
+  "prompts": {
+    "episode_00": {
+      "prompt_sha256": "7c593f788f9e7a80ca457a1be5c4a82fe90de9e1587973803123010d13c57a46",
+      "bytes": 8276
+    },
+    "episode_01": {
+      "prompt_sha256": "d6f87642ac831ab3067d768d912cda7c773938ec7e8c62acb4dfc7093fa6dcdf",
+      "bytes": 8286
+    },
+    "episode_02": {
+      "prompt_sha256": "b1a1893c6cd8eb146792c248bbac1805e28cb2aaa3a39697365151adb53a60e2",
+      "bytes": 8299
+    },
+    "episode_03": {
+      "prompt_sha256": "e0e0d19b6521dd4a10cce95d39aca85cd5e8dd86766ae78f2026c50f93e6869e",
+      "bytes": 8269
+    },
+    "episode_04": {
+      "prompt_sha256": "52432b76e25e7e163110cfa05e618b73de5a3a5a06a7e3049be4fe4b31337ec8",
+      "bytes": 8861
+    },
+    "episode_05": {
+      "prompt_sha256": "d72d9990bdd3bff1d36009f0dacb43781d2df584782a0d9561a485d824b0b616",
+      "bytes": 8871
+    },
+    "episode_06": {
+      "prompt_sha256": "f1edf00dfe7d793b953518720f7839b0d8e72be14137aed4cd717bc7aa3a61d7",
+      "bytes": 8884
+    },
+    "episode_07": {
+      "prompt_sha256": "bda512f361faad47a2676865cd17e1e2536d8427be5a7462044c65b2a0cf4fd8",
+      "bytes": 8854
+    },
+    "episode_08": {
+      "prompt_sha256": "4af603fa50388a028d4b3d5c3f5921ee40eacd3ef5e09ea80a56e275eab25670",
+      "bytes": 8834
+    },
+    "episode_09": {
+      "prompt_sha256": "faac46579d4eabb6c2fef1daffaa3ec5854a515f9ed57a87a9e4428088b6d797",
+      "bytes": 8844
+    },
+    "episode_10": {
+      "prompt_sha256": "c6383bfa94337ba8f14f57692c835f370dd56ff727076c3139b248576621e595",
+      "bytes": 8857
+    },
+    "episode_11": {
+      "prompt_sha256": "1a18b753cbce791943667cdbcb5e919990b9c3688c6e0f8d617e80a6f4585b5b",
+      "bytes": 8827
+    },
+    "episode_12": {
+      "prompt_sha256": "92ddd6fcdef489679f418c511c4fd395e2751b0e0a14c36be424abcc3881789f",
+      "bytes": 9104
+    },
+    "episode_13": {
+      "prompt_sha256": "4de805f460a85dc1536213da61d57b5cf21d83429f38490e63ee04c5033b34d1",
+      "bytes": 9114
+    },
+    "episode_14": {
+      "prompt_sha256": "b9dde346466806130bf07bc9b09a89a18eb61bfbb87e7371b2087cb575087d08",
+      "bytes": 9127
+    },
+    "episode_15": {
+      "prompt_sha256": "3985bd01beb4da108e9f1edaa46c10ab123c7cfc2ba27acb2bb0b51d731a6ea3",
+      "bytes": 9097
+    },
+    "episode_16": {
+      "prompt_sha256": "c7cd54c780a881580ff46b58eff471c3e97e55a9d9826030069ea4e8ae558694",
+      "bytes": 9677
+    },
+    "episode_17": {
+      "prompt_sha256": "8a291cfdab0342199fa7aee386d30c3c41814f7f03f3c8191c4c111a7ae41af6",
+      "bytes": 9687
+    },
+    "episode_18": {
+      "prompt_sha256": "45268c46221061aee310a416781e225282f9b2c56e8ba38781de59b4e7ba81c6",
+      "bytes": 9700
+    },
+    "episode_19": {
+      "prompt_sha256": "4fe33094f7c95dd2cfafa9eb80ec4ad5464d7b50223d8694545744b10ff85957",
+      "bytes": 9670
+    },
+    "episode_20": {
+      "prompt_sha256": "752f7ed60aec279c57daf8aae02bf92d3f102ee482c838f77c5fa548946ce527",
+      "bytes": 9664
+    },
+    "episode_21": {
+      "prompt_sha256": "cd1ad60dc307d849b7957956ebd3bf8c1632500aa012c4a237951b86fea2ca42",
+      "bytes": 9674
+    },
+    "episode_22": {
+      "prompt_sha256": "cb940c8090710220e144afa489cc6a1ffa5d892e6e2bd84f4a8fdd11d88cd0e1",
+      "bytes": 9687
+    },
+    "episode_23": {
+      "prompt_sha256": "112e653f6d13fcfff51f8e4c25f099ccaa13ea81cc42af21f951386162c245ed",
+      "bytes": 9657
+    },
+    "episode_24": {
+      "prompt_sha256": "f051742ba5f20deb1636fd495eefa94204cfc01cf459792c371d6ec94a992994",
+      "bytes": 7117
+    },
+    "episode_25": {
+      "prompt_sha256": "e74de9aa7511857a99f0386cf116767e38b61a3199e893931e7e146fc3f38e20",
+      "bytes": 7127
+    },
+    "episode_26": {
+      "prompt_sha256": "f69fc4a3c098d700bf34fe060364aa5efaf8b915410c4575a312ed16f2798d03",
+      "bytes": 7140
+    },
+    "episode_27": {
+      "prompt_sha256": "c927855723fc45069fb3da1a6ee8bde9579df08a65c077c3c4e5f403028c6aee",
+      "bytes": 7110
+    },
+    "episode_28": {
+      "prompt_sha256": "32c77daeac078ecbcc18bfbfd1d7d19f9b9fb314abe02863c70baf6e14d43f01",
+      "bytes": 7702
+    },
+    "episode_29": {
+      "prompt_sha256": "1d78d5ca41282977589ba3869afe3f4484f31b8e7b14b21b45a3596d59ebbd59",
+      "bytes": 7712
+    },
+    "episode_30": {
+      "prompt_sha256": "2b5c9e3112a6dae160596c5a67356e7751126ebee06255b099ebd19586cca00f",
+      "bytes": 7725
+    },
+    "episode_31": {
+      "prompt_sha256": "23bcdca3626fb3845a8efb322bac4e30568e3232b754558e4557092aa54d0ec1",
+      "bytes": 7695
+    },
+    "episode_32": {
+      "prompt_sha256": "f478a9eee3ee8e637844f9e6fd9a8d90a443ab5329b53f3df53386e256b387bf",
+      "bytes": 7679
+    },
+    "episode_33": {
+      "prompt_sha256": "94da003fc183a810e7aff6a6d21f4dc1084d2f9f299daf4dbc296462a7c8de4c",
+      "bytes": 7689
+    },
+    "episode_34": {
+      "prompt_sha256": "cfb3c7f40d20905c8906cf0299beba84dcc2d21e0989c6252b00e4a63358263f",
+      "bytes": 7702
+    },
+    "episode_35": {
+      "prompt_sha256": "4ded7b787127ff973d10f1e752ba4dde5762936d4afac536041af01ea38d12a6",
+      "bytes": 7672
+    }
+  },
+  "source_commit": "d33ee80",
+  "local_run": "research/recovery_v2_runs/live-20260929T055927-328101",
+  "approval_rejection_reason": "Existing approval did not explicitly cover these specific held-out task payloads and 36 external requests. No request was launched.",
+  "user_authorization": "允许，按冻结方案执行",
+  "completed_run": "research/recovery_v2_runs/live-20260929T060132-126279",
+  "actual_total_tokens": 113384,
+  "approved_prompts_verified_before_execution": true
+}

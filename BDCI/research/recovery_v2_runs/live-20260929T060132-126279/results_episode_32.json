@@ -1,0 +1,102 @@
+[
+  {
+    "policy": "A",
+    "status": "completed",
+    "artifact": {
+      "correct": 8,
+      "total": 8
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+    "plan_sha256": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0008379099999729078,
+    "episode_id": "episode_32",
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "D",
+    "status": "completed",
+    "artifact": {
+      "correct": 8,
+      "total": 8
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+    "plan_sha256": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0007724749998487823,
+    "episode_id": "episode_32",
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "E",
+    "status": "completed",
+    "artifact": {
+      "correct": 8,
+      "total": 8
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+    "plan_sha256": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0007447129996762669,
+    "episode_id": "episode_32",
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "F",
+    "status": "completed",
+    "artifact": {
+      "correct": 8,
+      "total": 8
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+    "plan_sha256": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0007224099999803002,
+    "episode_id": "episode_32",
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  },
+  {
+    "policy": "G",
+    "status": "completed",
+    "artifact": {
+      "correct": 8,
+      "total": 8
+    },
+    "trace": [],
+    "tool_calls": 0,
+    "public_input_sha256": "32a036882e57930820280010872e3218980002d19157ec5fd158b5a590f71fb6",
+    "plan_sha256": null,
+    "provenance_current": true,
+    "reason": "emitted",
+    "duration_seconds": 0.0006715340000482684,
+    "episode_id": "episode_32",
+    "case_id": "recovery-v2-heldout-classification-m2-a3-11245",
+    "family": "classification",
+    "scenario": "clean",
+    "outcome": "correct_completion"
+  }
+]

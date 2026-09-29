@@ -1,0 +1,48 @@
+{
+  "retrieval": "Public unauthenticated GET only; no registration, messages, upload or submission.",
+  "sources": [
+    {
+      "file": "competition-1167.json",
+      "url": "https://www.xir.cn/competitionApi/api/competitions/1167",
+      "final_url": "https://www.xir.cn/competitionApi/api/competitions/1167",
+      "retrieved_at_utc": "2026-09-29T06:01:27.776534+00:00",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 35095,
+      "sha256": "237f666d6c67280634ddcf68172cb0f7b45a303437a8dfb102cf63c9bba2bc47"
+    },
+    {
+      "file": "competition-1167-datasets.json",
+      "url": "https://www.xir.cn/competitionApi/api/competitions/1167?part=datasets",
+      "final_url": "https://www.xir.cn/competitionApi/api/competitions/1167?part=datasets",
+      "retrieved_at_utc": "2026-09-29T06:01:28.068126+00:00",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 35406,
+      "sha256": "d672b7b3d1275bab5769542f36cdece78cd0642babed721ea5bd844c1472b417"
+    },
+    {
+      "file": "atomgit-jiuwenswarm-pulls.html",
+      "url": "https://atomgit.com/openJiuwen/jiuwenswarm/pulls",
+      "final_url": "https://atomgit.com/openJiuwen/jiuwenswarm/pulls",
+      "retrieved_at_utc": "2026-09-29T06:01:30.033465+00:00",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "bytes": 348548,
+      "sha256": "f03b0a00936044c9e8f8d088c2fcbd1b627e6f3df2a2c75ed758640a29134ab0"
+    }
+  ],
+  "official_pages": {
+    "detail": "https://www.xir.cn/competition/1167",
+    "dataware": "https://www.xir.cn/competition/1167/dataware",
+    "faq": "https://www.xir.cn/competition/1167/faq"
+  },
+  "frontend_api_provenance": [
+    "https://www.xir.cn/assets/index-56d7e7c2.js",
+    "https://www.xir.cn/competitionApi/",
+    "https://www.xir.cn/competitionApi/assets/index-BE1wkUPU.js",
+    "https://www.xir.cn/competitionApi/assets/index-BrzNHmZm.js"
+  ],
+  "faq_location": "competition-1167.json:cmptFaq",
+  "sample_status": "Dataset 1879 is listed, but its filePath is empty in the unauthenticated response; no ZIP downloaded and no contents verified."
+}

@@ -1,0 +1,33 @@
+{
+  "queried_on": "2026-09-29",
+  "source": "https://api.deepseek.com/models",
+  "model": {
+    "id": "deepseek-flash",
+    "object": "model",
+    "owned_by": "deepseek",
+    "name": "DeepSeek-V4.1-Flash",
+    "context_window": 1048576,
+    "max_output_tokens": 393216,
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "effort": {
+      "supported_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "default_level": "high"
+    },
+    "api_capabilities": {
+      "anthropic_messages": {
+        "system_prompt_update": "in-history"
+      }
+    }
+  },
+  "usage_policy": "Use provider maximum output capacity; no project token ceiling. Omission was observed to default to 8192 output tokens."
+}
