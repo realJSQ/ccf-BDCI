@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 from run_replay_paper import ReplayPaperState, select_study_run, DEFAULT_RUN, HERE
+from run_replay_paper import main
 
 
 class ReplayPaperTests(unittest.TestCase):
@@ -83,6 +84,12 @@ class ReplayPaperTests(unittest.TestCase):
         from paper_contracts import validate_paper
         with self.assertRaisesRegex(ValueError, 'paper_word_limit'):
             validate_paper(self.state.outputs['reviser'], self.state.sources)
+
+    def test_coordinator_output_must_be_new_and_under_run_root(self):
+        with self.assertRaisesRegex(ValueError, 'invalid_output_run_location'):
+            main(['--output-run', self.temp.name, '--no-latest'])
+        with self.assertRaisesRegex(ValueError, 'output_run_conflicts'):
+            main(['--output-run', str(HERE / 'replay_paper_runs/new'), '--resume', self.temp.name])
 
 
 if __name__ == '__main__':

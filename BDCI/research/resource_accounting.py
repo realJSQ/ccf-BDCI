@@ -65,13 +65,18 @@ def audit_resources(bdci, inventory):
 
 def render_report(audit, study_usage, writing):
     study = next(s for s in audit['stages'] if s['usage'] == study_usage)
+    offline = writing.get('mode', 'live') != 'live'
+    writing_label = 'Scripted integration fixture (not live API)' if offline else 'Selected manuscript writing'
+    selected_calls = study['calls'] + (0 if offline else writing['model_calls'])
+    selected_tokens = study['total_tokens'] + (0 if offline else writing['total_tokens'])
+    unit = ' live API' if offline else ''
     return f'''# Resource report
 
 This packaging operation uses zero model calls.
 Selected recovery experiment: {study['calls']} calls / {study['total_tokens']:,} tokens.
-Selected manuscript writing: {writing['model_calls']} calls / {writing['total_tokens']:,} tokens.
-These stages total {study['calls'] + writing['model_calls']} calls /
-{study['total_tokens'] + writing['total_tokens']:,} tokens. Local editorial changes,
+{writing_label}: {writing['model_calls']} calls / {writing['total_tokens']:,} tokens.
+These stages total {selected_calls}{unit} calls /
+{selected_tokens:,}{unit} tokens. Local editorial changes,
 CPU replays and post-hoc normalization add zero model calls.
 
 The explicit archived live-run inventory totals {audit['total_calls']} calls /

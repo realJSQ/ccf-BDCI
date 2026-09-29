@@ -74,11 +74,11 @@ def editorial_source(root, research):
     return source
 
 
-def validate_manuscript(root, replay_root):
+def validate_manuscript(root, replay_root, research=HERE):
     root = Path(root)
-    source = editorial_source(root, Path(replay_root).parents[1])
+    source = editorial_source(root, research)
     if source is not None:
-        normalized, inherited = validate_manuscript(source, replay_root)
+        normalized, inherited = validate_manuscript(source, replay_root, research)
         meta = read(root / 'editorial_assistance.json')
         paper, summary = read(root / 'paper.json'), read(root / 'summary.json')
         validate_paper(paper, read(root / 'sources.json'))
@@ -172,6 +172,49 @@ def writing_chain(root, research=HERE):
             raise ValueError('missing_or_unsafe_continuation')
 
 
+def select_study(root, explicit=None):
+    """A missing saved input is an error; explicit relocation stays content-bound."""
+    if explicit is not None:
+        selected = Path(explicit).resolve()
+    else:
+        original = editorial_source(root, HERE)
+        provenance = read((original or root) / 'input_provenance.json')
+        relative = provenance.get('study_run_relative')
+        if relative is not None:
+            selected = source_path(HERE, relative)
+        else:
+            selected = Path(provenance['run'])
+            if not selected.is_absolute():
+                raise ValueError('ambiguous_legacy_study_path')
+    if not selected.is_dir() or selected.is_symlink():
+        raise ValueError('study_missing_supply_study_run')
+    return selected
+
+
+def registered_usage(run, inventory, bdci):
+    """Relocated copies resolve to one inventory entry, never additional usage."""
+    for entry in inventory['runs']:
+        if (sha(run / 'model_usage.jsonl') == sha(source_path(bdci, entry['usage']))
+                and sha(run / 'model_summary.json') == sha(source_path(bdci, entry['summary']))):
+            return entry['usage']
+    raise ValueError('unregistered_live_run_update_resource_inventory:' + run.name)
+
+
+def registered_study(run, inventory, bdci):
+    usage = registered_usage(run, inventory, bdci)
+    canonical = source_path(bdci, usage).parent
+    # Same usage is not permission to overwrite history with edited evidence.
+    with tempfile.TemporaryDirectory(prefix='study-binding-') as temporary:
+        left, right = Path(temporary) / 'selected', Path(temporary) / 'registered'
+        base._copy_replay_evidence(run, left)
+        base._copy_replay_evidence(canonical, right)
+        signature = lambda root: {str(p.relative_to(root)): sha(p) for p in root.rglob('*') if p.is_file()}
+        if signature(left) != signature(right):
+            raise ValueError('registered_study_content_mismatch')
+    relative = str(canonical.relative_to(Path(bdci) / 'research'))
+    return relative, usage
+
+
 def verify_bundle(stage):
     stage = Path(stage)
     manifest = read(stage / 'manifest.json')
@@ -183,8 +226,13 @@ def verify_bundle(stage):
         raise ValueError('manifest_mismatch')
     research = stage / 'code/BDCI/research'
     paper = research / 'replay_paper_runs' / manifest['paper_run']
-    _, summary = validate_manuscript(paper, research / base.REPLAY_RUN)
+    study_relative = manifest.get('study_run', base.REPLAY_RUN)
+    study = source_path(research, study_relative)
+    _, summary = validate_manuscript(paper, study, research)
     validate_rendered_sources(paper)
+    if ('integration_only' in manifest and (manifest['integration_only'] is not (summary['mode'] != 'live')
+            or manifest.get('writing_mode') != summary['mode'])):
+        raise ValueError('writing_mode_claim_mismatch')
     if sha(stage / 'paper/paper.pdf') != summary['pdf']['sha256']:
         raise ValueError('delivered_pdf_mismatch')
     chain = writing_chain(paper, research)
@@ -214,19 +262,32 @@ def verify_bundle(stage):
     audit = audit_resources(stage / 'code/BDCI', inventory)
     if read(stage / 'resource_audit.json') != audit:
         raise ValueError('resource_audit_mismatch')
+    registered_relative, study_usage = registered_study(study, inventory, stage / 'code/BDCI')
+    if registered_relative != study_relative:
+        raise ValueError('noncanonical_study_inventory_binding')
+    for run in model_runs:
+        if read(run / 'model_summary.json')['mode'] == 'live':
+            registered_usage(run, inventory, stage / 'code/BDCI')
     if (stage / 'resource_report.md').read_text() != render_report(
-            audit, 'research/' + base.REPLAY_RUN + '/model_usage.jsonl', totals):
+            audit, study_usage, {**totals, 'mode': summary['mode']}):
         raise ValueError('resource_report_mismatch')
     return {'status': 'verified_saved_candidate', 'files': len(actual),
-            'submission_ready': False, 'new_model_calls': 0, 'writing': totals, 'archived_live_usage': {
+            'submission_ready': False, 'new_model_calls': 0, 'writing': totals,
+            'writing_mode': summary['mode'], 'study_run': study_relative, 'archived_live_usage': {
                 'model_calls': audit['total_calls'], 'total_tokens': audit['total_tokens']}}
 
 
-def build_bundle(root, output):
+def build_bundle(root, output, study_run=None):
     root, output = Path(root).resolve(), Path(output).resolve()
-    review, summary = validate_manuscript(root, HERE / base.REPLAY_RUN)
+    study = select_study(root, study_run)
+    review, summary = validate_manuscript(root, study)
+    inventory = read(HERE / 'resource_runs.json')
+    study_relative, study_usage = registered_study(study, inventory, base.BDCI)
     validate_rendered_sources(root)
     chain = writing_chain(root)
+    for run in chain:
+        if (run / 'model_summary.json').exists() and read(run / 'model_summary.json')['mode'] == 'live':
+            registered_usage(run, inventory, base.BDCI)
     output.mkdir(parents=True, exist_ok=True)
     delivery, archive = output / 'replay-candidate', output / 'replay-candidate.zip'
     if delivery.exists() or archive.exists():
@@ -244,6 +305,7 @@ def build_bundle(root, output):
         base._json(adapter / 'reviewer.json', review)
         base.build_bundle(adapter, pilot_root=HERE / base.REVISION_PILOT, summary=summary)
         stage = adapter / 'delivery/workflow-validation'
+        base._copy_replay_evidence(study, stage / 'code/BDCI/research' / study_relative)
         for run in chain:
             destination = stage / 'code/BDCI/research/replay_paper_runs' / run.name
             for name in PAPER_FILES:
@@ -263,19 +325,22 @@ def build_bundle(root, output):
                 base._copy(source_path(base.BDCI, relative), stage / 'code/BDCI' / relative, base.BDCI)
         base._json(stage / 'resource_audit.json', audit)
         base._write(stage / 'resource_report.md', render_report(audit,
-            'research/' + base.REPLAY_RUN + '/model_usage.jsonl',
-            {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens']}))
+            study_usage,
+            {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens'], 'mode': summary['mode']}))
         base._write(stage / '提交说明.md', '''# 开发候选包，尚不能正式提交
 本包保存真实恢复实验与辅助编辑论文，研究新颖性及正式科学验收未完成。
 replay-candidate 不是队伍名称。缺正式队伍信息、当前赛题模板复核、
 最终 PDF 对应的外部 Reviewer Access Token、官方贡献 PR URL。
 内部模型审阅不是外部评审；本次打包不调用模型、不上传、不提交。
 ''')
+        if summary['mode'] != 'live':
+            note = stage / '提交说明.md'
+            base._write(note, note.read_text() + '\n本包论文为离线脚本集成测试产物，不是真实模型生成的新论文。不可用于正式投稿。\n')
         base._write(stage / 'code/REPLAY_REPRODUCTION.md', f'''# Saved recovery evidence
 From this code directory, using Python 3.13 and the installed project dependencies:
 ```bash
 python BDCI/research/build_replay_bundle.py --verify ..
-python BDCI/research/analyze_replay.py BDCI/research/{base.REPLAY_RUN} --verify-only
+python BDCI/research/analyze_replay.py BDCI/research/{study_relative} --verify-only
 ```
 These commands use saved responses and CPU replay, without model APIs or credentials.
 The first verifies file hashes, raw-response equality, review bindings, editorial
@@ -288,7 +353,9 @@ selected run names relative to this archive. No live run is needed for verificat
 ''')
         manifest = read(stage / 'manifest.json')
         manifest.update(bundle_kind='recovery_paper_development_candidate', submission_ready=False,
-                        paper_run=root.name, paper_sha256=summary['pdf']['sha256'],
+                        paper_run=root.name, study_run=study_relative,
+                        integration_only=summary['mode'] != 'live', writing_mode=summary['mode'],
+                        paper_sha256=summary['pdf']['sha256'],
                         editorial_assistance=summary.get('editorial_assistance', False))
         manifest['missing_materials'].extend(['Unified end-to-end automatic research entry point', 'Independent scientific validation'])
         manifest['files'] = {str(p.relative_to(stage)): sha(p) for p in sorted(stage.rglob('*'))
@@ -314,13 +381,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--paper-run', type=Path)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--study-run', type=Path, help='Content-bound relocation of the saved compatible study')
     parser.add_argument('--verify', type=Path, help='Verify an unpacked replay-candidate directory')
     args = parser.parse_args()
     if args.verify:
-        if args.paper_run or args.output:
+        if args.paper_run or args.output or args.study_run:
             parser.error('--verify cannot be combined with build arguments')
         print(json.dumps(verify_bundle(args.verify)))
     else:
         if not args.paper_run or not args.output:
             parser.error('--paper-run and --output required')
-        print(build_bundle(args.paper_run, args.output))
+        print(build_bundle(args.paper_run, args.output, args.study_run))

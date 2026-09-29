@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "integration_candidate_verified",
+  "stages": {
+    "evidence": {
+      "status": "verified",
+      "evidence_sha256": "b0b41b1480e1ee550061828a7ecb28f690938543ce18d233903553a0ccf9eff9"
+    },
+    "manuscript": {
+      "status": "completed",
+      "files": {
+        "offline-pipeline-20260929T010912-ab39ae47/paper.pdf": "503cefab25da9f83617686390ee5765154a94cbf23ccf90ae39f97aa7152be8d",
+        "offline-pipeline-20260929T010912-ab39ae47/paper.tex": "803eabf5c2bd8850a13d7e7e064d01d5f3b6b535a4105e1bc7d12d453a4e521c",
+        "offline-pipeline-20260929T010912-ab39ae47/paper.md": "fdd5e00220f808bcbcab58eecad9e87f51fee9f3ff5af1667dfe22eaa44d9a19",
+        "offline-pipeline-20260929T010912-ab39ae47/references.bib": "76ead54e7e25aef8aa2a47fecb6aedc5b3c2d17685c76cb16965cbd8f3a46829",
+        "offline-pipeline-20260929T010912-ab39ae47/paper.json": "836828a8f824f657795b77dce1046ef7310cba1ec019f91e7680e527b2aaa4e0",
+        "offline-pipeline-20260929T010912-ab39ae47/writer.json": "5c5df69aa9159d1cb685159540827ae65dcfc0219f561104dfaa4d6268d5a348",
+        "offline-pipeline-20260929T010912-ab39ae47/reviewer.json": "14a3faf483fe14cb1cfc24ad8a07c59569a70d5818770a6e281de62d0889d06e",
+        "offline-pipeline-20260929T010912-ab39ae47/reviser.json": "836828a8f824f657795b77dce1046ef7310cba1ec019f91e7680e527b2aaa4e0",
+        "offline-pipeline-20260929T010912-ab39ae47/evidence.json": "8ed10a7e07e01a9921cda432a1bc861dea226d2f6a2b60aa4791634fb3fa94c6",
+        "offline-pipeline-20260929T010912-ab39ae47/sources.json": "0231fb8cadc000b1c9fafd1b3510e5fc5ac09e8f598952d3a361912510c4572c",
+        "offline-pipeline-20260929T010912-ab39ae47/input_provenance.json": "eaf5396023f0f5972db51f29ae59cb4b6e5712dc6e3f2f91bed650179b8c86d3",
+        "offline-pipeline-20260929T010912-ab39ae47/summary.json": "3cdeca66395e1534576923dc2f377c33bbdb6030ecdf055b4ea2f5ff5d3a29ca",
+        "offline-pipeline-20260929T010912-ab39ae47/model_summary.json": "0003032fbbcb2d692b4eeeeb5a5c517c5e72b4065dd51710ad950dc659961894",
+        "offline-pipeline-20260929T010912-ab39ae47/model_usage.jsonl": "ffe2fce7a96d68ce637a2be311811b7e2515715d81543160151f1354d34138a5",
+        "offline-pipeline-20260929T010912-ab39ae47/iclr2026_conference.sty": "a4852f68e080d6c5245057ca2039100b409e31727898aa93c03d78ddb84374a3",
+        "offline-pipeline-20260929T010912-ab39ae47/iclr2026_conference.bst": "2d67552db7ed38ccfccb5957b52f95656e25c249724761d3cf5f7922ad1844c5",
+        "offline-pipeline-20260929T010912-ab39ae47/natbib.sty": "88bc70c0e48461934cab5b2accef06b74a8b3ac45ad03ccd3f2a6b7e0d6d530d",
+        "offline-pipeline-20260929T010912-ab39ae47/fancyhdr.sty": "b56ec4434b9f4607529a4b23dc68ad8d4b94f1f631c8cddaf7da78140d53a5ea",
+        "offline-pipeline-20260929T010912-ab39ae47/raw_writer.txt": "e1b7b8bca4a82349504a168ec2f24e7b5b156f81ba218e14c708614a104ddd30",
+        "offline-pipeline-20260929T010912-ab39ae47/raw_reviewer.txt": "813e4d483288d83b0ba6010d25bbe5c75aa2660f80202ef960da770ac3532f2e",
+        "offline-pipeline-20260929T010912-ab39ae47/raw_reviser.txt": "114caddeb3f75e236da50b54f85c755d1cdbf40422ea469c53be0b696f31dde0",
+        "offline-pipeline-20260929T010912-ab39ae47/prompt_writer.txt": "e3b1ffbd9ef759e6d04a0c6aaafc86c446bd8daa29906aea7169cff9e99efa43",
+        "offline-pipeline-20260929T010912-ab39ae47/prompt_reviewer.txt": "1017203f171ffe9d60f9584dd6c768b96cb89551f7b895ea6ee1574f4638d388",
+        "offline-pipeline-20260929T010912-ab39ae47/prompt_reviser.txt": "2dc78faf6fd0eae0882eb37c22434c210037576ca183af776ee6d8aa7e18a226"
+      }
+    },
+    "bundle": {
+      "status": "completed",
+      "zip_sha256": "b6fc0ff4848b41e1a3d77cdb93196e8b7c0c36ae144d456ca7b71a3f8b2dae19"
+    },
+    "unpacked_verification": {
+      "status": "verified",
+      "result": {
+        "status": "verified_saved_candidate",
+        "files": 482,
+        "submission_ready": false,
+        "new_model_calls": 0,
+        "writing": {
+          "model_calls": 3,
+          "total_tokens": 6
+        },
+        "writing_mode": "offline_scripted",
+        "study_run": "replay_runs/live-20260928T144804-532140",
+        "archived_live_usage": {
+          "model_calls": 44,
+          "total_tokens": 145585
+        }
+      }
+    }
+  },
+  "study_run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_runs/live-20260928T144804-532140",
+  "paper_origin": "native",
+  "paper_run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_paper_runs/offline-pipeline-20260929T010912-ab39ae47",
+  "writing_live": false,
+  "submission_ready": false,
+  "scope": "Completed compatible study through candidate packaging; topic and experiment stages are separate.",
+  "evidence_sha256": "b0b41b1480e1ee550061828a7ecb28f690938543ce18d233903553a0ccf9eff9",
+  "writing_mode": "offline_scripted",
+  "last_invocation_duration_seconds": 0.7957195049998518
+}

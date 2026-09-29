@@ -159,14 +159,22 @@ def compile_pdf(root, tex):
             'sha256': hashlib.sha256((root / 'paper.pdf').read_bytes()).hexdigest()}
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--live', action='store_true')
     parser.add_argument('--study-run', type=Path, help='Completed compatible recovery study; saved input is reused on resume')
     parser.add_argument('--resume', type=Path, help='Revalidate saved raw outputs and compile, no API')
     parser.add_argument('--continue-from', type=Path, help='Continue a writer-only run with review/revision')
     parser.add_argument('--editorial-file', type=Path, help='Explicit locally edited final paper; records assistance')
-    args = parser.parse_args()
+    parser.add_argument('--output-run', type=Path, help='New run directory within replay_paper_runs, for a coordinating workflow')
+    parser.add_argument('--no-latest', action='store_true', help='Do not change the shared latest-paper pointer')
+    args = parser.parse_args(argv)
+    if args.output_run and args.resume:
+        raise ValueError('output_run_conflicts_with_resume')
+    if args.output_run:
+        output_run = args.output_run.resolve()
+        if output_run.parent != (HERE / 'replay_paper_runs').resolve():
+            raise ValueError('invalid_output_run_location')
     editorial = args.editorial_file.resolve() if args.editorial_file else None
     if args.resume and args.continue_from:
         raise ValueError('conflicting_continuation_modes')
@@ -192,9 +200,9 @@ def main():
         args.live = json.loads((root / 'model_summary.json').read_text())['mode'] == 'live'
         saved_input = json.loads((root / 'input_provenance.json').read_text())
     else:
-        root = HERE / 'replay_paper_runs' / datetime.now(timezone.utc).strftime(
+        root = output_run if args.output_run else HERE / 'replay_paper_runs' / datetime.now(timezone.utc).strftime(
             ('live' if args.live else 'offline') + '-%Y%m%dT%H%M%S-%f')
-        root.mkdir(parents=True)
+        root.mkdir(parents=True, exist_ok=False)
     study_run = select_study_run(args.study_run, saved_input)
     os.chdir(root)
     try:
@@ -268,7 +276,8 @@ def main():
             'editorial_assistance': editorial is not None,
             'semantic_review_certified': False, 'submission_ready': False}
         write_json(root / 'summary.json', summary)
-        write_json(HERE / 'latest-replay-paper.json', {'run_directory': str(root.relative_to(HERE)), **summary})
+        if not args.no_latest:
+            write_json(HERE / 'latest-replay-paper.json', {'run_directory': str(root.relative_to(HERE)), **summary})
         print(json.dumps({'output': str(root), **summary}))
         return 0
     except BaseException as error:

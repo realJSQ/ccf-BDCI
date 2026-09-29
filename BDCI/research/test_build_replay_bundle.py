@@ -80,6 +80,60 @@ class ReplayBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'manifest_mismatch'):
                 bundle.verify_bundle(stage)
 
+    def test_relocated_study_preserves_history_and_usage(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            tmp = Path(temporary)
+            moved = tmp / 'external/deep/study'
+            shutil.copytree(bundle.HERE / bundle.base.REPLAY_RUN, moved)
+            paper = bundle.HERE / 'replay_paper_runs/editorial-20260929'
+            archive = bundle.build_bundle(paper, tmp / 'built', study_run=moved)
+            stage = archive.parent / 'replay-candidate'
+            manifest = bundle.read(stage / 'manifest.json')
+            self.assertEqual(manifest['study_run'], bundle.base.REPLAY_RUN)
+            self.assertEqual(bundle.verify_bundle(stage)['archived_live_usage'],
+                             {'model_calls': 44, 'total_tokens': 145585})
+            self.assertFalse((stage / 'code/BDCI/research/study').exists())
+            # Same usage but edited raw evidence cannot replace historical records.
+            with (moved / 'prompt_episode_00.txt').open('a') as stream:
+                stream.write('changed')
+            with self.assertRaisesRegex(ValueError, 'registered_study_content_mismatch'):
+                bundle.registered_study(moved, bundle.read(bundle.HERE / 'resource_runs.json'), bundle.base.BDCI)
+
+    def test_missing_saved_input_and_wrong_explicit_input_fail(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            tmp = Path(temporary)
+            paper = tmp / 'paper'
+            shutil.copytree(self.root, paper)
+            provenance = bundle.read(paper / 'input_provenance.json')
+            provenance['run'] = str(tmp / 'missing')
+            provenance.pop('study_run_relative', None)
+            bundle.base._json(paper / 'input_provenance.json', provenance)
+            with self.assertRaisesRegex(ValueError, 'study_missing_supply_study_run'):
+                bundle.build_bundle(paper, tmp / 'missing-build')
+            study = tmp / 'wrong'
+            shutil.copytree(bundle.HERE / bundle.base.REPLAY_RUN, study)
+            model = bundle.read(study / 'model_summary.json')
+            model['duration_seconds'] += 1
+            bundle.base._json(study / 'model_summary.json', model)
+            with self.assertRaisesRegex(ValueError, 'saved_evidence_mismatch'):
+                bundle.build_bundle(paper, tmp / 'wrong-build', study_run=study)
+            with self.assertRaisesRegex(ValueError, 'unregistered_live_run'):
+                bundle.registered_usage(study, bundle.read(bundle.HERE / 'resource_runs.json'), bundle.base.BDCI)
+
+    def test_offline_writing_is_integration_only(self):
+        paper = bundle.HERE / 'replay_paper_runs/offline-20260929T002117-209322'
+        with tempfile.TemporaryDirectory() as temporary:
+            archive = bundle.build_bundle(paper, Path(temporary), study_run=bundle.HERE / bundle.base.REPLAY_RUN)
+            stage = archive.parent / 'replay-candidate'
+            manifest = bundle.read(stage / 'manifest.json')
+            self.assertTrue(manifest['integration_only'])
+            result = bundle.verify_bundle(stage)
+            self.assertEqual(result['writing_mode'], 'offline_scripted')
+            self.assertEqual(result['writing'], {'model_calls': 3, 'total_tokens': 6})
+            report = (stage / 'resource_report.md').read_text()
+            self.assertIn('Scripted integration fixture (not live API)', report)
+            self.assertIn('18 live API calls', report)
+
     def test_rendered_sources_are_bound_to_final_paper(self):
         current = bundle.HERE / 'replay_paper_runs/editorial-20260929'
         bundle.validate_rendered_sources(current)

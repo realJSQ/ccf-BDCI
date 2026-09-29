@@ -1,5 +1,7 @@
 # 自动选题与预实验交接
 
+实验完成后的协调入口已加入：[PIPELINE.md](PIPELINE.md)。它串联实验复验、原生写作/存稿、打包和解包验证，支持有输入绑定的恢复；前面的自动选题与新协议实验尚未统一调度。
+
 2026-09-29：恢复研究已接通 `run_replay_paper.py` 三角色写作，最新[论文](replay_paper_runs/editorial-20260929/paper.pdf)和[阶段记录](../docs/STAGE_HANDOFF.md)包含本地编辑披露、真实负结果与待办。
 
 最新方法修订、协议审查与18次真实恢复计划的实验见 [REVISION.md](REVISION.md)。此前已加入真实预实验 [PILOT.md](PILOT.md)，并接通 [论文生成流程](PAPER.md)。以下是第一轮自动选题的历史结果与实现说明，后文“下一阶段”也是当时的交接状态。

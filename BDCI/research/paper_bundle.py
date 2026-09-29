@@ -117,7 +117,12 @@ def _saved_replay_evidence(research, destination):
             source = research / relative / name
             if source.exists() or source.is_symlink():
                 _copy(source, destination / relative / name, research)
-    saved = research / REPLAY_RUN
+    _copy_replay_evidence(research / REPLAY_RUN, destination / REPLAY_RUN)
+
+
+def _copy_replay_evidence(saved, destination):
+    """Copy a verified compatible study to an explicit archive location."""
+    saved = Path(saved)
     if not saved.exists() and not saved.is_symlink():
         return
     if saved.is_symlink():
@@ -125,7 +130,7 @@ def _saved_replay_evidence(research, destination):
     # A selected replay must remain verifiable rather than silently dropping
     # missing evidence required by analyze_replay.py --verify-only.
     for name in REPLAY_EVIDENCE_FILES:
-        _copy(saved / name, destination / REPLAY_RUN / name, saved)
+        _copy(saved / name, destination / name, saved)
     frozen = saved / 'frozen_source'
     if not frozen.is_dir() or frozen.is_symlink():
         raise ValueError('unsafe_bundle_frozen_source')
@@ -137,10 +142,10 @@ def _saved_replay_evidence(research, destination):
                 and not source.name.startswith(('workflow_journal', 'requests.', 'ledger.'))
                 and not any(part.startswith('.') or part in ('logs', 'runtime', '__pycache__')
                             for part in relative.parts)):
-            _copy(source, destination / REPLAY_RUN / 'frozen_source' / relative, frozen)
+            _copy(source, destination / 'frozen_source' / relative, frozen)
     posthoc = saved / 'posthoc_report_terminal'
     for name in POSTHOC_FILES:
-        _copy(posthoc / name, destination / REPLAY_RUN / 'posthoc_report_terminal' / name, saved)
+        _copy(posthoc / name, destination / 'posthoc_report_terminal' / name, saved)
 
 
 def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
@@ -186,7 +191,7 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
             _copy(source, stage / 'code/BDCI/research' / source.name, research)
         if (research / 'replay_protocol.json').exists():
             _copy(research / 'replay_protocol.json', stage / 'code/BDCI/research/replay_protocol.json', research)
-        for name in ('README.md', 'PAPER.md', 'PILOT.md', 'REVISION.md', 'REPLAY_PAPER.md', 'FOLLOWUP.md'):
+        for name in ('README.md', 'PAPER.md', 'PILOT.md', 'REVISION.md', 'REPLAY_PAPER.md', 'FOLLOWUP.md', 'PIPELINE.md'):
             if (research / name).exists():
                 _copy(research / name, stage / 'code/BDCI/research' / name, research)
         for name in ('README.md', 'consistent.json', 'inconsistent.json', 'graph-cache.json'):

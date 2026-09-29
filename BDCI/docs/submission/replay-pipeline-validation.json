@@ -1,0 +1,95 @@
+{
+  "date": "2026-09-29",
+  "tests_passed": 210,
+  "test_command": "python -m unittest discover -s BDCI/research -p 'test_*.py' -q",
+  "new_live_api_calls": 0,
+  "submission_ready": false,
+  "scope": "Post-study orchestration only; topic, protocol, new experiments and external review remain separate.",
+  "runs": {
+    "saved": {
+      "state": "BDCI/submission_runs/pipeline-saved-20260929/pipeline.json",
+      "state_sha256": "031515635425a1008b03e1cab2d2c409447cef4e0096a9a9e377cecd0f8edb84",
+      "status": "saved_candidate_verified",
+      "paper_run": "BDCI/research/replay_paper_runs/editorial-20260929",
+      "archive": "BDCI/submission_runs/pipeline-saved-20260929/bundle/replay-candidate.zip",
+      "archive_sha256": "c06090ebb3deb89651478544b057c839d20c5a7f864e24cc969d562642f41239",
+      "verification": {
+        "status": "verified_saved_candidate",
+        "files": 514,
+        "submission_ready": false,
+        "new_model_calls": 0,
+        "writing": {
+          "model_calls": 3,
+          "total_tokens": 24015
+        },
+        "writing_mode": "live",
+        "study_run": "replay_runs/live-20260928T144804-532140",
+        "archived_live_usage": {
+          "model_calls": 44,
+          "total_tokens": 145585
+        }
+      },
+      "completed_resume_verified": true,
+      "resume_added_model_requests": 0
+    },
+    "offline": {
+      "state": "BDCI/submission_runs/pipeline-offline-20260929/pipeline.json",
+      "state_sha256": "a21a4393d85ee2ae8736b5092e949c961826a9e1242e797fece7e37b74415862",
+      "status": "integration_candidate_verified",
+      "paper_run": "BDCI/research/replay_paper_runs/offline-pipeline-20260929T010912-ab39ae47",
+      "archive": "BDCI/submission_runs/pipeline-offline-20260929/bundle/replay-candidate.zip",
+      "archive_sha256": "b6fc0ff4848b41e1a3d77cdb93196e8b7c0c36ae144d456ca7b71a3f8b2dae19",
+      "verification": {
+        "status": "verified_saved_candidate",
+        "files": 482,
+        "submission_ready": false,
+        "new_model_calls": 0,
+        "writing": {
+          "model_calls": 3,
+          "total_tokens": 6
+        },
+        "writing_mode": "offline_scripted",
+        "study_run": "replay_runs/live-20260928T144804-532140",
+        "archived_live_usage": {
+          "model_calls": 44,
+          "total_tokens": 145585
+        }
+      },
+      "completed_resume_verified": true,
+      "resume_added_model_requests": 0
+    },
+    "delivery": {
+      "state": "BDCI/submission_runs/pipeline-delivery-20260929/pipeline.json",
+      "state_sha256": "eb485da0c8c4e118666f5bcd4b62d9dab68b1a84f0e75b3353192d92ca1545cd",
+      "status": "saved_candidate_verified",
+      "paper_run": "BDCI/research/replay_paper_runs/editorial-20260929",
+      "archive": "BDCI/submission_runs/pipeline-delivery-20260929/bundle/replay-candidate.zip",
+      "archive_sha256": "47a4baef58fc9871a3b47cd38cd3bbe3dc3f68fd58ff5b63b0f0015a8e82fe2c",
+      "verification": {
+        "status": "verified_saved_candidate",
+        "files": 515,
+        "submission_ready": false,
+        "new_model_calls": 0,
+        "writing": {
+          "model_calls": 3,
+          "total_tokens": 24015
+        },
+        "writing_mode": "live",
+        "study_run": "replay_runs/live-20260928T144804-532140",
+        "archived_live_usage": {
+          "model_calls": 44,
+          "total_tokens": 145585
+        }
+      }
+    }
+  },
+  "latest_real_paper_pointer_sha256": "b8ad9b35373ea3d2a10db878e4498d5f76c919f0224bdc1f1a38da1b0ec794e7",
+  "latest_real_paper_pointer_unchanged": true,
+  "source_sha256": {
+    "run_replay_pipeline.py": "f8ef4b385fc824d2abbccc1c705d495fbe9749461745dd28a2203f7b75994dd3",
+    "run_replay_paper.py": "4087dbd2b94712a9daee1baf0f29f3fed5fdadab7354da67ab5cf6c4de9f16ce",
+    "build_replay_bundle.py": "45fd4846bb67f53c2d6e50b882d22309022de256154eea3400040965778ca19a",
+    "paper_bundle.py": "e0cb8fd4fe77836182700ca2db9735302f5b31ac9f86c3570d716ba316845bf2",
+    "resource_accounting.py": "338cbe2921a28ef8e12d87ce8069d894e28a01a4d637cd9282fecdfb696b45da"
+  }
+}
