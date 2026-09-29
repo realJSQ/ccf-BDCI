@@ -1,0 +1,18 @@
+{
+  "status": "offline_verified",
+  "mode": "offline_scripted",
+  "model_api_calls": 0,
+  "scripted_calls": 36,
+  "simulated_tokens": 72,
+  "cpu_policy_replays": 180,
+  "base_instances": 9,
+  "split": "development",
+  "heldout_model_results_observed": false,
+  "archive": "offline-development.zip",
+  "archive_sha256": "2bb2b0353cf6a8edb91024d2fdb24c53275d04a0998dc960e977482c85f1e1ce",
+  "archive_members": 170,
+  "verification": "run_recovery_v2.py --verify-run; all policy outputs recomputed; prompt, raw plan, snapshot and usage binding checked",
+  "full_research_tests": 237,
+  "secret_scan": "local API credential absent from every archive member",
+  "research_claim": "Software integration only, not scientific observations"
+}

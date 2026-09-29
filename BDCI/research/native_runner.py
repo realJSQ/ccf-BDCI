@@ -69,7 +69,10 @@ async def native_run(root, workflow, state, *, live, key, ledger,
             state.active_role = role
             answer = await child.run(full_prompt, opts, None, call_key=call_key)
             (root / f'raw_{role}.txt').write_text(answer.text or '')
-            data = parse_object(answer.text)
+            # Studies may record malformed model text as a measured failure.
+            # Historical workflows retain their strict parser and exceptions.
+            decoder = getattr(state, 'decode_response', parse_object)
+            data = decoder(answer.text)
             state.accept(role, data)
             answer.text = json.dumps(data)
             return answer
