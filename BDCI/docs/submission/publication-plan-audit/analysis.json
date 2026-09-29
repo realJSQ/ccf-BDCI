@@ -1,0 +1,2669 @@
+{
+  "schema": "saved_plan_posthoc_audit/1",
+  "study_run_name": "live-20260929T060132-126279",
+  "scope": "Post-hoc descriptive analysis of existing saved plans; zero model calls; no new scientific trials.",
+  "input_sha256": {
+    "episode_00.json": "deddffea2ce5a676676048880942c78de62e11e0fa719658ecf265445a45afd2",
+    "episode_01.json": "3e9423063d66ab12ec8fec3c09a3c26dc0fd99ff0c8139f7946062d016960d6b",
+    "episode_02.json": "9290a7ebe1f698f6ea133834713212bc76067398eb57f7b2ae8a4791f8cfc3f6",
+    "episode_03.json": "66a8b7e33b4306b9e57c4bf8c70ccee5e24827737e87b1df71313233301de5d6",
+    "episode_04.json": "9e146a1ec7a2d9864b5ad98208f175981d1b5dd4af42db7660e728e4e40ec7af",
+    "episode_05.json": "08720c180d92470178f4e17c5037dacc51e994895efd9e34eedd7d5f5e5ba497",
+    "episode_06.json": "275874fcf24c89a8b61d727fa483607ba5827dc2f44a44c1b31c0bb180ecbd80",
+    "episode_07.json": "41787edef9df0ab0ff52e7039d4fbe2a103cfbb8cd6fc92c98e4d2553854ff6b",
+    "episode_08.json": "8ed037a4d91d7babe20fdfc8c2d36ff5af9d7f32cc85da40962d0af476b7c3ae",
+    "episode_09.json": "ffa011b95e0df3a24a17af02c87454932b0d3ee3394ec303e6c02e087beeb09a",
+    "episode_10.json": "9af3c2ba70bd0c91b7066cc7e86ff5689091b42a12d5ed9254370aeedd246b29",
+    "episode_11.json": "ffa011b95e0df3a24a17af02c87454932b0d3ee3394ec303e6c02e087beeb09a",
+    "episode_12.json": "43f29533439f5a0c38a2445e2fe83a466e6da33eef630e2aa2994a6aa8b70ccd",
+    "episode_13.json": "9718e7c6992f0806480e9663ed7afd5a5c2006e5c44a75de6fc31171d9f47d8b",
+    "episode_14.json": "472b89fe3f6cf729d415dc5f67885aea8899e8f2d2047bd523d1a65926a5f7d3",
+    "episode_15.json": "7bbc2b48c4aac86ab4ed4217f523f9be90f22b9afda6dd9059ba6a997561a5bb",
+    "episode_16.json": "04c7f37ad1190909346944901251819122c221c1ddfade653602c35811357b6d",
+    "episode_17.json": "82fbac680a93c8f79088fa19a7c35c8f956c67e18a03fb74992d838250d3df36",
+    "episode_18.json": "fc9097c5cadeefb1a9c5c11d326c137675e5f2312752e59a5f2cb3127b70e475",
+    "episode_19.json": "dc064c3d76960eaddcb790fae9826b294da302b29f4dab9cae216dcf4c2bf28e",
+    "episode_20.json": "4f5f3e80d87e1c701beb9a2f7cf33b4592accd8c8b87a8f050cc0c600c945642",
+    "episode_21.json": "fb2034ecb11c594e74b7ff7a59c8525fa4a653aa84ffa22840a23198526a41b6",
+    "episode_22.json": "44815b7062b33bcd17a24f22e54c5011b9ee70d750b52c356ba3ae75397537a7",
+    "episode_23.json": "57ccf341a2615ca2e0a896c76bcd7cc0aff6bded7552d6e7949761d7d293f918",
+    "episode_24.json": "bf9b4123b9ece9a0ef424eaceb4c59656502323069a0e42b0e7481de52202f87",
+    "episode_25.json": "236b3c5df00036ab218fa2c86ca1a3728b21db4ebf8a23b8454db8a148711d84",
+    "episode_26.json": "9b2ebc015f2c096b7477dee6c06df89d010956df3efd125ceb198a4feabd54ad",
+    "episode_27.json": "027620ff83b8c7fc1b8472905f42131cab7e863e4ee71eef536cda69cbf1e484",
+    "episode_28.json": "6a9e7e53a1949612f0e5e263dcba41f593918c618c39bbc06ad0a166f00c5af2",
+    "episode_29.json": "818febc9adda9cff737e8f5f989f21923e61370d699dc8f7a7f43f2ea777ee2b",
+    "episode_30.json": "bbaf8969fcea198043c4aa57613af94aefd6c58e118a968b7b1e0f060dc9fa69",
+    "episode_31.json": "fefb3e00b3ded183aa5917029d74b4af902563408e7e25c97dc6acd8db0d1662",
+    "episode_32.json": "7ffb5d2a9dccf0de88b741c9d9f9f34399ffb985e4d367641b1bc4fbb269223f",
+    "episode_33.json": "30b63a7f4ec27e9092df4cabbaccbd59b13a95684eddcb3c0e2a8fb9e86eb664",
+    "episode_34.json": "9af3c2ba70bd0c91b7066cc7e86ff5689091b42a12d5ed9254370aeedd246b29",
+    "episode_35.json": "65db4235ddbbd462fd933d72648b4c0067f65e2ba36d90f5f6ac75e7ad77ddfc",
+    "episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+    "frozen_source/inputs/episodes.json": "1b3111442dbdd6163b480f3f5a01ce19bceb4108bb05e6895bc038d68b52eb5b",
+    "frozen_source/research/recovery_v2_engine.py": "971b4649d19c0a59a699ffc34a79d5b3f15d1f981a3c3598486cdfe540fd85a1",
+    "frozen_source/research/replay_engine.py": "909855f69cd7af89a27affe144863ddef01c290af9ca2a96541a476ed1a110ad",
+    "raw_episode_00.txt": "7984401e1341afb7c7dca6062f5df100546ce260161f8d7035a614a0c5ebe607",
+    "raw_episode_01.txt": "191629d70a25770edb586d059e75e9d27fc569f376a29fef54f189415666c91f",
+    "raw_episode_02.txt": "800ff2646abe1ac52330c867f32af72366ea39faf9447753763bdf671907458a",
+    "raw_episode_03.txt": "733d44098ff86090dc9d5788f48d7fe1e6417a196754d2259b3c84d60fc50872",
+    "raw_episode_04.txt": "7f4e77549e4f907e3cb51066b4a641f59e3b99bcf01666a4cf4c8eb9b81dc4c2",
+    "raw_episode_05.txt": "ef4bf7c3d44adc2c58219c68dacf14d7f3f3046d51a12b1e6e4b902099623ab2",
+    "raw_episode_06.txt": "694ecd5715c28a89cc09b2e55b8b181c7b63064f6febabb3c857b9f84c32e364",
+    "raw_episode_07.txt": "6d91638879982cdc0732d32bf271962475ec6ba4e21ac1688115873e1952fb96",
+    "raw_episode_08.txt": "fe327d1a9dec9a656e4b947397b78cd4c2151369d4ec9e121559d25b83a1afa4",
+    "raw_episode_09.txt": "9226e49f125ad4c40f0a98079aafa6985b33b09da5cbecc1a753d810f501e240",
+    "raw_episode_10.txt": "5fe646cc83c5cda4e696f0a9747185224f244b53e8505123647cd62d5dd1d47e",
+    "raw_episode_11.txt": "9226e49f125ad4c40f0a98079aafa6985b33b09da5cbecc1a753d810f501e240",
+    "raw_episode_12.txt": "670d7f2d77cddf94d08b4d8a88cf3c679214bfce2b195cc0189eef0640005246",
+    "raw_episode_13.txt": "4e3d14ce9fb84526594e5e4d66c5c6675a9b57fb2251b4ce1046d265182a85e4",
+    "raw_episode_14.txt": "ba5e5d6af009ef31c96ca38e5921bacbebdf9fb0e8023550f73b3bd91e9a3de1",
+    "raw_episode_15.txt": "def2dcd1a46a80a18333705c934304c7c467250edb2664b946d85e09773d85b4",
+    "raw_episode_16.txt": "45b910f64fb44cfc754350c97b0882bb9f2a21642d9cc033fa7b044f6b6c84b5",
+    "raw_episode_17.txt": "2a232f322069698624ffbd99e0ee0e407452f97bc4b177bba0f99f354c82ecf4",
+    "raw_episode_18.txt": "e4c661a3bb1c7fde6b28481b2ff3b5a8847ad824f8ac6e6e861ebecac0fcb8e1",
+    "raw_episode_19.txt": "e358041b650b041853612a41e4bb085a6496a1317924fe4aa6193e2c9649e742",
+    "raw_episode_20.txt": "b3e16e31d3dc0816047e40250f3c64527eaf53a90684f096cd9aee352ec4b0d0",
+    "raw_episode_21.txt": "abf14e218dc287989c002994136ed1b0a7aa11bd6f0324f1c495eaddb6934d24",
+    "raw_episode_22.txt": "3d69a0babe4801710ddcfc248d943d62641a17ea844d98ac46a6dce652a34ad8",
+    "raw_episode_23.txt": "1b4f188040ef38867f2f66914610e22f3d84c05a1576ee457b730c42cc7401ee",
+    "raw_episode_24.txt": "3fad0e35dbdd4017c7de8a1ed7c481fdc243b935d49f13c86dc8af1c108cd76a",
+    "raw_episode_25.txt": "000dc75e301ddf0f92d0b429b54661ad06a853b42593d2825ed3632d56a35458",
+    "raw_episode_26.txt": "dc9899aadabbb94b5cd3536288007441ff1931bb13623c596635fd1c13bad0f5",
+    "raw_episode_27.txt": "abf674ff7d73d6b09813fa4dc180321384f8647dad0d2c01db900a81660572f4",
+    "raw_episode_28.txt": "2e2b3a74d327962d26557921827751f6a880490c1a9015fb91b9b67c41eac497",
+    "raw_episode_29.txt": "892269ea53ec4f6b2a610b1b5a82217d21d3138a70984b1c72b1663ddcd8e215",
+    "raw_episode_30.txt": "662c526389a4d6feed50bccd5322440208da8059c53857c6d4c3c72009269f09",
+    "raw_episode_31.txt": "85660012f3f90aefc90f1dd12d0106f8b0ba6fb4346323fe9d147c8130cc44cb",
+    "raw_episode_32.txt": "3d198adaf7bd23193ca77011eeb63f96345720c1d9b04a9e1a629475d1b71056",
+    "raw_episode_33.txt": "35c165ece072ec440141bfedbb547db808fb9e862b23599f75d5c835007a45bf",
+    "raw_episode_34.txt": "5fe646cc83c5cda4e696f0a9747185224f244b53e8505123647cd62d5dd1d47e",
+    "raw_episode_35.txt": "f5d657ac5adc2f757009234aa69d126ab7a5e39d5aff56fe290779ebc889aa6d",
+    "results_episode_00.json": "3c946d42a6513d24312ae6745fc9d1fdd306f264d8ca1adc7b6b1f70af25b33b",
+    "results_episode_01.json": "d44825c24b896ec1dea88c0f477ef040ac72f058dc292a5b70715aa6340cf88c",
+    "results_episode_02.json": "c5dbabf77e6464cfe39ddf75fed220f11dafc4405de8becf22b6841e0a0777bd",
+    "results_episode_03.json": "3b4c01e2d27bdb2c6dd9fe9ed34301463361b962b6e0859c127b34586e7648c5",
+    "results_episode_04.json": "18b30ce6ddbc248688c95bcd2de8d9e419d948d9cdb234f6e471912be7c11630",
+    "results_episode_05.json": "0897000336d15b7014b1c2002e692ab594cba0e729b3705a9585aeabdf0ea2c6",
+    "results_episode_06.json": "fc604db72a9ba434f4763731ace90f1e9ffed65aca8ce455a1a1eb41700314c9",
+    "results_episode_07.json": "21867b5642ce37a756025167abac3f0930123d728dc7ea2256d0e56403022936",
+    "results_episode_08.json": "6065738521097e8b663468a901b492e19296a1ed87bf39526dac6edf74c570a3",
+    "results_episode_09.json": "f525e1aac7710bec6b1d44c68fc04fa945d01d5b5281768c26ee8261809d59e5",
+    "results_episode_10.json": "3d65755ea0d5324a22507afede3877e2d0793190e53f673e73bbd8b8e230496e",
+    "results_episode_11.json": "9fbc3275f0c10f016ac7f2f9f1e7e5d4245a85ff569c301d18aa5d5df4adc67c",
+    "results_episode_12.json": "5783e8b967875991e677c22727bcdef4a8625d0da8695692f3318aa21acd4cea",
+    "results_episode_13.json": "00dbb4d999c3aa8615c2d8dd46d58672f2c4564788c898350fbe66a406c38e1c",
+    "results_episode_14.json": "50e88841176c16d8b58387a766c923ad36a9a619c313eab1a204080af9b52226",
+    "results_episode_15.json": "6ad88a2cd0f11de9a7e9a59e5bd066e8e8ab4ffca92fc02789887a5f0bc0c329",
+    "results_episode_16.json": "b9770815ff4191637fec4f7a8c79668145c35d1ac7acd4eb7a228e0196f546b2",
+    "results_episode_17.json": "79f068caeb23070a7756bb3b3a4641c6125012debbcc1b5d84138b71952f96d6",
+    "results_episode_18.json": "218b48a5306be9c69ba641d7caa3fbb83dc2d1d2a4dbf25fa54b4e11069f7a0d",
+    "results_episode_19.json": "84ae4027ba3147dd5e68b8a5da23ec3c8ceb4be0b6ca11a88ddf7fffd4d46745",
+    "results_episode_20.json": "a3e025b607343579c0a2a8224c57791f1fc71f7b9b706d3d2254608522dd9386",
+    "results_episode_21.json": "fdad0bd75a0a079740bf678eac36080ab6eff82fe908cd4b87f51e6437087e7f",
+    "results_episode_22.json": "3324d80b3950f40ef01696c22139758097079cc49e4d653f64f98ba2587ee71c",
+    "results_episode_23.json": "d765ca83aca7720b481f9f405667bdd577be306c09912127f8c6a96ee5f6372b",
+    "results_episode_24.json": "861671ab0fc3bf77daaf41931d1f2636060c8a7d540b4a388795b559b17e699b",
+    "results_episode_25.json": "0b8c3fed8a756fdbabd30add92c5faae15acc1a4984bc193eaa18d9ffbee2f58",
+    "results_episode_26.json": "c08fd17f776b0654a3f4758e49d98e4cb1f4564dad24a0a54afbdfcc9f9244b6",
+    "results_episode_27.json": "5d27ecb52edae59a0e655c4363be3135a1a82dc5be0a78f27921da938d2640ad",
+    "results_episode_28.json": "6edc6245290ac62c09abe31c0069d4f9ec22297b8561e4d1e6e4f30e99a3b9e5",
+    "results_episode_29.json": "202a7afddceb3336e62175d13cc6f4f36b0a1871edbe54437aa1df294f022be1",
+    "results_episode_30.json": "b2c67752315b2dc4250b27fd386ef36660df0cc67501dd8d87b5a4efed51a391",
+    "results_episode_31.json": "4b39d59f41036b49ceac59a0a0e1cdfa85dd446b212424f65efbbf01a044fa79",
+    "results_episode_32.json": "47c02d989ae36831c2022d05d63d5a7f29125bf902d8884d013ec5a335484fbd",
+    "results_episode_33.json": "02ba7bd7a9c623d1d9fe4265948c3539dd6e97ae5c20bad74d2145a9b39f92ec",
+    "results_episode_34.json": "4cef3f072a1b53a25df52ecdce7caa5cf64d315fb6c7144c661a59542d6cf2b4",
+    "results_episode_35.json": "c753c68532c1b5cdf2bcaa43dd53c47633c9faf10ea8ab6b19a253d90037ca37"
+  },
+  "audit_script_sha256": "b9552649142ec42ef31140e485ef48523888d61dc73d8762bfed0f46b3492416",
+  "summary": {
+    "plans": 36,
+    "independent_base_instances": 9,
+    "plans_with_duplicate_rerun_nodes": 0,
+    "duplicate_rerun_occurrences": 0,
+    "A_order_exactly_raw_plan": 36,
+    "requested_node_set_equals_actual_closure": 36,
+    "requested_order_equals_actual_closure_order": 35,
+    "requested_order_is_topological": 36,
+    "A_semantic_reproduction_matches": 36,
+    "unique_action_sequences_ignoring_reason": 7,
+    "unique_complete_plans_including_reason": 34,
+    "action_sequence_frequency_distribution": [
+      12,
+      9,
+      6,
+      3,
+      3,
+      2,
+      1
+    ]
+  },
+  "episodes": [
+    {
+      "episode_id": "episode_00",
+      "family": "tabular",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_01",
+      "family": "tabular",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_02",
+      "family": "tabular",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_03",
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_04",
+      "family": "tabular",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_05",
+      "family": "tabular",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_06",
+      "family": "tabular",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_07",
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_08",
+      "family": "tabular",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_09",
+      "family": "tabular",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_10",
+      "family": "tabular",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_11",
+      "family": "tabular",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_12",
+      "family": "retrieval",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_13",
+      "family": "retrieval",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_14",
+      "family": "retrieval",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_15",
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_16",
+      "family": "retrieval",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_17",
+      "family": "retrieval",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_18",
+      "family": "retrieval",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "read_aux",
+        "partition_main_0",
+        "partition_main_1",
+        "partition_main_2",
+        "summarize_main_0",
+        "summarize_main_1",
+        "summarize_main_2",
+        "summarize_main",
+        "partition_aux_0",
+        "partition_aux_1",
+        "summarize_aux_0",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "read_aux",
+        "partition_main_0",
+        "partition_main_1",
+        "partition_main_2",
+        "summarize_main_0",
+        "summarize_main_1",
+        "summarize_main_2",
+        "summarize_main",
+        "partition_aux_0",
+        "partition_aux_1",
+        "summarize_aux_0",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": false,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_19",
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_20",
+      "family": "retrieval",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_21",
+      "family": "retrieval",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_22",
+      "family": "retrieval",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_23",
+      "family": "retrieval",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_24",
+      "family": "classification",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_25",
+      "family": "classification",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_26",
+      "family": "classification",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_27",
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_28",
+      "family": "classification",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_29",
+      "family": "classification",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_30",
+      "family": "classification",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_31",
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 3,
+        "aux_shards": 2
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_32",
+      "family": "classification",
+      "scenario": "clean",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [],
+      "A_trace_nodes_in_order": [],
+      "actual_closure_in_engine_order": [],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_33",
+      "family": "classification",
+      "scenario": "aux_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_34",
+      "family": "classification",
+      "scenario": "joint_update",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    },
+    {
+      "episode_id": "episode_35",
+      "family": "classification",
+      "scenario": "incomplete_lineage",
+      "topology": {
+        "main_shards": 2,
+        "aux_shards": 3
+      },
+      "terminal": "emit",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "A_trace_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "duplicate_rerun_count": 0,
+      "A_order_exactly_raw_plan": true,
+      "requested_node_set_equals_actual_closure": true,
+      "requested_order_equals_actual_closure_order": true,
+      "requested_order_is_topological": true,
+      "A_semantic_reproduction_matches": true
+    }
+  ],
+  "topology_scenario_representatives": [
+    {
+      "main_shards": 2,
+      "aux_shards": 2,
+      "scenario": "aux_update",
+      "episode_ids": [
+        "episode_01",
+        "episode_13",
+        "episode_25"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_01",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 2,
+      "scenario": "clean",
+      "episode_ids": [
+        "episode_00",
+        "episode_12",
+        "episode_24"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_00",
+      "requested_nodes_in_order": [],
+      "actual_closure_in_engine_order": []
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 2,
+      "scenario": "incomplete_lineage",
+      "episode_ids": [
+        "episode_03",
+        "episode_15",
+        "episode_27"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_03",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 2,
+      "scenario": "joint_update",
+      "episode_ids": [
+        "episode_02",
+        "episode_14",
+        "episode_26"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_02",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 3,
+      "scenario": "aux_update",
+      "episode_ids": [
+        "episode_09",
+        "episode_21",
+        "episode_33"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_09",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 3,
+      "scenario": "clean",
+      "episode_ids": [
+        "episode_08",
+        "episode_20",
+        "episode_32"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_08",
+      "requested_nodes_in_order": [],
+      "actual_closure_in_engine_order": []
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 3,
+      "scenario": "incomplete_lineage",
+      "episode_ids": [
+        "episode_11",
+        "episode_23",
+        "episode_35"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_11",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 2,
+      "aux_shards": 3,
+      "scenario": "joint_update",
+      "episode_ids": [
+        "episode_10",
+        "episode_22",
+        "episode_34"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_10",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "partition_aux_2",
+        "summarize_aux_2",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 3,
+      "aux_shards": 2,
+      "scenario": "aux_update",
+      "episode_ids": [
+        "episode_05",
+        "episode_17",
+        "episode_29"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_05",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 3,
+      "aux_shards": 2,
+      "scenario": "clean",
+      "episode_ids": [
+        "episode_04",
+        "episode_16",
+        "episode_28"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_04",
+      "requested_nodes_in_order": [],
+      "actual_closure_in_engine_order": []
+    },
+    {
+      "main_shards": 3,
+      "aux_shards": 2,
+      "scenario": "incomplete_lineage",
+      "episode_ids": [
+        "episode_07",
+        "episode_19",
+        "episode_31"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": true,
+      "representative_episode": "episode_07",
+      "requested_nodes_in_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    },
+    {
+      "main_shards": 3,
+      "aux_shards": 2,
+      "scenario": "joint_update",
+      "episode_ids": [
+        "episode_06",
+        "episode_18",
+        "episode_30"
+      ],
+      "families": [
+        "tabular",
+        "retrieval",
+        "classification"
+      ],
+      "same_requested_sequence_across_families": false,
+      "representative_episode": "episode_06",
+      "requested_nodes_in_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ],
+      "actual_closure_in_engine_order": [
+        "read_main",
+        "partition_main_0",
+        "summarize_main_0",
+        "partition_main_1",
+        "summarize_main_1",
+        "partition_main_2",
+        "summarize_main_2",
+        "summarize_main",
+        "read_aux",
+        "partition_aux_0",
+        "summarize_aux_0",
+        "partition_aux_1",
+        "summarize_aux_1",
+        "summarize_aux",
+        "combine",
+        "report"
+      ]
+    }
+  ],
+  "action_sequence_groups": [
+    {
+      "actions": [
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_01",
+        "episode_03",
+        "episode_05",
+        "episode_07",
+        "episode_13",
+        "episode_15",
+        "episode_17",
+        "episode_19",
+        "episode_25",
+        "episode_27",
+        "episode_29",
+        "episode_31"
+      ],
+      "count": 12
+    },
+    {
+      "actions": [
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_00",
+        "episode_04",
+        "episode_08",
+        "episode_12",
+        "episode_16",
+        "episode_20",
+        "episode_24",
+        "episode_28",
+        "episode_32"
+      ],
+      "count": 9
+    },
+    {
+      "actions": [
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_09",
+        "episode_11",
+        "episode_21",
+        "episode_23",
+        "episode_33",
+        "episode_35"
+      ],
+      "count": 6
+    },
+    {
+      "actions": [
+        {
+          "node": "read_main",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main",
+          "op": "rerun"
+        },
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_10",
+        "episode_22",
+        "episode_34"
+      ],
+      "count": 3
+    },
+    {
+      "actions": [
+        {
+          "node": "read_main",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main",
+          "op": "rerun"
+        },
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_02",
+        "episode_14",
+        "episode_26"
+      ],
+      "count": 3
+    },
+    {
+      "actions": [
+        {
+          "node": "read_main",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main",
+          "op": "rerun"
+        },
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_06",
+        "episode_30"
+      ],
+      "count": 2
+    },
+    {
+      "actions": [
+        {
+          "node": "read_main",
+          "op": "rerun"
+        },
+        {
+          "node": "read_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_main_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main_2",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_main",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "partition_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_0",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux_1",
+          "op": "rerun"
+        },
+        {
+          "node": "summarize_aux",
+          "op": "rerun"
+        },
+        {
+          "node": "combine",
+          "op": "rerun"
+        },
+        {
+          "node": "report",
+          "op": "rerun"
+        },
+        {
+          "op": "emit"
+        }
+      ],
+      "episode_ids": [
+        "episode_18"
+      ],
+      "count": 1
+    }
+  ],
+  "interpretation_limits": [
+    "No duplicate requests or out-of-order requests occurred in these saved plans. This observation does not test engine response to such requests.",
+    "Frozen replay code passes A rerun actions through in listed order without deduplication or topological sorting. D/E/F use a set union and engine order; G uses closure order.",
+    "Matching closure describes emitted plans under supplied graphs and execution order, not unseen-graph inference or superiority over the deterministic baseline.",
+    "Repeated action signatures across families or scenarios are descriptive similarity, not independent replications."
+  ]
+}

@@ -49,3 +49,10 @@
 /BDCI/research/recovery_v2_runs/
 /BDCI/research/recovery-v2-requests.jsonl
 /BDCI/research/recovery-v2-paper-requests.jsonl
+
+# Publication revision campaign admission ledger is local only.
+/BDCI/research/publication-paper-requests.jsonl
+
+# User-provided search service credentials.
+/BDCI/search_api.txt
+/BDCI/research/openalex_runs/

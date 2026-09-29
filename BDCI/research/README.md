@@ -1,5 +1,7 @@
 # 自动选题与预实验交接
 
+2026-09-29：OpenAlex 检索与 arXiv 固定版本原文已接入论文修订 pipeline。六篇引用均有可核验正文摘录；JiuwenSwarm 三角色实际生成 6 页新候选 PDF，稿件仍待外部复审。调用、证据边界和已知质量问题见 [OpenAlex 论文流程记录](../docs/submission/publication-openalex-pipeline.md)。
+
 实验完成后的协调入口已加入：[PIPELINE.md](PIPELINE.md)。它串联实验复验、原生写作/存稿、打包和解包验证，支持有输入绑定的恢复；前面的自动选题与新协议实验尚未统一调度。
 
 2026-09-29：恢复研究已接通 `run_replay_paper.py` 三角色写作，最新[论文](replay_paper_runs/editorial-20260929/paper.pdf)和[阶段记录](../docs/STAGE_HANDOFF.md)包含本地编辑披露、真实负结果与待办。
