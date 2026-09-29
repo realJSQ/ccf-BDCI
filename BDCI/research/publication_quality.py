@@ -17,10 +17,9 @@ SINGULAR_VERBS = frozenset(('studies', 'examines', 'presents', 'introduces', 'bu
                             'compares', 'separates'))
 
 
-def audit_publication(paper: dict, sources: dict, pdf_path: Path) -> dict:
-    """Flag mechanically detectable citation/layout defects, not claim truth."""
+def narrative_citation_findings(paper: dict, sources: dict) -> list[dict]:
+    """Report obvious author-number/verb mismatches before PDF rendering."""
     findings = []
-    cited = {ref for section in paper['sections'] for ref in section['source_ids']}
     for section in paper['sections']:
         for match in NARRATIVE.finditer(section['text']):
             ref, verb = match.groups()
@@ -32,6 +31,13 @@ def audit_publication(paper: dict, sources: dict, pdf_path: Path) -> dict:
                 findings.append({'code': 'narrative_citation_verb_agreement',
                                  'section_id': section['id'], 'source_id': ref,
                                  'verb': verb})
+    return findings
+
+
+def audit_publication(paper: dict, sources: dict, pdf_path: Path) -> dict:
+    """Flag mechanically detectable citation/layout defects, not claim truth."""
+    findings = narrative_citation_findings(paper, sources)
+    cited = {ref for section in paper['sections'] for ref in section['source_ids']}
     for ref in sorted(cited):
         source = sources[ref]
         if (source.get('verification_status') != 'primary_fulltext'
