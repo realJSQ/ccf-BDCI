@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 
 from native_runner import native_run
-from publication_loop_state import HERE, SKILL, LoopState, loop_profile_digest
+from publication_loop_state import HERE, SKILL, FollowupState, LoopState, loop_profile_digest
 from publication_quality import audit_publication
 from publication_render import render_publication
 from replay_paper_evidence import digest
@@ -44,6 +44,7 @@ def paper_summary(state, metering, pdf, quality, *, resumed):
             'role_sequence': sequence, 'writing_model_calls': metering['model_calls'],
             'writing_total_tokens': metering['total_tokens'],
             'quality_finding_codes': [row['code'] for row in quality['findings']],
+            'continued_from_final_review': isinstance(state, FollowupState),
             'ready_for_external_review': ready_for_external_review,
             'external_review_completed': False, 'external_review_token_reused': False,
             'semantic_review_certified': False, 'submission_ready': False,
@@ -54,6 +55,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-run', type=Path, help='Completed model-written paper with six verified sources')
     parser.add_argument('--output-run', type=Path)
+    parser.add_argument('--continue-review', action='store_true',
+                        help='Start with a model revision of the source run final review')
+    parser.add_argument('--failed-attempt', type=Path,
+                        help='Prior failed model revision to use as repair material; no request is resent')
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--prepare-only', action='store_true')
     mode.add_argument('--live', action='store_true')
@@ -77,10 +82,21 @@ def main(argv=None):
     if source.parent != (HERE / 'replay_paper_runs').resolve() or source == root:
         raise ValueError('invalid_publication_loop_source')
     existed = (root / 'prepared.json').exists()
-    state = LoopState(root, source, live=args.live)
+    saved = json.loads((root / 'prepared.json').read_text()) if existed else None
+    continue_review = args.continue_review or (saved and saved.get('initial_role') == 'reviser_0')
+    failed_attempt = args.failed_attempt
+    if failed_attempt is None and existed:
+        relative = json.loads((root / 'input_provenance.json').read_text()).get('failed_attempt_relative')
+        if relative is not None:
+            failed_attempt = HERE / relative
+    if failed_attempt is not None and not continue_review:
+        raise ValueError('failed_attempt_requires_followup')
+    state = (FollowupState(root, source, live=args.live, failed_attempt=failed_attempt)
+             if continue_review else LoopState(root, source, live=args.live))
     if existed:
-        saved = json.loads((root / 'prepared.json').read_text())
-        if saved['input_sha256'] != digest(state.provenance) or loop_profile_digest() != state.profile_hash:
+        if (saved['input_sha256'] != digest(state.provenance)
+                or saved.get('initial_role', 'writer') != state.expected_next()
+                or loop_profile_digest() != state.profile_hash):
             raise ValueError('prepared_publication_loop_inputs_changed')
         if not args.resume and (not (args.live or args.offline)
                 or (root / 'live_started.json').exists()
@@ -94,7 +110,7 @@ def main(argv=None):
         state.archive_inputs()
     if not (args.live or args.offline or args.resume):
         print(json.dumps({'status': 'prepared', 'output': str(root), 'model_calls': 0,
-                          'planned_calls_maximum': 6}))
+                          'planned_calls_maximum': 6, 'initial_role': state.expected_next()}))
         return 0
     os.chdir(root)
     try:
@@ -126,7 +142,8 @@ def main(argv=None):
                 asyncio.run(native_run(root, SKILL / 'scripts/workflow.py', state,
                     live=args.live, key=key, ledger=ledger, max_calls=6, token_stop=None,
                     timeout=3600, max_output_tokens=provider_output_capacity(),
-                    team_name='publication_loop'))
+                    team_name='publication_loop',
+                    workflow_args={'initial_role': state.expected_next()}))
         if state.expected_next() is not None:
             raise ValueError('publication_loop_did_not_reach_final_review')
         metering = json.loads((root / 'model_summary.json').read_text())

@@ -45,6 +45,7 @@ class PublicationRenderTests(unittest.TestCase):
                              'recovery-v2-heldout-', 'Study scope and limitations:', 'References:'):
                 self.assertNotIn(unwanted, tex)
             self.assertIn(r'\lhead{}', tex)
+            self.assertIn(r'\setlength{\bibsep}{0pt}', tex)
             self.assertEqual(tex.count(r'\citep{'), 4)  # Only markers, never section-end dumps.
 
     def test_markers_must_exactly_match_section_sources(self):

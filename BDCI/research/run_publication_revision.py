@@ -159,7 +159,10 @@ def upgrade_verified_sources(original, manifest):
 SOURCE_GUIDANCE = {
     'arxiv:2607.11098v1': 'AgentCheck: cached tool-response intervention and reproduce-intervene-mitigate workbench, sections 4.1, 5.3, 6. This study does not reproduce its baselines. Do not assert globally that it is not a published baseline.',
     'arxiv:2608.12761v1': 'Salas: provenance integrity is relevant context. The older reading note asserted specific transitive recovery and full-rerun claims that the preceding draft could not substantiate; cite such a claim only if its exact proposition appears in the versioned primary excerpt. Do not attribute graph closure or a specific recovery procedure by analogy.',
-    'arxiv:2604.16706v1': 'AgentProp-Bench: simulated-tool propagation and runtime mitigation, sections 4.3, 4.4, 5.4. Judge validation is not the same construct as cache freshness; do not make this strong analogy.'}
+    'arxiv:2604.16706v1': 'AgentProp-Bench: simulated-tool propagation and runtime mitigation, sections 4.3, 4.4, 5.4. Judge validation is not the same construct as cache freshness; do not make this strong analogy.',
+    'arxiv:2603.27775v1': 'Enzyme: production incremental view maintenance uses operator-level delta plans and cost-based refresh selection. It is substantially broader than supplied static dependency closure; do not compare performance numbers to this study.',
+    'arxiv:2105.06712v1': 'Parallel self-adjusting computation tracks control and data dependencies and propagates updates. Our study assumes executor dependencies are supplied; do not claim to implement that tracking or its parallel algorithms.',
+    'arxiv:2404.13295v1': 'EChecker investigates missing and redundant build dependencies and infers actual build dependencies for incremental builds. Our experiment supplies actual contracts and tests recovery policies, not dependency discovery.'}
 
 
 class PublicationState(ReplayPaperState):
@@ -181,6 +184,17 @@ class PublicationState(ReplayPaperState):
         if literature_manifest is not None:
             self.sources = upgrade_verified_sources(original_sources, literature_manifest)
         self.previous = json.loads((source_run / 'paper.json').read_text())
+        self.external_review = None
+        external_path = self.root / 'external_review.json'
+        if external_path.exists():
+            external = json.loads(external_path.read_text())
+            if (external.get('schema') != 'bound_external_review/1'
+                    or external.get('source_pdf_sha256') != hashlib.sha256(
+                        (source_run / 'paper.pdf').read_bytes()).hexdigest()
+                    or external.get('service') != 'paperreview.ai'
+                    or not isinstance(external.get('sections'), dict)):
+                raise ValueError('external_review_source_mismatch')
+            self.external_review = external
         self.posthoc_plan_analysis = verified_plan_analysis(study_run)
         self.science = scientific_context(self.evidence)
         self.science['posthoc_plan_analysis'] = plan_analysis_context(self.posthoc_plan_analysis)
@@ -195,6 +209,8 @@ class PublicationState(ReplayPaperState):
             'new_scientific_model_calls': 0, 'external_review_token_reused': False}
         if literature_manifest is not None:
             self.provenance['literature_manifest_sha256'] = digest(literature_manifest)
+        if self.external_review is not None:
+            self.provenance['external_review_sha256'] = digest(self.external_review)
 
     def prompt(self, role):
         if profile_digest() != self.profile_hash:
@@ -206,6 +222,8 @@ class PublicationState(ReplayPaperState):
                 'selected_verified_ids': sorted(self.literature_manifest['sources']),
                 'discovery_count': len(self.literature_manifest.get('discovered', [])),
                 'method': 'OpenAlex discovery and metadata, followed by versioned primary full-text acquisition; indexed abstracts alone are not claim-level evidence.'}
+        if self.external_review is not None:
+            data['external_review_of_previous_pdf'] = self.external_review
         if role == 'writer':
             data['previous_draft_for_criticism_not_imitation'] = self.previous
         else:

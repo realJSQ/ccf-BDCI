@@ -168,7 +168,12 @@ def render_publication(root, paper, sources, evidence):
             md.append(note)
         tex.extend([r'\section{' + SECTION_NAMES[sid] + '}', sections[sid][0]])
         md.extend(['## ' + SECTION_NAMES[sid], sections[sid][1]])
-    tex.extend([r'\bibliographystyle{iclr2026_conference}', r'\bibliography{references}', r'\end{document}'])
+    # Keep the official bibliography style and font.  natbib inherits a
+    # positive list itemsep here, which can strand the last reference on an
+    # otherwise empty page; zero separation changes layout, not manuscript.
+    tex.extend([r'\bibliographystyle{iclr2026_conference}',
+                r'\setlength{\bibsep}{0pt}', r'\bibliography{references}',
+                r'\end{document}'])
     md.extend(['## References', *references])
     root = Path(root)
     root.mkdir(parents=True, exist_ok=True)

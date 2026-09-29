@@ -120,6 +120,12 @@ class OpenAlexLiteratureTests(unittest.TestCase):
             manifest = build_literature(Path(name) / "run", key, QUERY, transport=transport)
             self.assertEqual(manifest["sources"][IDENTIFIER]["authors"], ["Cailí Yu"])
 
+    def test_index_only_middle_initial_does_not_reject_primary_author(self):
+        with tempfile.TemporaryDirectory() as name:
+            key, transport, _ = self._prepare(name, work=_work(author="Caili K. Yu"))
+            manifest = build_literature(Path(name) / "run", key, QUERY, transport=transport)
+            self.assertEqual(manifest["sources"][IDENTIFIER]["authors"], ["Caili Yu"])
+
     def test_primary_title_spacing_is_readable_without_changing_identity(self):
         with tempfile.TemporaryDirectory() as name:
             key, transport, _ = self._prepare(name, primary=_html(title=TITLE.replace(": ", ":")))

@@ -4,7 +4,7 @@ import json
 from swarmflow import agent, phase
 
 META = {'name': 'publication-loop', 'description': 'Bounded evidence-anchored manuscript review',
-        'phases': ['Write', 'Review 1', 'Revise 1', 'Review 2', 'Revise 2', 'Review 3']}
+        'phases': ['Write or continue revision', 'Review 1', 'Revise 1', 'Review 2', 'Revise 2', 'Review 3']}
 
 
 async def _call(role, label):
@@ -17,7 +17,10 @@ async def _call(role, label):
 
 
 async def run(args):
-    outputs = {'writer': await _call('writer', 'Write')}
+    initial = (args or {}).get('initial_role', 'writer')
+    if initial not in ('writer', 'reviser_0'):
+        raise ValueError('invalid_publication_initial_role')
+    outputs = {initial: await _call(initial, 'Continue revision' if initial == 'reviser_0' else 'Write')}
     for round_number in (1, 2, 3):
         role = f'reviewer_{round_number}'
         raw = await _call(role, f'Review {round_number}')

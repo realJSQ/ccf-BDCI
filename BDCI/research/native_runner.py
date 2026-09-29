@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 async def native_run(root, workflow, state, *, live, key, ledger,
                      max_calls=6, token_stop=30000, timeout=420,
-                     max_output_tokens=2200, team_name='research_pilot'):
+                     max_output_tokens=2200, team_name='research_pilot', workflow_args=None):
     if type(live) is not bool or getattr(state, 'live', None) is not live:
         raise ValueError('research_mode_mismatch')
     from openjiuwen.agent_teams.paths import configure_openjiuwen_home
@@ -99,7 +99,7 @@ async def native_run(root, workflow, state, *, live, key, ledger,
                'team_name':team_name,'max_output_tokens':max_output_tokens}
     try:
         with nullcontext() if live else patch.object(Model, 'invoke', offline_model):
-            result = await asyncio.wait_for(run_workflow(str(workflow), args={}, backend=Router(),
+            result = await asyncio.wait_for(run_workflow(str(workflow), args=workflow_args or {}, backend=Router(),
                 cap=1, budget=BudgetLedger(total=token_stop), strict=True,
                 journal_path=str(root / 'workflow_journal.json'), progress_sink=progress,
                 run_id=root.name), timeout=timeout)

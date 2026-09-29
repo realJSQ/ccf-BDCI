@@ -82,6 +82,18 @@ def _author_tokens(value: str) -> set[str]:
     return set(re.findall(r"[^\W_]+", value, flags=re.UNICODE))
 
 
+def _same_author_with_optional_initials(primary: str, indexed: str) -> bool:
+    """Allow an index-only middle initial, never an arbitrary surname change."""
+    primary_tokens, indexed_tokens = _author_tokens(primary), _author_tokens(indexed)
+    if not primary_tokens or not indexed_tokens:
+        return False
+    if primary_tokens == indexed_tokens:
+        return True
+    extra = indexed_tokens - primary_tokens
+    return (primary_tokens <= indexed_tokens and len(extra) <= 2
+            and all(len(token) <= 2 for token in extra))
+
+
 def _plain(value: object) -> str:
     if not isinstance(value, str):
         return ""
@@ -450,9 +462,8 @@ def build_literature(run_dir: Path, key_path: Path, searches: list[dict] | tuple
             if not primary["authors"]:
                 raise LiteratureError("primary_authors_missing")
             if candidate["authors"]:
-                first_primary = _author_tokens(primary["authors"][0])
-                first_openalex = _author_tokens(candidate["authors"][0])
-                if not first_primary or not first_openalex or first_primary != first_openalex:
+                if not _same_author_with_optional_initials(
+                        primary["authors"][0], candidate["authors"][0]):
                     raise LiteratureError("primary_openalex_author_mismatch")
             (html_dir / f"{suffix}.html").write_bytes(primary_raw)
             query_audit.update(primary_status="verified", primary_url=primary_url,

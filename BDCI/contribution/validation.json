@@ -20,7 +20,7 @@
     "api_calls": 0,
     "log_sha256": "641548303c78e822b7ac4025c7a38a24ad443e25f44c769188f2a2fbf71f75b3"
   },
-  "scope": "Patch application and contract tests on the fixed base only; latest upstream branch and maintainers have not reviewed it",
+  "scope": "Patch application and 28 contract tests on the fixed base and the recorded develop commit; this is not a full upstream suite or maintainer review",
   "source_sha256": {
     "BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
     "BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py": "03db848289f18eeb8efd48cba0cc9279c09177c1b74fc0401ca6f0f1a9fbc5be",

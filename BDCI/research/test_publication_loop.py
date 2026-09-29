@@ -145,6 +145,39 @@ class PublicationLoopTests(unittest.TestCase):
             self.assertIsNone(state.expected_next())
             self.assertFalse(state._text_findings(state.current_paper()))
 
+    def test_followup_starts_from_bound_final_review(self):
+        with tempfile.TemporaryDirectory() as name:
+            source, output = Path(name) / 'source', Path(name) / 'output'
+            source.mkdir(); output.mkdir()
+            paper = manuscript()
+            issue = {'severity': 'minor', 'section_id': 'introduction',
+                     'message': 'Clarify the anchored claim.'}
+            bound = review(paper, {'fixed': True}, verdict='revise', issues=[issue])
+            (source / 'summary.json').write_text(json.dumps({
+                'status': 'needs_more_revision', 'final_internal_review': 'revise',
+                'role_sequence': ['writer', 'reviewer_3']}))
+            (source / 'reviewer_3.json').write_text(json.dumps(bound))
+            (source / 'reviewer_3_control.json').write_text(json.dumps({
+                'draft_sha256': digest(paper), 'mechanical_issues': [], 'model_verdict': 'revise'}))
+            def seed(state, root, source_run, *, live):
+                state.root = root; state.outputs = {}; state.previous = paper
+                state.evidence = {'fixed': True}; state.sources = {}; state.science = {}
+                state.prior_quality = {'findings': []}; state.review_controls = {}
+                state.provenance = {}; state.profile_hash = loop.loop_profile_digest()
+            with patch.object(loop.LoopState, '__init__', seed):
+                state = loop.FollowupState(output, source, live=False)
+            self.assertEqual(state.expected_next(), 'reviser_0')
+            self.assertEqual(state.current_paper(), paper)
+            self.assertEqual(state.latest_review(), bound)
+            self.assertEqual(state.review_history()[0]['round'], 0)
+            revised = copy.deepcopy(paper)
+            revised['sections'][0]['text'] = 'A clarified claim.'
+            revised['response_to_review'] = [{'issue_index': 0, 'change': 'Clarified the claim.'}]
+            with patch.object(loop, 'validate_publication'):
+                state.accept('reviser_0', revised)
+            self.assertEqual(state.expected_next(), 'reviewer_1')
+            self.assertEqual(state.current_paper(), revised)
+
     def test_native_workflow_uses_bounded_review_branches(self):
         path = loop.SKILL / 'scripts/workflow.py'
         spec = importlib.util.spec_from_file_location('publication_loop_workflow_test', path)
@@ -153,7 +186,8 @@ class PublicationLoopTests(unittest.TestCase):
                                                                phase=lambda *args: None)}):
             spec.loader.exec_module(module)
         for verdicts, expected in [(['pass', 'pass'], ['writer', 'reviewer_1', 'reviewer_2']),
-                                   (['revise', 'revise', 'pass'], list(loop.ALL_ROLES))]:
+                                   (['revise', 'revise', 'pass'],
+                                    ['writer', 'reviewer_1', 'reviser_1', 'reviewer_2', 'reviser_2', 'reviewer_3'])]:
             calls = []
             async def agent(_prompt, *, label, options):
                 calls.append(label)
@@ -163,6 +197,13 @@ class PublicationLoopTests(unittest.TestCase):
             with self.subTest(verdicts=verdicts), patch.object(module, 'agent', agent), patch.object(module, 'phase'):
                 asyncio.run(module.run({}))
                 self.assertEqual(calls, expected)
+        calls = []
+        async def followup_agent(_prompt, *, label, options):
+            calls.append(options['agent_type'])
+            return json.dumps({'verdict': 'pass', 'issues': []}) if label.startswith('reviewer_') else '{}'
+        with patch.object(module, 'agent', followup_agent), patch.object(module, 'phase'):
+            asyncio.run(module.run({'initial_role': 'reviser_0'}))
+        self.assertEqual(calls, ['reviser_0', 'reviewer_1', 'reviewer_2'])
 
 
 if __name__ == '__main__':
