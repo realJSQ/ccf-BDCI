@@ -1,0 +1,69 @@
+{
+  "status": "materials_verified_not_submission_ready",
+  "bundle": "BDCI/submission_runs/recovery-v2-materials-audited/bundle/真没招了.zip",
+  "bundle_sha256": "2555d70c320e07a40cd47354aa3b78c5e26228fc11c065ef52bcee56304cc056",
+  "verification": {
+    "status": "verified_saved_candidate",
+    "files": 706,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 79673
+    },
+    "writing_mode": "live",
+    "study_run": "recovery_v2_runs/live-20260929T060132-126279",
+    "study_kind": "recovery_v2",
+    "archived_live_usage": {
+      "model_calls": 86,
+      "total_tokens": 385862
+    }
+  },
+  "corrections": [
+    "Contribution description now matches 28 tests in patch validation",
+    "Saved-evidence instructions require only Python 3.13 standard library"
+  ],
+  "isolated_verification": {
+    "source_archive": "BDCI/submission_runs/recovery-v2-delivery-20260929/bundle/真没招了.zip",
+    "python_version": "3.13.12",
+    "site_disabled": true,
+    "environment_keys": [
+      "PATH",
+      "PYTHONNOUSERSITE"
+    ],
+    "temporary_extraction": true,
+    "exit_code": 0,
+    "verified_files": 706,
+    "new_model_calls": 0
+  },
+  "paper_changed": false,
+  "external_review_completed": false,
+  "pr_published": false,
+  "empty_environment_verification": {
+    "empty_venv_without_pip": true,
+    "python_version": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:13:31) [GCC 14.3.0]",
+    "environment_keys": [
+      "PATH",
+      "PYTHONNOUSERSITE"
+    ],
+    "temporary_extraction": true,
+    "exit_code": 0,
+    "result": {
+      "status": "verified_saved_candidate",
+      "files": 706,
+      "submission_ready": false,
+      "new_model_calls": 0,
+      "writing": {
+        "model_calls": 3,
+        "total_tokens": 79673
+      },
+      "writing_mode": "live",
+      "study_run": "recovery_v2_runs/live-20260929T060132-126279",
+      "study_kind": "recovery_v2",
+      "archived_live_usage": {
+        "model_calls": 86,
+        "total_tokens": 385862
+      }
+    }
+  }
+}

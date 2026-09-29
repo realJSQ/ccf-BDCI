@@ -33,5 +33,19 @@
     "max_prompt_chars_none": "disable preview-size heuristic",
     "request_and_unresolved_guards": "unchanged",
     "provider_request_check": "no max_tokens/max_completion_tokens/max_output_tokens when omitted from config; provider defaults still apply"
+  },
+  "current_upstream_check": {
+    "remote": "https://atomgit.com/openJiuwen/jiuwenswarm.git",
+    "branch": "develop",
+    "commit": "d0b233552aff703dafd14d52ba303afdd4dd9657",
+    "checked_date": "2026-09-29",
+    "apply_check": "passed",
+    "applied_files_match_patch": true,
+    "tests": 28,
+    "passed": true,
+    "model_api_calls": 0,
+    "environment": "Current official develop source selected through PYTHONPATH with existing pinned Python 3.13 dependency environment; not a fresh dependency installation or full upstream suite",
+    "log_sha256": "ff489e80839b77a70813b4a9dea5ec9e57695a59af66e1d8e3d28276cb5a12fd",
+    "pr_submitted": false
   }
 }

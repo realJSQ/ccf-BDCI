@@ -378,7 +378,7 @@ Agent 的选题、方法提案与协议审查使用 JiuwenSwarm 原生 team skil
 以下命令从 ZIP 的 `code` 目录执行。依赖安装见该目录 README.md；保存证据验证不需要 API 密钥。
 
 ```bash
-python BDCI/research/build_replay_bundle.py --verify ..
+python -S BDCI/research/build_replay_bundle.py --verify ..
 python BDCI/research/{study_relative}/frozen_source/research/run_recovery_v2.py --verify-run BDCI/research/{study_relative}
 ```
 
@@ -496,9 +496,10 @@ def build_bundle(root, output, study_run=None, team_name=None):
         study_command = (f'python BDCI/research/{study_relative}/frozen_source/research/run_recovery_v2.py --verify-run BDCI/research/{study_relative}'
                          if study_kind == 'recovery_v2' else f'python BDCI/research/analyze_replay.py BDCI/research/{study_relative} --verify-only')
         base._write(stage / 'code/REPLAY_REPRODUCTION.md', f'''# Saved recovery evidence
-From this code directory, using Python 3.13 and the installed project dependencies:
+Saved-evidence verification needs only Python 3.13 standard library, without
+credentials, framework installation or model calls. From this code directory:
 ```bash
-python BDCI/research/build_replay_bundle.py --verify ..
+python -S BDCI/research/build_replay_bundle.py --verify ..
 {study_command}
 ```
 These commands use saved responses and CPU replay, without model APIs or credentials.
