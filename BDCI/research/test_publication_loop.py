@@ -113,6 +113,38 @@ class PublicationLoopTests(unittest.TestCase):
             self.assertEqual(summary['status'], 'needs_more_revision')
             self.assertFalse(summary['ready_for_external_review'])
 
+    def test_mechanical_citation_defect_forces_model_revision_without_editing_paper(self):
+        with tempfile.TemporaryDirectory() as name:
+            state = loop.LoopState.__new__(loop.LoopState)
+            state.root = Path(name); state.outputs = {}; state.evidence = {'fixed': True}
+            identifier = 'arxiv:2607.11098v1'
+            state.sources = {identifier: {'authors': ['First Author', 'Second Author']}}
+            paper = manuscript()
+            paper['sections'][1]['text'] = f'[[citet:{identifier}]] presents a method.'
+            paper['sections'][1]['source_ids'] = [identifier]
+            state.previous = paper
+            with patch.object(loop, 'validate_publication'):
+                state.accept('writer', paper)
+                model_review = review(paper, state.evidence, verdict='pass')
+                state.accept('reviewer_1', model_review)
+                self.assertEqual(state.expected_next(), 'reviser_1')
+                self.assertEqual(state.workflow_response('reviewer_1', model_review)['verdict'], 'revise')
+                self.assertEqual(state.current_paper(), paper)
+                self.assertEqual(json.loads((state.root / 'reviewer_1_model.json').read_text()), model_review)
+                self.assertEqual(len(state.outputs['reviewer_1']['issues']), 1)
+                self.assertEqual(state.review_controls['reviewer_1']['model_verdict'], 'pass')
+                self.assertEqual(len(state.review_controls['reviewer_1']['mechanical_issues']), 1)
+                self.assertEqual(state.outputs['reviewer_1']['issue_quotes'],
+                                 [f'[[citet:{identifier}]] presents'])
+                revised = copy.deepcopy(paper)
+                revised['sections'][1]['text'] = f'[[citet:{identifier}]] present a method.'
+                revised['response_to_review'] = [{'issue_index': 0, 'change': 'Changed to plural verb.'}]
+                state.accept('reviser_1', revised)
+                self.assertEqual(state.expected_next(), 'reviewer_2')
+                state.accept('reviewer_2', review(revised, state.evidence, verdict='pass'))
+            self.assertIsNone(state.expected_next())
+            self.assertFalse(state._text_findings(state.current_paper()))
+
     def test_native_workflow_uses_bounded_review_branches(self):
         path = loop.SKILL / 'scripts/workflow.py'
         spec = importlib.util.spec_from_file_location('publication_loop_workflow_test', path)

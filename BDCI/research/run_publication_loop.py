@@ -37,6 +37,8 @@ def paper_summary(state, metering, pdf, quality, *, resumed):
             'source_paper_words': manuscript_words(state.previous),
             'final_paper_words': manuscript_words(state.current_paper()),
             'review_rounds': len(reviews), 'revision_rounds': len(revisions),
+            'mechanical_review_issues_added': sum(len(control['mechanical_issues']) for control in
+                getattr(state, 'review_controls', {}).values()),
             'final_internal_review': final_review['verdict'],
             'final_internal_review_issues': len(final_review['issues']),
             'role_sequence': sequence, 'writing_model_calls': metering['model_calls'],

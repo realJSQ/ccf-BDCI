@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 
 from paper_contracts import normalize_bound_issues, validate_review, validate_revision_response
-from publication_quality import audit_publication
+from publication_quality import NARRATIVE, audit_publication
 from publication_render import validate_publication
 from replay_paper_evidence import digest
 from run_publication_revision import HERE, PublicationState, SOURCE_GUIDANCE, profile_digest, validate_inline_citations
@@ -58,6 +58,7 @@ class LoopState(PublicationState):
         literature = verified_inherited_literature(source_run)
         super().__init__(root, source_run, live=live, literature_manifest=literature)
         self.source_run = source_run
+        self.review_controls = {}
         self.prior_quality = audit_publication(self.previous, self.sources, source_run / 'paper.pdf')
         saved_quality = source_run / 'quality_audit.json'
         if saved_quality.exists() and json.loads(saved_quality.read_text()) != self.prior_quality:
@@ -106,6 +107,7 @@ class LoopState(PublicationState):
                 continue
             revision = self.outputs.get(f'reviser_{round_number}')
             history.append({'round': round_number, 'review': review,
+                            'control': getattr(self, 'review_controls', {}).get(f'reviewer_{round_number}'),
                             'revision_response': revision.get('response_to_review') if revision else None})
         return history
 
@@ -129,6 +131,8 @@ class LoopState(PublicationState):
                 template = 'reviewer.md'
             else:
                 data.update(internal_review=self.latest_review(),
+                            internal_review_control=getattr(self, 'review_controls', {}).get(
+                                f"reviewer_{int(role.rsplit('_', 1)[1])}"),
                             revision_round=int(role.rsplit('_', 1)[1]))
                 template = 'reviser.md'
         prompt = (SKILL / 'roles' / template).read_text() + '\nCURRENT_DATA_JSON\n' + json.dumps(data, ensure_ascii=False)
@@ -141,6 +145,44 @@ class LoopState(PublicationState):
         # previous single-author citation grammar defect before the next review.
         from publication_quality import narrative_citation_findings
         return narrative_citation_findings(paper, self.sources)
+
+    def _effective_review(self, model_review, paper):
+        """Add grounded mechanical issues while preserving the model's review."""
+        effective = copy.deepcopy(model_review)
+        machine_issues = []
+        existing_quotes = set(effective['issue_quotes'])
+        sections = {section['id']: section['text'] for section in paper['sections']}
+        for finding in self._text_findings(paper):
+            section_id, identifier, verb = (finding[k] for k in ('section_id', 'source_id', 'verb'))
+            matches = [match.group(0) for match in NARRATIVE.finditer(sections[section_id])
+                       if match.group(1) == identifier and match.group(2) == verb]
+            if not matches:
+                raise ValueError('mechanical_finding_not_anchored')
+            quote = next((candidate for candidate in matches if candidate not in existing_quotes), None)
+            if quote is None:
+                continue
+            author_count = len(self.sources[identifier]['authors'])
+            number = 'singular' if author_count == 1 else 'plural'
+            issue = {'severity': 'minor', 'section_id': section_id,
+                     'message': f'The cited source has {author_count} author(s); change the verb '
+                                f'after this narrative citation to the {number} form.'}
+            effective['issues'].append(issue)
+            effective['issue_quotes'].append(quote)
+            effective['revision_instructions'].append(
+                f'Correct subject-verb agreement in {quote!r} and check adjacent narrative citations.')
+            existing_quotes.add(quote)
+            machine_issues.append({'finding': finding, 'quote': quote,
+                                   'effective_issue_index': len(effective['issues']) - 1})
+        if effective['issues']:
+            effective['verdict'] = 'revise'
+        validate_review({key: effective[key] for key in
+                         ('verdict', 'external_reviewer', 'issues', 'revision_instructions')},
+                        paper, max_field_chars=None)
+        return effective, machine_issues
+
+    def workflow_response(self, role, model_value):
+        """Route by the effective review, without altering the archived raw reply."""
+        return self.outputs[role] if role.startswith('reviewer_') else model_value
 
     def accept(self, role, value):
         if role != self.expected_next():
@@ -178,6 +220,19 @@ class LoopState(PublicationState):
                 raise ValueError('ungrounded_review')
             if len(quotes) != len(review['issues']):
                 raise ValueError('unanchored_review')
+            bound_review = {**review, 'draft_sha256': value['draft_sha256'],
+                            'evidence_sha256': value['evidence_sha256'],
+                            'issue_quotes': copy.deepcopy(value['issue_quotes'])}
+            effective, machine_issues = self._effective_review(bound_review, current)
+            write_json(self.root / f'{role}_model.json', value)
+            control = {
+                'schema': 'review_control/1', 'model_verdict': value['verdict'],
+                'model_issue_count': len(value['issues']), 'mechanical_issues': machine_issues,
+                'effective_verdict': effective['verdict'], 'draft_sha256': value['draft_sha256']}
+            self.review_controls = getattr(self, 'review_controls', {})
+            self.review_controls[role] = control
+            write_json(self.root / f'{role}_control.json', control)
+            value = effective
         self.outputs[role] = copy.deepcopy(value)
         write_json(self.root / f'{role}.json', value)
         write_json(self.root / 'role_sequence.json', list(self.outputs))

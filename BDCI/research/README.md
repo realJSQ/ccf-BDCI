@@ -1,6 +1,6 @@
 # 自动选题与预实验交接
 
-2026-09-29：OpenAlex 检索与 arXiv 固定版本原文已接入论文修订 pipeline。六篇引用均有可核验正文摘录；JiuwenSwarm 三角色实际生成 6 页候选 PDF，稿件仍待外部复审。新的[有界循环审查流程](../docs/submission/publication-loop-pipeline.md)已完成离线验证，真实模型请求待此批外发单独授权。OpenAlex 调用、证据边界和已知质量问题见 [OpenAlex 论文流程记录](../docs/submission/publication-openalex-pipeline.md)。
+2026-09-29：OpenAlex 检索与 arXiv 固定版本原文已接入论文修订 pipeline。六篇引用均有可核验正文摘录；JiuwenSwarm 三角色实际生成 6 页候选 PDF，稿件仍待外部复审。新的[有界循环审查流程](../docs/submission/publication-loop-pipeline.md)已真实运行一轮；机械质量检查发现两处模型审查漏判，流程已加入强制修订闸门，待复验。OpenAlex 调用、证据边界和已知质量问题见 [OpenAlex 论文流程记录](../docs/submission/publication-openalex-pipeline.md)。
 
 实验完成后的协调入口已加入：[PIPELINE.md](PIPELINE.md)。它串联实验复验、原生写作/存稿、打包和解包验证，支持有输入绑定的恢复；前面的自动选题与新协议实验尚未统一调度。
 

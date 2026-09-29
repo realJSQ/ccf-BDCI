@@ -74,7 +74,11 @@ async def native_run(root, workflow, state, *, live, key, ledger,
             decoder = getattr(state, 'decode_response', parse_object)
             data = decoder(answer.text)
             state.accept(role, data)
-            answer.text = json.dumps(data)
+            # A study may add deterministic, separately archived control feedback
+            # after accepting a raw model review. Only its workflow-visible value
+            # steers later roles; raw_<role>.txt remains the unmodified model reply.
+            workflow_response = getattr(state, 'workflow_response', None)
+            answer.text = json.dumps(workflow_response(role, data) if callable(workflow_response) else data)
             return answer
 
         async def aclose(self):
