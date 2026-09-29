@@ -1,0 +1,16 @@
+{
+  "status": "manuscript_generated",
+  "mode": "offline_scripted",
+  "pdf": {
+    "pages": 2,
+    "bytes": 17330,
+    "sha256": "9e1108bf1d72e33b69624180db3b5cf84cb46b9f5b36c5fb1263e21227a2b5c7"
+  },
+  "writing_model_calls": 3,
+  "writing_total_tokens": 6,
+  "new_scientific_model_calls": 0,
+  "external_review_completed": false,
+  "editorial_assistance": false,
+  "semantic_review_certified": false,
+  "submission_ready": false
+}

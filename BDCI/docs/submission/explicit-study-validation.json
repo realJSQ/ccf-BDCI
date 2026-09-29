@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-29",
+  "status": "verified",
+  "tests": 167,
+  "native_offline_run": "replay_paper_runs/offline-20260929T002117-209322",
+  "scripted_model_calls": 3,
+  "scripted_tokens": 6,
+  "real_api_calls": 0,
+  "missing_saved_input_rejected": true,
+  "explicit_relocation_resume_succeeded": true,
+  "resume_model_usage_unchanged": true,
+  "summary": {
+    "status": "manuscript_generated",
+    "mode": "offline_scripted",
+    "pdf": {
+      "pages": 2,
+      "bytes": 17330,
+      "sha256": "9e1108bf1d72e33b69624180db3b5cf84cb46b9f5b36c5fb1263e21227a2b5c7"
+    },
+    "writing_model_calls": 3,
+    "writing_total_tokens": 6,
+    "new_scientific_model_calls": 0,
+    "external_review_completed": false,
+    "editorial_assistance": false,
+    "semantic_review_certified": false,
+    "submission_ready": false
+  },
+  "source_sha256": {
+    "run_replay_paper.py": "a2e2424598a5add4f7d2600cd7ad8e0f36ede4c295585ad8d1fa388652945279",
+    "test_replay_paper.py": "722dfce6b57bd5e8bfe4d60a857d3c3e5c8b677d8b3fb56038bd64ebd6ce2035"
+  },
+  "scope": "Compatible six-instance recovery study only; not a new science experiment or unified end-to-end research controller"
+}

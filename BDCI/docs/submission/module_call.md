@@ -62,6 +62,8 @@ python BDCI/research/run_replay_paper.py  # 脚本模型，验证已保存真实
 
 `replay_paper_evidence.build_evidence` 复验原始与事后实验 → `ReplayPaperState` → replay-paper team skill 的 writer/reviewer/reviser → `replay_paper_render` 从核验表生成正文与表格 → Tectonic。内部 review 绑定 draft/evidence 哈希并要求逐项原文引用，但不保证意见语义正确。
 
+`--study-run` 显式选择兼容的完整恢复实验。恢复时重用保存的相对或绝对输入引用；搬迁后可显式重定位，但证据与来源哈希必须一致，缺失输入不回退历史默认。
+
 `--continue-from` 只续跑未完成角色，累加先前请求资源；`--resume` 从保存原文重验和编译，零 API；`--editorial-file` 明确标注开发助手编辑。默认最终稿上限1600词是本地工程限制，不是竞赛篇幅要求。已有 writing campaign 3次请求已用完。
 
 `editorial-20260929/` 为保存模型稿的后续本地修订，记录源稿与源PDF哈希，修正复现说明与排版，没有新模型响应。原 live 目录保留完整原始请求与失败记录。

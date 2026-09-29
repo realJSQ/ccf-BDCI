@@ -33,3 +33,14 @@ python BDCI/research/build_replay_bundle.py --verify /tmp/bdci-replay-candidate/
 - 格式失败保留为不完成，不当作模型主动拒绝；6个实例和共享计划不能当作72个独立样本。
 - 外部评审尚未进行。候选ZIP不含伪造Token/贡献PR/队伍名，标记为不可正式提交。
 - 跨阶段仍是多个入口；需要继续完善统一编排、独立验证和正式材料验收。
+
+## 显式实验输入与搬迁恢复（2026-09-29）
+
+```bash
+python BDCI/research/run_replay_paper.py --study-run BDCI/research/replay_runs/<completed-compatible-study>
+python BDCI/research/run_replay_paper.py --resume BDCI/research/replay_paper_runs/<saved-writing-run> --study-run /new/location/study
+```
+
+新运行省略参数时仍默认历史实验；恢复/续跑则沿用保存的实验引用，不会因路径失效而回退到默认目录。仓库内部输入保存可搬迁的相对路径，外部输入可用显式参数重新定位；其证据和来源哈希必须一致。输入变化会在覆盖原文、来源及证据文件之前被拒绝。
+
+目前只接受既有六实例恢复协议的完整真实实验及事后分析文件，不表示已支持任意科研协议，也未新增独立科学验证。打包入口仍面向已归档的恢复研究候选；跨阶段统一自动调度继续待做。已用独立目录的实验副本跑通原生离线三角色写作与PDF，缺失路径负例和搬迁后零API恢复均通过，详见 `../docs/submission/explicit-study-validation.json`。最新真实论文指针保持为已发布开发稿。

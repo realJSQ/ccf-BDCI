@@ -1,0 +1,7 @@
+{
+  "run": "/tmp/bdci-explicit-study-u4n06mno/relocated-study",
+  "evidence_sha256": "b0b41b1480e1ee550061828a7ecb28f690938543ce18d233903553a0ccf9eff9",
+  "sources_sha256": "0f265030a7898c7ea33b76d46be90d924fcdfdbf96fc7b86a0e329e69f98fb6b",
+  "study_run_relative": null,
+  "new_scientific_model_calls": 0
+}

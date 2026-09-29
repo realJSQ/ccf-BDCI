@@ -20,18 +20,48 @@ HERE = Path(__file__).resolve().parent
 SKILL = HERE / 'skills/replay-paper'
 
 
+def select_study_run(explicit=None, saved=None):
+    """Select local study inputs without silently replacing missing saved inputs."""
+    if explicit is not None:
+        selected = Path(explicit).resolve()
+    elif saved is not None:
+        relative = saved.get('study_run_relative')
+        if relative is not None:
+            relative = Path(relative)
+            if relative.is_absolute() or '..' in relative.parts:
+                raise ValueError('unsafe_saved_study_path')
+            selected = (HERE / relative).resolve()
+            if not selected.is_relative_to(HERE):
+                raise ValueError('unsafe_saved_study_path')
+        else:
+            selected = Path(saved['run'])
+            if not selected.is_absolute():
+                raise ValueError('ambiguous_legacy_study_path')
+    else:
+        selected = DEFAULT_RUN
+    if not selected.is_dir():
+        raise ValueError('study_missing_supply_study_run')
+    return selected.resolve()
+
+
 class ReplayPaperState:
     roles = ('writer', 'reviewer', 'reviser')
 
-    def __init__(self, root, live, run=DEFAULT_RUN):
+    def __init__(self, root, live, run=DEFAULT_RUN, expected_provenance=None):
         if type(live) is not bool:
             raise ValueError('invalid_paper_mode')
         self.root, self.live, self.outputs = Path(root), live, {}
+        run = Path(run).resolve()
         self.evidence, self.sources = build_evidence(run), sources()
+        if expected_provenance is not None and (
+                expected_provenance['evidence_sha256'] != digest(self.evidence)
+                or expected_provenance['sources_sha256'] != digest(self.sources)):
+            raise ValueError('paper_input_changed')
         write_json(self.root / 'evidence.json', self.evidence)
         write_json(self.root / 'sources.json', self.sources)
         write_json(self.root / 'input_provenance.json', {'run': str(run),
             'evidence_sha256': digest(self.evidence), 'sources_sha256': digest(self.sources),
+            'study_run_relative': str(run.relative_to(HERE)) if run.is_relative_to(HERE) else None,
             'new_scientific_model_calls': 0})
 
     def prompt(self, role):
@@ -132,6 +162,7 @@ def compile_pdf(root, tex):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--live', action='store_true')
+    parser.add_argument('--study-run', type=Path, help='Completed compatible recovery study; saved input is reused on resume')
     parser.add_argument('--resume', type=Path, help='Revalidate saved raw outputs and compile, no API')
     parser.add_argument('--continue-from', type=Path, help='Continue a writer-only run with review/revision')
     parser.add_argument('--editorial-file', type=Path, help='Explicit locally edited final paper; records assistance')
@@ -141,6 +172,7 @@ def main():
         raise ValueError('conflicting_continuation_modes')
     continuation = args.continue_from.resolve() if args.continue_from else None
     inherited = None
+    saved_input = None
     if continuation:
         if not continuation.is_relative_to(HERE / 'replay_paper_runs'):
             raise ValueError('invalid_continuation_location')
@@ -152,25 +184,22 @@ def main():
         if inherited['model_calls'] not in (1, 2) or (continuation / 'raw_reviser.txt').exists():
             raise ValueError('continuation_requires_unfinished_review_or_revision')
         args.live = inherited['mode'] == 'live'
+        saved_input = json.loads((continuation / 'input_provenance.json').read_text())
     if args.resume:
         root = args.resume.resolve()
         if not root.is_relative_to(HERE / 'replay_paper_runs'):
             raise ValueError('invalid_resume_location')
         args.live = json.loads((root / 'model_summary.json').read_text())['mode'] == 'live'
-        old = json.loads((root / 'input_provenance.json').read_text())
+        saved_input = json.loads((root / 'input_provenance.json').read_text())
     else:
         root = HERE / 'replay_paper_runs' / datetime.now(timezone.utc).strftime(
             ('live' if args.live else 'offline') + '-%Y%m%dT%H%M%S-%f')
         root.mkdir(parents=True)
+    study_run = select_study_run(args.study_run, saved_input)
     os.chdir(root)
     try:
-        if args.resume and (digest(build_evidence()) != old['evidence_sha256'] or digest(sources()) != old['sources_sha256']):
-            raise ValueError('resume_evidence_changed')
-        state = ReplayPaperState(root, args.live)
+        state = ReplayPaperState(root, args.live, run=study_run, expected_provenance=saved_input)
         if continuation:
-            prior = json.loads((continuation / 'input_provenance.json').read_text())
-            if prior['evidence_sha256'] != digest(state.evidence) or prior['sources_sha256'] != digest(state.sources):
-                raise ValueError('continuation_evidence_changed')
             saved_roles = ['writer'] + (['reviewer'] if (continuation / 'raw_reviewer.txt').exists() else [])
             if len(saved_roles) != inherited['model_calls']:
                 raise ValueError('continuation_accounting_mismatch')
