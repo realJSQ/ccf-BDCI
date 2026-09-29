@@ -1,0 +1,16 @@
+{
+  "authorship": "Developer-assistant semantic diagnosis after internal review; not another model reviewer observation",
+  "writer_sha256": "ad4468985d79dd509614233dbac2184c08872d42439bc6b9a43d8fb097503eda",
+  "review_sha256": "878f1beba92389c4089f826e59b23c72bd05fba05de55f1a6ffdc500607f25b7",
+  "notes": [
+    "Fix the policy definition: D/E execute the union of model-requested nodes and the declared/actual forward closure of changed sources. The draft omitted the model-requested set.",
+    "E minus A measures the additional closure guard applied to the SAME model plan. A/G or E/G assesses model-assisted execution relative to the no-model deterministic baseline. Keep these comparisons separate.",
+    "Qualify E tool calls >= G: this holds for valid emit plans executed to completion under the stated implementation, including all 36 observed plans. Invalid/refuse plans can make E stop at zero while G still executes. Do not make an unconditional theorem.",
+    "Delete the draft-generated tables and their Table 1/2/3 discussion in Methods; the renderer inserts the authoritative Results tables. Do not generate replacement tables in prose.",
+    "Remove inline arxiv identifiers and internal fields such as prior_study.verified_by_this_adapter; keep source_ids for citations. Describe historical evidence boundaries in ordinary scientific language. Round runtime to 47.758 seconds and state its scope.",
+    "Use developer-assisted protocol, including coding-assistant intervention, rather than falsely calling it human-specified or fully autonomous. JiuwenSwarm orchestrates model calls; local Python tools execute and score CPU replays.",
+    "Describe the scorer as a separate implementation by the same authors; it is not external independent reproduction.",
+    "Review issue 17 admits it is not an issue. Many issues demand repeating statements already quoted or already present elsewhere, and issues 31-37 repeat 24-30. Assess every issue and rebut unsupported/redundant requests in response_to_review; do not mechanically label every suggestion a scientific error or repeat all limitations in each paragraph.",
+    "The saved evidence supports all five policies completing 36/36; E adds no observed improvement over A, and G matches them without model requests. Do not add experiments or imply equivalence beyond this small self-authored structural holdout."
+  ]
+}

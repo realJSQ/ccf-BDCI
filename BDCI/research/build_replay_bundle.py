@@ -14,7 +14,7 @@ import unicodedata
 sys.dont_write_bytecode = True
 
 import paper_bundle as base
-from paper_contracts import validate_paper, validate_review, validate_revision_response
+from paper_contracts import validate_paper, validate_review, validate_revision_response, normalize_bound_issues
 from replay_paper_evidence import digest
 from study_adapter import get_adapter
 from resource_accounting import audit_resources, render_report, source_path
@@ -24,7 +24,7 @@ PAPER_FILES = ('paper.pdf', 'paper.tex', 'paper.md', 'references.bib', 'paper.js
     'writer.json', 'reviewer.json', 'reviser.json', 'evidence.json', 'sources.json',
     'input_provenance.json', 'summary.json', 'model_summary.json', 'model_usage.jsonl',
     'continuation.json', 'recovery.json', 'failure.json', 'editorial_revision.json',
-    'editorial_assistance.json', 'pdf_validation.json') + base.STYLE_FILES + tuple(
+    'editorial_assistance.json', 'pdf_validation.json', 'revision_guidance.json') + base.STYLE_FILES + tuple(
     f'{prefix}_{role}.txt' for prefix in ('raw', 'prompt') for role in ('writer', 'reviewer', 'reviser'))
 
 
@@ -55,12 +55,8 @@ def validate_bound_review(writer, review, evidence, *, max_field_chars=10000):
         raise ValueError('invalid_bound_review')
     if review['draft_sha256'] != digest(writer) or review['evidence_sha256'] != digest(evidence):
         raise ValueError('review_target_mismatch')
-    normalized = copy.deepcopy({k: review[k] for k in
-        ('verdict', 'external_reviewer', 'issues', 'revision_instructions')})
-    for issue in normalized['issues']:
-        if 'section_id_note' in issue:
-            if issue.pop('section_id_note') != issue.get('section_id'):
-                raise ValueError('conflicting_section_annotation')
+    normalized = normalize_bound_issues({k: review[k] for k in
+        ('verdict', 'external_reviewer', 'issues', 'revision_instructions')}, review['issue_quotes'])
     validate_review(normalized, writer, max_field_chars=max_field_chars)
     quotes = review['issue_quotes']
     if not isinstance(quotes, list) or len(quotes) != len(normalized['issues']):
@@ -145,6 +141,7 @@ def validate_manuscript(root, replay_root, research=HERE):
     if adapter.is_v2:
         from run_replay_paper import ReplayPaperState
         state = ReplayPaperState.__new__(ReplayPaperState)
+        state.root = root
         state.adapter, state.evidence, state.sources = adapter, evidence, sources
         state.outputs, state.profile_hash = outputs, provenance['profile_sha256']
         for role in ('writer', 'reviewer', 'reviser'):
@@ -304,6 +301,19 @@ def verify_bundle(stage):
             for role, saved_hash in hashes.items():
                 if role not in ('writer', 'reviewer') or saved_hash != sha(parent / f'raw_{role}.txt') or saved_hash != sha(run / f'raw_{role}.txt'):
                     raise ValueError('continuation_raw_mismatch')
+            if study_kind == 'recovery_v2':
+                prompts = continued.get('saved_prompt_sha256', {})
+                if set(prompts) != set(hashes):
+                    raise ValueError('continuation_prompt_inventory_mismatch')
+                for role, expected in prompts.items():
+                    if expected != sha(parent / f'prompt_{role}.txt') or expected != sha(run / f'prompt_{role}.txt'):
+                        raise ValueError('continuation_prompt_mismatch')
+                migration = continued['profile_migration']
+                if (migration['from'] != read(parent / 'input_provenance.json')['profile_sha256']
+                        or migration['to'] != read(run / 'input_provenance.json')['profile_sha256']
+                        or migration['inherited_prompts_identical'] is not True
+                        or (migration['from'] != migration['to'] and migration['explicit'] is not True)):
+                    raise ValueError('continuation_profile_migration_mismatch')
         for key in totals:
             totals[key] += model[key]
     if totals != {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens']}:

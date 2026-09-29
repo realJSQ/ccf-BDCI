@@ -1,0 +1,21 @@
+{
+  "mode": "live",
+  "status": "completed",
+  "cost": null,
+  "team_name": "recovery_v2_paper",
+  "max_output_tokens": 393216,
+  "model_calls": 1,
+  "model_usage": [
+    {
+      "input_tokens": 27774,
+      "output_tokens": 5564,
+      "total_tokens": 33338,
+      "event": "usage",
+      "call": 3,
+      "run_id": "live-recovery-v2-revision-20260929",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 33338,
+  "duration_seconds": 18.227602658999785
+}

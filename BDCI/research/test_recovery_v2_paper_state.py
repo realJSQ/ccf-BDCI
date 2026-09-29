@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from run_replay_paper import HERE, ReplayPaperState
+from run_replay_paper import HERE, ReplayPaperState, restore_saved_roles
 from study_adapter import get_adapter
 from paper_contracts import validate_paper
 
@@ -54,6 +54,46 @@ class RecoveryPaperStateTests(unittest.TestCase):
         from replay_paper_evidence import DEFAULT_RUN
         with self.assertRaises((ValueError, KeyError, FileNotFoundError)):
             get_adapter('recovery_v2').build_evidence(DEFAULT_RUN)
+
+    def test_duplicate_quote_is_allowed_only_when_identical_and_grounded(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            state = ReplayPaperState(Path(temporary), False, RUN, study_kind='recovery_v2')
+            state.accept('writer', state.offline_response('writer'))
+            review = state.offline_response('reviewer')
+            quote = state.outputs['writer']['abstract']
+            review.update(verdict='revise', issues=[{'severity':'minor','section_id':'abstract',
+                'message':'Clarify this statement.', 'quote':quote}], issue_quotes=[quote])
+            bad = copy.deepcopy(review);bad['issues'][0]['quote'] = 'different'
+            with self.assertRaisesRegex(ValueError, 'conflicting_quote_annotation'):
+                state.accept('reviewer', bad)
+            bad = copy.deepcopy(review);bad['issues'][0]['quote'] = bad['issue_quotes'][0] = 'invented quotation'
+            with self.assertRaisesRegex(ValueError, 'ungrounded_review'):
+                state.accept('reviewer', bad)
+            state.accept('reviewer', review)
+            self.assertEqual(state.outputs['reviewer'], review)
+
+    def test_continuation_preserves_raws_and_rejects_changed_inherited_prompt(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            parent = root / 'parent';parent.mkdir()
+            source = ReplayPaperState(parent, False, RUN, study_kind='recovery_v2')
+            for role in ('writer','reviewer'):
+                (parent/f'prompt_{role}.txt').write_text(source.prompt(role))
+                value = source.offline_response(role)
+                (parent/f'raw_{role}.txt').write_text(json.dumps(value))
+                source.accept(role,value)
+            output = root/'child';output.mkdir()
+            child = ReplayPaperState(output,False,RUN,study_kind='recovery_v2')
+            raws,prompts = restore_saved_roles(child,parent,('writer','reviewer'))
+            self.assertEqual(set(raws),set(prompts))
+            self.assertEqual(child.outputs,source.outputs)
+            for role in raws:
+                self.assertEqual((output/f'raw_{role}.txt').read_bytes(),(parent/f'raw_{role}.txt').read_bytes())
+            wrong = root/'wrong';wrong.mkdir()
+            incompatible = ReplayPaperState(wrong,False,RUN,study_kind='recovery_v2')
+            (parent/'prompt_writer.txt').write_text('different scientific context')
+            with self.assertRaisesRegex(ValueError,'inherited_prompt_incompatible'):
+                restore_saved_roles(incompatible,parent,('writer',))
 
 
 if __name__ == '__main__':

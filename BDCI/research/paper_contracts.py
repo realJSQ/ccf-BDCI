@@ -5,12 +5,29 @@ review-response coverage. It cannot establish that claims follow from sources,
 that a review is insightful, or that a revision actually resolves its issues.
 """
 from collections.abc import Mapping
+import copy
 
 SECTION_IDS = ('introduction', 'related_work', 'methods', 'discussion', 'conclusion')
 # This bounds artifact size, not scientific quality or competition eligibility.
 # The competition has no 1200-word requirement; retain complete bounded revisions.
 MAX_WORDS = 1600
 MAX_FIELD_CHARS = 10000
+
+
+def normalize_bound_issues(review, quotes):
+    """Remove only exact duplicate annotations; preserve all substantive text."""
+    normalized = copy.deepcopy(review)
+    issues = normalized.get('issues')
+    if not isinstance(issues, list) or not isinstance(quotes, list) or len(issues) != len(quotes):
+        raise ValueError('unanchored_review')
+    for issue, quote in zip(issues, quotes):
+        if not isinstance(issue, dict):
+            raise ValueError('invalid_review_issue')
+        if 'section_id_note' in issue and issue.pop('section_id_note') != issue.get('section_id'):
+            raise ValueError('conflicting_section_annotation')
+        if 'quote' in issue and issue.pop('quote') != quote:
+            raise ValueError('conflicting_quote_annotation')
+    return normalized
 
 
 def _text(value, field, max_field_chars=MAX_FIELD_CHARS):

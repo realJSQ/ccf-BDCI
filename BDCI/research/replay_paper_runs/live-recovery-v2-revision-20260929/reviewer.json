@@ -1,0 +1,305 @@
+{
+  "verdict": "revise",
+  "external_reviewer": false,
+  "issues": [
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section states that the scorer is 'the existing independent replay_reference.py', but the supplied evidence and limitations describe it as a separate implementation by the same authors, not external independent reproduction. Calling it 'independent' overstates independence and conflicts with the stated limitation.",
+      "quote": "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The executor and oracle share an author but are different implementations.' The supplied evidence says the reference scorer is a separate implementation by the same authors, not external independent reproduction. The phrase 'share an author' is ambiguous and could be read as a single shared author rather than same-author implementation; it should be stated consistently with the limitations.",
+      "quote": "The executor and oracle share an author but are different implementations."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution.' The evidence says the local freeze is not public preregistration and the protocol was developer assisted. The draft does state this immediately after, but the sentence itself could be read as a stronger freeze claim than the evidence supports. It should explicitly say this was a local freeze, not public preregistration, in the same sentence or immediately adjacent.",
+      "quote": "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The protocol anticipated this: E's tool count cannot be lower than G's, so no claim that E outperforms traditional closure is made.' This is consistent with the evidence, but the draft does not explicitly state that G is deterministic and requires zero model calls in this sentence. The evidence emphasizes that G is deterministic and needs zero model calls. The draft mentions this elsewhere, but the discussion of G's role should explicitly include that G uses no model plan and zero model calls to avoid ambiguity.",
+      "quote": "The protocol anticipated this: E's tool count cannot be lower than G's, so no claim that E outperforms traditional closure is made."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The 144 paired model-policy replays reuse the same plans across policies, so policy differences reflect execution semantics rather than independent model generations.' This is correct, but the draft does not explicitly state that A/D/E/F share model plans and that G is deterministic and needs zero model calls in the same context. The evidence requires checking E versus A and G as well as F, and the distinction between numerical correctness and provenance freshness. The draft does separate correctness and freshness, but the shared-plan and G-zero-call facts should be stated together where the paired replay design is discussed.",
+      "quote": "The 144 paired model-policy replays reuse the same plans across policies, so policy differences reflect execution semantics rather than independent model generations."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The nine base instances are self-authored, and the paired unit is the base instance; scenarios and policy replays are repeated measures.' This is correct, but the draft does not explicitly state that there are nine base instances, not policy executions, as paired units. The phrase 'paired unit is the base instance' is present, but the evidence emphasizes 'Nine base instances, not policy executions, are paired units.' The draft should explicitly say that the nine base instances, not the 36 scenarios or 180 policy executions, are the paired units.",
+      "quote": "The nine base instances are self-authored, and the paired unit is the base instance; scenarios and policy replays are repeated measures."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The historical prior study is not part of the primary evidence, and prior_study.verified_by_this_adapter is false, so its numeric results have not been verified by this adapter. Historical comparisons cannot establish a single-factor improvement.' This is correct, but the draft does not explicitly state that historical development and posthoc results are not primary v2 evidence and cannot isolate one cause of improvement. The sentence 'Historical comparisons cannot establish a single-factor improvement' is close, but it should explicitly say that historical development and posthoc results are not primary v2 evidence.",
+      "quote": "The historical prior study is not part of the primary evidence, and prior_study.verified_by_this_adapter is false, so its numeric results have not been verified by this adapter. Historical comparisons cannot establish a single-factor improvement."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'No transient failures were injected, so no retry-effectiveness claim is supported.' This is correct, but the draft does not explicitly reject unsupported retry-effectiveness, broad robustness, algorithmic novelty, independent validation, or complete autonomy claims in a single clear statement. The draft rejects some of these individually, but the evidence requires rejecting unsupported retry-effectiveness, broad robustness, algorithmic novelty, independent validation, or complete autonomy claims. The draft should explicitly state that it does not support these claims.",
+      "quote": "No transient failures were injected, so no retry-effectiveness claim is supported."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The related work supports a cautious reading. AgentCheck (arxiv:2607.11098v1) excludes compound and cascading failures from its evaluation, so it does not provide a baseline for the multi-node recovery studied here.' This is supported by the reading notes. However, the draft does not explicitly state that AgentCheck is not a published dependency-invalidation baseline, which is in the reading notes. The related work section does state this, but the discussion should also avoid implying it is a baseline. The current sentence is acceptable, but the draft should ensure consistency.",
+      "quote": "The related work supports a cautious reading. AgentCheck (arxiv:2607.11098v1) excludes compound and cascading failures from its evaluation, so it does not provide a baseline for the multi-node recovery studied here."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies and that full rerun is a strong safe alternative when lineage is unavailable; our F results are consistent with that framing.' This is supported by the reading notes. However, the draft does not explicitly state that contracts and declared dependencies can themselves be incomplete, which is also in the reading notes and directly relevant to the incomplete_lineage scenario. The related work section mentions this, but the discussion should also acknowledge it.",
+      "quote": "Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies and that full rerun is a strong safe alternative when lineage is unavailable; our F results are consistent with that framing."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'AgentProp-Bench (arxiv:2604.16706v1) separates judge validation from task outcomes, which parallels our separation of numerical correctness and source freshness.' This is supported by the reading notes. However, the draft does not explicitly state that AgentProp-Bench studies parameter injection and propagation with simulated tools, which is in the reading notes. The related work section mentions this, but the discussion should also acknowledge it to avoid overgeneralization.",
+      "quote": "AgentProp-Bench (arxiv:2604.16706v1) separates judge validation from task outcomes, which parallels our separation of numerical correctness and source freshness."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'None of these sources is reproduced as a baseline, and none is claimed to have been externally reviewed or accepted.' This is correct, but the draft does not explicitly state that the cited statements are supported within the supplied notes' scope. The draft should ensure that all cited statements are within the reading scope and not overextended.",
+      "quote": "None of these sources is reproduced as a baseline, and none is claimed to have been externally reviewed or accepted."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The model was deepseek-flash with temperature 0 and reasoning disabled, and the resource record reports 36 model calls, 113384 total tokens, and 47.75829073800014 seconds of native study invocation duration, excluding development, literature, and writing. These resource figures describe the run, not a cost-effectiveness claim.' This is correct, but the draft does not explicitly state that tool-call counts exclude shared initial-cache construction and are not measured monetary or computational cost. The methods section mentions this, but the discussion should also clarify.",
+      "quote": "The model was deepseek-flash with temperature 0 and reasoning disabled, and the resource record reports 36 model calls, 113384 total tokens, and 47.75829073800014 seconds of native study invocation duration, excluding development, literature, and writing. These resource figures describe the run, not a cost-effectiveness claim."
+    },
+    {
+      "severity": "major",
+      "section_id": "discussion",
+      "message": "The discussion says 'The held-out structures were generated by the same developer-authored process as the development structures, and generating held-out structures does not constitute execution, external validation, or independently authored data.' This is correct, but the draft does not explicitly state that the study is a small self-authored structural holdout, not independent external validation or a public benchmark. The abstract and methods mention this, but the discussion should also state it clearly.",
+      "quote": "The held-out structures were generated by the same developer-authored process as the development structures, and generating held-out structures does not constitute execution, external validation, or independently authored data."
+    },
+    {
+      "severity": "major",
+      "section_id": "conclusion",
+      "message": "The conclusion says 'The protocol was frozen locally before the run but is not public preregistration, and the scorer is a same-author separate implementation rather than external reproduction.' This is correct, but the conclusion does not explicitly state that the study is a small self-authored structural holdout, not independent external validation or a public benchmark. The abstract and methods mention this, but the conclusion should also state it clearly.",
+      "quote": "The protocol was frozen locally before the run but is not public preregistration, and the scorer is a same-author separate implementation rather than external reproduction."
+    },
+    {
+      "severity": "major",
+      "section_id": "conclusion",
+      "message": "The conclusion says 'These results do not establish statistical equivalence or generalization, and they do not support claims about dependency discovery, retry effectiveness, or monetary savings.' This is correct, but the conclusion does not explicitly reject broad robustness, algorithmic novelty, independent validation, or complete autonomy claims. The evidence requires rejecting unsupported retry-effectiveness, broad robustness, algorithmic novelty, independent validation, or complete autonomy claims. The conclusion should explicitly state that it does not support these claims.",
+      "quote": "These results do not establish statistical equivalence or generalization, and they do not support claims about dependency discovery, retry effectiveness, or monetary savings."
+    },
+    {
+      "severity": "major",
+      "section_id": "conclusion",
+      "message": "The conclusion says 'We report the finding as a transparent negative result within its stated scope and note that the historical prior study remains unverified by this adapter.' This is correct, but the conclusion does not explicitly state that historical development and posthoc results are not primary v2 evidence and cannot isolate one cause of improvement. The discussion mentions this, but the conclusion should also state it clearly.",
+      "quote": "We report the finding as a transparent negative result within its stated scope and note that the historical prior study remains unverified by this adapter."
+    },
+    {
+      "severity": "major",
+      "section_id": "abstract",
+      "message": "The abstract says 'All 180 replays completed correctly with zero wrong completions, zero refusals, and zero stale completions.' This is correct, but the abstract does not explicitly state that the paired unit is the base instance and that scenarios are repeated measures. The abstract does say 'Because the paired unit is the base instance and scenarios are repeated measures, equality in this design does not establish statistical equivalence or generalization.' This is present, so this is not an issue. However, the abstract does not explicitly state that there are nine base instances, not policy executions, as paired units. The abstract says 'Nine held-out base instances span three task families...' and 'Because the paired unit is the base instance...' This is sufficient.",
+      "quote": "All 180 replays completed correctly with zero wrong completions, zero refusals, and zero stale completions."
+    },
+    {
+      "severity": "major",
+      "section_id": "abstract",
+      "message": "The abstract says 'E minus A was exactly zero on both correct completion and tool calls for every one of the nine paired base instances.' This is correct. The abstract also says 'F used 414 tool calls versus 294 for A, D, E, and G.' This is correct. The abstract does not explicitly state that G is deterministic and needs zero model calls. The abstract says 'G is deterministic and consumes no model plan.' This is present. The abstract does not explicitly state that A/D/E/F share model plans. The abstract says 'One saved model plan per episode is shared by policies A, D, E, and F.' This is present. The abstract does not explicitly state that full replay using more calls does not establish incremental E gain. The abstract says 'We report these results as a bounded negative finding about incremental model planning under supplied dependencies, not as evidence of a novel dependency-discovery algorithm.' This is close, but the abstract should explicitly state that full replay using more calls does not establish incremental E gain.",
+      "quote": "E minus A was exactly zero on both correct completion and tool calls for every one of the nine paired base instances."
+    },
+    {
+      "severity": "major",
+      "section_id": "introduction",
+      "message": "The introduction says 'The research question is therefore narrow: given frozen graph generators, visible actual and declared dependencies, and a fixed scorer, does a model-requested recovery policy (E) outperform a model-requested rerun policy that preserves the original request order including duplicates (A) on correct completion or tool-call cost?' This is correct. The introduction does not explicitly state that full replay using more calls does not establish incremental E gain. The introduction should explicitly state that full replay using more calls does not establish incremental E gain.",
+      "quote": "The research question is therefore narrow: given frozen graph generators, visible actual and declared dependencies, and a fixed scorer, does a model-requested recovery policy (E) outperform a model-requested rerun policy that preserves the original request order including duplicates (A) on correct completion or tool-call cost?"
+    },
+    {
+      "severity": "major",
+      "section_id": "related_work",
+      "message": "The related work section says 'AgentCheck (arxiv:2607.11098v1) presents a reproduce-intervene-mitigate workbench for LLM agents over MCP; its Algorithm 1 changes one cached tool response, and Section 6 explicitly excludes evaluation of compound and cascading failures. Its retry, schema, and filter wrappers are examined, but it is not a published dependency-invalidation baseline.' This is supported by the reading notes. The related work section does not explicitly state that the cited statements are supported within the supplied notes' scope. The related work section should explicitly state that all cited statements are within the reading scope.",
+      "quote": "AgentCheck (arxiv:2607.11098v1) presents a reproduce-intervene-mitigate workbench for LLM agents over MCP; its Algorithm 1 changes one cached tool response, and Section 6 explicitly excludes evaluation of compound and cascading failures. Its retry, schema, and filter wrappers are examined, but it is not a published dependency-invalidation baseline."
+    },
+    {
+      "severity": "major",
+      "section_id": "related_work",
+      "message": "The related work section says 'Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies after version changes, and that full rerun is a strong safe alternative when lineage is unavailable. It also observes that contracts and declared dependencies can themselves be incomplete.' This is supported by the reading notes. The related work section does not explicitly state that the cited statements are supported within the supplied notes' scope. The related work section should explicitly state that all cited statements are within the reading scope.",
+      "quote": "Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies after version changes, and that full rerun is a strong safe alternative when lineage is unavailable. It also observes that contracts and declared dependencies can themselves be incomplete."
+    },
+    {
+      "severity": "major",
+      "section_id": "related_work",
+      "message": "The related work section says 'AgentProp-Bench (arxiv:2604.16706v1) studies parameter injection and propagation with simulated tools. Its interceptor combines schema and error checks, uncertainty keywords, and numerical consistency, and the paper separates judge validation from task outcomes.' This is supported by the reading notes. The related work section does not explicitly state that the cited statements are supported within the supplied notes' scope. The related work section should explicitly state that all cited statements are within the reading scope.",
+      "quote": "AgentProp-Bench (arxiv:2604.16706v1) studies parameter injection and propagation with simulated tools. Its interceptor combines schema and error checks, uncertainty keywords, and numerical consistency, and the paper separates judge validation from task outcomes."
+    },
+    {
+      "severity": "major",
+      "section_id": "related_work",
+      "message": "The related work section says 'None of these sources is reproduced as a baseline here; they inform terminology and the interpretation of limitations only.' This is correct, but the related work section does not explicitly state that the cited statements are supported within the supplied notes' scope. The related work section should explicitly state that all cited statements are within the reading scope.",
+      "quote": "None of these sources is reproduced as a baseline here; they inform terminology and the interpretation of limitations only."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies.' This is correct. The methods section does not explicitly state that the actual dependencies are supplied, not discovered, and should not be labeled as discovered or automatically as answer leakage. The methods section should explicitly state that actual dependencies are supplied tool contracts, not discovered dependencies, and should not be labeled as discovered or automatically as answer leakage.",
+      "quote": "The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported.' This is correct. The methods section does not explicitly state that full replay using more calls does not establish incremental E gain. The methods section should explicitly state that full replay using more calls does not establish incremental E gain.",
+      "quote": "The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm.' This is correct. The methods section does not explicitly state that E versus A and G as well as F should be reported. The methods section should explicitly state that E versus A and G as well as F should be reported.",
+      "quote": "The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples.' This is correct. The methods section does not explicitly state that nine base instances, not policy executions, are paired units. The methods section should explicitly state that nine base instances, not policy executions, are paired units.",
+      "quote": "The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted.' This is correct. The methods section does not explicitly state that the local freeze is not public preregistration and the protocol was developer assisted. The methods section should explicitly state that the local freeze is not public preregistration and the protocol was developer assisted.",
+      "quote": "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal.' This is correct. The methods section does not explicitly state that malformed plans are not voluntary refusal. The methods section should explicitly state that malformed plans are not voluntary refusal.",
+      "quote": "The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions.' This is correct. The methods section does not explicitly state that numerical correctness and provenance freshness are distinct. The methods section should explicitly state that numerical correctness and provenance freshness are distinct.",
+      "quote": "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies.' This is correct. The methods section does not explicitly state that actual dependencies are supplied, not discovered, and should not be labeled as discovered or automatically as answer leakage. The methods section should explicitly state that actual dependencies are supplied tool contracts, not discovered dependencies, and should not be labeled as discovered or automatically as answer leakage.",
+      "quote": "The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported.' This is correct. The methods section does not explicitly state that full replay using more calls does not establish incremental E gain. The methods section should explicitly state that full replay using more calls does not establish incremental E gain.",
+      "quote": "The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm.' This is correct. The methods section does not explicitly state that E versus A and G as well as F should be reported. The methods section should explicitly state that E versus A and G as well as F should be reported.",
+      "quote": "The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples.' This is correct. The methods section does not explicitly state that nine base instances, not policy executions, are paired units. The methods section should explicitly state that nine base instances, not policy executions, are paired units.",
+      "quote": "The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted.' This is correct. The methods section does not explicitly state that the local freeze is not public preregistration and the protocol was developer assisted. The methods section should explicitly state that the local freeze is not public preregistration and the protocol was developer assisted.",
+      "quote": "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal.' This is correct. The methods section does not explicitly state that malformed plans are not voluntary refusal. The methods section should explicitly state that malformed plans are not voluntary refusal.",
+      "quote": "The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal."
+    },
+    {
+      "severity": "major",
+      "section_id": "methods",
+      "message": "The methods section says 'The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions.' This is correct. The methods section does not explicitly state that numerical correctness and provenance freshness are distinct. The methods section should explicitly state that numerical correctness and provenance freshness are distinct.",
+      "quote": "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions."
+    }
+  ],
+  "revision_instructions": [
+    "Replace 'independent replay_reference.py' with 'separate replay_reference.py implementation by the same authors' or similar to avoid overstating independence.",
+    "Clarify 'The executor and oracle share an author but are different implementations' to 'The executor and oracle are separate implementations by the same authors' to avoid ambiguity.",
+    "Add 'This was a local freeze, not public preregistration' immediately after the freeze sentence in methods.",
+    "In discussion, explicitly state that G is deterministic and requires zero model calls when discussing G's role.",
+    "In discussion, explicitly state that A/D/E/F share model plans and G is deterministic with zero model calls when discussing paired replay design.",
+    "In discussion, explicitly state that nine base instances, not policy executions, are paired units.",
+    "In discussion, explicitly state that historical development and posthoc results are not primary v2 evidence and cannot isolate one cause of improvement.",
+    "In discussion, explicitly reject unsupported retry-effectiveness, broad robustness, algorithmic novelty, independent validation, or complete autonomy claims.",
+    "In discussion, ensure consistency with related work about AgentCheck not being a published dependency-invalidation baseline.",
+    "In discussion, explicitly acknowledge that contracts and declared dependencies can themselves be incomplete, as relevant to incomplete_lineage.",
+    "In discussion, explicitly acknowledge that AgentProp-Bench studies parameter injection and propagation with simulated tools.",
+    "In discussion, explicitly state that cited statements are supported within the supplied notes' scope.",
+    "In discussion, explicitly state that tool-call counts exclude shared initial-cache construction and are not measured monetary or computational cost.",
+    "In discussion, explicitly state that the study is a small self-authored structural holdout, not independent external validation or a public benchmark.",
+    "In conclusion, explicitly state that the study is a small self-authored structural holdout, not independent external validation or a public benchmark.",
+    "In conclusion, explicitly reject broad robustness, algorithmic novelty, independent validation, or complete autonomy claims.",
+    "In conclusion, explicitly state that historical development and posthoc results are not primary v2 evidence and cannot isolate one cause of improvement.",
+    "In abstract, explicitly state that full replay using more calls does not establish incremental E gain.",
+    "In introduction, explicitly state that full replay using more calls does not establish incremental E gain.",
+    "In related work, explicitly state that all cited statements are within the reading scope.",
+    "In methods, explicitly state that actual dependencies are supplied tool contracts, not discovered dependencies, and should not be labeled as discovered or automatically as answer leakage.",
+    "In methods, explicitly state that full replay using more calls does not establish incremental E gain.",
+    "In methods, explicitly state that E versus A and G as well as F should be reported.",
+    "In methods, explicitly state that nine base instances, not policy executions, are paired units.",
+    "In methods, explicitly state that the local freeze is not public preregistration and the protocol was developer assisted.",
+    "In methods, explicitly state that malformed plans are not voluntary refusal.",
+    "In methods, explicitly state that numerical correctness and provenance freshness are distinct."
+  ],
+  "draft_sha256": "ad4468985d79dd509614233dbac2184c08872d42439bc6b9a43d8fb097503eda",
+  "evidence_sha256": "6c56533589c05ba120d1912ecdd5b154d538043679ecb876ebffb48927deb8f4",
+  "issue_quotes": [
+    "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates.",
+    "The executor and oracle share an author but are different implementations.",
+    "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution.",
+    "The protocol anticipated this: E's tool count cannot be lower than G's, so no claim that E outperforms traditional closure is made.",
+    "The 144 paired model-policy replays reuse the same plans across policies, so policy differences reflect execution semantics rather than independent model generations.",
+    "The nine base instances are self-authored, and the paired unit is the base instance; scenarios and policy replays are repeated measures.",
+    "The historical prior study is not part of the primary evidence, and prior_study.verified_by_this_adapter is false, so its numeric results have not been verified by this adapter. Historical comparisons cannot establish a single-factor improvement.",
+    "No transient failures were injected, so no retry-effectiveness claim is supported.",
+    "The related work supports a cautious reading. AgentCheck (arxiv:2607.11098v1) excludes compound and cascading failures from its evaluation, so it does not provide a baseline for the multi-node recovery studied here.",
+    "Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies and that full rerun is a strong safe alternative when lineage is unavailable; our F results are consistent with that framing.",
+    "AgentProp-Bench (arxiv:2604.16706v1) separates judge validation from task outcomes, which parallels our separation of numerical correctness and source freshness.",
+    "None of these sources is reproduced as a baseline, and none is claimed to have been externally reviewed or accepted.",
+    "The model was deepseek-flash with temperature 0 and reasoning disabled, and the resource record reports 36 model calls, 113384 total tokens, and 47.75829073800014 seconds of native study invocation duration, excluding development, literature, and writing. These resource figures describe the run, not a cost-effectiveness claim.",
+    "The held-out structures were generated by the same developer-authored process as the development structures, and generating held-out structures does not constitute execution, external validation, or independently authored data.",
+    "The protocol was frozen locally before the run but is not public preregistration, and the scorer is a same-author separate implementation rather than external reproduction.",
+    "These results do not establish statistical equivalence or generalization, and they do not support claims about dependency discovery, retry effectiveness, or monetary savings.",
+    "We report the finding as a transparent negative result within its stated scope and note that the historical prior study remains unverified by this adapter.",
+    "All 180 replays completed correctly with zero wrong completions, zero refusals, and zero stale completions.",
+    "E minus A was exactly zero on both correct completion and tool calls for every one of the nine paired base instances.",
+    "The research question is therefore narrow: given frozen graph generators, visible actual and declared dependencies, and a fixed scorer, does a model-requested recovery policy (E) outperform a model-requested rerun policy that preserves the original request order including duplicates (A) on correct completion or tool-call cost?",
+    "AgentCheck (arxiv:2607.11098v1) presents a reproduce-intervene-mitigate workbench for LLM agents over MCP; its Algorithm 1 changes one cached tool response, and Section 6 explicitly excludes evaluation of compound and cascading failures. Its retry, schema, and filter wrappers are examined, but it is not a published dependency-invalidation baseline.",
+    "Provenance integrity work (arxiv:2608.12761v1) notes that selective recovery already follows transitive declared dependencies after version changes, and that full rerun is a strong safe alternative when lineage is unavailable. It also observes that contracts and declared dependencies can themselves be incomplete.",
+    "AgentProp-Bench (arxiv:2604.16706v1) studies parameter injection and propagation with simulated tools. Its interceptor combines schema and error checks, uncertainty keywords, and numerical consistency, and the paper separates judge validation from task outcomes.",
+    "None of these sources is reproduced as a baseline here; they inform terminology and the interpretation of limitations only.",
+    "The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies.",
+    "The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported.",
+    "The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm.",
+    "The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples.",
+    "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted.",
+    "The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal.",
+    "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions.",
+    "The information condition supplies actual tool dependencies and declared dependencies to the planner and every policy; actual dependencies are supplied tool contracts, not discovered dependencies.",
+    "The tool budget per scenario is twice the actual node count, allowing full replay to complete; model plans may request duplicate nodes within that budget. No transient failures were injected, so no retry-effectiveness claim is supported.",
+    "The primary comparison is E minus A on correct completion and total tool calls; no gain is a valid outcome. The strong baseline is G, which is actual graph closure without a model and is not a novel algorithm.",
+    "The paired analysis unit is the base instance, not the scenario or policy replay. There are 36 completed model plans and 180 completed policy replays, of which 144 are paired model-policy replays and 36 are deterministic G replays. The 36 plans and 180 executions are not 180 independent samples.",
+    "The local pre-run freeze fixed the specification, source code, source data, and prompt snapshot before execution. This is not public preregistration, and the protocol was developer assisted.",
+    "The model was deepseek-flash with temperature 0 and reasoning disabled. The model outputs JSON actions, each rerun containing a node, ending with emit or refuse. Illegal JSON, illegal actions, and missing terminal actions are recorded and are not silently repaired into an emit. A, D, E, and F respect explicit refusal and structurally invalid plans; G is deterministic and does not fail because of model refusal.",
+    "The scorer is the existing independent replay_reference.py, which reads complete source rows directly and does not read the declared graph, execution cache, or policy gates. The executor and oracle share an author but are different implementations. Numerical correctness and source freshness are reported separately. Freshness diagnostics record parent artifact hashes and source versions."
+  ]
+}

@@ -68,6 +68,14 @@
     {
       "usage": "research/recovery_v2_runs/live-20260929T060132-126279/model_usage.jsonl",
       "summary": "research/recovery_v2_runs/live-20260929T060132-126279/model_summary.json"
+    },
+    {
+      "usage": "research/replay_paper_runs/live-pipeline-20260929T062917-25c1bd93/model_usage.jsonl",
+      "summary": "research/replay_paper_runs/live-pipeline-20260929T062917-25c1bd93/model_summary.json"
+    },
+    {
+      "usage": "research/replay_paper_runs/live-recovery-v2-revision-20260929/model_usage.jsonl",
+      "summary": "research/replay_paper_runs/live-recovery-v2-revision-20260929/model_summary.json"
     }
   ]
 }

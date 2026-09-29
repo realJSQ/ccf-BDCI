@@ -1,0 +1,65 @@
+{
+  "arxiv:2607.11098v1": {
+    "id": "arxiv:2607.11098v1",
+    "title": "AgentCheck: A Reproduce-Intervene-Mitigate Workbench for LLM Agents over MCP",
+    "authors": [
+      "Aritra Mazumder",
+      "Nusrat jahan Lia"
+    ],
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2607.11098v1",
+    "evidence_kind": "retrieved",
+    "metadata_checked_on": "2026-09-28",
+    "publication_status": "arXiv preprint; no acceptance inferred",
+    "version_note": "v3 exists; this record cites the read v1",
+    "reading_note": "Algorithm 1 changes one cached tool response. Section 6 explicitly excludes evaluation of compound and cascading failures. Retry/schema/filter wrappers are examined; this is not a published dependency-invalidation baseline.",
+    "reading_scope": [
+      "4.1",
+      "5.3",
+      "6"
+    ],
+    "content_sha256": "349aca2464c517de070c68b9b0158a8cfa886aa098beba8b8d02cceae1c47dee"
+  },
+  "arxiv:2608.12761v1": {
+    "id": "arxiv:2608.12761v1",
+    "title": "Correct Is Not Governed: Provenance Integrity in Agentic Workflows",
+    "authors": [
+      "Jesus Salas"
+    ],
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2608.12761v1",
+    "evidence_kind": "retrieved",
+    "metadata_checked_on": "2026-09-28",
+    "publication_status": "arXiv preprint; no acceptance inferred",
+    "version_note": "v1",
+    "reading_note": "Selective recovery already follows transitive declared dependencies after version changes. Full rerun is a strong safe alternative when lineage is unavailable. Contracts and declared dependencies can themselves be incomplete.",
+    "reading_scope": [
+      "3.4",
+      "3.5",
+      "3.6",
+      "7",
+      "8",
+      "9"
+    ],
+    "content_sha256": "2f17d38c142b59904993e09a8520e855498051ad97f315b04139881507e0f3c3"
+  },
+  "arxiv:2604.16706v1": {
+    "id": "arxiv:2604.16706v1",
+    "title": "Evaluating Tool-Using Language Agents: Judge Reliability, Propagation Cascades, and Runtime Mitigation in AgentProp-Bench",
+    "authors": [
+      "Bhaskar Gurram"
+    ],
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2604.16706v1",
+    "evidence_kind": "retrieved",
+    "metadata_checked_on": "2026-09-28",
+    "publication_status": "arXiv preprint; no acceptance inferred",
+    "version_note": "v2 has a different title; this record cites the read v1",
+    "reading_note": "AgentProp-Bench studies parameter injection and propagation with simulated tools. Its interceptor combines schema/error checks, uncertainty keywords and numerical consistency; the paper separates judge validation from task outcomes.",
+    "reading_scope": [
+      "4.1-4.7",
+      "5.1-5.5"
+    ],
+    "content_sha256": "f9b37b5760c09ee087a25be2ed1e3c8c09b20a34dcb8b4075bcd1e1e1882d1dc"
+  }
+}

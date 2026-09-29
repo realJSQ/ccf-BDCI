@@ -1,0 +1,53 @@
+{
+  "status": "verified_candidate_not_submission_ready",
+  "paper_run": "BDCI/research/replay_paper_runs/editorial-recovery-v2-20260929",
+  "original_model_run": "BDCI/research/replay_paper_runs/live-recovery-v2-revision-20260929",
+  "failed_parent_run": "BDCI/research/replay_paper_runs/live-pipeline-20260929T062917-25c1bd93",
+  "pdf": {
+    "pages": 6,
+    "bytes": 33986,
+    "sha256": "2f28be6eae0d1464889f9f72021121ebafb1badff1e7a88fe2a0b3d845d96850"
+  },
+  "writing": {
+    "model_calls": 3,
+    "total_tokens": 79673
+  },
+  "archived_live_usage": {
+    "model_calls": 86,
+    "total_tokens": 385862
+  },
+  "tests": {
+    "passed": 266,
+    "duration_seconds": 55.145
+  },
+  "recovery": "38 redundant quote annotations removed only after exact equality and literal grounding checks; inherited prompts reconstructed identically before one remaining reviser call",
+  "developer_assistance": [
+    "Bound guidance before model revision",
+    "Local editorial clarification of E-A guard effect and development/heldout split"
+  ],
+  "new_scientific_calls_after_study": 0,
+  "external_review_completed": false,
+  "official_contribution_pr": null,
+  "submission_ready": false,
+  "bundle": {
+    "path": "BDCI/submission_runs/recovery-v2-delivery-20260929/bundle/真没招了.zip",
+    "sha256": "bd27b9fab2270c89ecdfa1a6a154e1f4d6818276071af20fa1f3222751578003",
+    "verification": {
+      "status": "verified_saved_candidate",
+      "files": 706,
+      "submission_ready": false,
+      "new_model_calls": 0,
+      "writing": {
+        "model_calls": 3,
+        "total_tokens": 79673
+      },
+      "writing_mode": "live",
+      "study_run": "recovery_v2_runs/live-20260929T060132-126279",
+      "study_kind": "recovery_v2",
+      "archived_live_usage": {
+        "model_calls": 86,
+        "total_tokens": 385862
+      }
+    }
+  }
+}

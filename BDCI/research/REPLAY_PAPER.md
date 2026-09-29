@@ -46,3 +46,18 @@ python BDCI/research/run_replay_paper.py --resume BDCI/research/replay_paper_run
 新运行省略参数时仍默认历史实验；恢复/续跑则沿用保存的实验引用，不会因路径失效而回退到默认目录。仓库内部输入保存可搬迁的相对路径，外部输入可用显式参数重新定位；其证据和来源哈希必须一致。输入变化会在覆盖原文、来源及证据文件之前被拒绝。
 
 目前只接受既有六实例恢复协议的完整真实实验及事后分析文件，不表示已支持任意科研协议，也未新增独立科学验证。打包入口也已支持 `--study-run` 并校验资源清单与完整原始证据绑定。已用独立目录的实验副本跑通原生离线三角色写作与PDF，缺失路径负例和搬迁后零API恢复均通过，详见 `../docs/submission/explicit-study-validation.json`。最新真实论文指针保持为已发布开发稿。
+
+## 当前 v2 入口（2026-09-29）
+
+已支持显式 `--study-kind recovery_v2`，旧版默认 `replay_v1` 及历史结果保留。当前真实论文是 `replay_paper_runs/editorial-recovery-v2-20260929/paper.pdf`；3次写作请求共79,673 tokens，包含一次格式恢复及公开记录的开发指导/本地编辑。资源累计86次、385,862 tokens，编辑副本不重复计数。
+
+```bash
+source BDCI/activate.sh
+python BDCI/research/run_replay_pipeline.py \
+  --study-kind recovery_v2 \
+  --study-run BDCI/research/recovery_v2_runs/live-20260929T060132-126279 \
+  --paper-run BDCI/research/replay_paper_runs/editorial-recovery-v2-20260929 \
+  --output /tmp/recovery-v2-delivery --team-name 真没招了
+```
+
+该存稿路径零模型调用，重算冻结实验、审稿/来源绑定及资源，然后具名打包和解包复验。新增terminal写作用量自动登记；状态不明的请求不重发。新写作不设项目token、字数或字符停止阈值，保留计量和请求状态保护。正式外审Token、官方PR仍缺，候选不等于正式提交。本文此前六实例描述仅适用于v1。

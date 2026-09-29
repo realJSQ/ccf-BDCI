@@ -1,0 +1,17 @@
+{
+  "status": "manuscript_generated",
+  "mode": "live",
+  "pdf": {
+    "pages": 6,
+    "bytes": 33422,
+    "sha256": "2822faa3a545297ad769ba7bde2f0d01b52eff835004d15337643b71c998a1d8"
+  },
+  "writing_model_calls": 3,
+  "writing_total_tokens": 79673,
+  "new_scientific_model_calls": 0,
+  "external_review_completed": false,
+  "editorial_assistance": false,
+  "semantic_review_certified": false,
+  "submission_ready": false,
+  "study_kind": "recovery_v2"
+}

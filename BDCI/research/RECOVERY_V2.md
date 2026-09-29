@@ -45,3 +45,18 @@ python BDCI/research/run_recovery_v2.py --verify-run RUN_DIRECTORY
 可移植完整证据位于运行目录的 `public-evidence.zip`，摘要与验证另存 JSON。显式资源清单现累计 83 次真实 API、306,189 tokens，包含历史失败。当前官方赛期已核实：第五轮截至北京时间 10 月 9 日 24:00；匿名样例接口未提供下载地址。旧 PDF 和候选包未自动变成新研究论文，后续仍需接入新版证据与写作。
 
 论文证据入口 `recovery_v2_paper_evidence.build_evidence(run)` 已提供 `recovery_v2_evidence/1`，逐项调用冻结复验后构造写作输入，结果保存为运行目录的 `paper_evidence.json`。8项完整性测试及最终245项研究软件测试通过。它仍是证据接口，尚未生成新版论文；旧研究引用明确标为历史来源，不在该接口中冒充已复核的主结果。
+
+## 当前 v2 入口（2026-09-29）
+
+已支持显式 `--study-kind recovery_v2`，旧版默认 `replay_v1` 及历史结果保留。当前真实论文是 `replay_paper_runs/editorial-recovery-v2-20260929/paper.pdf`；3次写作请求共79,673 tokens，包含一次格式恢复及公开记录的开发指导/本地编辑。资源累计86次、385,862 tokens，编辑副本不重复计数。
+
+```bash
+source BDCI/activate.sh
+python BDCI/research/run_replay_pipeline.py \
+  --study-kind recovery_v2 \
+  --study-run BDCI/research/recovery_v2_runs/live-20260929T060132-126279 \
+  --paper-run BDCI/research/replay_paper_runs/editorial-recovery-v2-20260929 \
+  --output /tmp/recovery-v2-delivery --team-name 真没招了
+```
+
+该存稿路径零模型调用，重算冻结实验、审稿/来源绑定及资源，然后具名打包和解包复验。新增terminal写作用量自动登记；状态不明的请求不重发。新写作不设项目token、字数或字符停止阈值，保留计量和请求状态保护。正式外审Token、官方PR仍缺，候选不等于正式提交。本文此前六实例描述仅适用于v1。

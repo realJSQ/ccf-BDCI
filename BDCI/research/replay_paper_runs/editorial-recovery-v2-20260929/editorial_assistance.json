@@ -1,0 +1,8 @@
+{
+  "authorship": "Coding assistant local editorial pass, not a new model response",
+  "original_model_revision_sha256": "fcba4592d7541cb5d3cbfefe3b9c75a233d12bb0735764d1515e7a2138b4ed18",
+  "final_paper_sha256": "46040b3fdfe9c1bdae2839a73afd5dcf1c38be8237333efc5ccb45e2e0d7ce0e",
+  "new_model_calls": 0,
+  "reason": "Explicit local editorial revision",
+  "edits": "See the preserved original revision and editorial_revision.json for the exact changes."
+}

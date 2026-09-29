@@ -12,7 +12,7 @@ import re
 import subprocess
 
 from native_runner import native_run
-from paper_contracts import validate_paper, validate_review, validate_revision_response, SECTION_IDS
+from paper_contracts import validate_paper, validate_review, validate_revision_response, normalize_bound_issues, SECTION_IDS
 from replay_paper_evidence import build_evidence, sources, digest, DEFAULT_RUN
 from run_topics import write_json, parse_object
 from study_adapter import get_adapter
@@ -101,6 +101,13 @@ class ReplayPaperState:
             data['final_word_limit'] = None if self.adapter.is_v2 else 1600
         if role == 'reviser':
             data['internal_review'] = self.outputs['reviewer']
+            guidance_path = self.root / 'revision_guidance.json'
+            if guidance_path.exists():
+                guidance = json.loads(guidance_path.read_text())
+                if (guidance['writer_sha256'] != digest(self.outputs['writer'])
+                        or guidance['review_sha256'] != digest(self.outputs['reviewer'])):
+                    raise ValueError('revision_guidance_target_mismatch')
+                data['developer_revision_guidance'] = guidance
         return (self.adapter.skill / 'roles' / f'{role}.md').read_text() + '\nCURRENT_DATA_JSON\n' + json.dumps(data)
 
     def accept(self, role, value):
@@ -114,14 +121,7 @@ class ReplayPaperState:
             if value['draft_sha256'] != digest(self.outputs['writer']) or value['evidence_sha256'] != digest(self.evidence):
                 raise ValueError('review_target_mismatch')
             review = {k: value[k] for k in ('verdict', 'external_reviewer', 'issues', 'revision_instructions')}
-            review = copy.deepcopy(review)
-            for issue in review['issues']:
-                # Preserve the original response, but permit a redundant exact
-                # section annotation. Never guess or rewrite the target section.
-                if 'section_id_note' in issue:
-                    if issue['section_id_note'] != issue.get('section_id'):
-                        raise ValueError('conflicting_section_annotation')
-                    issue.pop('section_id_note')
+            review = normalize_bound_issues(review, value['issue_quotes'])
             validate_review(review, self.outputs['writer'], **({'max_field_chars': None} if self.adapter.is_v2 else {}))
             quotes = value['issue_quotes']
             if not isinstance(quotes, list) or len(quotes) != len(review['issues']):
@@ -194,6 +194,23 @@ def compile_pdf(root, tex, *, study_kind='replay_v1'):
             'sha256': hashlib.sha256((root / 'paper.pdf').read_bytes()).hexdigest()}
 
 
+def restore_saved_roles(state, source, roles):
+    """Reuse exact saved responses only when inherited prompts remain identical."""
+    raw_hashes, prompt_hashes = {}, {}
+    for role in roles:
+        raw = (source / f'raw_{role}.txt').read_text()
+        if state.adapter.is_v2:
+            prompt = (source / f'prompt_{role}.txt').read_text()
+            if prompt != state.prompt(role):
+                raise ValueError('inherited_prompt_incompatible_with_profile')
+            (state.root / f'prompt_{role}.txt').write_text(prompt)
+            prompt_hashes[role] = hashlib.sha256(prompt.encode()).hexdigest()
+        state.accept(role, state.adapter.decode(raw))
+        (state.root / f'raw_{role}.txt').write_text(raw)
+        raw_hashes[role] = hashlib.sha256(raw.encode()).hexdigest()
+    return raw_hashes, prompt_hashes
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--live', action='store_true')
@@ -201,10 +218,15 @@ def main(argv=None):
     parser.add_argument('--study-run', type=Path, help='Completed compatible recovery study; saved input is reused on resume')
     parser.add_argument('--resume', type=Path, help='Revalidate saved raw outputs and compile, no API')
     parser.add_argument('--continue-from', type=Path, help='Continue a writer-only run with review/revision')
+    parser.add_argument('--adopt-compatible-profile', action='store_true', help='Explicit continuation migration; all inherited prompts must reconstruct identically')
+    parser.add_argument('--revision-guidance', type=Path, help='Recorded developer guidance bound to the saved draft and review')
     parser.add_argument('--editorial-file', type=Path, help='Explicit locally edited final paper; records assistance')
     parser.add_argument('--output-run', type=Path, help='New run directory within replay_paper_runs, for a coordinating workflow')
     parser.add_argument('--no-latest', action='store_true', help='Do not change the shared latest-paper pointer')
     args = parser.parse_args(argv)
+    if args.adopt_compatible_profile and not args.continue_from:
+        raise ValueError('profile_migration_requires_continuation')
+    guidance_path = args.revision_guidance.resolve() if args.revision_guidance else None
     if args.output_run and args.resume:
         raise ValueError('output_run_conflicts_with_resume')
     if args.output_run:
@@ -244,20 +266,27 @@ def main(argv=None):
     adapter = get_adapter(study_kind)
     os.chdir(root)
     try:
-        state = ReplayPaperState(root, args.live, run=study_run, expected_provenance=saved_input, study_kind=study_kind)
+        expected = saved_input
+        if args.adopt_compatible_profile:
+            if not adapter.is_v2:
+                raise ValueError('profile_migration_requires_v2')
+            expected = {**saved_input, 'profile_sha256': adapter.profile_sha256()}
+        state = ReplayPaperState(root, args.live, run=study_run, expected_provenance=expected, study_kind=study_kind)
+        if guidance_path:
+            write_json(root / 'revision_guidance.json', json.loads(guidance_path.read_text()))
         if continuation:
             saved_roles = ['writer'] + (['reviewer'] if (continuation / 'raw_reviewer.txt').exists() else [])
             if len(saved_roles) != inherited['model_calls']:
                 raise ValueError('continuation_accounting_mismatch')
-            raw_hashes = {}
-            for role in saved_roles:
-                raw = (continuation / f'raw_{role}.txt').read_text()
-                state.accept(role, adapter.decode(raw))
-                (root / f'raw_{role}.txt').write_text(raw)
-                raw_hashes[role] = hashlib.sha256(raw.encode()).hexdigest()
+            raw_hashes, prompt_hashes = restore_saved_roles(state, continuation, saved_roles)
             write_json(root / 'continuation.json', {'source': str(continuation),
                 'source_summary': inherited, 'writer_repeated': False,
                 'saved_raw_sha256': raw_hashes, 'new_model_calls_planned': 3 - len(saved_roles),
+                'saved_prompt_sha256': prompt_hashes,
+                'profile_migration': {'from': saved_input.get('profile_sha256'),
+                                      'to': adapter.profile_sha256(),
+                                      'explicit': args.adopt_compatible_profile,
+                                      'inherited_prompts_identical': adapter.is_v2},
                 'draft_review_admission_limit': None if adapter.is_v2 else 1800,
                 'final_word_limit': None if adapter.is_v2 else 1600})
         ledger = HERE / ('recovery-v2-paper-requests.jsonl' if adapter.is_v2 else 'replay-paper-v1-requests.jsonl') if args.live else root / 'requests.jsonl'
@@ -285,7 +314,7 @@ def main(argv=None):
                         'options={"agent_type":"reviser","timeout":100})\n'
                         '    if not result: raise RuntimeError("missing_revision")\n    return result\n')
                     if adapter.is_v2:
-                        workflow.write_text(workflow.read_text().replace(',"workflow_token_limit":60000', ''))
+                        workflow.write_text(workflow.read_text().replace(',"workflow_token_limit":60000', '').replace('"timeout":100', '"timeout":3600'))
                 from run_recovery_v2 import provider_output_capacity
                 asyncio.run(native_run(root, workflow, state, live=args.live,
                     key=key, ledger=ledger, max_calls=3, token_stop=None if adapter.is_v2 else 60000, timeout=900 if adapter.is_v2 else 360,

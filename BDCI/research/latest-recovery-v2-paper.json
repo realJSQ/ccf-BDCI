@@ -1,0 +1,18 @@
+{
+  "run_directory": "replay_paper_runs/editorial-recovery-v2-20260929",
+  "status": "manuscript_generated",
+  "mode": "live",
+  "pdf": {
+    "pages": 6,
+    "bytes": 33986,
+    "sha256": "2f28be6eae0d1464889f9f72021121ebafb1badff1e7a88fe2a0b3d845d96850"
+  },
+  "writing_model_calls": 3,
+  "writing_total_tokens": 79673,
+  "new_scientific_model_calls": 0,
+  "external_review_completed": false,
+  "editorial_assistance": true,
+  "semantic_review_certified": false,
+  "submission_ready": false,
+  "study_kind": "recovery_v2"
+}

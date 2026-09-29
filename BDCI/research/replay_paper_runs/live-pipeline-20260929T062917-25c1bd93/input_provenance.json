@@ -1,0 +1,10 @@
+{
+  "run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/recovery_v2_runs/live-20260929T060132-126279",
+  "evidence_sha256": "6c56533589c05ba120d1912ecdd5b154d538043679ecb876ebffb48927deb8f4",
+  "sources_sha256": "0f265030a7898c7ea33b76d46be90d924fcdfdbf96fc7b86a0e329e69f98fb6b",
+  "study_run_relative": "recovery_v2_runs/live-20260929T060132-126279",
+  "new_scientific_model_calls": 0,
+  "study_kind": "recovery_v2",
+  "evidence_schema": "recovery_v2_evidence/1",
+  "profile_sha256": "2cf06a198c090df2463eada4604d8af06f761f70b7ce14d10e6c0a67fe8ff3e8"
+}

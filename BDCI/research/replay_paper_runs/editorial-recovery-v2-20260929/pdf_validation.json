@@ -1,0 +1,7 @@
+{
+  "pages": 6,
+  "pdf_sha256": "2f28be6eae0d1464889f9f72021121ebafb1badff1e7a88fe2a0b3d845d96850",
+  "method": "Rendered all six pages with pypdfium2 and visually inspected page contact sheet",
+  "result": "No observed clipping or overlap; both result tables and references visible",
+  "scope": "Layout inspection, not scientific or external peer review"
+}

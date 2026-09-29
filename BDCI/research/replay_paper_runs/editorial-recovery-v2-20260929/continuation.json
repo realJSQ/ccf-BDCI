@@ -1,0 +1,52 @@
+{
+  "source": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_paper_runs/live-pipeline-20260929T062917-25c1bd93",
+  "source_summary": {
+    "mode": "live",
+    "status": "failed",
+    "cost": null,
+    "team_name": "recovery_v2_paper",
+    "max_output_tokens": 393216,
+    "error_type": "RuntimeError",
+    "model_calls": 2,
+    "model_usage": [
+      {
+        "input_tokens": 14108,
+        "output_tokens": 4530,
+        "total_tokens": 18638,
+        "event": "usage",
+        "call": 1,
+        "run_id": "live-pipeline-20260929T062917-25c1bd93",
+        "finish_reason": "stop"
+      },
+      {
+        "input_tokens": 18565,
+        "output_tokens": 9132,
+        "total_tokens": 27697,
+        "event": "usage",
+        "call": 2,
+        "run_id": "live-pipeline-20260929T062917-25c1bd93",
+        "finish_reason": "stop"
+      }
+    ],
+    "total_tokens": 46335,
+    "duration_seconds": 51.45415113700028
+  },
+  "writer_repeated": false,
+  "saved_raw_sha256": {
+    "writer": "59de73c0330c17df4f0a95e40de2a83c58336e983576daee7da9d394281391a7",
+    "reviewer": "b75d870def3bda152cae1d820e7cf87e6675d274b56925542d227271477802cc"
+  },
+  "new_model_calls_planned": 1,
+  "saved_prompt_sha256": {
+    "writer": "69fd9c1779dea6ab5f10f5c1d7ac09e325551b8583710df6d343f4c3882d1add",
+    "reviewer": "9971c12634048e5b9cb27f911da92f80d56d52bd698658cc63b5bdac2d8ee31c"
+  },
+  "profile_migration": {
+    "from": "2cf06a198c090df2463eada4604d8af06f761f70b7ce14d10e6c0a67fe8ff3e8",
+    "to": "674304630ceb03218d5cad353bd6eebebb1cb944aa85548540865b6a62add989",
+    "explicit": true,
+    "inherited_prompts_identical": true
+  },
+  "draft_review_admission_limit": null,
+  "final_word_limit": null
+}

@@ -41,3 +41,18 @@ python BDCI/research/run_replay_pipeline.py \
 写作和打包使用同一显式实验输入。打包器也可单独使用 `--study-run`，或从论文来源记录读取路径；不再固定挑选旧实验。已登记实验的异地副本需要完整允许证据逐字节一致，归入原清单位置，避免复制后重复计费或覆写历史。
 
 当前只支持既有恢复协议，新的任务结构须先实现实验/报告适配器。正式参赛仍缺研究质量改进、前半段自动编排、外审Token、官方贡献PR和当前提交周期/模板核对。
+
+## 当前 v2 入口（2026-09-29）
+
+已支持显式 `--study-kind recovery_v2`，旧版默认 `replay_v1` 及历史结果保留。当前真实论文是 `replay_paper_runs/editorial-recovery-v2-20260929/paper.pdf`；3次写作请求共79,673 tokens，包含一次格式恢复及公开记录的开发指导/本地编辑。资源累计86次、385,862 tokens，编辑副本不重复计数。
+
+```bash
+source BDCI/activate.sh
+python BDCI/research/run_replay_pipeline.py \
+  --study-kind recovery_v2 \
+  --study-run BDCI/research/recovery_v2_runs/live-20260929T060132-126279 \
+  --paper-run BDCI/research/replay_paper_runs/editorial-recovery-v2-20260929 \
+  --output /tmp/recovery-v2-delivery --team-name 真没招了
+```
+
+该存稿路径零模型调用，重算冻结实验、审稿/来源绑定及资源，然后具名打包和解包复验。新增terminal写作用量自动登记；状态不明的请求不重发。新写作不设项目token、字数或字符停止阈值，保留计量和请求状态保护。正式外审Token、官方PR仍缺，候选不等于正式提交。本文此前六实例描述仅适用于v1。

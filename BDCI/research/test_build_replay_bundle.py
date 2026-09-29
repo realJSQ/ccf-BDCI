@@ -106,7 +106,7 @@ class ReplayBundleTests(unittest.TestCase):
             report = bundle.verify_bundle(stage)
             self.assertFalse(report['submission_ready'])
             self.assertEqual(report['writing'], {'model_calls': 3, 'total_tokens': 24015})
-            self.assertEqual(report['archived_live_usage'], {'model_calls': 83, 'total_tokens': 306189})
+            self.assertEqual(report['archived_live_usage'], {'model_calls': 86, 'total_tokens': 385862})
             # Even a freshly hashed manifest cannot legitimize an incorrect total.
             resource = stage / 'resource_audit.json'
             original = resource.read_bytes()
@@ -138,7 +138,7 @@ class ReplayBundleTests(unittest.TestCase):
             manifest = bundle.read(stage / 'manifest.json')
             self.assertEqual(manifest['study_run'], bundle.base.REPLAY_RUN)
             self.assertEqual(bundle.verify_bundle(stage)['archived_live_usage'],
-                             {'model_calls': 83, 'total_tokens': 306189})
+                             {'model_calls': 86, 'total_tokens': 385862})
             self.assertFalse((stage / 'code/BDCI/research/study').exists())
             # Same usage but edited raw evidence cannot replace historical records.
             with (moved / 'prompt_episode_00.txt').open('a') as stream:

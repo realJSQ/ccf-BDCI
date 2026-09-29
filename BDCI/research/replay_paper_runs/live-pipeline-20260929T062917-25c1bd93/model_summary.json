@@ -1,0 +1,31 @@
+{
+  "mode": "live",
+  "status": "failed",
+  "cost": null,
+  "team_name": "recovery_v2_paper",
+  "max_output_tokens": 393216,
+  "error_type": "RuntimeError",
+  "model_calls": 2,
+  "model_usage": [
+    {
+      "input_tokens": 14108,
+      "output_tokens": 4530,
+      "total_tokens": 18638,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-pipeline-20260929T062917-25c1bd93",
+      "finish_reason": "stop"
+    },
+    {
+      "input_tokens": 18565,
+      "output_tokens": 9132,
+      "total_tokens": 27697,
+      "event": "usage",
+      "call": 2,
+      "run_id": "live-pipeline-20260929T062917-25c1bd93",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 46335,
+  "duration_seconds": 51.45415113700028
+}

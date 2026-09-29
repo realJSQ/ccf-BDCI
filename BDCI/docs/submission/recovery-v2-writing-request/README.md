@@ -7,3 +7,7 @@
 后两轮使用同一研究/文献材料，加上本流程生成的初稿与内部审阅意见，分别审查和修订。角色规则见三个 `*-instructions.md`。这是内部写作流程，不会上传给 Stanford Reviewer、投稿或创建官方 PR。API 密钥仅作本地认证，不作为提示内容。
 
 完整保存的 `evidence.json`、`sources.json`、`input_provenance.json` 用于审查来源，实际首轮发送内容以 `writer-prompt.txt` 为准。`request.json` 保存目的地、调用阶段和提示/profile哈希。离线同流程已完成 PDF 编译、具名 ZIP 和包内复验；离线稿不当作真实 Agent 论文。
+
+## 执行结果
+
+请求已执行，共3次真实调用、79,673 tokens。原始计划文件 `request.json` 保留执行前快照；实际最终证据见 `../recovery-v2-final-validation.json`。前两角色完成后遇到完全重复的quote字段，精确校验后继续剩余reviser，未重复调用。`revision-guidance.json` 是修订前开发指导；继承提示和原始响应均保持绑定。最终另存本地编辑稿，明确比较含义与开发结构，保留未编辑模型稿。没有新增科学实验，也没有外部审阅Token或官方PR。

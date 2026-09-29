@@ -66,3 +66,13 @@ GitHub认证随后修复，已核实远端main到达 `70ad04b`。后续开发为
 下一步接入新版论文证据、写作/审阅/修订、PDF与具名包。旧写作链硬编码6例/18plans/A-B-C-D及strict/posthoc，不能直接读取v2；需要显式版本化adapter，保留旧归档复验。当前旧PDF与旧ZIP均未包含新研究，正式外审Token、官方PR、样例实际内容仍缺。持续目标保持未完成。
 
 新版独立论文证据接口 `recovery_v2_paper_evidence.py` 已完成，真实运行目录保存 `paper_evidence.json`（schema `recovery_v2_evidence/1`）。接口调用冻结verifier后动态汇总主结果、来源新鲜度、9例配对、资源及开发介入；8项负例/完整性测试覆盖raw篡改、缺G、缺场景、配对篡改、offline拒绝与冻结源码篡改。最终全套245项测试通过，旧打包的资源清单验证仍通过。后续adapter分派、renderer、角色提示、写作profile与包内复验接入计划见 `superpowers/specs/2026-09-29-recovery-v2-paper-adapter.md`；尚未运行新论文写作API。
+
+## 2026-09-29 新版真实论文与候选包
+
+当前论文为 `../research/replay_paper_runs/editorial-recovery-v2-20260929/paper.pdf`（6页），候选包为 `../submission_runs/recovery-v2-delivery-20260929/bundle/真没招了.zip`。v2适配器已接通证据、原生writer/reviewer/reviser、Tectonic和具名打包；新论文不再套用旧6例/18plans模板。
+
+真实写作共3次请求、79,673 tokens。前两次完成后因reviewer重复提供38个quote字段停止；仅删除与绑定引文完全一致的重复字段，并逐字验证继承提示后继续剩余reviser，没有重跑已付费角色。原始响应、失败与profile迁移记录保留。修订前有绑定初稿/审稿哈希的开发指导，随后本地编辑明确E−A保护层比较与开发集结构；不是全自主写作，也不是外审认可。原始最终模型稿保存在 `live-recovery-v2-revision-20260929/`。
+
+累计资源86次真实请求、385,862 tokens，含失败设计与失败写作调用；复制的编辑目录不重复计数。没有人为token阈值，实际usage和不确定请求保护保留。新研究五策略全部36/36、A/D/E/G各294次、F414次，无新增实验或结论变化。新版候选包704文件已由包内代码零API复验；PDF六页目视未见裁切/重叠。
+
+仍缺最终PDF绑定的Stanford Agentic Reviewer Token与官方AtomGit贡献PR；当前 `submission_ready=false`。官方第五轮初赛截止2026-10-09 24:00北京时间，组队信息修改截止当天12:00。选题、协议和研究执行入口仍分开，不能宣称端到端完全自主。历史条目按当时状态保留，当前信息以本节和最新验证记录为准。

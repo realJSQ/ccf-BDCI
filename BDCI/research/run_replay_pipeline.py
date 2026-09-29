@@ -85,6 +85,12 @@ def register_writing_resources(paper):
     with inventory_path.with_suffix('.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         inventory = bundle.read(inventory_path)
+        for existing in inventory['runs']:
+            if (bundle.sha(HERE.parent / existing['usage']) == bundle.sha(usage_path)
+                    and bundle.sha(HERE.parent / existing['summary']) == bundle.sha(summary_path)):
+                audit = audit_resources(HERE.parent, inventory)
+                return {'status': 'registered', 'calls': len(rows), 'tokens': sum(r['total_tokens'] for r in rows),
+                        'historical_calls': audit['total_calls'], 'historical_tokens': audit['total_tokens']}
         entry = {'usage': str(usage_path.relative_to(HERE.parent)),
                  'summary': str(summary_path.relative_to(HERE.parent))}
         if entry not in inventory['runs']:
@@ -193,6 +199,8 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_na
                             save(state_path, state)
                 if bundle.manuscript_adapter(paper).kind != adapter.kind:
                     raise ValueError('pipeline_manuscript_study_kind_mismatch')
+                if state['paper_origin'] == 'saved':
+                    stages['writing_resource'] = [register_writing_resources(run) for run in bundle.writing_chain(paper)]
                 files = manuscript_fingerprint(paper, study)
                 stages[current] = {'status': 'completed', 'files': files}
                 save(state_path, state)
