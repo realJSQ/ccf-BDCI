@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-29",
+  "test_command": "python -m unittest discover -s BDCI/research -p 'test_*.py' -q",
+  "tests_passed": 198,
+  "new_model_calls": 0,
+  "archive": "BDCI/submission_runs/replay-20260929-resource-audit/replay-candidate.zip",
+  "archive_sha256": "a69c61c51a884b409a3ac852e594a47ea5650f020061a3ea29b75138f9338a4e",
+  "archive_bytes": 1231398,
+  "unpacked_verification": {
+    "status": "verified_saved_candidate",
+    "files": 511,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 24015
+    },
+    "archived_live_usage": {
+      "model_calls": 44,
+      "total_tokens": 145585
+    }
+  },
+  "unpacked_cli_created_bytecode": false,
+  "resource_scope": "Archived live project runs through 2026-09-29; offline fixtures, Codex development and external review excluded. Explicit inventory, not automatic discovery of future runs.",
+  "source_sha256": {
+    "resource_accounting.py": "46fcefc33042abd8d176d19c391ae4be86d02744b362c7d67d41e0769c321ff8",
+    "resource_runs.json": "2a432b3519d4ad6c482322d6d774a21b817735a9ba1e282bcc668ed9cf2ca43a",
+    "build_replay_bundle.py": "00d2acc3311413672f2fa10c87553b78f164569489af83d05657699381d11a24"
+  }
+}

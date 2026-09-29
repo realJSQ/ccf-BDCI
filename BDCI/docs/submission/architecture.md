@@ -32,6 +32,8 @@ flowchart TD
 | 本地可信计算 | 数据和私有真值生成、存档评分重放、引用标识及结构检查、代码生成结果表 | [pilot_benchmark](../../research/pilot_benchmark.py)、[paper_contracts](../../research/paper_contracts.py)、[paper_render](../../research/paper_render.py) |
 | 产物与复现 | TeX 转义、真实来源 BibTeX、PDF 检查、白名单 ZIP 与 manifest；依赖固定、官方源码来源保留 | [paper_bundle](../../research/paper_bundle.py)、[依赖锁定](../../setup/requirements.repro.txt)、[编译入口](../../tools/compile-latex.sh) |
 
+恢复论文包的资源报告由 [resource_accounting](../../research/resource_accounting.py) 从显式归档清单、原始 usage 和模型摘要计算，包含失败调用，排除离线夹具与重复副本。打包保留所需原始记录，解包后重新计算总数和来源哈希；总量只覆盖清单，不代表供应商账单。不同阶段时长不相加为端到端时长。
+
 选题入口有自己的框架适配实现；pilot 和 paper 使用 `native_runner.py`。该共用适配器注册的研究扩展只有 **ResearchBudgetRail**，另有官方 `core.team.skill_use`。它没有接入 ExperimentEvidenceRail，也没有给研究工作实例开放工具列表；检索、评分和文件校验在 Python 控制代码中完成。
 
 ## EvidenceRail 的实际接入范围

@@ -16,6 +16,7 @@ import paper_bundle as base
 from paper_contracts import validate_paper, validate_review, validate_revision_response
 from replay_paper_evidence import build_evidence, digest
 from run_topics import parse_object
+from resource_accounting import audit_resources, render_report, source_path
 
 HERE = Path(__file__).resolve().parent
 PAPER_FILES = ('paper.pdf', 'paper.tex', 'paper.md', 'references.bib', 'paper.json',
@@ -209,8 +210,16 @@ def verify_bundle(stage):
             totals[key] += model[key]
     if totals != {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens']}:
         raise ValueError('writing_accounting_mismatch')
+    inventory = read(research / 'resource_runs.json')
+    audit = audit_resources(stage / 'code/BDCI', inventory)
+    if read(stage / 'resource_audit.json') != audit:
+        raise ValueError('resource_audit_mismatch')
+    if (stage / 'resource_report.md').read_text() != render_report(
+            audit, 'research/' + base.REPLAY_RUN + '/model_usage.jsonl', totals):
+        raise ValueError('resource_report_mismatch')
     return {'status': 'verified_saved_candidate', 'files': len(actual),
-            'submission_ready': False, 'new_model_calls': 0, 'writing': totals}
+            'submission_ready': False, 'new_model_calls': 0, 'writing': totals, 'archived_live_usage': {
+                'model_calls': audit['total_calls'], 'total_tokens': audit['total_tokens']}}
 
 
 def build_bundle(root, output):
@@ -244,24 +253,18 @@ def build_bundle(root, output):
             for name in PAPER_FILES:
                 if (source_root / name).exists() or (source_root / name).is_symlink():
                     base._copy(source_root / name, stage / 'internal_review' / name, source_root)
-        base._write(stage / 'resource_report.md', '''# Resource report
-This packaging operation uses zero model calls. Saved recovery experiment:
-18 calls / 14,878 tokens. Saved manuscript writing: 3 calls / 24,015 tokens.
-These two selected stages total 21 calls / 38,893 tokens; local editorial changes
-add zero model calls. CPU replays and post-hoc normalization are not extra model calls.
-
-All historical campaigns total 42 calls / 123,863 tokens:
-15 calls / 52,438 tokens (historical smoke, topic, arithmetic pilot, old paper)
-+ 24 calls / 47,410 tokens (research-v2, including recovery experiment)
-+ 3 calls / 24,015 tokens (recovery manuscript writing).
-These are cumulative project totals, not the cost of one final submission run.
-The older historical-resource-audit.json covers only the first 15 calls.
-Raw writing usage and continuation provenance are saved in code/BDCI/research/
-replay_paper_runs; recovery usage is saved in replay_runs. Scientific results are
-from six self-authored base instances and are not independent held-out validation.
-Actual monetary cost is unknown. The selected study wall time is not full research,
-editorial, compilation or end-to-end project duration. No GPU training was performed.
-''')
+        inventory = read(HERE / 'resource_runs.json')
+        audit = audit_resources(base.BDCI, inventory)
+        base._copy(HERE / 'resource_runs.json',
+                   stage / 'code/BDCI/research/resource_runs.json', base.BDCI)
+        for entry in inventory['runs']:
+            for key in ('usage', 'summary'):
+                relative = entry[key]
+                base._copy(source_path(base.BDCI, relative), stage / 'code/BDCI' / relative, base.BDCI)
+        base._json(stage / 'resource_audit.json', audit)
+        base._write(stage / 'resource_report.md', render_report(audit,
+            'research/' + base.REPLAY_RUN + '/model_usage.jsonl',
+            {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens']}))
         base._write(stage / '提交说明.md', '''# 开发候选包，尚不能正式提交
 本包保存真实恢复实验与辅助编辑论文，研究新颖性及正式科学验收未完成。
 replay-candidate 不是队伍名称。缺正式队伍信息、当前赛题模板复核、

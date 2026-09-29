@@ -1,0 +1,57 @@
+{
+  "scope": "Archived live project runs through 2026-09-29; offline fixtures, Codex development and external review excluded. Explicit inventory, not automatic discovery of future runs.",
+  "runs": [
+    {
+      "usage": "research/followup_design_runs/live-20260929T002907-613130/model_usage.jsonl",
+      "summary": "research/followup_design_runs/live-20260929T002907-613130/model_summary.json"
+    },
+    {
+      "usage": "research/followup_design_runs/live-20260929T003516-680636/model_usage.jsonl",
+      "summary": "research/followup_design_runs/live-20260929T003516-680636/model_summary.json"
+    },
+    {
+      "usage": "research/paper_runs/live-20260928T104912-411414/model_usage.jsonl",
+      "summary": "research/paper_runs/live-20260928T104912-411414/model_summary.json"
+    },
+    {
+      "usage": "research/pilot_runs/live-20260928T084134-196833/model_usage.jsonl",
+      "summary": "research/pilot_runs/live-20260928T084134-196833/model_summary.json"
+    },
+    {
+      "usage": "research/protocol_runs/live-20260928T143347-906294/model_usage.jsonl",
+      "summary": "research/protocol_runs/live-20260928T143347-906294/model_summary.json"
+    },
+    {
+      "usage": "research/protocol_runs/live-20260928T143721-035518/model_usage.jsonl",
+      "summary": "research/protocol_runs/live-20260928T143721-035518/model_summary.json"
+    },
+    {
+      "usage": "research/replay_paper_runs/live-20260928T150942-789171/model_usage.jsonl",
+      "summary": "research/replay_paper_runs/live-20260928T150942-789171/model_summary.json"
+    },
+    {
+      "usage": "research/replay_paper_runs/live-20260928T151351-885403/model_usage.jsonl",
+      "summary": "research/replay_paper_runs/live-20260928T151351-885403/model_summary.json"
+    },
+    {
+      "usage": "research/replay_paper_runs/live-20260928T151550-319349/model_usage.jsonl",
+      "summary": "research/replay_paper_runs/live-20260928T151550-319349/model_summary.json"
+    },
+    {
+      "usage": "research/replay_runs/live-20260928T144804-532140/model_usage.jsonl",
+      "summary": "research/replay_runs/live-20260928T144804-532140/model_summary.json"
+    },
+    {
+      "usage": "research/revision_runs/live-20260928T141945-771317/model_usage.jsonl",
+      "summary": "research/revision_runs/live-20260928T141945-771317/model_summary.json"
+    },
+    {
+      "usage": "research/runs/live-20260928T081927-158480/model_usage.jsonl",
+      "summary": "research/runs/live-20260928T081927-158480/summary.json"
+    },
+    {
+      "usage": "validation/runs/live-20260928T080913-827750/model_usage.jsonl",
+      "summary": "validation/runs/live-20260928T080913-827750/summary.json"
+    }
+  ]
+}

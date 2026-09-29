@@ -59,6 +59,21 @@ class ReplayBundleTests(unittest.TestCase):
             report = bundle.verify_bundle(stage)
             self.assertFalse(report['submission_ready'])
             self.assertEqual(report['writing'], {'model_calls': 3, 'total_tokens': 24015})
+            self.assertEqual(report['archived_live_usage'], {'model_calls': 44, 'total_tokens': 145585})
+            # Even a freshly hashed manifest cannot legitimize an incorrect total.
+            resource = stage / 'resource_audit.json'
+            original = resource.read_bytes()
+            stale = json.loads(original)
+            stale['total_calls'] = 42
+            resource.write_text(json.dumps(stale))
+            manifest = bundle.read(stage / 'manifest.json')
+            manifest['files']['resource_audit.json'] = bundle.sha(resource)
+            bundle.base._json(stage / 'manifest.json', manifest)
+            with self.assertRaisesRegex(ValueError, 'resource_audit_mismatch'):
+                bundle.verify_bundle(stage)
+            resource.write_bytes(original)
+            manifest['files']['resource_audit.json'] = bundle.sha(resource)
+            bundle.base._json(stage / 'manifest.json', manifest)
             delivered = bundle.read(stage / 'internal_review/reviewer.json')
             self.assertEqual(delivered, bundle.read(self.root / 'reviewer.json'))
             (stage / 'paper/paper.pdf').write_bytes(b'%PDF-tampered')
