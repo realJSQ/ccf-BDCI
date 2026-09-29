@@ -1,0 +1,107 @@
+{
+  "source_raw_sha256": "f2db4a4ad38c5a826c96cfefbb46f4b9a836bcecf6ec6b5f13f26deb63f78f29",
+  "scope": "Developer diagnostic of the stated algorithm, not a new model observation or experimental sample.",
+  "reason": "With requested read_aux/summarize_aux, all actual parents are already in their declared closure; the stated parent-check rule cannot discover combine/report.",
+  "input": {
+    "nodes": [
+      "read_main",
+      "read_aux",
+      "summarize_main",
+      "summarize_aux",
+      "combine",
+      "report"
+    ],
+    "actual_dependencies": {
+      "read_main": [],
+      "read_aux": [],
+      "summarize_main": [
+        "read_main"
+      ],
+      "summarize_aux": [
+        "read_aux"
+      ],
+      "combine": [
+        "summarize_main",
+        "summarize_aux"
+      ],
+      "report": [
+        "combine"
+      ]
+    },
+    "declared_dependencies": {
+      "read_main": [],
+      "read_aux": [],
+      "summarize_main": [
+        "read_main"
+      ],
+      "summarize_aux": [
+        "read_aux"
+      ],
+      "combine": [
+        "summarize_main"
+      ],
+      "report": [
+        "combine"
+      ]
+    },
+    "changed_sources": [
+      "read_aux"
+    ],
+    "cached_source_versions": {
+      "read_main": 1,
+      "read_aux": 1
+    },
+    "current_source_versions": {
+      "read_main": 1,
+      "read_aux": 2
+    },
+    "actions": [
+      {
+        "op": "rerun",
+        "node": "read_aux"
+      },
+      {
+        "op": "rerun",
+        "node": "summarize_aux"
+      },
+      {
+        "op": "emit",
+        "node": "report"
+      }
+    ],
+    "claimed_closure": [
+      "read_aux",
+      "summarize_aux"
+    ],
+    "tool_budget": 12
+  },
+  "computed": {
+    "declared_closure": [
+      "read_aux",
+      "summarize_aux"
+    ],
+    "closure_claim_valid": true,
+    "diagnostics": [],
+    "completed": true,
+    "termination": "emitted",
+    "tool_attempts": 2,
+    "emitted_node": "report",
+    "provenance_current": false,
+    "stale_sources": [
+      "read_aux"
+    ],
+    "output_source_versions": {
+      "read_aux": [
+        1
+      ],
+      "read_main": [
+        1
+      ]
+    },
+    "expected_source_versions": {
+      "read_aux": 2,
+      "read_main": 1
+    },
+    "scope": "source_version_provenance_only_not_numeric_or_scientific_correctness"
+  }
+}

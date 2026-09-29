@@ -27,15 +27,19 @@ async def native_run(root, workflow, state, *, live, key, ledger,
     from run_topics import parse_object, write_json, append_json
 
     configure_openjiuwen_home(root / 'runtime')
-    metering = ResearchRunBudget(root, ledger, max_calls=max_calls, token_stop=token_stop)
+    metering = ResearchRunBudget(root, ledger, max_calls=max_calls, token_stop=token_stop,
+        **({"max_prompt_chars": None} if token_stop is None else {}))
+    request_options = {"model": "deepseek-flash", "temperature": 0,
+                       "reasoning": {"mode": "disabled"}}
+    if max_output_tokens is not None:
+        request_options["max_tokens"] = max_output_tokens
     rail_type = f'bdci.{team_name}_budget'
     register_rail_provider(rail_type, lambda params, context: ResearchBudgetRail(metering))
     spec = DeepAgentSpec(
         model=ModelSpec(model_client_config=ModelClientConfig(
             client_provider='OpenAI', api_base='https://api.deepseek.com', api_key=key,
             max_retries=0, timeout=60, stream_first_chunk_timeout=60),
-            model_request_config=ModelRequestConfig(model='deepseek-flash', max_tokens=max_output_tokens,
-                                                   temperature=0, reasoning={'mode':'disabled'})),
+            model_request_config=ModelRequestConfig(**request_options)),
         enable_task_loop=False, max_iterations=1, enable_sys_operation=False,
         enable_task_planning=False, enable_security_rail=False, enable_tool_resilience_rail=False,
         auto_create_workspace=False, enable_read_image_multimodal=False, tools=[], skills=[],

@@ -1,0 +1,8 @@
+{
+  "campaign": "followup-revision-v1",
+  "max_calls": 2,
+  "token_stop_after_response": null,
+  "max_output_tokens": null,
+  "new_experiments_authorized": false,
+  "prior_ledgers_modified": false
+}

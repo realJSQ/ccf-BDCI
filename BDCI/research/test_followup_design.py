@@ -6,7 +6,7 @@ import hashlib
 import shutil
 import unittest
 
-from run_followup_design import FollowupState, validate_design, complete_top_level_fields, recover_rejected, revision_context
+from run_followup_design import FollowupState, validate_design, complete_top_level_fields, recover_rejected, recover_invalid, revision_context, validate_issue_quote
 
 
 def proposal(state):
@@ -35,6 +35,14 @@ class FollowupTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         self.state = FollowupState(Path(temp.name), False)
 
+    def test_structured_quotes_require_exact_json_values(self):
+        target = {'calls': 36, 'actions': [{'op': 'emit', 'node': 'report'}], 'enabled': True}
+        for field, quote in [('calls', '36'), ('actions', '[{"node":"report","op":"emit"}]'), ('enabled', 'true')]:
+            validate_issue_quote(target, {'field': field, 'quote': quote})
+        for field, quote in [('calls', 'planned_api_calls'), ('calls', '35'), ('actions', '[{"op":"emit"}]'), ('enabled', '1')]:
+            with self.assertRaisesRegex(ValueError, 'ungrounded_blocking_issue'):
+                validate_issue_quote(target, {'field': field, 'quote': quote})
+
     def test_revision_binds_rejection_and_distinguishes_fixtures(self):
         old_hash = self.state.evidence_sha256
         revision_context(self.state)
@@ -46,6 +54,27 @@ class FollowupTests(unittest.TestCase):
             self.state.accept(role, self.state.offline_response(role))
         self.assertFalse(self.state.handoff()['execution_enabled'])
         self.assertFalse(self.state.handoff()['implementation_recommended'])
+
+    def test_complete_invalid_design_audited_without_text_repair(self):
+        source = self.state.root / 'complete-source'
+        source.mkdir()
+        value = proposal(self.state)
+        value['graph_example']['input']['actions'][-1].pop('node')
+        (source / 'raw_designer.txt').write_text(json.dumps(value))
+        (source / 'context.json').write_text(json.dumps(self.state.context))
+        usage = {'finish_reason': 'stop', 'total_tokens': 10}
+        (source / 'model_usage.jsonl').write_text(json.dumps(usage) + '\n')
+        (source / 'model_summary.json').write_text(json.dumps({'mode': 'offline_scripted',
+            'model_calls': 1, 'model_usage': [usage], 'total_tokens': 10}))
+        record = recover_invalid(self.state, source)
+        self.assertEqual(self.state.outputs['designer'], value)
+        self.assertEqual(record['input_kind'], 'complete_but_invalid')
+        self.assertEqual(self.state.roles, ('auditor',))
+        self.assertFalse(record['text_repaired'])
+        review = self.state.offline_response('auditor')
+        review.update(verdict='implement', resource_arithmetic_checked=True)
+        with self.assertRaisesRegex(ValueError, 'rejected_input_cannot_promote'):
+            self.state.accept('auditor', review)
 
     def recovery_fixture(self):
         source = self.state.root / 'source'

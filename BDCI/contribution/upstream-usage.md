@@ -39,6 +39,13 @@ max_prompt_chars=...)`, wrap it in `ResearchBudgetRail`, and register that rail
 for the relevant `DeepAgentSpec`. Use one shared budget object and persistent
 ledger for the entire sequential campaign, including distinct role workers.
 
+`token_stop=None` disables the cumulative token stop; `max_prompt_chars=None`
+disables the prompt-preview heuristic. Both are independently optional; existing
+positive-integer defaults remain unchanged. Usage is still recorded, and call
+counts and unresolved-request guards remain enforced. Applications must also
+omit any workflow token ceiling and model output-token cap if they want no
+application-imposed token limit; provider defaults and context limits still apply.
+
 The caller must create parent directories and hold an exclusive process lock on
 the campaign for its entire lifetime (for example, `fcntl.flock` on Linux).
 The budget class does not acquire this lock and is not a concurrent reservation
@@ -75,9 +82,9 @@ export JIUWENSWARM_DATA_DIR="$JIUWENSWARM_HOME/.jiuwenswarm"
 PYTHONPATH="$PWD" python -m unittest discover -s tests -p 'test_research_*_rail.py' -v
 ```
 
-The two contributed files contain 24 tests: nine receipt checks and fifteen
+The two contributed files contain 28 tests: nine receipt checks and nineteen
 admission/accounting checks. They use temporary files and synthetic callback
-objects, with no API credentials or network. They test the rails' contracts, not
+objects plus local SDK request construction, with no API credentials or network. They test the rails' contracts, not
 full scientific experiments or upstream-wide compatibility.
 
 An application must separately test its native workflow and actual tool/model

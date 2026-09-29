@@ -1,0 +1,10 @@
+{
+  "campaign": "followup-revision-v1",
+  "max_calls": 3,
+  "token_stop_after_response": null,
+  "max_output_tokens": 393216,
+  "output_policy": "provider_maximum_not_project_token_limit",
+  "retry_scope": "One audit retry after verified provider-default length truncation; original admissions retained",
+  "new_experiments_authorized": false,
+  "prior_ledgers_modified": false
+}

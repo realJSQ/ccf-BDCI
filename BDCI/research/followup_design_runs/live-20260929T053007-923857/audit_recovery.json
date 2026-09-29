@@ -1,0 +1,34 @@
+{
+  "source_run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/followup_design_runs/live-20260929T012938-673566",
+  "source_usage": {
+    "mode": "live",
+    "status": "failed",
+    "cost": null,
+    "team_name": "followup_design",
+    "max_output_tokens": 16000,
+    "error_type": "RuntimeError",
+    "model_calls": 1,
+    "model_usage": [
+      {
+        "input_tokens": 7918,
+        "output_tokens": 4605,
+        "total_tokens": 12523,
+        "event": "usage",
+        "call": 1,
+        "run_id": "live-20260929T012938-673566",
+        "finish_reason": "stop"
+      }
+    ],
+    "total_tokens": 12523,
+    "duration_seconds": 22.31432775200028
+  },
+  "source_model_calls": 1,
+  "source_total_tokens": 12523,
+  "raw_designer_sha256": "f2db4a4ad38c5a826c96cfefbb46f4b9a836bcecf6ec6b5f13f26deb63f78f29",
+  "input_kind": "complete_but_invalid",
+  "admission_errors": [
+    "action contains missing or unsupported fields"
+  ],
+  "proposal_input_accepted": false,
+  "text_repaired": false
+}

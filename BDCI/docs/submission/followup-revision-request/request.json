@@ -1,11 +1,11 @@
 {
-  "status": "awaiting_external_api_authorization_after_auto_review_rejection",
+  "status": "executed_design_and_audits_not_implementation_ready",
   "provider": "DeepSeek",
   "api_base": "https://api.deepseek.com",
   "model": "deepseek-flash",
-  "max_calls": 2,
-  "max_output_tokens_per_call": 6500,
-  "token_stop_after_response": 30000,
+  "max_calls": 3,
+  "max_output_tokens_per_call": 393216,
+  "token_stop_after_response": null,
   "scope": "Protocol design and audit only; no experiment execution. Auditor also receives the newly generated design.",
   "data": [
     "Saved development experiment results already in collaboration repository",
@@ -23,5 +23,30 @@
     "context.json": "06ed802e0e56d0329b1a1e6847e68a2f2e2a4b3e28a29ed1dd0da9d958f9e9ed",
     "auditor-instructions.txt": "4e94772b0485b38489110ad120b1645f6262d3763bc3185d8f66d72949da894d",
     "input_provenance.json": "fc40de2948cd05741cf3f92ed096915a8316bd3f801821402057f352e8fcc342"
+  },
+  "initial_proposed_limits": {
+    "max_output_tokens_per_call": 6500,
+    "token_stop_after_response": 30000
+  },
+  "authorization": {
+    "user_reply": "也不用这样过分限制token，正常测试就可以",
+    "interpretation": "Allow the specified design/audit API calls with less restrictive token limits; retain accounting.",
+    "date": "2026-09-29",
+    "latest_user_reply": "不用限制token数"
+  },
+  "prepared_files_describe_initial_request": true,
+  "actual_prompt_note": "Live run archives authoritative prompts after the user requested normal token allowance; initial preparation files are preserved.",
+  "project_token_limit": null,
+  "provider_output_capacity": 393216,
+  "actual_runs": [
+    "followup_design_runs/live-20260929T012938-673566",
+    "followup_design_runs/live-20260929T013420-896528",
+    "followup_design_runs/live-20260929T053007-923857"
+  ],
+  "execution_result": {
+    "model_calls": 3,
+    "total_tokens": 47220,
+    "experiment_executed": false,
+    "audit_retry_reason": "Verified provider-default output truncation at 8192 when max_tokens was omitted; retry used provider maximum capacity."
   }
 }

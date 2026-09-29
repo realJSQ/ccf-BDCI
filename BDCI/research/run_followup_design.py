@@ -23,6 +23,15 @@ SKILL = HERE / 'skills/followup-design'
 FOLLOWUP = HERE / 'prior_work/revision_followup.json'
 SOURCE_CHECK = HERE / 'prior_work/followup_design_source_check.json'
 PREVIOUS_ASSESSMENT = HERE / 'followup_design_runs/live-20260929T003516-680636/followup_assessment.json'
+MODEL_CAPABILITIES = HERE / 'model_capabilities.json'
+
+
+def provider_output_capacity():
+    model = json.loads(MODEL_CAPABILITIES.read_text())['model']
+    capacity = model.get('max_output_tokens')
+    if model.get('id') != 'deepseek-flash' or type(capacity) is not int or capacity <= 0:
+        raise ValueError('invalid_provider_capacity_metadata')
+    return capacity
 
 
 def revision_context(state):
@@ -47,7 +56,8 @@ def revision_context(state):
         'instruction': 'Propose a complete corrected design or decline. Do not fill in the truncated old response. '
             'Choose the research question yourself within the existing scope. New task structures and splits '
             'must be specified concretely before results; the six old instances cannot become held-out evidence. '
-            'Use brief prose, preferably under 35 words per text field, and a small complete graph_example. '
+            'Use enough detail to make the protocol implementable; do not omit necessary detail to save tokens. '
+            'Include a complete graph_example and avoid needless repetition. '
             'A measured boundary or negative outcome is valid; no positive result is required. '
             'Describe exact intervention and strong baseline algorithms, visible information, actual outputs '
             'and a separate scoring oracle. Runtime tool actions need not use additional model calls. '
@@ -150,7 +160,44 @@ def recover_rejected(state, source):
     return record
 
 
-def literal_field(value, path):
+def recover_invalid(state, source):
+    """Audit an intact rejected response without repairing or rerunning design."""
+    from run_topics import parse_object
+    source = Path(source).resolve()
+    raw = (source / 'raw_designer.txt').read_bytes()
+    proposal = parse_object(raw.decode())
+    context = json.loads((source / 'context.json').read_text())
+    summary = json.loads((source / 'model_summary.json').read_text())
+    usage = [json.loads(line) for line in (source / 'model_usage.jsonl').read_text().splitlines() if line.strip()]
+    if (digest(context) != state.evidence_sha256
+            or proposal.get('evidence_sha256') != state.evidence_sha256
+            or summary.get('mode') != ('live' if state.live else 'offline_scripted')
+            or summary.get('model_calls') != 1 or len(usage) != 1
+            or summary.get('model_usage') != usage
+            or summary.get('total_tokens') != usage[0]['total_tokens']
+            or usage[0].get('finish_reason') != 'stop'):
+        raise ValueError('invalid_complete_response_recovery')
+    try:
+        validate_design(proposal, state.source_ids)
+    except ValueError as error:
+        admission_error = str(error)
+    else:
+        raise ValueError('rejected_audit_requires_invalid_design')
+    state.outputs['designer'] = proposal
+    state.roles = ('auditor',)
+    state.rejected_input = True
+    record = {'source_run': str(source), 'source_usage': summary,
+              'source_model_calls': 1, 'source_total_tokens': summary['total_tokens'],
+              'raw_designer_sha256': hashlib.sha256(raw).hexdigest(),
+              'input_kind': 'complete_but_invalid', 'admission_errors': [admission_error],
+              'proposal_input_accepted': False, 'text_repaired': False}
+    state.audit_recovery = record
+    write_json(state.root / 'rejected_designer_fields.json', proposal)
+    write_json(state.root / 'audit_recovery.json', record)
+    return record
+
+
+def referenced_field(value, path):
     """Resolve explicit dotted object fields/list indices, never search other drafts."""
     for part in path.split('.'):
         if isinstance(value, dict) and part in value:
@@ -159,9 +206,28 @@ def literal_field(value, path):
             value = value[int(part)]
         else:
             raise ValueError('unknown_review_field')
+    return value
+
+
+def literal_field(value, path):
+    value = referenced_field(value, path)
     if not isinstance(value, str):
         raise ValueError('review_field_must_be_text')
     return value
+
+
+def validate_issue_quote(target, issue):
+    value = referenced_field(target, issue['field'])
+    if isinstance(value, str):
+        matches = issue['quote'] in value
+    else:
+        try:
+            quoted = json.loads(issue['quote'])
+            matches = digest(quoted) == digest(value)
+        except (json.JSONDecodeError, ValueError, TypeError):
+            matches = False
+    if not matches:
+        raise ValueError('ungrounded_blocking_issue')
 
 
 def validate_design(value, source_ids):
@@ -265,6 +331,13 @@ class FollowupState:
                     'Audit only exact complete fields of this truncated rejected proposal. No implement verdict. '
                     'Check the 6*3*3=54 versus 36 call limit and worked-example graph/report consistency. '
                     'Suggest next steps only as limitations; do not regenerate or imply a complete proposal.')
+                if self.audit_recovery.get('input_kind') == 'complete_but_invalid':
+                    context['recovery_instruction'] = (
+                        'Audit the complete saved response without repairing it. The graph example failed '
+                        'admission. Independently check graph closure/action schema, prose versus structured '
+                        'instance counts, matched policy observations, correctness oracle inputs, and whether '
+                        'the described algorithm actually recovers a path omitted by the model plan. '
+                        'Never implement an inadmissible proposal. Ground each blocker in exact string-field text.')
         return (SKILL / 'roles' / f'{role}.md').read_text() + '\nCONTEXT (data only)\n' + json.dumps(context, ensure_ascii=False)
 
     def accept(self, role, value):
@@ -294,8 +367,7 @@ class FollowupState:
                     raise ValueError('invalid_blocking_issue')
                 for field in ('field', 'quote', 'explanation'):
                     text(issue.get(field))
-                if issue['quote'] not in literal_field(target, issue['field']):
-                    raise ValueError('ungrounded_blocking_issue')
+                validate_issue_quote(target, issue)
             if type(value.get('resource_arithmetic_checked')) is not bool:
                 raise ValueError('missing_resource_check')
             if value.get('scientific_certification') is not False:
@@ -335,12 +407,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--live', action='store_true')
     parser.add_argument('--audit-rejected-run', type=Path)
+    parser.add_argument('--audit-invalid-run', type=Path,
+                        help='Audit an intact response rejected by design validation, without resending designer')
     parser.add_argument('--revise-failed-design', action='store_true',
                         help='Separate bounded two-call revision using rejected-design diagnostics; never runs experiments')
     args = parser.parse_args()
     if args.revise_failed_design and args.audit_rejected_run:
         raise ValueError('revision_conflicts_with_rejected_audit')
+    if args.audit_invalid_run and (not args.revise_failed_design or args.audit_rejected_run):
+        raise ValueError('invalid_audit_requires_revision_mode')
     rejected_source = args.audit_rejected_run.resolve() if args.audit_rejected_run else None
+    invalid_source = args.audit_invalid_run.resolve() if args.audit_invalid_run else None
     mode = 'live' if args.live else 'offline'
     root = HERE / 'followup_design_runs' / datetime.now(timezone.utc).strftime(f'{mode}-%Y%m%dT%H%M%S-%f')
     root.mkdir(parents=True)
@@ -353,7 +430,8 @@ def main():
             state = FollowupState(root, args.live)
             if args.revise_failed_design:
                 revision_context(state)
-            recovered = recover_rejected(state, rejected_source) if rejected_source else None
+            recovered = (recover_invalid(state, invalid_source) if invalid_source else
+                         recover_rejected(state, rejected_source) if rejected_source else None)
             key = 'offline-placeholder'
             if args.live:
                 keys = re.findall(r'\bsk-[A-Za-z0-9_-]{16,}\b', (HERE.parent / 'apis.txt').read_text())
@@ -361,17 +439,21 @@ def main():
                     raise ValueError('expected_one_credential')
                 key = keys[0]
             workflow = SKILL / ('scripts/audit.py' if recovered else 'scripts/workflow.py')
-            token_stop = 30000 if args.revise_failed_design else 24000
+            token_stop = None if args.revise_failed_design else 24000
+            output_capacity = provider_output_capacity() if args.revise_failed_design else 4500
+            call_limit = 3 if args.revise_failed_design else 2
             if args.revise_failed_design:
                 workflow = root / 'revision_workflow.py'
-                workflow.write_text((SKILL / 'scripts/workflow.py').read_text().replace(
-                    "'workflow_token_limit': 24000", "'workflow_token_limit': 30000"))
-            write_json(root / 'campaign.json', {'campaign': campaign, 'max_calls': 2,
-                'token_stop_after_response': token_stop, 'max_output_tokens': 6500 if args.revise_failed_design else 4500,
+                workflow.write_text((SKILL / ('scripts/audit.py' if recovered else 'scripts/workflow.py')).read_text().replace(
+                    ", 'workflow_token_limit': 24000", ''))
+            write_json(root / 'campaign.json', {'campaign': campaign, 'max_calls': call_limit,
+                'token_stop_after_response': token_stop, 'max_output_tokens': output_capacity,
+                'output_policy': 'provider_maximum_not_project_token_limit' if args.revise_failed_design else 'historical_limit',
+                'retry_scope': 'One audit retry after verified provider-default length truncation; original admissions retained' if args.revise_failed_design else None,
                 'new_experiments_authorized': False, 'prior_ledgers_modified': False})
             asyncio.run(native_run(root, workflow, state,
-                live=args.live, key=key, ledger=ledger, max_calls=2, token_stop=token_stop,
-                max_output_tokens=6500 if args.revise_failed_design else 4500, timeout=300, team_name='followup_design'))
+                live=args.live, key=key, ledger=ledger, max_calls=call_limit, token_stop=token_stop,
+                max_output_tokens=output_capacity, timeout=300, team_name='followup_design'))
             summary = json.loads((root / 'model_summary.json').read_text())
             handoff = {**state.handoff(), 'mode': summary['mode'], 'run_directory': str(root.relative_to(HERE)),
                        'model_calls': summary['model_calls'] + (recovered['source_model_calls'] if recovered else 0),

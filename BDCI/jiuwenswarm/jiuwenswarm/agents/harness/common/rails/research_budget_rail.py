@@ -2,7 +2,8 @@
 
 The caller MUST hold an exclusive lock for the entire run. Token usage is a
 post-response stop threshold, not a prepaid hard cap. Failed/uncertain requests
-consume admissions. A missing usage record prevents reopening that campaign.
+consume admissions. A missing usage record prevents reopening that campaign. ``None`` disables the
+optional token stop or prompt-size heuristic while preserving usage accounting.
 """
 from __future__ import annotations
 
@@ -25,8 +26,9 @@ def _append(path, record):
 class ResearchRunBudget:
     def __init__(self, root, ledger_path, *, max_calls=3, token_stop=20000,
                  max_prompt_chars=48000):
-        if any(type(v) is not int or v <= 0 for v in
-               (max_calls, token_stop, max_prompt_chars)):
+        if (type(max_calls) is not int or max_calls <= 0
+                or any(v is not None and (type(v) is not int or v <= 0)
+                       for v in (token_stop, max_prompt_chars))):
             raise ValueError("invalid_research_budget")
         self.root = Path(root)
         self.path = Path(ledger_path)
@@ -67,13 +69,14 @@ class ResearchRunBudget:
             raise asyncio.CancelledError("unresolved_prior_request")
         if len(admitted) >= self.max_calls:
             raise asyncio.CancelledError("research_call_limit")
-        if sum(r["total_tokens"] for r in answered) >= self.token_stop:
+        if (self.token_stop is not None
+                and sum(r["total_tokens"] for r in answered) >= self.token_stop):
             raise asyncio.CancelledError("research_token_stop")
         if inputs.tools:
             raise asyncio.CancelledError("unexpected_research_tools")
         # Rail messages are a preview; this is not an exact tokenizer estimate.
         chars = sum(len(str(m)) for m in inputs.messages)
-        if chars > self.max_prompt_chars:
+        if self.max_prompt_chars is not None and chars > self.max_prompt_chars:
             raise asyncio.CancelledError("research_prompt_limit")
         self.active = len(admitted) + 1
         _append(self.path, {"event": "admission", "call": self.active,

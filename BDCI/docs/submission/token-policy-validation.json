@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-29",
+  "tests_passed": 220,
+  "contribution_patch_tests_passed": 28,
+  "user_preference": "不用限制token数",
+  "project_token_stop": null,
+  "project_prompt_character_limit": null,
+  "output_policy": "Provider maximum capacity, not an artificial project ceiling; omission had yielded provider-default 8192 length cutoff.",
+  "provider_max_output_tokens": 393216,
+  "model_metadata_source": "https://api.deepseek.com/models",
+  "model_metadata_sha256": "9bd9c74312cbeace3bc26227b62af323024465867d8aa544d92f42455a8a3053",
+  "current_revision_model_calls": 3,
+  "current_revision_total_tokens": 47220,
+  "historical_model_calls": 47,
+  "historical_total_tokens": 192805,
+  "new_experiments": 0,
+  "audit_revalidation": "Exact JSON-value anchors accepted; model semantic claims independently assessed; original failures preserved.",
+  "archive": "BDCI/submission_runs/team-candidate-20260929-token-policy/bundle/真没招了.zip",
+  "archive_sha256": "7b7e1d75fdbcfcabffbf0ba3b05b0a00672f21e968b4074f136e40c8499276a2",
+  "unpacked_verification": {
+    "status": "verified_saved_candidate",
+    "files": 523,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 24015
+    },
+    "writing_mode": "live",
+    "study_run": "replay_runs/live-20260928T144804-532140",
+    "archived_live_usage": {
+      "model_calls": 47,
+      "total_tokens": 192805
+    }
+  },
+  "submission_ready": false,
+  "source_sha256": {
+    "run_followup_design.py": "5de1f9354c8bbeef93230f5668e632c4beb13b2daf67573a63bc758fa7d6882b",
+    "native_runner.py": "ee745575f72a31c09c701f6b39c999980891c3f26ee093e306284b44237c3632",
+    "resource_runs.json": "7d6597335e478d7eecaa1392d84de30107a65caf7bf435275e1b8bdc41527f6d",
+    "paper_bundle.py": "2289a1092a9643db6d6f2526b46933fdd6b3bdabd130b798ce8400a1e5976bd6"
+  },
+  "contribution_patch_sha256": "ab47a899f0ed43769cb727e8032c4eb28b3e0def52f4994951683425d552c68c"
+}

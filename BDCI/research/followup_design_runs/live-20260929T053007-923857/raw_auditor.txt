@@ -1,0 +1,70 @@
+{
+  "novelty_status": "unestablished",
+  "evidence_sha256": "852028ca7b44ca1d5ce93b26df76590268fa0f709ea70c652259ce5d8bdccc89",
+  "review_target_sha256": "d1bc46994974b912fc81a49ea622692ce832d2dd349263c8259a8e8bd3b6baaf",
+  "verdict": "reject",
+  "reasons": [
+    "The input is inadmissible: the saved response failed admission with 'action contains missing or unsupported fields', and the recovery instruction requires rejecting/revising inadmissible input rather than implementing it.",
+    "The graph_example action schema is invalid: actions use only 'op' and 'node', but the declared policy algorithms require additional fields such as retry/error semantics and the example does not demonstrate the declared_repair actual-dependency check.",
+    "The declared_repair algorithm is not implementable as written: it says to check 'actual dependencies' and add missing actual parents, but the visible_inputs list includes the actual dependency graph, which would give the policy oracle-level structural information and make the repair trivial rather than a model-proposed recovery test.",
+    "The worked example's declared_repair trace is internally inconsistent: it claims E reruns read_aux, summarize_aux, combine, report with 4 attempts, but the algorithm as written would also need to add summarize_main or otherwise justify why combine's actual parent summarize_main is not required.",
+    "The primary endpoint's decision rule is not falsifiable as stated because it combines a non-inferiority bound with a strict cost advantage, but the design does not specify how malformed_terminal, refusal, and tool_budget_exhausted are handled in the paired difference denominator.",
+    "The design claims a 'frozen split' and 'held-out partition' of six new self-authored instances, but the source_check explicitly warns that self-authored held-out cases are not external independent validation; the design acknowledges this but still uses 'held-out' language that overstates independence.",
+    "The resource arithmetic is incomplete: planned_api_calls=36 is stated as 6 base instances x 3 scenarios x 2 prompt conditions, but the design also requires model plans for the development partition and does not account for those calls.",
+    "The retry_control policy is described as 'Policy A plus one transient retry on a tool error', but no transient errors are injected, so the policy is unexercised and cannot serve as a meaningful control.",
+    "The design does not specify how the correctness oracle handles the incomplete_lineage scenario when the declared graph is missing an edge: the oracle recomputes from 'current source rows and the declared graph', which would reproduce the same missing-edge defect and cannot detect stale artifacts.",
+    "The design does not provide a concrete difference between declared_repair and full_replay in the incomplete_lineage scenario when the model plan already covers the missing path, so the intervention may collapse to model_only or full_replay."
+  ],
+  "blocking_issues": [
+    {
+      "field": "graph_example.input.actions",
+      "quote": "[{\"op\": \"rerun\", \"node\": \"read_aux\"}, {\"op\": \"rerun\", \"node\": \"summarize_aux\"}, {\"op\": \"rerun\", \"node\": \"combine\"}, {\"op\": \"rerun\", \"node\": \"report\"}, {\"op\": \"emit\"}]",
+      "explanation": "The action schema is invalid for the declared policies. The policies require retry/error semantics and the declared_repair algorithm requires an actual-dependency check, but the example actions contain only 'op' and 'node'. The admission error 'action contains missing or unsupported fields' confirms this defect."
+    },
+    {
+      "field": "policies.2.algorithm",
+      "quote": "Then for each requested node, check its actual dependencies; if an actual parent is not covered by the declared closure, add that parent and its declared descendants.",
+      "explanation": "This algorithm is not implementable as a model-proposed recovery policy because it requires access to the actual dependency graph, which is oracle-level structural information. If the policy can see actual dependencies, the missing-edge defect is trivially repaired and the comparison to full replay is not a test of model-proposed recovery."
+    },
+    {
+      "field": "policies.2.visible_inputs",
+      "quote": "Declared dependency graph, actual dependency graph, current source versions, cached source versions, cached outputs, model plan actions, tool receipts, and the same tool budget as all other policies.",
+      "explanation": "Including the actual dependency graph in visible_inputs gives the declared_repair policy information that the model-only and full-replay baselines do not have, violating matched policy observations. The baseline cannot be assumed to lack diagnostic access, but here the proposed policy has access to the ground-truth graph while the model plan does not."
+    },
+    {
+      "field": "evaluation",
+      "quote": "A separate correctness oracle, implemented independently from all policies and never exposed to the model or policy, recomputes the current artifact from the current source rows and the declared graph.",
+      "explanation": "The oracle recomputes from the declared graph, which in the incomplete_lineage scenario is missing the summarize_aux -> combine edge. The oracle would therefore reproduce the same stale artifact and cannot detect wrong_completion caused by the missing edge. The oracle must use the actual dependency graph or an independent specification of the true artifact."
+    },
+    {
+      "field": "primary_endpoint",
+      "quote": "Primary endpoint is the paired difference in correct current-artifact completion rate between policy E and policy F on the held-out missing-edge partition, with denominator equal to the number of held-out base instances times the number of held-out prompt conditions (each instance-condition pair is one analysis unit), comparison as a paired per-unit difference E minus F, and decision rule: the hypothesis is supported only if E is not worse than F on correctness (paired difference lower 90% bootstrap bound >= -0.10) and E uses strictly fewer mean tool attempts than F on the same units (paired mean attempt difference < 0).",
+      "explanation": "The endpoint does not specify how malformed_terminal, refusal, and tool_budget_exhausted outcomes enter the paired difference. If they are excluded, the denominator changes; if they are counted as incorrect, the correctness comparison is confounded with output-format failures. The decision rule is therefore not fully falsifiable as stated."
+    },
+    {
+      "field": "resources.planned_api_calls",
+      "quote": "36",
+      "explanation": "The arithmetic 6 base instances x 3 scenarios x 2 prompt conditions = 36 covers only the held-out partition. The design also requires model plans for the development partition (6 base instances x 3 scenarios x 2 prompt conditions = 36), so the total planned API calls should be 72, not 36. The resource arithmetic is incomplete."
+    },
+    {
+      "field": "policies.3.algorithm",
+      "quote": "Policy A plus one transient retry on a tool error. Since no transient errors are injected, this policy is expected to match A exactly.",
+      "explanation": "The retry_control policy is unexercised because no transient errors are injected. It cannot serve as a meaningful negative control for retry behavior, and its inclusion adds no information to the primary comparison."
+    },
+    {
+      "field": "holdout",
+      "quote": "Held-out partition consists of six new base instances (two per family: tabular, retrieval, classification) that were not used in the prior development study.",
+      "explanation": "The design uses 'held-out' language for self-authored instances, but the source_check explicitly warns that self-authored held-out cases are not external independent validation. The design acknowledges this in limitations but still uses 'held-out' in the primary endpoint and holdout fields, overstating the independence of the partition."
+    }
+  ],
+  "limitations": [
+    "The audit is based on the saved response and supplied evidence; no new experiments were run.",
+    "The design's novelty is unestablished; selective invalidation and version lineage are prior art.",
+    "The six new self-authored instances are not external independent validation.",
+    "The retry control is unexercised because no transient errors are injected.",
+    "The correctness oracle as described cannot detect missing-edge defects because it uses the declared graph.",
+    "The resource arithmetic is incomplete and does not account for development-partition model calls."
+  ],
+  "resource_arithmetic_checked": false,
+  "scientific_certification": false
+}

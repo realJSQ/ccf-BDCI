@@ -1,0 +1,148 @@
+{
+  "status": "propose",
+  "novelty_status": "unestablished",
+  "evidence_sha256": "852028ca7b44ca1d5ce93b26df76590268fa0f709ea70c652259ce5d8bdccc89",
+  "source_ids": ["arxiv:2607.11098v1", "arxiv:2608.12761v1", "arxiv:2604.16706v1"],
+  "negative_result_interpretation": "The development result is a negative/ambiguous result for the proposed selective-replay advantage: D did not outperform model-only A, and the only strict noncompletions were eight missing terminal emit actions, which are malformed output rather than voluntary refusal or wrong numerical answers. Post-hoc terminal normalization produced 18/18 for every policy, but that equality is a post-hoc artifact, not preregistered success, held-out confirmation, or statistical equivalence. Retry B was unexercised because no transient errors were injected, so B matching A is an expected negative control, not evidence of retry benefit. The correct interpretation is that the prior six self-authored instances and 72 policy replays are repeated measures over one cached plan per episode, not independent samples, and they do not establish that selective replay, full replay, or any adapter improves correctness or reduces work. Any follow-up must therefore be framed as a scoped empirical test of a prior-art mechanism under a frozen split, with explicit malformed-output handling and no claim of new algorithm, benchmark reproduction, or external validation.",
+  "title": "Frozen paired test of declared-lineage repair versus full replay under a missing-edge lineage defect",
+  "research_question": "On a frozen set of new CPU-only dependency-graph task structures, when a source update is accompanied by a missing declared lineage edge, does a model-proposed declared-lineage repair policy (E) produce more correct current artifacts than a matched full-replay policy (F) and a model-only policy (A), at equal or lower tool-attempt cost, with malformed terminal output scored separately from wrong completion and refusal?",
+  "hypothesis": "Under a frozen split and a fixed tool budget, policy E (model plan plus declared-transitive closure repair) will not be worse than policy F (full replay) on correct current-artifact completion in the missing-edge scenario, and will use fewer tool attempts than F when an unaffected branch exists; policy A (model plan only) will be correct only when the model plan happens to cover the missing path. In the clean and legitimate-update scenarios, E and F are expected to match A on correctness, with E using fewer attempts than F. If E is worse than F on correctness or not cheaper than F on attempts, the selective-repair hypothesis fails for this frozen set.",
+  "selection_reason": "The prior development study already showed that post-hoc terminal normalization erases all policy differences and that D did not beat A, so a simple rerun of the same six instances would be uninformative. The proposed design instead freezes new task structures and a split before any new results, keeps malformed output separate from wrong completion and refusal, and compares the proposed declared-lineage repair against a strong full-replay baseline and a model-only baseline under matched information and budgets. This directly tests the only mechanism that could plausibly matter (repairing a missing declared edge) without claiming it is a new algorithm, since selective invalidation and version lineage are prior art.",
+  "primary_endpoint": "Primary endpoint is the paired difference in correct current-artifact completion rate between policy E and policy F on the held-out missing-edge partition, with denominator equal to the number of held-out base instances times the number of held-out prompt conditions (each instance-condition pair is one analysis unit), comparison as a paired per-unit difference E minus F, and decision rule: the hypothesis is supported only if E is not worse than F on correctness (paired difference lower 90% bootstrap bound >= -0.10) and E uses strictly fewer mean tool attempts than F on the same units (paired mean attempt difference < 0). Malformed terminal output, wrong completion, and refusal are counted as separate outcome categories and are never merged into correct completion. If the correctness bound is below -0.10 or E does not use fewer attempts, the hypothesis fails for this frozen set.",
+  "novelty_boundary": "This design does not claim a new algorithm. Selective invalidation, transitive declared-dependency recovery, full rerun, retry wrappers, schema checks, and provenance contracts are prior art as recorded in the supplied sources. The contribution, if any, is a scoped empirical comparison of a model-proposed declared-lineage repair against a matched full-replay baseline and a model-only baseline on new frozen CPU-only task structures, with malformed output separated from wrong completion and refusal. No claim is made that any published benchmark has been reproduced, that the mechanism is novel, or that the result generalizes beyond the frozen instances.",
+  "split_before_data": "Before any new model call or policy replay, freeze a manifest containing: the new task-structure generator version, the six base instances assigned to development, the six base instances assigned to held-out, the two prompt conditions, the declared dependency graphs, the current source versions, the injected missing-edge locations, the tool budget, the correctness oracle implementation hash, and the analysis script hash. The six old instances from the development study are explicitly excluded from held-out evidence and may be used only as development fixtures. No instance, prompt, graph, or source value may be changed after the manifest hash is recorded. Selection of the held-out partition is by a fixed rule (instance index parity within each family) applied before any new result is observed.",
+  "holdout": "Held-out partition consists of six new base instances (two per family: tabular, retrieval, classification) that were not used in the prior development study. Each held-out base instance is paired across two prompt conditions and three scenarios (clean, update, incomplete_lineage), giving 36 held-out analysis units. The held-out instances are generated by the same frozen task-structure generator as the development instances but with different graph topologies and source values; they are not numeric reseeds of the old six instances. Self-authored held-out cases are not external independent validation, and this limitation is retained in all reporting.",
+  "control": "Controls: (1) clean scenario with no source change and no missing edge, to detect false refusal and spurious reruns; (2) legitimate-update scenario with a source change and complete declared lineage, to test whether E matches F on correctness while using fewer attempts; (3) model-only policy A on all scenarios as the paired baseline; (4) full-replay policy F as the strong safe baseline; (5) retry policy B as an error-only negative control that is expected to match A because no transient errors are injected. All policies receive the same visible inputs, the same tool budget, and the same attempt accounting. No policy receives private correctness labels or oracle outputs.",
+  "evaluation": "A separate correctness oracle, implemented independently from all policies and never exposed to the model or policy, recomputes the current artifact from the current source rows and the declared graph. The oracle emits one of: correct_completion, wrong_completion, refusal, malformed_terminal, or tool_budget_exhausted. Malformed terminal output (for example, a final rerun without an emit) is recorded as malformed_terminal and is not counted as correct completion, wrong completion, or refusal. Held-out analysis is performed only after all runs are complete, using the frozen manifest and the frozen analysis script. The oracle's implementation and answers are never inputs to the model or policy. Tool attempts are counted per policy per unit, including rerun attempts and retries; emit does not consume a tool attempt. Repeated cases within an instance are treated as paired repeated measures, not independent samples, and dependence across repeated cases is handled by paired per-unit differences and bootstrap over instances, not over policy replays.",
+  "unit_of_analysis": "One analysis unit is one held-out base instance under one prompt condition in one scenario. The primary comparison uses the 12 held-out instance-condition pairs in the incomplete_lineage scenario (6 instances times 2 prompt conditions). Secondary comparisons use the clean and update scenarios. Policy replays are not independent model runs; each unit has one cached model plan shared across policies, and policy replay itself costs zero API calls.",
+  "freeze_rule": "After the manifest hash is recorded, no changes are permitted to: task-structure generator, base instance assignments, prompt text, declared graphs, current source versions, missing-edge locations, tool budget, correctness oracle, analysis script, or policy implementations. Any deviation must be reported as a protocol violation and the affected unit excluded from the primary endpoint with the exclusion documented. Failures are retained in the reported results; no unit is dropped for being malformed, refused, or wrong.",
+  "worked_example": "Hypothetical implementation example on a six-node fork/join graph, not an experimental observation. Nodes in topological order: read_main, read_aux, summarize_main, summarize_aux, combine, report. Actual dependencies: read_main has none; read_aux has none; summarize_main depends on read_main; summarize_aux depends on read_aux; combine depends on summarize_main and summarize_aux; report depends on combine. Declared dependencies in the incomplete_lineage scenario: read_main has none; read_aux has none; summarize_main depends on read_main; summarize_aux depends on read_aux; combine depends on summarize_main only (the declared edge summarize_aux -> combine is missing); report depends on combine. Current data: cached source versions are read_main=1, read_aux=1; current source versions are read_main=1, read_aux=2. Changed source is read_aux. Cached outputs exist for all nodes at the cached versions. Fault: the declared lineage omits summarize_aux -> combine, so declared transitive dependents of read_aux are read_aux and summarize_aux only, while actual transitive dependents include combine and report. Model plan: rerun read_aux, rerun summarize_aux, rerun combine, rerun report, emit. Policy A executes the model plan in listed order: read_aux, summarize_aux, combine, report, then emit; tool attempts = 4; because the model plan explicitly reran combine and report, the emitted artifact is correct. Policy F (full replay) reruns all six nodes in topological order: read_main, read_aux, summarize_main, summarize_aux, combine, report, then emit; tool attempts = 6; artifact is correct. Policy E (declared-lineage repair) unions the model-requested nodes with the changed source and all declared transitive dependents, then additionally checks whether any actual dependency of a requested node is not covered by the declared closure; here it detects that combine has an actual parent summarize_aux whose declared closure is covered, but report depends on combine, so E reruns read_aux, summarize_aux, combine, report, then emit; tool attempts = 4; artifact is correct. If the model plan had omitted combine and report, A would emit a stale artifact (wrong_completion), while E would still rerun combine and report and be correct. If the model plan had ended with rerun report but no emit, all policies would record malformed_terminal, not correct completion. Closure calculation check: changed roots = {read_aux}; declared descendants = {summarize_aux}; declared closure = {read_aux, summarize_aux}; actual closure = {read_aux, summarize_aux, combine, report}. The missing declared edge summarize_aux -> combine is the fault. The hypothesis fails on this unit if E is wrong while F is correct, or if E uses more attempts than F without a correctness gain.",
+  "falsification_conditions": [
+    "Policy E is worse than policy F on correct current-artifact completion in the held-out incomplete_lineage partition by more than the prespecified -0.10 paired lower bound.",
+    "Policy E does not use strictly fewer mean tool attempts than policy F on the held-out incomplete_lineage partition.",
+    "Policy E produces more malformed_terminal outcomes than policy F on any held-out scenario.",
+    "Policy E produces more false refusals than policy A on the clean scenario.",
+    "Policy A matches or exceeds policy E on correct completion in the incomplete_lineage partition, indicating the model plan alone already repairs the missing path.",
+    "The correctness oracle and the policy implementations disagree on any held-out unit after manual audit, indicating an oracle or implementation defect."
+  ],
+  "limitations": [
+    "Six new self-authored base instances per partition; scenarios and policies are repeated measures, not independent samples.",
+    "One cached model recovery plan per episode, not independent interactive agents; policy replays are not independent model runs.",
+    "Malformed terminal output is not voluntary refusal and is not a wrong numerical answer.",
+    "Post-hoc normalization is not preregistered success and is not statistical equivalence.",
+    "Selective invalidation and version lineage are prior art; novelty is unestablished.",
+    "No transient errors are injected, so retry policy B is expected to match policy A.",
+    "Self-authored held-out cases are not external independent validation.",
+    "No GPU or model training is used; no basic arithmetic calibration is performed.",
+    "The design does not reproduce any published benchmark and makes no deployment-rate or external-validity claim."
+  ],
+  "alternatives": [
+    {
+      "id": "alt_declared_repair",
+      "method": "Policy E: model plan plus declared-transitive closure repair, which unions model-requested nodes with the changed source and all declared transitive dependents, then checks actual dependencies of requested nodes and adds any missing actual parent path before emit.",
+      "benefit": "Directly tests whether repairing a missing declared edge recovers correctness at lower cost than full replay when an unaffected branch exists.",
+      "risk": "If the model plan already covers the missing path, E and A coincide and the intervention adds no measurable value; if the actual-dependency check is too aggressive, E may approach full replay cost.",
+      "comparison": "Compared against policy F (full replay) and policy A (model only) on the same frozen units with matched information and tool budget."
+    },
+    {
+      "id": "alt_full_replay",
+      "method": "Policy F: full replay of all nodes in topological order after any source change, then emit.",
+      "benefit": "Strong safe baseline that is correct whenever the graph and sources are correctly specified, and is simple to implement and audit.",
+      "risk": "Uses more tool attempts than selective repair when an unaffected branch exists, and may mask lineage defects rather than exposing them.",
+      "comparison": "Compared against policy E on correctness and tool attempts; expected to match E on correctness in the incomplete_lineage scenario but use more attempts."
+    },
+    {
+      "id": "alt_model_only",
+      "method": "Policy A: execute the model plan in listed order, honoring refusal, with no closure repair.",
+      "benefit": "Isolates the contribution of the model plan itself and provides the paired baseline that the prior development study found was not outperformed by D.",
+      "risk": "May emit stale artifacts when the model plan omits a node on the missing path, producing wrong_completion rather than a detectable failure.",
+      "comparison": "Compared against E and F on correctness, malformed_terminal, refusal, and tool attempts."
+    }
+  ],
+  "selected_alternative": "alt_declared_repair",
+  "scenario_ids": ["clean", "update", "incomplete_lineage"],
+  "prompt_condition_ids": ["plan_then_execute", "plan_with_receipts"],
+  "resources": {
+    "base_instances": 6,
+    "scenarios": 3,
+    "prompt_conditions": 2,
+    "planned_api_calls": 36,
+    "cpu_only": true,
+    "arithmetic_calibration": false,
+    "tool_budget_semantics": "Tool budget is 12 attempts per policy per unit. A rerun is always one tool attempt; emit does not consume a tool attempt; a retry consumes one additional attempt. Policy replay itself costs zero API calls. The 36 planned API calls are model calls for generating the cached recovery plans: 6 base instances times 3 scenarios times 2 prompt conditions equals 36. Policy replays are CPU-only and do not add API calls."
+  },
+  "policies": [
+    {
+      "id": "model_only",
+      "algorithm": "Execute the model plan actions in listed order. Rerun actions call the tool on the named node using existing parent caches. Emit reads the existing output cache without recomputation. Honor model refusal. No closure repair, no retry, no extra nodes.",
+      "visible_inputs": "Declared dependency graph, current source versions, cached source versions, cached outputs, model plan actions, tool receipts from executed reruns, and the same tool budget as all other policies.",
+      "failure_semantics": "Missing terminal emit is malformed_terminal. A rerun that reads stale parent caches and then emits is wrong_completion. A model refusal is refusal. Exceeding the tool budget is tool_budget_exhausted.",
+      "tool_budget": "12 attempts per unit; rerun costs one attempt; emit costs zero; no retry."
+    },
+    {
+      "id": "full_replay",
+      "algorithm": "After any source change, rerun all nodes in topological order using existing parent caches, then emit. Honor model refusal. No selective skipping.",
+      "visible_inputs": "Declared dependency graph, current source versions, cached source versions, cached outputs, model plan actions, tool receipts, and the same tool budget as all other policies.",
+      "failure_semantics": "Missing terminal emit is malformed_terminal. A rerun that reads stale parent caches and then emits is wrong_completion. A model refusal is refusal. Exceeding the tool budget is tool_budget_exhausted.",
+      "tool_budget": "12 attempts per unit; rerun costs one attempt; emit costs zero; no retry."
+    },
+    {
+      "id": "declared_repair",
+      "algorithm": "Start from the model plan. Union requested nodes with the changed source and all declared transitive dependents. Then for each requested node, check its actual dependencies; if an actual parent is not covered by the declared closure, add that parent and its declared descendants. Deduplicate and topologically order. Execute reruns in that order, then emit. Honor model refusal.",
+      "visible_inputs": "Declared dependency graph, actual dependency graph, current source versions, cached source versions, cached outputs, model plan actions, tool receipts, and the same tool budget as all other policies.",
+      "failure_semantics": "Missing terminal emit is malformed_terminal. A rerun that reads stale parent caches and then emits is wrong_completion. A model refusal is refusal. Exceeding the tool budget is tool_budget_exhausted.",
+      "tool_budget": "12 attempts per unit; rerun costs one attempt; emit costs zero; no retry."
+    },
+    {
+      "id": "retry_control",
+      "algorithm": "Policy A plus one transient retry on a tool error. Since no transient errors are injected, this policy is expected to match A exactly.",
+      "visible_inputs": "Same as policy A, plus the retry rule.",
+      "failure_semantics": "Same as policy A. Retry is an error-only negative control and is not expected to change outcomes in this design.",
+      "tool_budget": "12 attempts per unit; rerun costs one attempt; emit costs zero; one retry allowed only on a tool error."
+    }
+  ],
+  "graph_example": {
+    "input": {
+      "nodes": ["read_main", "read_aux", "summarize_main", "summarize_aux", "combine", "report"],
+      "actual_dependencies": {
+        "read_main": [],
+        "read_aux": [],
+        "summarize_main": ["read_main"],
+        "summarize_aux": ["read_aux"],
+        "combine": ["summarize_main", "summarize_aux"],
+        "report": ["combine"]
+      },
+      "declared_dependencies": {
+        "read_main": [],
+        "read_aux": [],
+        "summarize_main": ["read_main"],
+        "summarize_aux": ["read_aux"],
+        "combine": ["summarize_main"],
+        "report": ["combine"]
+      },
+      "changed_sources": ["read_aux"],
+      "cached_source_versions": {
+        "read_main": 1,
+        "read_aux": 1
+      },
+      "current_source_versions": {
+        "read_main": 1,
+        "read_aux": 2
+      },
+      "actions": [
+        {"op": "rerun", "node": "read_aux"},
+        {"op": "rerun", "node": "summarize_aux"},
+        {"op": "rerun", "node": "combine"},
+        {"op": "rerun", "node": "report"},
+        {"op": "emit"}
+      ],
+      "claimed_closure": ["read_aux", "summarize_aux", "combine", "report"],
+      "tool_budget": 12
+    },
+    "expected": {
+      "provenance_current": true,
+      "tool_attempts": 4,
+      "termination": "emitted"
+    }
+  }
+}

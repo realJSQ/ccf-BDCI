@@ -1,0 +1,21 @@
+{
+  "status": "structurally_revalidated_reject",
+  "new_model_calls": 0,
+  "original_failure_preserved": true,
+  "contract_change": "String fields require literal substrings; non-string fields require exact JSON values, with type-sensitive canonical equality.",
+  "raw_auditor_sha256": "35377e28afce5082003d09ff69a92ae79da000b1ea1129ae44707de450597074",
+  "contract_source_sha256": "5de1f9354c8bbeef93230f5668e632c4beb13b2daf67573a63bc758fa7d6882b",
+  "handoff": {
+    "status": "reject",
+    "implementation_recommended": false,
+    "execution_enabled": false,
+    "experiment_executed": false,
+    "scientific_certification": false,
+    "novelty_established": false,
+    "evidence_sha256": "852028ca7b44ca1d5ce93b26df76590268fa0f709ea70c652259ce5d8bdccc89",
+    "designer_sha256": "d1bc46994974b912fc81a49ea622692ce832d2dd349263c8259a8e8bd3b6baaf",
+    "semantic_review_required": true,
+    "proposal_input_accepted": false
+  },
+  "semantic_certification": false
+}

@@ -8,9 +8,10 @@ This patch adds two opt-in AgentRail implementations using existing callbacks.
 exit, confined path, content hash and finite numeric metrics) and archives the
 acceptance or rejection. `ResearchBudgetRail` durably records model admissions
 and token usage, limits subsequent calls, and leaves uncertain requests blocked
-across restarts. Callers retain ownership of campaign locking and retry policy.
+across restarts. Optional `None` token and prompt limits disable those checks
+while preserving usage accounting, call limits and unresolved-request guards. Callers retain ownership of campaign locking and retry policy.
 
-The patch adds 24 no-network contract tests and documents registration, receipt
+The patch adds 28 no-network contract tests and documents registration, receipt
 fields, accounting and trust boundaries. It makes no global configuration or
 default-agent behavior changes.
 

@@ -52,6 +52,18 @@
     {
       "usage": "validation/runs/live-20260928T080913-827750/model_usage.jsonl",
       "summary": "validation/runs/live-20260928T080913-827750/summary.json"
+    },
+    {
+      "usage": "research/followup_design_runs/live-20260929T012938-673566/model_usage.jsonl",
+      "summary": "research/followup_design_runs/live-20260929T012938-673566/model_summary.json"
+    },
+    {
+      "usage": "research/followup_design_runs/live-20260929T013420-896528/model_usage.jsonl",
+      "summary": "research/followup_design_runs/live-20260929T013420-896528/model_summary.json"
+    },
+    {
+      "usage": "research/followup_design_runs/live-20260929T053007-923857/model_usage.jsonl",
+      "summary": "research/followup_design_runs/live-20260929T053007-923857/model_summary.json"
     }
   ]
 }

@@ -126,10 +126,65 @@ class ResearchBudgetTests(unittest.TestCase):
 
     def test_invalid_constructor_limits(self):
         for name in ("max_calls", "token_stop", "max_prompt_chars"):
-            for value in (0, -1, True, 1.5, float("nan"), None):
+            for value in (0, -1, True, 1.5, float("nan")) + ((None,) if name == "max_calls" else ()):
                 with self.subTest(name=name, value=value):
                     with self.assertRaisesRegex(ValueError, "invalid_research_budget"):
                         ResearchRunBudget(self.root, self.path, **{name: value})
+
+    def test_unlimited_tokens_keep_accounting_and_call_limit(self):
+        budget = ResearchRunBudget(self.root, self.path, max_calls=2,
+                                   token_stop=None, max_prompt_chars=None)
+        budget.admit(inputs(["x" * 100000]))
+        budget.record_response(response(1000000, 2000000))
+        reopened = ResearchRunBudget(self.root, self.path, max_calls=2,
+                                     token_stop=None, max_prompt_chars=None)
+        reopened.admit(inputs())
+        reopened.record_response(response(1000000, 2000000))
+        self.assertEqual(sum(r["total_tokens"] for r in reopened.records()
+                             if r["event"] == "usage"), 6000000)
+        self.cancel("research_call_limit", reopened.admit, inputs())
+
+    def test_unlimited_tokens_keep_unresolved_guard(self):
+        budget = ResearchRunBudget(self.root, self.path, token_stop=None,
+                                   max_prompt_chars=None)
+        budget.admit(inputs())
+        self.cancel("unresolved_prior_request", budget.admit, inputs())
+        self.assertEqual(len(budget.records()), 1)
+
+    def test_sdk_unbounded_ledger_and_provider_output_omission(self):
+        from openjiuwen.agent_teams.workflow.engine.budget import BudgetLedger
+        from openjiuwen.agent_teams.workflow.engine.runner import _resolve_workflow_budget
+        from openjiuwen.core.foundation.llm import ModelClientConfig, ModelRequestConfig
+        from openjiuwen.core.foundation.llm.model_clients.openai_model_client import OpenAIModelClient
+
+        ledger = BudgetLedger(total=None)
+        ledger.add(10000000)
+        self.assertFalse(ledger.exhausted)
+        self.assertIsNone(ledger.remaining())
+        workflow = _resolve_workflow_budget(SimpleNamespace(meta={}), ledger)
+        self.assertIsNone(workflow.total)
+        config = ModelRequestConfig(model="deepseek-flash", temperature=0,
+                                    reasoning={"mode": "disabled"})
+        client = OpenAIModelClient(config, ModelClientConfig(
+            client_provider="OpenAI", api_base="https://api.deepseek.com",
+            api_key="offline-placeholder"))
+        params = client._build_request_params(
+            messages=[{"role": "user", "content": "offline check"}], tools=None,
+            temperature=None, top_p=None, model=None, stop=None,
+            max_tokens=None, stream=False)
+        self.assertNotIn("max_tokens", params)
+        self.assertNotIn("max_completion_tokens", params)
+        self.assertNotIn("max_output_tokens", params)
+
+    def test_optional_limits_are_independent(self):
+        budget = ResearchRunBudget(self.root, self.path, token_stop=None,
+                                   max_prompt_chars=5)
+        self.cancel("research_prompt_limit", budget.admit, inputs(["123456"]))
+        budget = ResearchRunBudget(self.root, self.path, token_stop=5,
+                                   max_prompt_chars=None)
+        budget.admit(inputs(["x" * 100000]))
+        budget.record_response(response())
+        self.cancel("research_token_stop", budget.admit, inputs())
 
     def test_corrupted_ledger_fails_closed_before_admission(self):
         admission = {"event": "admission", "call": 1, "run_id": "r1"}

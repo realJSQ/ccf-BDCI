@@ -24,3 +24,5 @@ git apply /path/to/research-rails.patch
 现有真实集成：smoke 在实验工具返回处接入 EvidenceRail；选题、pilot、paper 在模型调用处接入 BudgetRail。pilot/paper 的证据复核由应用层完成，不能写成每一阶段都已经启用 EvidenceRail。
 
 后续若修改源码，必须重新生成补丁并重新应用、测试，不能只沿用旧验证 JSON。正式贡献最终由官方 PR 地址与状态证明；此目录不预填或伪造地址。
+
+当前补丁允许显式以 `None` 关闭累计 token 停止阈值或提示字符启发式限制；默认值保持原样，调用次数、未决请求保护与 usage 记录继续生效。28 项离线检查包含实际 SDK 请求参数构造验证，不发起模型调用。

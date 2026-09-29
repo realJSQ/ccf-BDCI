@@ -1,31 +1,37 @@
 {
   "base_commit": "fc18e5c572a6b3b62bb42ea843cce674140e4266",
-  "patch_sha256": "d4f43ee514c63a15d242b975ee66aab14294693d7420a7e16d38e85f91f2184e",
+  "patch_sha256": "ab47a899f0ed43769cb727e8032c4eb28b3e0def52f4994951683425d552c68c",
   "files": {
-    "jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "93a21dac3aa9745dfbd27920b9d828fb9179111e4720a0a34a398dda82f6bf4c",
+    "jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
     "jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py": "03db848289f18eeb8efd48cba0cc9279c09177c1b74fc0401ca6f0f1a9fbc5be",
-    "tests/test_research_budget_rail.py": "5dc30adc18a975910fd4829924e7f1e09ef532e2c5e06a98a0c9800acb179930",
+    "tests/test_research_budget_rail.py": "5e0a9a27fb26a07d86f77977a42ca214b704fa57e6c4554a8f90d357743ca07f",
     "tests/test_research_evidence_rail.py": "f9e75fdf50aab279639bc9bec3a00ed4acc19ca05d84c74da222d4f60ab782f9",
-    "docs/research_rails.md": "a3c48cd5c10e001243a18fbefd4fc13d53094870d1b9aebd71c2635a90780cef"
+    "docs/research_rails.md": "a93ba5e46befa893805deaf00ffdcb32d03d3f91dbc52fef523f8e7c58753117"
   },
   "apply_check": "passed",
   "applied_files_equal_to_project_sources": true,
   "pr_submitted": false,
   "status": "validated_draft_not_submitted",
   "tests": {
-    "count": 24,
+    "count": 28,
     "passed": true,
     "framework": "unittest",
-    "environment": "New Python 3.13 environment with pinned agent-core and agent-protocol; patched official base selected via PYTHONPATH",
+    "environment": "Existing Python 3.13 environment with pinned agent-core and agent-protocol; clean git archive of pinned official JiuwenSwarm base with refreshed patch selected via PYTHONPATH",
     "api_calls": 0,
-    "log_sha256": "087a02434d20df952d1feca7dc6347429d748cb7390b050f762f2d1ee232418b"
+    "log_sha256": "641548303c78e822b7ac4025c7a38a24ad443e25f44c769188f2a2fbf71f75b3"
   },
   "scope": "Patch application and contract tests on the fixed base only; latest upstream branch and maintainers have not reviewed it",
   "source_sha256": {
-    "BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "93a21dac3aa9745dfbd27920b9d828fb9179111e4720a0a34a398dda82f6bf4c",
+    "BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_budget_rail.py": "f363de7f4056689b7e5315addea0ef72973b9e8dd54da1f154e8ef52a69e83e7",
     "BDCI/jiuwenswarm/jiuwenswarm/agents/harness/common/rails/research_evidence_rail.py": "03db848289f18eeb8efd48cba0cc9279c09177c1b74fc0401ca6f0f1a9fbc5be",
-    "BDCI/research/test_budget.py": "5dc30adc18a975910fd4829924e7f1e09ef532e2c5e06a98a0c9800acb179930",
+    "BDCI/research/test_budget.py": "5e0a9a27fb26a07d86f77977a42ca214b704fa57e6c4554a8f90d357743ca07f",
     "BDCI/validation/test_research_evidence.py": "f9e75fdf50aab279639bc9bec3a00ed4acc19ca05d84c74da222d4f60ab782f9",
-    "BDCI/contribution/upstream-usage.md": "a3c48cd5c10e001243a18fbefd4fc13d53094870d1b9aebd71c2635a90780cef"
+    "BDCI/contribution/upstream-usage.md": "a93ba5e46befa893805deaf00ffdcb32d03d3f91dbc52fef523f8e7c58753117"
+  },
+  "optional_limits": {
+    "token_stop_none": "disable token ceiling while recording usage",
+    "max_prompt_chars_none": "disable preview-size heuristic",
+    "request_and_unresolved_guards": "unchanged",
+    "provider_request_check": "no max_tokens/max_completion_tokens/max_output_tokens when omitted from config; provider defaults still apply"
   }
 }

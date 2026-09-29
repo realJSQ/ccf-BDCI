@@ -72,5 +72,5 @@ recomputation. All nodes initially contain source versions from the cached graph
 expected must contain exactly provenance_current (bool), tool_attempts (int),
 termination (emitted/refused/tool_budget_exhausted). A correctly predicted stale
 output is a valid diagnostic example; do not claim freshness merely after emit.
-This checker does not prove numeric correctness or novelty. Keep other prose fields
-brief (about 60 words each, worked_example about 150); avoid repeating evidence.
+This checker does not prove numeric correctness or novelty. Use sufficient detail
+for an implementer to reproduce the protocol; avoid repeating the same evidence.

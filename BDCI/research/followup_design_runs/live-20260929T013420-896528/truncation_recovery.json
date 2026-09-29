@@ -1,0 +1,10 @@
+{
+  "source": "Saved SDK logs/logs/llm.log structured response event",
+  "event_type": "llm_call_end",
+  "finish_reason": "length",
+  "bytes": 40080,
+  "sha256": "2af407b525cead9407905fb6067832d32d8e956c8df0509549986530f5b2d1fc",
+  "accepted_as_auditor": false,
+  "new_model_calls": 0,
+  "text_repaired": false
+}

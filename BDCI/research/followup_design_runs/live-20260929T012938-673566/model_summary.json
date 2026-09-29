@@ -1,0 +1,22 @@
+{
+  "mode": "live",
+  "status": "failed",
+  "cost": null,
+  "team_name": "followup_design",
+  "max_output_tokens": 16000,
+  "error_type": "RuntimeError",
+  "model_calls": 1,
+  "model_usage": [
+    {
+      "input_tokens": 7918,
+      "output_tokens": 4605,
+      "total_tokens": 12523,
+      "event": "usage",
+      "call": 1,
+      "run_id": "live-20260929T012938-673566",
+      "finish_reason": "stop"
+    }
+  ],
+  "total_tokens": 12523,
+  "duration_seconds": 22.31432775200028
+}

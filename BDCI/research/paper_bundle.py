@@ -57,6 +57,7 @@ RUNNER_INPUTS = {
                                f'{REVISION_RUN}/refiner.json'),
     'run_replay_study.py': ('replay_protocol.json',),
     'run_followup_design.py': (
+        'model_capabilities.json',
         'prior_work/revision_followup.json', 'prior_work/followup_design_source_check.json',
         'followup_design_runs/live-20260929T003516-680636/followup_assessment.json',
         'protocol_examples/inconsistent.json', 'protocol_examples/consistent.json'),
