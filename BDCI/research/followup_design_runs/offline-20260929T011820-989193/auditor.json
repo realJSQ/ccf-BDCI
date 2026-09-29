@@ -1,0 +1,15 @@
+{
+  "novelty_status": "unestablished",
+  "evidence_sha256": "b2fd73d3228cec0d33699dafd41c3cd4f6ecfdb6e9d5ce2c00de355abf754515",
+  "review_target_sha256": "cb27cf2dab9604c348bb230547ac1643ddb1da419fb33146782fb25fbe8ae301",
+  "verdict": "reject",
+  "reasons": [
+    "Offline declined-plan fixture."
+  ],
+  "blocking_issues": [],
+  "limitations": [
+    "No scientific decision."
+  ],
+  "resource_arithmetic_checked": false,
+  "scientific_certification": false
+}

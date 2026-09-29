@@ -91,6 +91,15 @@ class ReplayPipelineTests(unittest.TestCase):
             self.assertTrue(writer.call_args.kwargs['recover'])
         self.assertEqual(result['status'], 'integration_candidate_verified')
 
+    def test_named_candidate_and_resume_keep_team_identity(self):
+        state = pipeline.run_pipeline(DEFAULT_RUN, self.output, paper=self.paper, team_name='真没招了')
+        self.assertTrue((self.output / 'bundle/真没招了.zip').is_file())
+        result = pipeline.run_pipeline(DEFAULT_RUN, self.output, resume=True)
+        self.assertEqual(result['bundle_name'], '真没招了')
+        self.assertEqual(result['stages']['bundle']['zip_sha256'], state['stages']['bundle']['zip_sha256'])
+        with self.assertRaisesRegex(ValueError, 'team_name_changed'):
+            pipeline.run_pipeline(DEFAULT_RUN, self.output, resume=True, team_name='另一队')
+
 
 if __name__ == '__main__':
     unittest.main()

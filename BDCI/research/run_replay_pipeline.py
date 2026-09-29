@@ -61,12 +61,17 @@ def verify_archive(archive):
     """Run the delivered verifier, not merely the development-tree version."""
     with tempfile.TemporaryDirectory(prefix='replay-pipeline-verify-') as temporary:
         with zipfile.ZipFile(archive) as zipped:
+            top_levels = set()
             for name in zipped.namelist():
                 path = Path(name)
-                if path.is_absolute() or '..' in path.parts or path.parts[0] != 'replay-candidate':
+                if path.is_absolute() or '..' in path.parts or not path.parts or '\\' in name:
                     raise ValueError('unsafe_candidate_archive')
+                top_levels.add(path.parts[0])
+            if len(top_levels) != 1:
+                raise ValueError('candidate_requires_one_top_level_directory')
+            folder = bundle.validate_team_name(top_levels.pop())
             zipped.extractall(temporary)
-        stage = Path(temporary) / 'replay-candidate'
+        stage = Path(temporary) / folder
         command = [sys.executable, str(stage / 'code/BDCI/research/build_replay_bundle.py'),
                    '--verify', str(stage)]
         result = subprocess.run(command, cwd=stage / 'code', capture_output=True, text=True, timeout=120)
@@ -75,8 +80,10 @@ def verify_archive(archive):
         return json.loads(result.stdout)
 
 
-def run_pipeline(study, output, *, paper=None, live=False, resume=False):
+def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_name=None):
     study, output = Path(study).resolve(), Path(output).resolve()
+    if team_name is not None:
+        bundle.validate_team_name(team_name)
     if resume:
         if not (output / 'pipeline.json').is_file():
             raise ValueError('missing_pipeline_state')
@@ -93,6 +100,8 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False):
                 raise ValueError('resume_uses_saved_mode')
             if paper is not None and Path(paper).resolve() != Path(state['paper_run']):
                 raise ValueError('pipeline_paper_input_changed')
+            if team_name is not None and team_name != state.get('team_name'):
+                raise ValueError('pipeline_team_name_changed')
         else:
             identifier = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S-') + uuid.uuid4().hex[:8]
             state = {'schema_version': 1, 'status': 'running', 'stages': {},
@@ -100,6 +109,7 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False):
                 'paper_run': str(Path(paper).resolve()) if paper else str(
                     HERE / 'replay_paper_runs' / (('live' if live else 'offline') + '-pipeline-' + identifier)),
                 'writing_live': live, 'submission_ready': False,
+                'team_name': team_name, 'bundle_name': team_name or 'replay-candidate',
                 'scope': 'Completed compatible study through candidate packaging; topic and experiment stages are separate.'}
             save(state_path, state)
         stages = state['stages']
@@ -135,7 +145,8 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False):
                 stages[current] = {'status': 'completed', 'files': files}
                 save(state_path, state)
             current = 'bundle'
-            archive = output / 'bundle/replay-candidate.zip'
+            bundle_name = state.get('bundle_name', 'replay-candidate')
+            archive = output / 'bundle' / (bundle_name + '.zip')
             previous = stages.get(current, {})
             if previous.get('status') == 'completed':
                 if not archive.is_file() or bundle.sha(archive) != previous['zip_sha256']:
@@ -145,7 +156,7 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False):
                 # Verify its manuscript binding before adopting, never overwrite.
                 verify_archive(archive)
                 with zipfile.ZipFile(archive) as zipped:
-                    manifest = json.loads(zipped.read('replay-candidate/manifest.json'))
+                    manifest = json.loads(zipped.read(bundle_name + '/manifest.json'))
                 if (manifest['paper_run'] != paper.name
                         or manifest['paper_sha256'] != bundle.sha(paper / 'paper.pdf')
                         or any(manifest['files'].get('code/BDCI/research/replay_paper_runs/' + name) != expected
@@ -156,7 +167,8 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False):
             else:
                 stages[current] = {'status': 'running'}
                 save(state_path, state)
-                built = bundle.build_bundle(paper, output / 'bundle', study_run=study)
+                built = bundle.build_bundle(paper, output / 'bundle', study_run=study,
+                                            team_name=state.get('team_name'))
                 if built != archive:
                     raise ValueError('unexpected_pipeline_archive')
                 stages[current] = {'status': 'completed', 'zip_sha256': bundle.sha(archive)}
@@ -186,10 +198,11 @@ def main():
     parser.add_argument('--paper-run', type=Path, help='Reuse saved manuscript; otherwise invoke native writing')
     parser.add_argument('--live', action='store_true', help='Use existing writing budget; never resets it')
     parser.add_argument('--resume', action='store_true', help='Verify checkpoints and recover without reissuing model requests')
+    parser.add_argument('--team-name', help='ZIP and top-level directory name; does not certify submission readiness')
     args = parser.parse_args()
     try:
         state = run_pipeline(args.study_run, args.output, paper=args.paper_run,
-                             live=args.live, resume=args.resume)
+                             live=args.live, resume=args.resume, team_name=args.team_name)
         print(json.dumps({'status': state['status'], 'output': str(args.output.resolve()),
                           'paper_run': state['paper_run'], 'submission_ready': False}))
         return 0

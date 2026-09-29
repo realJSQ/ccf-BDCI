@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-29",
+  "team_name": "真没招了",
+  "tests_passed": 214,
+  "packaging_tests_after_input_whitelist_change": 23,
+  "new_live_api_calls": 0,
+  "previous_ledgers_unchanged": true,
+  "new_revision_ledger_created": false,
+  "archive": "BDCI/submission_runs/team-candidate-20260929-complete-inputs/bundle/真没招了.zip",
+  "archive_sha256": "275f288d4c6559a032981dbe5e66258826fa22c3c727c41d941ee1492ed3abdf",
+  "unpacked_verification": {
+    "status": "verified_saved_candidate",
+    "files": 516,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 24015
+    },
+    "writing_mode": "live",
+    "study_run": "replay_runs/live-20260928T144804-532140",
+    "archived_live_usage": {
+      "model_calls": 44,
+      "total_tokens": 145585
+    }
+  },
+  "unpacked_revision_context_sha256": "b2fd73d3228cec0d33699dafd41c3cd4f6ecfdb6e9d5ce2c00de355abf754515",
+  "source_sha256": {
+    "build_replay_bundle.py": "f0a907951bde5166d41099089d45cdaac1d81f5e51e351bb4cff6e6973573e49",
+    "paper_bundle.py": "c211101210ec6d0d9d89fea66edb3e0dd1a40cdee204a5f7f749899c8940fdf3",
+    "run_replay_pipeline.py": "7d4e33d6a6bb02cb5e66f035d498347635cb35da50d41e6e8517c2b80e56d7e6",
+    "run_followup_design.py": "0430ed63cee2ab9155a3dc14171e376c5c59b2ec878b1fe88bba5e5f2b12e09a"
+  },
+  "model_revision_status": "automatic_approval_rejected_pending_user_confirmation",
+  "offline_revision": {
+    "run": "followup_design_runs/offline-20260929T011820-989193",
+    "scripted_calls": 2,
+    "simulated_tokens": 4
+  },
+  "submission_ready": false
+}

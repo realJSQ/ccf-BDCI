@@ -22,6 +22,43 @@ HERE = Path(__file__).resolve().parent
 SKILL = HERE / 'skills/followup-design'
 FOLLOWUP = HERE / 'prior_work/revision_followup.json'
 SOURCE_CHECK = HERE / 'prior_work/followup_design_source_check.json'
+PREVIOUS_ASSESSMENT = HERE / 'followup_design_runs/live-20260929T003516-680636/followup_assessment.json'
+
+
+def revision_context(state):
+    """Attach the rejected attempt and executable diagnostics to a new design.
+
+    This is a separately metered design revision, never a budget reset or an
+    implementation approval. Developer examples are explicitly not observations.
+    """
+    from check_recovery_example import check_example
+    assessment = json.loads(PREVIOUS_ASSESSMENT.read_text())
+    if (assessment['status'] != 'not_implementation_ready'
+            or assessment['proposal_input_accepted'] is not False
+            or assessment['model_audit_accepted'] is not False):
+        raise ValueError('unexpected_previous_design_state')
+    examples = {name: json.loads((HERE / f'protocol_examples/{name}.json').read_text())
+                for name in ('inconsistent', 'consistent')}
+    state.context['revision'] = {
+        'previous_assessment': assessment,
+        'previous_assessment_sha256': hashlib.sha256(PREVIOUS_ASSESSMENT.read_bytes()).hexdigest(),
+        'developer_examples_not_scientific_observations': {
+            name: {'input': value, 'computed': check_example(value)} for name, value in examples.items()},
+        'instruction': 'Propose a complete corrected design or decline. Do not fill in the truncated old response. '
+            'Choose the research question yourself within the existing scope. New task structures and splits '
+            'must be specified concretely before results; the six old instances cannot become held-out evidence. '
+            'Use brief prose, preferably under 35 words per text field, and a small complete graph_example. '
+            'A measured boundary or negative outcome is valid; no positive result is required. '
+            'Describe exact intervention and strong baseline algorithms, visible information, actual outputs '
+            'and a separate scoring oracle. Runtime tool actions need not use additional model calls. '
+            'Do not assume diagnostic access unavailable to the baseline. '
+            'For the auditor, quote string-field text exactly; never use a numeric field as a quotation anchor.'}
+    state.evidence_sha256 = digest(state.context)
+    write_json(state.root / 'context.json', state.context)
+    provenance = json.loads((state.root / 'input_provenance.json').read_text())
+    provenance.update(context_sha256=state.evidence_sha256,
+                      previous_assessment_sha256=state.context['revision']['previous_assessment_sha256'])
+    write_json(state.root / 'input_provenance.json', provenance)
 
 
 def complete_top_level_fields(raw):
@@ -298,17 +335,24 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--live', action='store_true')
     parser.add_argument('--audit-rejected-run', type=Path)
+    parser.add_argument('--revise-failed-design', action='store_true',
+                        help='Separate bounded two-call revision using rejected-design diagnostics; never runs experiments')
     args = parser.parse_args()
+    if args.revise_failed_design and args.audit_rejected_run:
+        raise ValueError('revision_conflicts_with_rejected_audit')
     rejected_source = args.audit_rejected_run.resolve() if args.audit_rejected_run else None
     mode = 'live' if args.live else 'offline'
     root = HERE / 'followup_design_runs' / datetime.now(timezone.utc).strftime(f'{mode}-%Y%m%dT%H%M%S-%f')
     root.mkdir(parents=True)
     os.chdir(root)
-    ledger = HERE / 'followup-design-v1-requests.jsonl' if args.live else root / 'requests.jsonl'
+    campaign = 'followup-revision-v1' if args.revise_failed_design else 'followup-design-v1'
+    ledger = HERE / (campaign + '-requests.jsonl') if args.live else root / 'requests.jsonl'
     try:
         with ledger.with_suffix('.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             state = FollowupState(root, args.live)
+            if args.revise_failed_design:
+                revision_context(state)
             recovered = recover_rejected(state, rejected_source) if rejected_source else None
             key = 'offline-placeholder'
             if args.live:
@@ -316,9 +360,18 @@ def main():
                 if len(keys) != 1:
                     raise ValueError('expected_one_credential')
                 key = keys[0]
-            asyncio.run(native_run(root, SKILL / ('scripts/audit.py' if recovered else 'scripts/workflow.py'), state,
-                live=args.live, key=key, ledger=ledger, max_calls=2, token_stop=24000,
-                max_output_tokens=4500, timeout=240, team_name='followup_design'))
+            workflow = SKILL / ('scripts/audit.py' if recovered else 'scripts/workflow.py')
+            token_stop = 30000 if args.revise_failed_design else 24000
+            if args.revise_failed_design:
+                workflow = root / 'revision_workflow.py'
+                workflow.write_text((SKILL / 'scripts/workflow.py').read_text().replace(
+                    "'workflow_token_limit': 24000", "'workflow_token_limit': 30000"))
+            write_json(root / 'campaign.json', {'campaign': campaign, 'max_calls': 2,
+                'token_stop_after_response': token_stop, 'max_output_tokens': 6500 if args.revise_failed_design else 4500,
+                'new_experiments_authorized': False, 'prior_ledgers_modified': False})
+            asyncio.run(native_run(root, workflow, state,
+                live=args.live, key=key, ledger=ledger, max_calls=2, token_stop=token_stop,
+                max_output_tokens=6500 if args.revise_failed_design else 4500, timeout=300, team_name='followup_design'))
             summary = json.loads((root / 'model_summary.json').read_text())
             handoff = {**state.handoff(), 'mode': summary['mode'], 'run_directory': str(root.relative_to(HERE)),
                        'model_calls': summary['model_calls'] + (recovered['source_model_calls'] if recovered else 0),
@@ -326,7 +379,8 @@ def main():
                        'current_run_model_calls': summary['model_calls'],
                        'current_run_total_tokens': summary['total_tokens']}
             write_json(root / 'handoff.json', handoff)
-            write_json(HERE / 'latest-followup-design.json', handoff)
+            if args.live:
+                write_json(HERE / 'latest-followup-design.json', handoff)
             print(json.dumps(handoff))
             return 0
     except BaseException as error:

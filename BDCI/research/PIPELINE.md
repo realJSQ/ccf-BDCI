@@ -16,6 +16,8 @@ python BDCI/research/run_replay_pipeline.py \
 
 此命令不调用模型。输出包含 `pipeline.json` 检查点和 `bundle/replay-candidate.zip`，同时保留解包目录。包的资源报告区分选定研究阶段与历史累计，仍标记 `submission_ready=false`。这些检查证明保存产物的一致性，不证明科学新颖性或外部评审通过。
 
+用户已确认队伍名为“真没招了”，记录在 `../docs/submission/team.json`。在新运行中加 `--team-name '真没招了'`，将生成 `bundle/真没招了.zip`，包内顶层目录为 `真没招了/`。恢复时沿用检查点中的队伍名，不允许换名后复用旧检查点。独立打包入口也支持同名参数。队伍命名不改变 `submission_ready=false`，缺失的外部材料仍须补齐。
+
 ## 运行原生写作与轻量编译
 
 省略 `--paper-run`，会调用原生 JiuwenSwarm writer/reviewer/reviser，默认使用离线脚本响应。论文生成到 `replay_paper_runs/offline-pipeline-*`；状态为 `integration_candidate_verified`，包内也标为 `integration_only`。三次脚本调用不是模型API消耗，也不是新科学观测。不会修改真实论文的 latest 指针。
@@ -38,4 +40,4 @@ python BDCI/research/run_replay_pipeline.py \
 
 写作和打包使用同一显式实验输入。打包器也可单独使用 `--study-run`，或从论文来源记录读取路径；不再固定挑选旧实验。已登记实验的异地副本需要完整允许证据逐字节一致，归入原清单位置，避免复制后重复计费或覆写历史。
 
-当前只支持既有恢复协议，新的任务结构须先实现实验/报告适配器。正式参赛仍缺研究质量改进、前半段自动编排、外审Token、官方贡献PR、团队名和当前提交周期/模板核对。
+当前只支持既有恢复协议，新的任务结构须先实现实验/报告适配器。正式参赛仍缺研究质量改进、前半段自动编排、外审Token、官方贡献PR和当前提交周期/模板核对。

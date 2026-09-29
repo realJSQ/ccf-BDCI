@@ -8,6 +8,7 @@ import shutil
 import tempfile
 import sys
 import zipfile
+import unicodedata
 
 # Verification must not mutate an unpacked archive by creating bytecode caches.
 sys.dont_write_bytecode = True
@@ -25,6 +26,19 @@ PAPER_FILES = ('paper.pdf', 'paper.tex', 'paper.md', 'references.bib', 'paper.js
     'continuation.json', 'recovery.json', 'failure.json', 'editorial_revision.json',
     'editorial_assistance.json', 'pdf_validation.json') + base.STYLE_FILES + tuple(
     f'{prefix}_{role}.txt' for prefix in ('raw', 'prompt') for role in ('writer', 'reviewer', 'reviser'))
+
+
+def validate_team_name(value):
+    """Accept one portable directory name, preserving Chinese names verbatim."""
+    if (not isinstance(value, str) or not value or value != value.strip()
+            or value in ('.', '..') or value.endswith('.')
+            or any(char in '/\\<>:"|?*' or unicodedata.category(char).startswith('C')
+                   for char in value)
+            or value.split('.')[0].upper() in {'CON', 'PRN', 'AUX', 'NUL',
+                *(f'COM{i}' for i in range(1, 10)), *(f'LPT{i}' for i in range(1, 10))}
+            or len(value.encode('utf-8')) > 200):
+        raise ValueError('invalid_team_name')
+    return value
 
 
 def read(path):
@@ -218,6 +232,14 @@ def registered_study(run, inventory, bdci):
 def verify_bundle(stage):
     stage = Path(stage)
     manifest = read(stage / 'manifest.json')
+    if 'bundle_name' in manifest:
+        name = validate_team_name(manifest['bundle_name'])
+        if stage.name != name:
+            raise ValueError('bundle_name_mismatch')
+        if manifest.get('team_name') is not None and validate_team_name(manifest['team_name']) != name:
+            raise ValueError('team_name_mismatch')
+    elif manifest.get('team_name') is not None:
+        raise ValueError('missing_bundle_name')
     if manifest.get('submission_ready') is not False or manifest['status'] != 'not_submission_ready':
         raise ValueError('invalid_readiness_claim')
     actual = {str(p.relative_to(stage)): sha(p) for p in stage.rglob('*')
@@ -277,7 +299,8 @@ def verify_bundle(stage):
                 'model_calls': audit['total_calls'], 'total_tokens': audit['total_tokens']}}
 
 
-def build_bundle(root, output, study_run=None):
+def build_bundle(root, output, study_run=None, team_name=None):
+    bundle_name = validate_team_name(team_name) if team_name is not None else 'replay-candidate'
     root, output = Path(root).resolve(), Path(output).resolve()
     study = select_study(root, study_run)
     review, summary = validate_manuscript(root, study)
@@ -289,7 +312,7 @@ def build_bundle(root, output, study_run=None):
         if (run / 'model_summary.json').exists() and read(run / 'model_summary.json')['mode'] == 'live':
             registered_usage(run, inventory, base.BDCI)
     output.mkdir(parents=True, exist_ok=True)
-    delivery, archive = output / 'replay-candidate', output / 'replay-candidate.zip'
+    delivery, archive = output / bundle_name, output / (bundle_name + '.zip')
     if delivery.exists() or archive.exists():
         raise FileExistsError('candidate_output_already_exists')
     with tempfile.TemporaryDirectory(prefix='.replay-bundle-', dir=output) as temporary:
@@ -304,7 +327,8 @@ def build_bundle(root, output, study_run=None):
         # above. The delivered internal review is restored to the original.
         base._json(adapter / 'reviewer.json', review)
         base.build_bundle(adapter, pilot_root=HERE / base.REVISION_PILOT, summary=summary)
-        stage = adapter / 'delivery/workflow-validation'
+        stage = adapter / 'delivery' / bundle_name
+        (adapter / 'delivery/workflow-validation').rename(stage)
         base._copy_replay_evidence(study, stage / 'code/BDCI/research' / study_relative)
         for run in chain:
             destination = stage / 'code/BDCI/research/replay_paper_runs' / run.name
@@ -327,10 +351,12 @@ def build_bundle(root, output, study_run=None):
         base._write(stage / 'resource_report.md', render_report(audit,
             study_usage,
             {'model_calls': summary['writing_model_calls'], 'total_tokens': summary['writing_total_tokens'], 'mode': summary['mode']}))
-        base._write(stage / '提交说明.md', '''# 开发候选包，尚不能正式提交
-本包保存真实恢复实验与辅助编辑论文，研究新颖性及正式科学验收未完成。
-replay-candidate 不是队伍名称。缺正式队伍信息、当前赛题模板复核、
-最终 PDF 对应的外部 Reviewer Access Token、官方贡献 PR URL。
+        team_note = (f'队伍名称：{team_name}。ZIP 和顶层目录均采用此名称。'
+                     if team_name is not None else 'replay-candidate 不是队伍名称；正式队伍信息待补充。')
+        base._write(stage / '提交说明.md', f'''# 开发候选包，尚不能正式提交
+本包保存恢复实验与辅助编辑论文，研究新颖性及正式科学验收未完成。
+{team_note}
+仍缺当前赛题模板复核、最终 PDF 对应的外部 Reviewer Access Token、官方贡献 PR URL。
 内部模型审阅不是外部评审；本次打包不调用模型、不上传、不提交。
 ''')
         if summary['mode'] != 'live':
@@ -353,10 +379,15 @@ selected run names relative to this archive. No live run is needed for verificat
 ''')
         manifest = read(stage / 'manifest.json')
         manifest.update(bundle_kind='recovery_paper_development_candidate', submission_ready=False,
+                        bundle_name=bundle_name, team_name=team_name,
                         paper_run=root.name, study_run=study_relative,
                         integration_only=summary['mode'] != 'live', writing_mode=summary['mode'],
                         paper_sha256=summary['pdf']['sha256'],
                         editorial_assistance=summary.get('editorial_assistance', False))
+        if team_name is not None:
+            manifest['missing_materials'] = [
+                'Competition submission validation' if item == 'Final team naming and competition submission validation' else item
+                for item in manifest['missing_materials']]
         manifest['missing_materials'].extend(['Unified end-to-end automatic research entry point', 'Independent scientific validation'])
         manifest['files'] = {str(p.relative_to(stage)): sha(p) for p in sorted(stage.rglob('*'))
                              if p.is_file() and p.name != 'manifest.json'}
@@ -382,13 +413,14 @@ if __name__ == '__main__':
     parser.add_argument('--paper-run', type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--study-run', type=Path, help='Content-bound relocation of the saved compatible study')
+    parser.add_argument('--team-name', help='Team name used verbatim for ZIP and top-level directory')
     parser.add_argument('--verify', type=Path, help='Verify an unpacked replay-candidate directory')
     args = parser.parse_args()
     if args.verify:
-        if args.paper_run or args.output or args.study_run:
+        if args.paper_run or args.output or args.study_run or args.team_name is not None:
             parser.error('--verify cannot be combined with build arguments')
         print(json.dumps(verify_bundle(args.verify)))
     else:
         if not args.paper_run or not args.output:
             parser.error('--paper-run and --output required')
-        print(build_bundle(args.paper_run, args.output, args.study_run))
+        print(build_bundle(args.paper_run, args.output, args.study_run, team_name=args.team_name))

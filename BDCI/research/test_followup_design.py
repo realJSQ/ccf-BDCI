@@ -6,7 +6,7 @@ import hashlib
 import shutil
 import unittest
 
-from run_followup_design import FollowupState, validate_design, complete_top_level_fields, recover_rejected
+from run_followup_design import FollowupState, validate_design, complete_top_level_fields, recover_rejected, revision_context
 
 
 def proposal(state):
@@ -34,6 +34,18 @@ class FollowupTests(unittest.TestCase):
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)
         self.state = FollowupState(Path(temp.name), False)
+
+    def test_revision_binds_rejection_and_distinguishes_fixtures(self):
+        old_hash = self.state.evidence_sha256
+        revision_context(self.state)
+        self.assertNotEqual(old_hash, self.state.evidence_sha256)
+        examples = self.state.context['revision']['developer_examples_not_scientific_observations']
+        self.assertFalse(examples['inconsistent']['computed']['claims_consistent'])
+        self.assertTrue(examples['consistent']['computed']['claims_consistent'])
+        for role in self.state.roles:
+            self.state.accept(role, self.state.offline_response(role))
+        self.assertFalse(self.state.handoff()['execution_enabled'])
+        self.assertFalse(self.state.handoff()['implementation_recommended'])
 
     def recovery_fixture(self):
         source = self.state.root / 'source'

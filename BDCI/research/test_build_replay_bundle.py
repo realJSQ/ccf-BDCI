@@ -18,6 +18,53 @@ class ReplayBundleTests(unittest.TestCase):
     def review_inputs(self):
         return [bundle.read(self.root / f'{name}.json') for name in ('writer', 'reviewer', 'evidence')]
 
+    def test_team_name_rejects_unsafe_and_nonportable_names(self):
+        self.assertEqual(bundle.validate_team_name('真没招了'), '真没招了')
+        for name in ('', '.', '..', '../escape', 'a/b', 'a\\b', '/absolute',
+                     'C:escape', 'a\n', 'a\x00b', 'a\u202eb', ' a', 'a ',
+                     'a.', 'NUL', 'con.txt', 'COM1', None, 7):
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, 'invalid_team_name'):
+                bundle.validate_team_name(name)
+
+    def test_chinese_team_archive_and_declared_name_binding(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            tmp = Path(temporary)
+            current = bundle.HERE / 'replay_paper_runs/editorial-20260929'
+            archive_path = bundle.build_bundle(current, tmp / 'build', team_name='真没招了')
+            self.assertEqual(archive_path.name, '真没招了.zip')
+            with zipfile.ZipFile(archive_path) as archive:
+                self.assertTrue(all(name.startswith('真没招了/') for name in archive.namelist()))
+                archive.extractall(tmp / 'unpacked')
+            stage = tmp / 'unpacked/真没招了'
+            manifest = bundle.read(stage / 'manifest.json')
+            self.assertEqual(manifest['bundle_name'], '真没招了')
+            self.assertEqual(manifest['team_name'], '真没招了')
+            self.assertFalse(bundle.verify_bundle(stage)['submission_ready'])
+            note = (stage / '提交说明.md').read_text()
+            self.assertIn('队伍名称：真没招了', note)
+            self.assertNotIn('缺正式队伍信息', note)
+            self.assertIn('Reviewer Access Token', note)
+            self.assertIn('官方贡献 PR URL', note)
+            result = subprocess.run([sys.executable,
+                str(stage / 'code/BDCI/research/build_replay_bundle.py'), '--verify', str(stage)],
+                cwd=stage / 'code', capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertFalse(list(stage.rglob('__pycache__')))
+            manifest['team_name'] = '另一支队伍'
+            bundle.base._json(stage / 'manifest.json', manifest)
+            with self.assertRaisesRegex(ValueError, 'team_name_mismatch'):
+                bundle.verify_bundle(stage)
+            manifest['team_name'] = '真没招了'
+            manifest['bundle_name'] = '../真没招了'
+            bundle.base._json(stage / 'manifest.json', manifest)
+            with self.assertRaisesRegex(ValueError, 'invalid_team_name'):
+                bundle.verify_bundle(stage)
+            manifest['bundle_name'] = '真没招了'
+            bundle.base._json(stage / 'manifest.json', manifest)
+            moved = stage.rename(stage.with_name('renamed'))
+            with self.assertRaisesRegex(ValueError, 'bundle_name_mismatch'):
+                bundle.verify_bundle(moved)
+
     def test_bound_review_rejects_wrong_draft_and_invented_quote(self):
         writer, review, evidence = self.review_inputs()
         invalid = copy.deepcopy(review)
