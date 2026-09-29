@@ -56,6 +56,7 @@ RUNNER_INPUTS = {
     'run_protocol_design.py': ('prior_work/revision_followup.json',
                                f'{REVISION_RUN}/refiner.json'),
     'run_replay_study.py': ('replay_protocol.json',),
+    'run_recovery_v2.py': ('model_capabilities.json', 'recovery_v2_planner.md'),
     'run_followup_design.py': (
         'model_capabilities.json',
         'prior_work/revision_followup.json', 'prior_work/followup_design_source_check.json',
@@ -153,6 +154,26 @@ def _copy_replay_evidence(saved, destination):
         _copy(posthoc / name, destination / 'posthoc_report_terminal' / name, saved)
 
 
+def _copy_study_evidence(saved, destination, study_kind='replay_v1'):
+    if study_kind == 'replay_v1':
+        return _copy_replay_evidence(saved, destination)
+    if study_kind != 'recovery_v2':
+        raise ValueError('unknown_study_kind')
+    saved, destination = Path(saved), Path(destination)
+    registration = json.loads((saved / 'pre_registration.json').read_text())
+    names = {'pre_registration.json', 'analysis.json', 'base_cases.json', 'episodes.json',
+             'frozen_workflow.py', 'model_summary.json', 'model_usage.jsonl'}
+    names.update(registration['frozen_snapshot_sha256'])
+    names.update(name for i in range(36) for name in
+                 (f'episode_{i:02d}.json', f'results_episode_{i:02d}.json',
+                  f'prompt_episode_{i:02d}.txt', f'raw_episode_{i:02d}.txt'))
+    for name in sorted(names):
+        relative = Path(name)
+        if relative.is_absolute() or '..' in relative.parts or not relative.parts:
+            raise ValueError('unsafe_bundle_source')
+        _copy(saved / relative, destination / relative, saved)
+
+
 def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
     """Package saved evidence only; never install, contact APIs, or submit.
 
@@ -170,8 +191,11 @@ def build_bundle(root: Path, *, pilot_root: Path, summary: dict) -> Path:
     paper = json.loads((root / 'paper.json').read_text())
     review = json.loads((root / 'reviewer.json').read_text())
     revised = json.loads((root / 'reviser.json').read_text())
-    validate_review(review, paper)
-    validate_revision_response(revised, review)
+    provenance_path = root / 'input_provenance.json'
+    is_v2 = provenance_path.exists() and json.loads(provenance_path.read_text()).get('study_kind') == 'recovery_v2'
+    limits = {'max_field_chars': None} if is_v2 else {}
+    validate_review(review, paper, **limits)
+    validate_revision_response(revised, review, **limits)
     if not isinstance(summary, dict):
         raise ValueError('invalid_resource_summary')
     delivery = root / 'delivery' / 'workflow-validation'

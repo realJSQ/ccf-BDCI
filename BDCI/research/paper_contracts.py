@@ -13,8 +13,10 @@ MAX_WORDS = 1600
 MAX_FIELD_CHARS = 10000
 
 
-def _text(value, field):
-    if not isinstance(value, str) or not value.strip() or len(value) > MAX_FIELD_CHARS:
+def _text(value, field, max_field_chars=MAX_FIELD_CHARS):
+    if (max_field_chars is not None and (type(max_field_chars) is not int or max_field_chars <= 0)):
+        raise ValueError('invalid_field_character_limit')
+    if not isinstance(value, str) or not value.strip() or (max_field_chars is not None and len(value) > max_field_chars):
         raise ValueError(f'invalid_text:{field}')
 
 
@@ -23,7 +25,7 @@ def _keys(value, expected, field):
         raise ValueError(f'invalid_fields:{field}')
 
 
-def validate_paper(paper, sources, *, max_words=MAX_WORDS):
+def validate_paper(paper, sources, *, max_words=MAX_WORDS, max_field_chars=MAX_FIELD_CHARS):
     """Validate a paper without changing it; returns None or raises ValueError.
 
     Sections are a list of ID-bearing objects. Results and numeric truth tables are owned
@@ -35,8 +37,8 @@ def validate_paper(paper, sources, *, max_words=MAX_WORDS):
         raise ValueError('invalid_fields:paper')
     if not isinstance(sources, Mapping):
         raise ValueError('invalid_source_mapping')
-    _text(paper['title'], 'title')
-    _text(paper['abstract'], 'abstract')
+    _text(paper['title'], 'title', max_field_chars)
+    _text(paper['abstract'], 'abstract', max_field_chars)
     sections = paper['sections']
     if not isinstance(sections, list) or len(sections) != len(SECTION_IDS):
         raise ValueError('invalid_fields:sections')
@@ -51,7 +53,7 @@ def validate_paper(paper, sources, *, max_words=MAX_WORDS):
     cited = set()
     for section_id in SECTION_IDS:
         section = section_map[section_id]
-        _text(section['text'], section_id)
+        _text(section['text'], section_id, max_field_chars)
         texts.append(section['text'])
         refs = section['source_ids']
         if (not isinstance(refs, list) or any(not isinstance(ref, str) or not ref.strip()
@@ -68,13 +70,13 @@ def validate_paper(paper, sources, *, max_words=MAX_WORDS):
             cited.add(ref)
     if len(cited) < 2:
         raise ValueError('at_least_two_references_required')
-    if type(max_words) is not int or max_words <= 0:
+    if max_words is not None and (type(max_words) is not int or max_words <= 0):
         raise ValueError('invalid_paper_word_limit')
-    if sum(len(text.split()) for text in texts) > max_words:
+    if max_words is not None and sum(len(text.split()) for text in texts) > max_words:
         raise ValueError('paper_word_limit')
 
 
-def validate_review(review, paper):
+def validate_review(review, paper, *, max_field_chars=MAX_FIELD_CHARS):
     """Validate internal-review structure, never imply an external review."""
     _keys(review, ('verdict', 'issues', 'revision_instructions', 'external_reviewer'), 'review')
     if review['verdict'] not in ('pass', 'revise'):
@@ -95,17 +97,17 @@ def validate_review(review, paper):
         if (not isinstance(section_id, str) or section_id not in ('abstract',) + SECTION_IDS
                 or (section_id != 'abstract' and section_id not in paper_section_ids)):
             raise ValueError('unknown_review_section')
-        _text(issue['message'], 'issue.message')
+        _text(issue['message'], 'issue.message', max_field_chars)
         if review['verdict'] == 'pass' and issue['severity'] in ('blocking', 'major'):
             raise ValueError('contradictory_pass_review')
     instructions = review['revision_instructions']
     if not isinstance(instructions, list):
         raise ValueError('invalid_revision_instructions')
     for instruction in instructions:
-        _text(instruction, 'revision_instruction')
+        _text(instruction, 'revision_instruction', max_field_chars)
 
 
-def validate_revision_response(revised, review):
+def validate_revision_response(revised, review, *, max_field_chars=MAX_FIELD_CHARS):
     """Require one response per issue, without claiming semantic resolution."""
     if not isinstance(revised, dict) or not isinstance(review, dict):
         raise ValueError('invalid_revision_or_review')
@@ -119,7 +121,7 @@ def validate_revision_response(revised, review):
         index = response['issue_index']
         if type(index) is not int or index < 0 or index >= len(issues) or index in seen:
             raise ValueError('invalid_or_duplicate_issue_index')
-        _text(response['change'], 'response.change')
+        _text(response['change'], 'response.change', max_field_chars)
         seen.add(index)
     if seen != set(range(len(issues))):
         raise ValueError('missing_issue_response')

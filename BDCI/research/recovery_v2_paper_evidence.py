@@ -6,6 +6,7 @@ requests, post-hoc plan repairs, or old-paper results enter the primary evidence
 from __future__ import annotations
 
 from collections import Counter
+import ast
 import hashlib
 import json
 import os
@@ -85,6 +86,15 @@ def build_evidence(run):
             or analysis.get('planned_plans') != len(episodes)):
         raise ValueError('incomplete_base_scenario_inventory')
     rows = []
+    case_source = ast.parse((root / 'frozen_source/research/recovery_v2_cases.py').read_text())
+    generation_notes = ast.get_docstring(case_source)
+    intervention_notes = next(ast.get_docstring(node) for node in case_source.body
+                              if isinstance(node, ast.FunctionDef) and node.name == 'make_scenario')
+    graph_contracts = {}
+    for case in cases:
+        key = 'main=' + str(case['topology']['main_shards']) + ',aux=' + str(case['topology']['aux_shards'])
+        first = next(e for e in episodes.values() if e['case_id'] == case['case_id'])
+        graph_contracts[key] = first['public']['tool_definitions']
     artifacts = {'pre_registration.json', 'analysis.json', 'base_cases.json', 'episodes.json',
                  'frozen_workflow.py', 'model_summary.json', 'model_usage.jsonl', *snapshots}
     for role, episode in episodes.items():
@@ -138,6 +148,11 @@ def build_evidence(run):
         'summary_by_scenario_policy': summary, 'summary_by_policy': totals,
         'paired_base_instances': paired, 'freshness_by_policy': freshness,
         'protocol': registration,
+        'frozen_protocol_text': (root / 'frozen_source/docs/superpowers/specs/2026-09-29-recovery-v2-execution.md').read_text(),
+        'task_generation_notes': generation_notes,
+        'source_intervention_notes': intervention_notes,
+        'case_manifest': [{key: case[key] for key in ('case_id', 'family', 'seed', 'topology', 'split')} for case in cases],
+        'tool_contracts_by_topology': graph_contracts,
         'information_condition': 'Actual tool dependencies and declared dependencies are visible to the planner and every policy. Actual dependencies are supplied tool contracts, not discovered dependencies.',
         'resource': {**{k: metering[k] for k in ('model_calls', 'total_tokens', 'duration_seconds')},
                      'initial_cache_tool_calls': analysis['initial_cache_tool_calls'],

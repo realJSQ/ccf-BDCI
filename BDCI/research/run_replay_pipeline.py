@@ -20,6 +20,8 @@ sys.dont_write_bytecode = True
 
 import build_replay_bundle as bundle
 from replay_paper_evidence import build_evidence, digest
+from study_adapter import get_adapter
+from resource_accounting import audit_resources
 
 HERE = Path(__file__).resolve().parent
 
@@ -30,9 +32,11 @@ def save(path, value):
     temporary.replace(path)
 
 
-def call_writer(paper, study, output, *, live, recover):
+def call_writer(paper, study, output, *, live, recover, study_kind='replay_v1'):
     command = [sys.executable, str(HERE / 'run_replay_paper.py'),
                '--study-run', str(study), '--no-latest']
+    if study_kind != 'replay_v1':
+        command += ['--study-kind', study_kind]
     command += ['--resume' if recover else '--output-run', str(paper)]
     if live and not recover:
         command.append('--live')
@@ -55,6 +59,40 @@ def manuscript_fingerprint(paper, study):
     chain = bundle.writing_chain(paper)
     return {str(Path(run.name) / name): bundle.sha(run / name)
             for run in chain for name in bundle.PAPER_FILES if (run / name).is_file()}
+
+
+def register_writing_resources(paper):
+    """Record terminal local writer usage, including measured failed calls.
+
+    The inventory is accounting, not an inference permission or retry ledger.
+    Unknown calls without complete usage remain explicitly unresolved.
+    """
+    paper = Path(paper).resolve()
+    if paper.parent != (HERE / 'replay_paper_runs').resolve():
+        raise ValueError('writing_resource_location_not_local')
+    summary_path, usage_path = paper / 'model_summary.json', paper / 'model_usage.jsonl'
+    if not summary_path.is_file():
+        return {'status': 'no_terminal_summary'}
+    summary = bundle.read(summary_path)
+    if summary.get('mode') != 'live':
+        return {'status': 'offline_not_live_usage'}
+    if not usage_path.is_file():
+        return {'status': 'usage_unresolved', 'admitted_calls': summary.get('model_calls')}
+    rows = [json.loads(line) for line in usage_path.read_text().splitlines() if line.strip()]
+    if not rows or summary.get('model_calls') != len(rows) or summary.get('model_usage') != rows:
+        return {'status': 'usage_unresolved', 'admitted_calls': summary.get('model_calls'), 'measured_calls': len(rows)}
+    inventory_path = HERE / 'resource_runs.json'
+    with inventory_path.with_suffix('.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        inventory = bundle.read(inventory_path)
+        entry = {'usage': str(usage_path.relative_to(HERE.parent)),
+                 'summary': str(summary_path.relative_to(HERE.parent))}
+        if entry not in inventory['runs']:
+            inventory['runs'].append(entry)
+        audit = audit_resources(HERE.parent, inventory)
+        save(inventory_path, inventory)
+    return {'status': 'registered', 'calls': len(rows), 'tokens': sum(r['total_tokens'] for r in rows),
+            'historical_calls': audit['total_calls'], 'historical_tokens': audit['total_tokens']}
 
 
 def verify_archive(archive):
@@ -80,7 +118,7 @@ def verify_archive(archive):
         return json.loads(result.stdout)
 
 
-def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_name=None):
+def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_name=None, study_kind=None):
     study, output = Path(study).resolve(), Path(output).resolve()
     if team_name is not None:
         bundle.validate_team_name(team_name)
@@ -102,13 +140,18 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_na
                 raise ValueError('pipeline_paper_input_changed')
             if team_name is not None and team_name != state.get('team_name'):
                 raise ValueError('pipeline_team_name_changed')
+            if study_kind is not None and study_kind != state.get('study_kind', 'replay_v1'):
+                raise ValueError('pipeline_study_kind_changed')
         else:
+            kind = study_kind or (bundle.manuscript_adapter(paper).kind if paper else 'replay_v1')
+            get_adapter(kind)
             identifier = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S-') + uuid.uuid4().hex[:8]
             state = {'schema_version': 1, 'status': 'running', 'stages': {},
                 'study_run': str(study), 'paper_origin': 'saved' if paper else 'native',
                 'paper_run': str(Path(paper).resolve()) if paper else str(
                     HERE / 'replay_paper_runs' / (('live' if live else 'offline') + '-pipeline-' + identifier)),
                 'writing_live': live, 'submission_ready': False,
+                'study_kind': kind,
                 'team_name': team_name, 'bundle_name': team_name or 'replay-candidate',
                 'scope': 'Completed compatible study through candidate packaging; topic and experiment stages are separate.'}
             save(state_path, state)
@@ -116,7 +159,8 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_na
         current = 'evidence'
         started = time.monotonic()
         try:
-            evidence = build_evidence(study)
+            adapter = get_adapter(state.get('study_kind', 'replay_v1'))
+            evidence = adapter.build_evidence(study) if adapter.is_v2 else build_evidence(study)
             signature = digest(evidence)
             if 'evidence_sha256' in state and signature != state['evidence_sha256']:
                 raise ValueError('pipeline_study_input_changed')
@@ -140,7 +184,15 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_na
                     stages[current] = {'status': 'running', 'paper_run': str(paper),
                                        'recovery_without_api': recover}
                     save(state_path, state)
-                    call_writer(paper, study, output, live=state['writing_live'], recover=recover)
+                    try:
+                        call_writer(paper, study, output, live=state['writing_live'], recover=recover,
+                                    **({'study_kind': adapter.kind} if adapter.is_v2 else {}))
+                    finally:
+                        if state['writing_live']:
+                            stages['writing_resource'] = register_writing_resources(paper)
+                            save(state_path, state)
+                if bundle.manuscript_adapter(paper).kind != adapter.kind:
+                    raise ValueError('pipeline_manuscript_study_kind_mismatch')
                 files = manuscript_fingerprint(paper, study)
                 stages[current] = {'status': 'completed', 'files': files}
                 save(state_path, state)
@@ -194,6 +246,7 @@ def run_pipeline(study, output, *, paper=None, live=False, resume=False, team_na
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--study-run', type=Path, required=True)
+    parser.add_argument('--study-kind', choices=('replay_v1', 'recovery_v2'))
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--paper-run', type=Path, help='Reuse saved manuscript; otherwise invoke native writing')
     parser.add_argument('--live', action='store_true', help='Use existing writing budget; never resets it')
@@ -202,7 +255,7 @@ def main():
     args = parser.parse_args()
     try:
         state = run_pipeline(args.study_run, args.output, paper=args.paper_run,
-                             live=args.live, resume=args.resume, team_name=args.team_name)
+                             live=args.live, resume=args.resume, team_name=args.team_name, study_kind=args.study_kind)
         print(json.dumps({'status': state['status'], 'output': str(args.output.resolve()),
                           'paper_run': state['paper_run'], 'submission_ready': False}))
         return 0

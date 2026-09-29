@@ -63,7 +63,11 @@ def audit_resources(bdci, inventory):
             'Failed and truncated calls with recorded usage are included.']}
 
 
-def render_report(audit, study_usage, writing):
+def render_report(audit, study_usage, writing, study_kind='replay_v1'):
+    if study_kind not in ('replay_v1', 'recovery_v2'):
+        raise ValueError('unknown_study_kind')
+    study_note = ('The nine self-authored structurally held-out base instances are not independent external validation.'
+                  if study_kind == 'recovery_v2' else 'The six self-authored study instances are not independent held-out validation.')
     study = next(s for s in audit['stages'] if s['usage'] == study_usage)
     offline = writing.get('mode', 'live') != 'live'
     writing_label = 'Scripted integration fixture (not live API)' if offline else 'Selected manuscript writing'
@@ -90,6 +94,6 @@ This inventory excludes offline fixtures, Codex development assistance, retrieva
 and external review. Future runs require updating the explicit inventory.
 Actual monetary cost and end-to-end wall time remain unknown; recorded stage
 durations have different boundaries and are not summed. API usage is not a bill.
-The six self-authored study instances are not independent held-out validation.
+{study_note}
 No GPU training was performed.
 '''

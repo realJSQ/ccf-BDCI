@@ -15,6 +15,7 @@ from native_runner import native_run
 from paper_contracts import validate_paper, validate_review, validate_revision_response, SECTION_IDS
 from replay_paper_evidence import build_evidence, sources, digest, DEFAULT_RUN
 from run_topics import write_json, parse_object
+from study_adapter import get_adapter
 
 HERE = Path(__file__).resolve().parent
 SKILL = HERE / 'skills/replay-paper'
@@ -47,35 +48,60 @@ def select_study_run(explicit=None, saved=None):
 class ReplayPaperState:
     roles = ('writer', 'reviewer', 'reviser')
 
-    def __init__(self, root, live, run=DEFAULT_RUN, expected_provenance=None):
+    def __init__(self, root, live, run=DEFAULT_RUN, expected_provenance=None, study_kind='replay_v1'):
         if type(live) is not bool:
             raise ValueError('invalid_paper_mode')
         self.root, self.live, self.outputs = Path(root), live, {}
+        self.adapter = get_adapter(study_kind)
+        self.profile_hash = self.adapter.profile_sha256() if self.adapter.is_v2 else None
+        if expected_provenance is not None and expected_provenance.get('study_kind', 'replay_v1') != study_kind:
+            raise ValueError('paper_study_kind_changed')
+        if self.adapter.is_v2 and expected_provenance is not None and expected_provenance.get('profile_sha256') != self.adapter.profile_sha256():
+            raise ValueError('paper_profile_changed')
         run = Path(run).resolve()
-        self.evidence, self.sources = build_evidence(run), sources()
+        self.evidence = self.adapter.build_evidence(run) if self.adapter.is_v2 else build_evidence(run)
+        self.sources = sources()
         if expected_provenance is not None and (
                 expected_provenance['evidence_sha256'] != digest(self.evidence)
                 or expected_provenance['sources_sha256'] != digest(self.sources)):
             raise ValueError('paper_input_changed')
         write_json(self.root / 'evidence.json', self.evidence)
         write_json(self.root / 'sources.json', self.sources)
-        write_json(self.root / 'input_provenance.json', {'run': str(run),
+        provenance = {'run': str(run),
             'evidence_sha256': digest(self.evidence), 'sources_sha256': digest(self.sources),
             'study_run_relative': str(run.relative_to(HERE)) if run.is_relative_to(HERE) else None,
-            'new_scientific_model_calls': 0})
+            'new_scientific_model_calls': 0}
+        if self.adapter.is_v2:
+            provenance.update(study_kind=study_kind, evidence_schema=self.evidence['schema'],
+                              profile_sha256=self.adapter.profile_sha256())
+        write_json(self.root / 'input_provenance.json', provenance)
+
+    def decode_response(self, raw):
+        return self.adapter.decode(raw)
 
     def prompt(self, role):
+        if self.adapter.is_v2 and self.adapter.profile_sha256() != self.profile_hash:
+            raise ValueError('paper_profile_changed_during_run')
         data = {'current_evidence': self.evidence, 'sources': self.sources,
                 'evidence_sha256': digest(self.evidence)}
+        if self.adapter.is_v2:
+            # Keep all scientific fields while omitting local paths and long
+            # file-hash inventories from the provider context. The full saved
+            # evidence remains bound by evidence_sha256 and bundle verification.
+            data['current_evidence'] = copy.deepcopy(self.evidence)
+            data['current_evidence'].pop('artifact_sha256', None)
+            for key in ('source_sha256', 'frozen_snapshot_sha256', 'public_input_sha256'):
+                data['current_evidence']['protocol'].pop(key, None)
+            data['evidence_presentation'] = 'Scientific evidence is complete; local path and file hash inventories are omitted. evidence_sha256 identifies the full archived evidence.'
         if role != 'writer':
             data.update(current_draft=self.outputs['writer'], draft_sha256=digest(self.outputs['writer']))
             draft = self.outputs['writer']
             data['draft_word_count'] = sum(len(t.split()) for t in
                 [draft['title'], draft['abstract'], *[s['text'] for s in draft['sections']]])
-            data['final_word_limit'] = 1600
+            data['final_word_limit'] = None if self.adapter.is_v2 else 1600
         if role == 'reviser':
             data['internal_review'] = self.outputs['reviewer']
-        return (SKILL / 'roles' / f'{role}.md').read_text() + '\nCURRENT_DATA_JSON\n' + json.dumps(data)
+        return (self.adapter.skill / 'roles' / f'{role}.md').read_text() + '\nCURRENT_DATA_JSON\n' + json.dumps(data)
 
     def accept(self, role, value):
         if role not in self.roles or list(self.outputs) != list(self.roles[:self.roles.index(role)]):
@@ -96,7 +122,7 @@ class ReplayPaperState:
                     if issue['section_id_note'] != issue.get('section_id'):
                         raise ValueError('conflicting_section_annotation')
                     issue.pop('section_id_note')
-            validate_review(review, self.outputs['writer'])
+            validate_review(review, self.outputs['writer'], **({'max_field_chars': None} if self.adapter.is_v2 else {}))
             quotes = value['issue_quotes']
             if not isinstance(quotes, list) or len(quotes) != len(review['issues']):
                 raise ValueError('unanchored_review')
@@ -108,9 +134,9 @@ class ReplayPaperState:
         else:
             # Model drafts may reach local editorial review; rendering always
             # rechecks the final paper with the original 1600-word default.
-            validate_paper(value, self.sources, max_words=1800)
+            validate_paper(value, self.sources, **(self.adapter.paper_limits if self.adapter.is_v2 else {'max_words': 1800}))
             if role == 'reviser':
-                validate_revision_response(value, self.outputs['reviewer'])
+                validate_revision_response(value, self.outputs['reviewer'], **({'max_field_chars': None} if self.adapter.is_v2 else {}))
                 if (any(i['severity'] in ('blocking', 'major') for i in self.outputs['reviewer']['issues'])
                     and all(value[k] == self.outputs['writer'][k] for k in ('title', 'abstract', 'sections'))):
                     raise ValueError('major_review_without_revision')
@@ -121,6 +147,14 @@ class ReplayPaperState:
         if self.live:
             raise ValueError('scripted_paper_in_live_mode')
         if role == 'writer':
+            if self.adapter.is_v2:
+                return {'title': 'Static dependency recovery: integration fixture',
+                    'abstract': 'This scripted manuscript validates the evidence-to-PDF pipeline and is not a new scientific result.',
+                    'sections': [{'id': name, 'text': 'This developer-scripted section tests the manuscript pipeline. '
+                        'The saved study concerns self-authored structural held-out workflows with shared static tool contracts. '
+                        'The deterministic baseline requires no model plan. Replays and scenarios are repeated measures. '
+                        'Developer intervention in protocol revision is recorded; no autonomous discovery or generalization is claimed.',
+                        'source_ids': list(self.sources) if name == 'related_work' else []} for name in SECTION_IDS]}
             return {'title': 'Recovery replay: a development study',
                 'abstract': 'A scripted integration manuscript using saved measurements. It establishes no new research result.',
                 'sections': [{'id': name, 'text': 'This scripted section exercises the manuscript pipeline. '
@@ -134,7 +168,7 @@ class ReplayPaperState:
         return {**copy.deepcopy(self.outputs['writer']), 'response_to_review': []}
 
 
-def compile_pdf(root, tex):
+def compile_pdf(root, tex, *, study_kind='replay_v1'):
     command = ['bash', str(HERE.parent / 'tools/compile-latex.sh'), '--only-cached', '--keep-logs', str(tex)]
     result = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=90)
     (root / 'compile.stdout').write_text(result.stdout)
@@ -149,7 +183,8 @@ def compile_pdf(root, tex):
     pages = len(document); document.close()
     body = '\n'.join(extracted)
     (root / 'paper_extracted.txt').write_text(body)
-    if not all(word in body.lower() for word in ('results', 'references', 'post-hoc')):
+    required = ('results', 'references') if study_kind == 'recovery_v2' else ('results', 'references', 'post-hoc')
+    if not all(word in body.lower() for word in required):
         raise ValueError('missing_paper_content')
     if 'published as a conference paper' in body.lower():
         raise ValueError('false_publication_header')
@@ -162,6 +197,7 @@ def compile_pdf(root, tex):
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--live', action='store_true')
+    parser.add_argument('--study-kind', choices=('replay_v1', 'recovery_v2'))
     parser.add_argument('--study-run', type=Path, help='Completed compatible recovery study; saved input is reused on resume')
     parser.add_argument('--resume', type=Path, help='Revalidate saved raw outputs and compile, no API')
     parser.add_argument('--continue-from', type=Path, help='Continue a writer-only run with review/revision')
@@ -204,9 +240,11 @@ def main(argv=None):
             ('live' if args.live else 'offline') + '-%Y%m%dT%H%M%S-%f')
         root.mkdir(parents=True, exist_ok=False)
     study_run = select_study_run(args.study_run, saved_input)
+    study_kind = args.study_kind or (saved_input or {}).get('study_kind', 'replay_v1')
+    adapter = get_adapter(study_kind)
     os.chdir(root)
     try:
-        state = ReplayPaperState(root, args.live, run=study_run, expected_provenance=saved_input)
+        state = ReplayPaperState(root, args.live, run=study_run, expected_provenance=saved_input, study_kind=study_kind)
         if continuation:
             saved_roles = ['writer'] + (['reviewer'] if (continuation / 'raw_reviewer.txt').exists() else [])
             if len(saved_roles) != inherited['model_calls']:
@@ -214,19 +252,20 @@ def main(argv=None):
             raw_hashes = {}
             for role in saved_roles:
                 raw = (continuation / f'raw_{role}.txt').read_text()
-                state.accept(role, parse_object(raw))
+                state.accept(role, adapter.decode(raw))
                 (root / f'raw_{role}.txt').write_text(raw)
                 raw_hashes[role] = hashlib.sha256(raw.encode()).hexdigest()
             write_json(root / 'continuation.json', {'source': str(continuation),
                 'source_summary': inherited, 'writer_repeated': False,
                 'saved_raw_sha256': raw_hashes, 'new_model_calls_planned': 3 - len(saved_roles),
-                'draft_review_admission_limit': 1800, 'final_word_limit': 1600})
-        ledger = HERE / 'replay-paper-v1-requests.jsonl' if args.live else root / 'requests.jsonl'
+                'draft_review_admission_limit': None if adapter.is_v2 else 1800,
+                'final_word_limit': None if adapter.is_v2 else 1600})
+        ledger = HERE / ('recovery-v2-paper-requests.jsonl' if adapter.is_v2 else 'replay-paper-v1-requests.jsonl') if args.live else root / 'requests.jsonl'
         with ledger.with_suffix('.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             if args.resume:
                 for role in state.roles:
-                    state.accept(role, parse_object((root / f'raw_{role}.txt').read_text()))
+                    state.accept(role, adapter.decode((root / f'raw_{role}.txt').read_text()))
                 write_json(root / 'recovery.json', {'new_model_calls': 0, 'evidence_verified': True})
             else:
                 key = 'offline-placeholder'
@@ -235,7 +274,7 @@ def main(argv=None):
                     if len(keys) != 1:
                         raise ValueError('expected_one_credential')
                     key = keys[0]
-                workflow = SKILL / 'scripts' / ('continue.py' if continuation else 'workflow.py')
+                workflow = adapter.skill / 'scripts' / ('continue.py' if continuation else 'workflow.py')
                 if continuation and len(saved_roles) == 2:
                     workflow = root / 'continued_workflow.py'
                     workflow.write_text('from swarmflow import agent, phase\n'
@@ -245,9 +284,12 @@ def main(argv=None):
                         '    result = await agent("Revise the saved draft.", label="reviser", '
                         'options={"agent_type":"reviser","timeout":100})\n'
                         '    if not result: raise RuntimeError("missing_revision")\n    return result\n')
+                    if adapter.is_v2:
+                        workflow.write_text(workflow.read_text().replace(',"workflow_token_limit":60000', ''))
+                from run_recovery_v2 import provider_output_capacity
                 asyncio.run(native_run(root, workflow, state, live=args.live,
-                    key=key, ledger=ledger, max_calls=3, token_stop=60000, timeout=360,
-                    max_output_tokens=5000, team_name='replay_paper'))
+                    key=key, ledger=ledger, max_calls=3, token_stop=None if adapter.is_v2 else 60000, timeout=900 if adapter.is_v2 else 360,
+                    max_output_tokens=provider_output_capacity() if adapter.is_v2 else 5000, team_name='recovery_v2_paper' if adapter.is_v2 else 'replay_paper'))
         from replay_paper_render import render_replay_paper
         metering = json.loads((root / 'model_summary.json').read_text())
         if args.resume and (root / 'continuation.json').exists():
@@ -258,26 +300,31 @@ def main(argv=None):
         rendered_evidence['resource'].update(writing_model_calls=total_calls, writing_total_tokens=total_tokens)
         paper = state.outputs['reviser']
         if editorial:
-            paper = parse_object(editorial.read_text())
-            validate_paper(paper, state.sources)
-            validate_revision_response(paper, state.outputs['reviewer'])
+            paper = adapter.decode(editorial.read_text())
+            validate_paper(paper, state.sources, **adapter.paper_limits)
+            validate_revision_response(paper, state.outputs['reviewer'], **({'max_field_chars': None} if adapter.is_v2 else {}))
+            write_json(root / 'editorial_revision.json', paper)
             write_json(root / 'editorial_assistance.json', {
                 'authorship': 'Coding assistant local editorial pass, not a new model response',
                 'original_model_revision_sha256': digest(state.outputs['reviser']),
                 'final_paper_sha256': digest(paper), 'new_model_calls': 0,
-                'reason': 'Model revision remained oversized and its claims of condensation were not supported.',
-                'edits': 'Condensed abstract, introduction and conclusion; retained methods/results limitations; removed redundant inline source IDs already rendered as citations.'})
+                'reason': 'Explicit local editorial revision' if adapter.is_v2 else 'Model revision remained oversized and its claims of condensation were not supported.',
+                'edits': 'See the preserved original revision and editorial_revision.json for the exact changes.' if adapter.is_v2 else 'Condensed abstract, introduction and conclusion; retained methods/results limitations; removed redundant inline source IDs already rendered as citations.'})
         write_json(root / 'paper.json', paper)
-        tex = render_replay_paper(root, paper, state.sources, rendered_evidence, metering['mode'])
-        pdf = compile_pdf(root, tex)
+        tex = adapter.render(root, paper, state.sources, rendered_evidence, metering['mode'])
+        pdf = compile_pdf(root, tex, study_kind=study_kind)
         summary = {'status': 'manuscript_generated', 'mode': metering['mode'], 'pdf': pdf,
             'writing_model_calls': total_calls, 'writing_total_tokens': total_tokens,
             'new_scientific_model_calls': 0, 'external_review_completed': False,
             'editorial_assistance': editorial is not None,
             'semantic_review_certified': False, 'submission_ready': False}
         write_json(root / 'summary.json', summary)
+        if adapter.is_v2:
+            summary['study_kind'] = study_kind
+            write_json(root / 'summary.json', summary)
         if not args.no_latest:
-            write_json(HERE / 'latest-replay-paper.json', {'run_directory': str(root.relative_to(HERE)), **summary})
+            pointer = 'latest-recovery-v2-paper.json' if adapter.is_v2 else 'latest-replay-paper.json'
+            write_json(HERE / pointer, {'run_directory': str(root.relative_to(HERE)), **summary})
         print(json.dumps({'output': str(root), **summary}))
         return 0
     except BaseException as error:

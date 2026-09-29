@@ -1,0 +1,30 @@
+{
+  "status": "offline_integration_verified",
+  "study_kind": "recovery_v2",
+  "full_research_tests": 264,
+  "model_api_calls": 0,
+  "scripted_calls": 3,
+  "simulated_tokens": 6,
+  "pipeline_state": "BDCI/submission_runs/recovery-v2-offline-final/pipeline.json",
+  "paper_run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/replay_paper_runs/offline-pipeline-20260929T062443-c9e180b8",
+  "archive_sha256": "56f02c33373c73677309664347cc36f144fa4c0d7d16dc827cee326aab8ce532",
+  "unpacked_verification": {
+    "status": "verified_saved_candidate",
+    "files": 681,
+    "submission_ready": false,
+    "new_model_calls": 0,
+    "writing": {
+      "model_calls": 3,
+      "total_tokens": 6
+    },
+    "writing_mode": "offline_scripted",
+    "study_run": "recovery_v2_runs/live-20260929T060132-126279",
+    "study_kind": "recovery_v2",
+    "archived_live_usage": {
+      "model_calls": 83,
+      "total_tokens": 306189
+    }
+  },
+  "scientific_manuscript_generated": false,
+  "submission_ready": false
+}
