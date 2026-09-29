@@ -1,0 +1,33 @@
+{
+  "reviewer": "coding assistant; semantic review of partial response, not a model response",
+  "raw_sha256": "dd4507720f9f8138296d61b959afe5b097af992b4485cf48ed9c115f437d8e17",
+  "proposal_complete": false,
+  "execution_allowed": false,
+  "findings": [
+    {
+      "field": "resources",
+      "issue": "6 * 3 * 3 = 54 requests exceeds the declared 36-request cap."
+    },
+    {
+      "field": "worked_example",
+      "issue": "With read_main -> summarize_main -> combine -> report, transitive dependents include report. The draft omits it from the closure."
+    },
+    {
+      "field": "worked_example",
+      "issue": "A rerun of combine does not refresh report under the recorded cached-receipt protocol. Emitting the existing report cannot substitute for executing report."
+    },
+    {
+      "field": "worked_example",
+      "issue": "The example changes auxiliary data but identifies read_main as the changed source; affected-source semantics must be consistent."
+    },
+    {
+      "field": "holdout",
+      "issue": "Reusing the six known family/index instances does not establish unseen task structures. A prospective partition must specify genuinely new construction and not merely relabel observed instances."
+    },
+    {
+      "field": "policies",
+      "issue": "The response is truncated. Complete received policy records show changed-source identity only in adapter visible_inputs; comparison fairness needs clarification."
+    }
+  ],
+  "next_action": "Use remaining one campaign request to audit the exact recoverable fields; no experiment execution and no silent completion of truncated design."
+}

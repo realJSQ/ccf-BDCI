@@ -1,0 +1,8 @@
+{
+  "source": "structured SDK llm_call_end response_content recovered from local captured stdout",
+  "finish_reason": "length",
+  "sha256": "dd4507720f9f8138296d61b959afe5b097af992b4485cf48ed9c115f437d8e17",
+  "bytes": 21966,
+  "new_model_calls": 0,
+  "accepted_as_designer": false
+}

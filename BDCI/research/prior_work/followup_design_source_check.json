@@ -1,0 +1,36 @@
+{
+  "checked_on": "2026-09-29",
+  "scope": "Focused version-specific primary-source recheck, not exhaustive search or reproduction",
+  "notes": [
+    {
+      "id": "arxiv:2607.11098v1",
+      "url": "https://arxiv.org/html/2607.11098v1",
+      "sections": [
+        "6"
+      ],
+      "finding": "The published scope uses one fault per intervention and excludes compound/cascading evaluation. Its authored data-quality scenarios are hypothesis-generating, and primary deterministic checks remain fallible."
+    },
+    {
+      "id": "arxiv:2608.12761v1",
+      "url": "https://arxiv.org/html/2608.12761v1",
+      "sections": [
+        "Appendix A"
+      ],
+      "finding": "The author distinguishes post-hoc framing from prospective validation and warns that repeated seeds on authored fixtures measure output stability rather than independent task designs. High deterministic lifecycle pass counts are not deployment-rate evidence."
+    },
+    {
+      "id": "arxiv:2604.16706v1",
+      "url": "https://arxiv.org/html/2604.16706v1",
+      "sections": [
+        "8"
+      ],
+      "finding": "The paper uses simulated tools and single-parameter injection; multi-parameter/multi-turn propagation is outside that version. Limited human labels and evaluator errors constrain interpretation of absolute rates."
+    }
+  ],
+  "design_implications": [
+    "Do not label numeric reseeding of the existing six instances independent validation.",
+    "Distinguish novel task structures, changed data values, repeated model outputs and paired policy replays.",
+    "Avoid claiming reproduction of published baselines without their actual implementations.",
+    "Method comparisons can be useful as scoped empirical evidence even when the mechanism is prior art."
+  ]
+}

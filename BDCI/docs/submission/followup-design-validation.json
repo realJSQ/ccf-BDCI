@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-29",
+  "tests": 177,
+  "test_result": "passed",
+  "offline_native_run": "followup_design_runs/offline-20260929T002834-188533",
+  "live_campaign_calls": 2,
+  "live_campaign_tokens": 21722,
+  "workflow_complete": false,
+  "design_rejected_before_experiments": true,
+  "originals_preserved": true,
+  "assessment": "followup_design_runs/live-20260929T003516-680636/followup_assessment.json",
+  "source_sha256": {
+    "BDCI/research/run_followup_design.py": "1da16f0d721cc602e4eb022d747314972e189f00b23746c97e673794e189efc6",
+    "BDCI/research/test_followup_design.py": "46e3185020aa2fdf4e04b375a4982f97bd484a1b6d0629453946eec60e76feeb",
+    "BDCI/research/skills/followup-design/SKILL.md": "bb2cf9da1a6739be538437eeff4aa6b6730c7257f3233578989bd348120a7303",
+    "BDCI/research/skills/followup-design/roles/auditor.md": "1f6f12b2fb4868a392871959e78d262f940f6bf8d21746a8a8c21640aea218e6",
+    "BDCI/research/skills/followup-design/roles/designer.md": "619dc90032446077347c24734c27ddf4c6b7b2a7c499b9bd988f266d34e9d56f",
+    "BDCI/research/skills/followup-design/scripts/audit.py": "45eb460a3e747307c611c161703fab44d4721308e00674b04405fd570ca5312e",
+    "BDCI/research/skills/followup-design/scripts/workflow.py": "1bd92d6fd3b1f1977e4c5950143d76d525e10ee2fb6f76b5ddc0e78418864ce5"
+  }
+}

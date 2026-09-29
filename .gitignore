@@ -41,3 +41,7 @@
 
 # Candidate packages are local artifacts; explicitly selected ZIPs may be archived.
 /BDCI/submission_runs/
+
+# Bounded follow-up research design campaign; archive selected evidence explicitly.
+/BDCI/research/followup_design_runs/
+/BDCI/research/followup-design-v1-requests.jsonl

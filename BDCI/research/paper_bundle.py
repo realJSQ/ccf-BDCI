@@ -38,7 +38,8 @@ REPLAY_EVIDENCE_FILES = (
     f'prompt_episode_{i:02d}.txt', f'raw_episode_{i:02d}.txt'))
 POSTHOC_FILES = ('summary.json', 'results.json', 'transformations.json', 'analysis_implementation.py')
 PRIOR_WORK_FILES = ('fulltext_check.json', 'fulltext_check.md',
-                    'revision_seed_sources.json', 'revision_followup.json')
+                    'revision_seed_sources.json', 'revision_followup.json',
+                    'followup_design_source_check.json')
 REVISION_EVIDENCE_FILES = (
     'context.json', 'proposer.json', 'critic.json', 'refiner.json', 'handoff.json',
     'input_provenance.json', 'input_scoring_verification.json', 'summary.json',

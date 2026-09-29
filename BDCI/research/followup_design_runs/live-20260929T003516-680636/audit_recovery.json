@@ -1,0 +1,96 @@
+{
+  "source_run": "/home/jsqke/lpyproject/ccf-BDCI/BDCI/research/followup_design_runs/live-20260929T002907-613130",
+  "source_usage": {
+    "mode": "live",
+    "status": "failed",
+    "cost": null,
+    "team_name": "followup_design",
+    "max_output_tokens": 4500,
+    "error_type": "CancelledError",
+    "model_calls": 1,
+    "model_usage": [
+      {
+        "input_tokens": 5581,
+        "output_tokens": 4500,
+        "total_tokens": 10081,
+        "event": "usage",
+        "call": 1,
+        "run_id": "live-20260929T002907-613130",
+        "finish_reason": "length"
+      }
+    ],
+    "total_tokens": 10081,
+    "duration_seconds": 22.32216869599995
+  },
+  "source_model_calls": 1,
+  "source_total_tokens": 10081,
+  "truncated_sha256": "dd4507720f9f8138296d61b959afe5b097af992b4485cf48ed9c115f437d8e17",
+  "proposal_input_accepted": false,
+  "admission_errors": [
+    "truncated_model_output: incomplete values omitted without repair",
+    "invalid_call_arithmetic"
+  ],
+  "extracted_fields": [
+    "status",
+    "novelty_status",
+    "evidence_sha256",
+    "source_ids",
+    "negative_result_interpretation",
+    "title",
+    "research_question",
+    "hypothesis",
+    "selection_reason",
+    "primary_endpoint",
+    "novelty_boundary",
+    "split_before_data",
+    "holdout",
+    "control",
+    "evaluation",
+    "unit_of_analysis",
+    "freeze_rule",
+    "worked_example",
+    "falsification_conditions",
+    "limitations",
+    "alternatives",
+    "selected_alternative",
+    "scenario_ids",
+    "prompt_condition_ids",
+    "resources"
+  ],
+  "extracted_sha256": "c034f7697208258dcf4b0afaa45761606bff9bef23255e86b9152dc144fe77a7",
+  "text_repaired": false,
+  "assistant_review_suggestions_not_truth": {
+    "reviewer": "coding assistant; semantic review of partial response, not a model response",
+    "raw_sha256": "dd4507720f9f8138296d61b959afe5b097af992b4485cf48ed9c115f437d8e17",
+    "proposal_complete": false,
+    "execution_allowed": false,
+    "findings": [
+      {
+        "field": "resources",
+        "issue": "6 * 3 * 3 = 54 requests exceeds the declared 36-request cap."
+      },
+      {
+        "field": "worked_example",
+        "issue": "With read_main -> summarize_main -> combine -> report, transitive dependents include report. The draft omits it from the closure."
+      },
+      {
+        "field": "worked_example",
+        "issue": "A rerun of combine does not refresh report under the recorded cached-receipt protocol. Emitting the existing report cannot substitute for executing report."
+      },
+      {
+        "field": "worked_example",
+        "issue": "The example changes auxiliary data but identifies read_main as the changed source; affected-source semantics must be consistent."
+      },
+      {
+        "field": "holdout",
+        "issue": "Reusing the six known family/index instances does not establish unseen task structures. A prospective partition must specify genuinely new construction and not merely relabel observed instances."
+      },
+      {
+        "field": "policies",
+        "issue": "The response is truncated. Complete received policy records show changed-source identity only in adapter visible_inputs; comparison fairness needs clarification."
+      }
+    ],
+    "next_action": "Use remaining one campaign request to audit the exact recoverable fields; no experiment execution and no silent completion of truncated design."
+  },
+  "assistant_review_sha256": "b5b98ab4ca64bb69b9318c95b88bc2a28a31b2a5a2717f92ec116946e4b0229d"
+}

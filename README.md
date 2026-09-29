@@ -79,3 +79,5 @@ JiuwenSwarm 基于官方 `develop` 提交 `fc18e5c572a6b3b62bb42ea843cce674140e4
 2026-09-29 已恢复推进，完整成果、资源统计及待办见[阶段交接](BDCI/docs/STAGE_HANDOFF.md)。目前没有正式竞赛评分、Reviewer Token 或已提交的框架贡献 PR。
 
 最新[候选材料 ZIP](BDCI/submission_runs/replay-20260929/replay-candidate.zip)已完成解包后离线校验（482个文件），164项测试通过；参见[验证记录](BDCI/docs/submission/replay-candidate-validation.json)。该包明确标记为尚不可正式提交，未包含外部Reviewer Token或官方贡献PR。
+
+后续[方法设计与拒绝推进记录](BDCI/research/FOLLOWUP.md)：新增两次真实设计/审查请求，方案截断且超预算，未执行实验；177项软件测试通过。当前研究运行时API累计44次、145,585 tokens（不含开发助手会话）。

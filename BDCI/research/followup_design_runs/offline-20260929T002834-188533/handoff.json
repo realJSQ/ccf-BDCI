@@ -1,0 +1,15 @@
+{
+  "status": "reject",
+  "implementation_recommended": false,
+  "execution_enabled": false,
+  "experiment_executed": false,
+  "scientific_certification": false,
+  "novelty_established": false,
+  "evidence_sha256": "ed63a35483d3cf80f28493132df4a1de123a1c427f0dfb12f062c8912b783790",
+  "designer_sha256": "3384ddf751210d153a8643f2e1f1c6381cf30f3df68b0948fc6195e7533a16f7",
+  "semantic_review_required": true,
+  "mode": "offline_scripted",
+  "run_directory": "followup_design_runs/offline-20260929T002834-188533",
+  "model_calls": 2,
+  "total_tokens": 4
+}

@@ -1,0 +1,1 @@
+{"novelty_status": "unestablished", "evidence_sha256": "ed63a35483d3cf80f28493132df4a1de123a1c427f0dfb12f062c8912b783790", "status": "decline", "reason": "Offline fixture; no research decision.", "negative_result_interpretation": "No incremental benefit of selective replay over model-only was established.", "source_ids": ["arxiv:2604.16706v1", "arxiv:2607.11098v1"]}

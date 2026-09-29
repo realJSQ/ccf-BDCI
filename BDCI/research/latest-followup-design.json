@@ -1,0 +1,66 @@
+{
+  "status": "not_implementation_ready",
+  "design_run": "followup_design_runs/live-20260929T002907-613130",
+  "audit_run": "followup_design_runs/live-20260929T003516-680636",
+  "proposal_input_accepted": false,
+  "model_audit_accepted": false,
+  "raw_model_verdict": "reject",
+  "execution_enabled": false,
+  "experiment_executed": false,
+  "model_calls": 2,
+  "total_tokens": 21722,
+  "design_admission_error": "invalid_call_arithmetic",
+  "audit_anchor_checks": [
+    {
+      "index": 0,
+      "field": "resources.planned_api_calls",
+      "literal_anchor_valid": false,
+      "error": "review_field_must_be_text"
+    },
+    {
+      "index": 1,
+      "field": "worked_example",
+      "literal_anchor_valid": true,
+      "error": null
+    },
+    {
+      "index": 2,
+      "field": "worked_example",
+      "literal_anchor_valid": true,
+      "error": null
+    },
+    {
+      "index": 3,
+      "field": "worked_example",
+      "literal_anchor_valid": true,
+      "error": null
+    },
+    {
+      "index": 4,
+      "field": "holdout",
+      "literal_anchor_valid": true,
+      "error": null
+    },
+    {
+      "index": 5,
+      "field": "primary_endpoint",
+      "literal_anchor_valid": true,
+      "error": null
+    },
+    {
+      "index": 6,
+      "field": "alternatives.0.risk",
+      "literal_anchor_valid": true,
+      "error": null
+    }
+  ],
+  "scientific_certification": false,
+  "assistant_semantic_corrections": [
+    "Two-of-three observed success is a falsifiable threshold, although weak and low powered; the model incorrectly called it unfalsifiable.",
+    "36 is the proposed follow-up experiment ceiling; the previous research-v2 campaign ceiling was 24.",
+    "The only complete received fields are retained; no missing policy text was fabricated."
+  ],
+  "resource_scope": "Research-runtime API usage only; Codex development assistance, web retrieval and external reviewer costs are outside this ledger.",
+  "historical_runtime_api_calls": 44,
+  "historical_runtime_api_tokens": 145585
+}
