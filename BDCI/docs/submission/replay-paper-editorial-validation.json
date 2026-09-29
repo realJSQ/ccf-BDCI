@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-29",
+  "new_model_calls": 0,
+  "pdf_sha256": "11c6a0952c60526ced12120de9282d2e7ed6783fb80a093647bd5ae7b3250e4f",
+  "pdf_pages": 4,
+  "visual_review": {
+    "all_pages_viewed": true,
+    "table_titles_kept_with_tables": true,
+    "observed_clipping_or_overlap": false
+  },
+  "tests": 159,
+  "test_result": "passed",
+  "editorial_changes": [
+    "model settings",
+    "local pre-run freezing scope",
+    "pre-execution validation",
+    "native invocation time scope",
+    "table layout"
+  ],
+  "scientific_measurements_changed": false,
+  "submission_ready": false,
+  "live_competition_recheck": "Three official pages inaccessible via web tool; saved requirements not newly verified"
+}

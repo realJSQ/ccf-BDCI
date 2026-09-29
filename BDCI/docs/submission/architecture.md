@@ -22,7 +22,7 @@ flowchart TD
 
 ## 层次与职责
 
-新增开发路径为 [方法修订](../../research/run_method_revision.py) → [协议设计与版本绑定审查](../../research/run_protocol_design.py) → [冻结数据的恢复实验](../../research/run_replay_study.py) → [零 API 复核与事后分析](../../research/analyze_replay.py)。前三者仍使用共用原生运行适配器；CPU 工具在控制代码中重放模型动作，不是开放任意代码执行。各入口仍需显式调用，最新恢复实验尚未接入旧 `run_paper.py` 的特定 pilot 格式。实际记录和无收益结果见 [REVISION.md](../../research/REVISION.md)。
+新增开发路径为 [方法修订](../../research/run_method_revision.py) → [协议设计与版本绑定审查](../../research/run_protocol_design.py) → [冻结数据的恢复实验](../../research/run_replay_study.py) → [零 API 复核与事后分析](../../research/analyze_replay.py)。前三者仍使用共用原生运行适配器；CPU 工具在控制代码中重放模型动作，不是开放任意代码执行。各入口仍需显式调用，最新恢复实验由独立的 `run_replay_paper.py` 接入 writer/reviewer/reviser 三角色写作；旧 `run_paper.py` 继续处理历史 pilot 格式。新写作流程先复验冻结实验，再绑定稿件与证据哈希审查，最后用代码生成严格与事后两张结果表。实际记录和无收益结果见 [REVISION.md](../../research/REVISION.md)。
 
 | 层次 | 已实现行为 | 源码 |
 | --- | --- | --- |
@@ -50,7 +50,7 @@ EvidenceRail 证明的是可信本地实验工具所报告文件的完整性与�
 
 ## 已有证据及未完成项
 
-真实阶段结果见[选题存档](../../research/runs/live-20260928T081927-158480/)、[pilot 存档](../../research/pilot_runs/live-20260928T084134-196833/)、[论文存档](../../research/paper_runs/live-20260928T104912-411414/)。当前 pilot 未支持假设，候选题目未最终确立；论文仍明确标为 Workflow validation draft。
+真实阶段结果见[选题存档](../../research/runs/live-20260928T081927-158480/)、[pilot 存档](../../research/pilot_runs/live-20260928T084134-196833/)、[论文存档](../../research/paper_runs/live-20260928T104912-411414/)。历史 pilot 未支持假设。最新[恢复研究论文](../../research/replay_paper_runs/editorial-20260929/paper.pdf)为4页 Development study / internal draft，未证明选择性恢复优于原始模型计划。原始模型修订超长，由开发助手本地编辑后成稿；这一介入有哈希关联记录，不是全自动修订成功。
 
 [干净环境记录](clean-environment-validation.json)记录同一 Linux/WSL 主机的新虚拟环境安装、107 项软件检查和原生离线编排成功，以及真实稿重编译文本与 72 dpi 像素一致。它不证明其他操作系统兼容性，也不把脚本模型运行当作独立科学复现。
 

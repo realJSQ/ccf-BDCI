@@ -54,6 +54,18 @@ writer、reviewer、reviser 是不同角色调用，仍使用同一模型服务�
 
 `--resume-run` 只处理已保存的三个原始响应，重新执行契约、来源校验与本地产物步骤；不读 API key，不发模型请求。原始失败保留，新增 `recovery.json`。已有 delivery 不静默覆盖，因此重打包需先显式归档旧生成物。
 
+## 恢复研究论文入口
+
+```bash
+python BDCI/research/run_replay_paper.py  # 脚本模型，验证已保存真实实验后走离线写作
+```
+
+`replay_paper_evidence.build_evidence` 复验原始与事后实验 → `ReplayPaperState` → replay-paper team skill 的 writer/reviewer/reviser → `replay_paper_render` 从核验表生成正文与表格 → Tectonic。内部 review 绑定 draft/evidence 哈希并要求逐项原文引用，但不保证意见语义正确。
+
+`--continue-from` 只续跑未完成角色，累加先前请求资源；`--resume` 从保存原文重验和编译，零 API；`--editorial-file` 明确标注开发助手编辑。默认最终稿上限1600词是本地工程限制，不是竞赛篇幅要求。已有 writing campaign 3次请求已用完。
+
+`editorial-20260929/` 为保存模型稿的后续本地修订，记录源稿与源PDF哈希，修正复现说明与排版，没有新模型响应。原 live 目录保留完整原始请求与失败记录。
+
 ## 共用模型调用链
 
 ```mermaid

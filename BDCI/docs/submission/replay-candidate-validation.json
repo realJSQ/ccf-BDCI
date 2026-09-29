@@ -1,0 +1,19 @@
+{
+  "status": "verified_saved_candidate",
+  "files": 482,
+  "submission_ready": false,
+  "new_model_calls": 0,
+  "writing": {
+    "model_calls": 3,
+    "total_tokens": 24015
+  },
+  "date": "2026-09-29",
+  "zip_sha256": "2afb750488225d02c0269342c9d616e6f773fa44fbeba0e7b699e7a1196254fe",
+  "zip_bytes": 1188066,
+  "archive": "BDCI/submission_runs/replay-20260929/replay-candidate.zip",
+  "unpacked_cli_verified": true,
+  "tests_total": 164,
+  "bundle_tests_after_cli_fix": 5,
+  "scientific_acceptance": false,
+  "github_pushed": false
+}

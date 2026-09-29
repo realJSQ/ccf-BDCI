@@ -38,3 +38,6 @@
 /BDCI/research/replay_runs/
 /BDCI/research/replay_paper_runs/
 /BDCI/research/replay-paper-v1-requests.jsonl
+
+# Candidate packages are local artifacts; explicitly selected ZIPs may be archived.
+/BDCI/submission_runs/

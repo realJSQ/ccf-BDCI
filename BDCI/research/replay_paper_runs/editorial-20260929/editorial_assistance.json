@@ -1,0 +1,15 @@
+{
+  "authorship": "Coding assistant local editorial correction; not a new model response",
+  "source_directory": "replay_paper_runs/live-20260928T151550-319349",
+  "source_paper_sha256": "9d5166aa5a9987b78110219a24b9f8f82aaaa1b9ff30b033bda2d80fb669d2e7",
+  "source_pdf_sha256": "5fd5c71b776edd7448b8a0dbbe6256358672c2a56d9ebc4bc8ad964db2fe2bed",
+  "final_paper_sha256": "9dd44675ed2e83aed221705e6d83aa30781b8e20fc88c25db07d0e6513585035",
+  "new_model_calls": 0,
+  "edits": [
+    "Specify measured model settings and tool-attempt cap",
+    "Clarify local pre-run freezing is not independent public preregistration",
+    "Explain validation occurs before tool execution",
+    "Scope native study wall time separately from full research and writing"
+  ],
+  "measurements_changed": false
+}

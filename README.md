@@ -72,6 +72,10 @@ bash BDCI/tools/compile-latex.sh --keep-logs \
 
 JiuwenSwarm 基于官方 `develop` 提交 `fc18e5c572a6b3b62bb42ea843cce674140e4266`，本仓库采用源码快照，不携带上游 Git 历史或作为嵌套 submodule。来源和变更见 [UPSTREAM.md](UPSTREAM.md)，上游 LICENSE 及第三方许可说明保留在源码中。
 
-已将新研究证据接入写作、内部审阅和修订流程，生成[4 页英文开发论文](BDCI/research/replay_paper_runs/live-20260928T151550-319349/paper.pdf)。模型修订超长后有明确记录的开发助手本地编辑；论文尚有表述与复现信息待完善，不能视为全自动完成的正式参赛稿。
+已将新研究证据接入写作、内部审阅和修订流程，生成[4 页英文开发论文](BDCI/research/replay_paper_runs/editorial-20260929/paper.pdf)。模型修订超长后有明确记录的开发助手本地编辑；已补充模型配置、本地运行前冻结和耗时范围说明并完成逐页检查，不能视为全自动完成的正式参赛稿。
 
-本阶段按用户要求告一段落，完整成果、资源统计及恢复工作待办见[阶段交接](BDCI/docs/STAGE_HANDOFF.md)。目前没有正式竞赛评分、Reviewer Token 或已提交的框架贡献 PR。
+最新路径与零 API 复验命令见[恢复研究论文说明](BDCI/research/REPLAY_PAPER.md)。
+
+2026-09-29 已恢复推进，完整成果、资源统计及待办见[阶段交接](BDCI/docs/STAGE_HANDOFF.md)。目前没有正式竞赛评分、Reviewer Token 或已提交的框架贡献 PR。
+
+最新[候选材料 ZIP](BDCI/submission_runs/replay-20260929/replay-candidate.zip)已完成解包后离线校验（482个文件），164项测试通过；参见[验证记录](BDCI/docs/submission/replay-candidate-validation.json)。该包明确标记为尚不可正式提交，未包含外部Reviewer Token或官方贡献PR。

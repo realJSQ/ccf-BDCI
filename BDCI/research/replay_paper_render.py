@@ -112,7 +112,10 @@ def render_replay_paper(root: Path, paper: dict, sources: dict, evidence: dict, 
         value = resource[key]
         if value is not None and (type(value) not in (int, float) or not math.isfinite(value) or value < 0):
             raise ValueError('invalid_resource_' + key)
-        resources.append(key.replace('_', ' ') + ': ' + ('unavailable' if value is None else str(value)))
+        label = ('native study invocation wall time in seconds (excludes topic selection, literature and writing)'
+                 if key == 'duration_seconds' else key.replace('_', ' '))
+        display = 'unavailable' if value is None else (f'{value:.3f}' if key == 'duration_seconds' else str(value))
+        resources.append(label + ': ' + display)
     if 'changed_plan_count' in evidence['posthoc']:
         changed = _count(evidence['posthoc']['changed_plan_count'], 'changed_plan_count')
         resources.append('post-hoc plans changed: ' + str(changed))
@@ -139,11 +142,11 @@ def render_replay_paper(root: Path, paper: dict, sources: dict, evidence: dict, 
             md += ['## Results', 'Rendering mode: ' + mode + '. ' + labels]
             for caption, rows in (('Original strict execution', strict),
                                   ('Post-hoc compatibility replay (not preregistered)', posthoc)):
-                tex += [r'\paragraph{' + tex_escape(caption) + '}', r'\begin{center}',
+                tex += [r'\noindent\begin{minipage}{\linewidth}', r'\paragraph{' + tex_escape(caption) + '}', r'\begin{center}',
                         r'{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{llrrrrr}\hline',
                         r'Scenario & Policy & $n$ & Correct & Wrong & Noncompletion & Calls \\\hline',
                         *[' & '.join(tex_escape(v) for v in row) + r' \\' for row in rows],
-                        r'\hline\end{tabular}}\end{center}']
+                        r'\hline\end{tabular}}\end{center}\end{minipage}\par\medskip']
                 md += ['### ' + caption, '| Scenario | Policy | n | Correct | Wrong | Noncompletion | Calls |\n'
                        '|---|---|---:|---:|---:|---:|---:|\n' + '\n'.join('| ' + ' | '.join(r) + ' |' for r in rows)]
             note = ('Calls count replay tool executions; cached initial construction is shared and excluded. '
